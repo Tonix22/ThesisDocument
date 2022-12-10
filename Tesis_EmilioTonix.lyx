@@ -406,7 +406,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -440,7 +439,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -475,7 +473,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -588,7 +585,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -624,7 +620,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -657,7 +652,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -790,7 +784,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -821,7 +814,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -881,7 +873,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -931,6 +922,48 @@ end{minipage}
 Problem statement
 \end_layout
 
+\begin_layout Standard
+A typical problem statement narrative template includes the following elements:
+\end_layout
+
+\begin_layout Standard
+    Introduction: This section provides an overview of the problem or challenge
+ that needs to be addressed, and explains the background, context, and significa
+nce of the problem.
+\end_layout
+
+\begin_layout Standard
+    Problem definition: This section defines the problem in more detail,
+ and outlines the specific challenges and obstacles that need to be overcome
+ in order to solve the problem.
+\end_layout
+
+\begin_layout Standard
+    Scope and goals: This section defines the scope and goals of the project,
+ and explains what the project aims to achieve in terms of solving the problem.
+\end_layout
+
+\begin_layout Standard
+    Impact and significance: This section explains the potential impact
+ and significance of the project, and discusses how it will contribute to
+ the broader goals and objectives of the organization or community.
+\end_layout
+
+\begin_layout Standard
+    Conclusion: This section summarizes the key points of the problem statement
+ narrative, and provides a clear and concise description of the problem
+ and the project's goals and objectives.
+\end_layout
+
+\begin_layout Standard
+Overall, a problem statement narrative is a useful tool for defining the
+ scope and goals of a project, and for providing a clear and concise description
+ of the problem that the project is intended to solve.
+ It can help to ensure that the project is focused and well-defined, and
+ that all stakeholders have a clear understanding of the problem and the
+ project's objectives.
+\end_layout
+
 \begin_layout Subsection
 Motivation
 \end_layout
@@ -944,7 +977,7 @@ General Objective
 \end_layout
 
 \begin_layout Subsubsection
-Particula Objective
+Particular Objective
 \end_layout
 
 \begin_layout Subsection
@@ -964,15 +997,216 @@ Mathematical Notation
 \end_layout
 
 \begin_layout Subsection
-OTFS
+Neuronal Network
+\end_layout
+
+\begin_layout Standard
+A neuronal network, also known as a neural network, is a type of artificial
+ intelligence (AI) system that is designed to mimic the functioning of the
+ human brain.
+ It is composed of many interconnected nodes, or "neurons," which are able
+ to process information and make decisions based on that information.Neural
+ networks are typically organized into layers, with each layer containing
+ a different number of neurons.
+ The input layer receives information from the outside world, and the output
+ layer produces the final result or decision based on that information.
+ The layers in between the input and output layers are called hidden layers,
+ and they perform various intermediate calculations and processing tasks.
+ Neural networks are trained using large amounts of data, which allows them
+ to learn and make predictions or decisions based on that data.
+ They are often used in applications such as image and speech recognition,
+ language translation, and predictive modeling.Overall, a neuronal network
+ is a type of AI system that is designed to mimic the functioning of the
+ human brain, and it is used in a wide range of applications to solve complex
+ problems and make decisions.
+\end_layout
+
+\begin_layout Standard
+Neural networks are typically organized into layers, with each layer containing
+ a different number of neurons.
+ The input layer receives information from the outside world, and the output
+ layer produces the final result or decision based on that information.
+ The layers in between the input and output layers are called hidden layers,
+ and they perform various intermediate calculations and processing tasks.
+\end_layout
+
+\begin_layout Standard
+In order to make accurate predictions or decisions, neural networks must
+ be trained using large amounts of data.
+ This allows the network to learn and adapt, and to make better predictions
+ or decisions over time.
+ Neural networks are often used in applications such as image and speech
+ recognition, language translation, and predictive modeling.
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \begin_layout Subsection
-DeepLearning
+Doubly Dispersive Channels
+\end_layout
+
+\begin_layout Standard
+A doubly dispersive channel is a type of communication channel that exhibits
+ dispersion in two different dimensions.
+ This means that the signals transmitted through the channel are not only
+ spread out in time, but also in some other aspect, such as frequency or
+ spatial dimensions.
+\end_layout
+
+\begin_layout Standard
+Doubly dispersive channels can be challenging to deal with, as they can
+ cause a variety of problems, such as signal distortion, loss of information,
+ and increased noise.
+ In order to overcome these challenges, various techniques and technologies
+ are used, such as equalization, error correction, and modulation.
+ These techniques can help to minimize the effects of dispersion and improve
+ the overall performance of the communication system.
+\end_layout
+
+\begin_layout Standard
+Doubly dispersive channels are commonly encountered in wireless communication
+ systems, where the channel can be affected by a variety of factors, such
+ as the distance between the transmitter and receiver, the presence of obstacles
+, and the characteristics of the environment.
+ In order to overcome these challenges, advanced technologies and techniques
+ are used to ensure reliable and efficient communication.
+\end_layout
+
+\begin_layout Subsubsection
+Time Frequency channel
+\end_layout
+
+\begin_layout Standard
+A time-frequency channel is a type of communication channel that is characterize
+d by time-varying frequency-selective fading.
+ This means that the channel experiences changes in its frequency response
+ over time, resulting in variations in the amplitude and phase of the signals
+ transmitted through it.
+ Time-frequency channels are commonly encountered in wireless communication
+ systems, where the channel can be affected by a variety of factors, such
+ as the distance between the transmitter and receiver, the presence of obstacles
+, and the characteristics of the environment.
+ In order to overcome these challenges, advanced technologies and techniques
+ are used to ensure reliable and efficient communication.
 \end_layout
 
 \begin_layout Subsection
-ONNX
+QAM
+\end_layout
+
+\begin_layout Standard
+QAM stands for quadrature amplitude modulation.
+ It is a type of digital modulation that is used to transmit data over a
+ wireless or wired communication channel.
+ In QAM, the information is encoded in the amplitude and phase of a carrier
+ signal.QAM is used in many different applications, including cable television,
+ satellite communications, and broadband internet.
+ It is particularly useful for transmitting high-speed data over long distances,
+ and is often used in conjunction with other modulation techniques to improve
+ the overall performance of a communication system.
+ In general, QAM is a very useful and versatile modulation technique that
+ allows for the efficient transmission of digital data over a wide range
+ of communication channels.
+ It is an essential component of many modern communication systems, and
+ is likely to continue to be an important technology for many years to come.
+\end_layout
+
+\begin_layout Subsection
+OFDM
+\end_layout
+
+\begin_layout Standard
+OFDM stands for Orthogonal Frequency Division Multiplexing.
+ It is a type of digital modulation that is used in many modern communication
+ systems, including wireless networks, cable television, and digital audio
+ broadcasting.
+\end_layout
+
+\begin_layout Standard
+In OFDM, the information to be transmitted is divided into multiple parallel
+ streams, each of which is modulated onto a separate carrier frequency.
+ The carrier frequencies are chosen to be orthogonal to each other, meaning
+ that they are spaced apart at intervals of one quarter of the symbol duration.
+ This allows the multiple parallel streams to be transmitted simultaneously
+ without interference.
+\end_layout
+
+\begin_layout Standard
+OFDM has many advantages over other modulation techniques, including its
+ ability to transmit large amounts of data over a wide range of frequencies,
+ its resilience to interference and noise, and its ability to adapt to changing
+ channel conditions.
+ It is an essential component of many modern communication systems, and
+ is likely to continue to be an important technology for many years to come.
+\end_layout
+
+\begin_layout Subsection
+Equalization
+\end_layout
+
+\begin_layout Subsubsection
+MSE
+\end_layout
+
+\begin_layout Standard
+MSE equalization, or minimum mean square error equalization, is a technique
+ used in digital communication systems to improve the performance of a channel
+ by reducing the mean square error (MSE) between the transmitted and received
+ signals.
+ MSE equalization is a widely used technique in digital communication systems,
+ as it can provide significant improvements in the performance of the channel
+ by reducing the effects of noise, interference, and other impairments.
+ It is often used in combination with other techniques, such as error correction
+ and modulation, to further improve the overall performance of the communication
+ system.
+\end_layout
+
+\begin_layout Subsection
+LMMSE
+\end_layout
+
+\begin_layout Standard
+LMMSE equalization, or linear minimum mean square error equalization, is
+ a type of equalization used in digital communication systems to improve
+ the performance of a channel by reducing the mean square error (MSE) between
+ the transmitted and received signals.LMMSE equalization works by using a
+ linear model to approximate the relationship between the transmitted and
+ received signals.
+ The equation for LMMSE equalization is as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w=R_{yy}^{-1}*R_{yx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where:
+\end_layout
+
+\begin_layout Standard
+    w is the vector of equalizer coefficients     
+\end_layout
+
+\begin_layout Standard
+R_yy is the cross-correlation matrix of the received signal    
+\end_layout
+
+\begin_layout Standard
+R_yx is the cross-correlation matrix of the transmitted and received signals
+\end_layout
+
+\begin_layout Standard
+In this equation, the equalizer coefficients are calculated by multiplying
+ the inverse of the cross-correlation matrix of the received signal by the
+ cross-correlation matrix of the transmitted and received signals.
+ This provides an optimal solution for the equalizer coefficients, which
+ minimize the mean square error (MSE) between the transmitted and equalized
+ received signals.
 \end_layout
 
 \begin_layout Section
