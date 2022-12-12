@@ -970,58 +970,205 @@ end{minipage}
 
 \begin_layout Subsection
 Problem statement
-\end_layout
-
-\begin_layout Standard
-A typical problem statement narrative template includes the following elements:
-\end_layout
-
-\begin_layout Standard
-    Introduction: This section provides an overview of the problem or challenge
- that needs to be addressed, and explains the background, context, and significa
-nce of the problem.
-\end_layout
-
-\begin_layout Standard
-In communication networks, encoded bit signals(IQ constellations) suffer
- from different distortions and noise through RF broadcast.
- It's hard to recover the received messages given by a channel when we want
- to decode the symbols.
-\end_layout
-
-\begin_layout Standard
-    Problem definition: This section defines the problem in more detail,
- and outlines the specific challenges and obstacles that need to be overcome
- in order to solve the problem.
-\end_layout
-
-\begin_layout Standard
- Communication channels involve multipath delay + doppler shift + noise,
- and equalization is challenging.
+\size large
  
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-    Scope and goals: This section defines the scope and goals of the project,
- and explains what the project aims to achieve in terms of solving the problem.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+hfill
+\backslash
+begin{minipage}{1
+\backslash
+linewidth}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Our target is to mimic the existing equalizers over dispersive channels
- with neuronal networks, such as MMSE, LMMSE, and MAP  (Delay and Doppler
- distortion).
+\paragraph_spacing onehalf
+\align block
+
+\size large
+A telecommunications equalizer is a type of equalizer that is used in telecommun
+ication systems to adjust the frequency response of a signal, which may
+ have a different frequency range and call for different adjustments, it
+ is similar to an audio equalizer in that it is intended to work with audio
+ signals.
+ By lowering distortion or raising the signal-to-noise ratio, telecom equalizers
+ are used to improve the quality of telecommunication systems.
+ They can be used for a variety of things, including Bluetooth,wifi, IOT,
+ droning, V2V, wireless broadband, and satellite communications.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "goldsmith_2005"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-    Impact and significance: This section explains the potential impact
- and significance of the project, and discusses how it will contribute to
- the broader goals and objectives of the organization or community.
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Our goal is to develop an equalizer based on deep learning techniques and
+ research how it performs in terms of timing and memory complexity.
+ We take as a reference the classical methods that manage a good bit error
+ rate, and we will take them as a golden model of accuracy.
+ For this task, we use the backpropagation algorithm.
+ Backpropagation is a widely used algorithm in the field of artificial neural
+ networks.
+ It is a method for training a neural network by adjusting the weights of
+ the connections between the neurons in the network.
+ It works by first making a prediction using the network, then calculating
+ the error between the predicted output and the actual target output.
+ This error is then propagated backwards through the network with mathematical
+ partial derivatives respecting weights, and the weights of the connections
+ are adjusted in a way that minimizes the error when it goes to zero 
+\begin_inset Formula $\frac{\partial E}{\partial W}=0$
+\end_inset
+
+.
+ This process is repeated many times with the goal of eventually arriving
+ at a set of weights that allows the network to make accurate predictions.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goodfellow-et-al-2016"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-    Conclusion: This section summarizes the key points of the problem statement
- narrative, and provides a clear and concise description of the problem
- and the project's goals and objectives.
+\paragraph_spacing onehalf
+\align block
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+However, it is well known that in the telecom area, signal processing is
+ done with complex numbers, and most of the implementations in NN use real
+ numbers rather than complex ones.
+ Some papers deal with this separating of real and imaginary parts on an
+ independent network, and other sources accept that real and imaginary parts
+ have a certain correlation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+.
+ In NN, we use activation functions to add non-linearity to the system,
+ but one difficulty presented for this commonly used function is that they
+ may not be complex-differentiable for certain local points.
+ So we'll experiment with both aproaches and look into experimental results
+ as matter of this problem.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Our goal is to mimic the existing equalizers over dispersive channels with
+ neuronal networks, such as MMSE, LMMSE, and MAP.
+ We will maseaure the BER curve that it is usually used 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{minipage}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
