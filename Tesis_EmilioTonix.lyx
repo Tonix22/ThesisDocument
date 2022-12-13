@@ -10,16 +10,17 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{ragged2e}
 \usepackage{blindtext}
-\hyphenpenalty=5000
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{Doubly dispersive channels equalization using deep learning techniques}
+\fancyfoot[CO,RE]{Emilio Tonix}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[CO,RE]{Emilio Tonix}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
-\begin_local_layout
-Style Standard
-    KeepEmpty             true
-    FreeSpacing           true
-End
-\end_local_layout
 \language english
 \language_package default
 \inputencoding auto
@@ -286,10 +287,6 @@ newpage
 
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Section*
 \noindent
 
@@ -321,39 +318,9 @@ newline
 
 \size large
 Thank you for reading this; I appreciate it.
- I'm expecting that your work will benefit greatly from 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
-  this material.
+ I'm expecting that your work will benefit greatly from this material.
  I won't hesitate to say that you might have done your job more effectively
  than I did.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\end_inset
-
  Progress in science is a way to skepticism and having the best information
  from multiple sources to meet your individual standards.
   
@@ -398,26 +365,6 @@ newline
 \end_inset
 
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -515,22 +462,6 @@ n en este campo, prácticamente inexplorado por algunos equipos de comunicación
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
@@ -569,30 +500,6 @@ newline
 \end_inset
 
  
-\end_layout
-
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -699,22 +606,6 @@ newline
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 \align block
@@ -767,26 +658,6 @@ newpage
 \end_layout
 
 \begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -948,26 +819,6 @@ However, we think that the DL applications that we look at in this thesis
  
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsection
 Problem statement
 \size large
@@ -980,26 +831,6 @@ status open
 
 \backslash
 newline
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
 \end_layout
 
 \end_inset
@@ -1046,6 +877,47 @@ newline
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Equalizer_Basic.jpg
+	lyxscale 30
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Basic Equalizer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 \align block
 
@@ -1054,7 +926,15 @@ Our goal is to develop an equalizer based on deep learning techniques and
  research how it performs in terms of timing and memory complexity.
  We take as a reference the classical methods that manage a good bit error
  rate, and we will take them as a golden model of accuracy.
- For this task, we use the backpropagation algorithm.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+For this task, we use the backpropagation algorithm.
  Backpropagation is a widely used algorithm in the field of artificial neural
  networks.
  It is a method for training a neural network by adjusting the weights of
@@ -1153,22 +1033,6 @@ newline
 Our goal is to mimic the existing equalizers over dispersive channels with
  neuronal networks, such as MMSE, LMMSE, and MAP.
  We will maseaure the BER curve that it is usually used 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
