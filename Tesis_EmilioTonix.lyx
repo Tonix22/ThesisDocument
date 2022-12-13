@@ -742,6 +742,51 @@ newline
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Typical_Block_Diagram.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Typical communication system block diagram 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ChannelDiagram"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \end_layout
@@ -750,9 +795,10 @@ newline
 \paragraph_spacing onehalf
 
 \size large
- An "AI native" design philosophy will guide the creation of the 6G architecture
-, enabling the network to become intelligent, and capable of self-learning
- and self-adaptation in response to shifting network dynamics 
+The creation of the 6G architecture will be guided by an "AI native" design
+ philosophy, allowing the network to become intelligent, solving individual
+ stages of the channel, and capable of self-learning and self-adaptation
+ in response to shifting network dynamics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "The_Roadmap_to_6G"
@@ -771,7 +817,15 @@ literal "false"
 \end_inset
 
 , and current research has demonstrated an astounding aptitude for algorithmic
- learning .
+ learning 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "8697857"
+literal "false"
+
+\end_inset
+
+.
  Because it is challenging to define real-world pictures or language with
  strict mathematical models, DL excels in fields like computer vision and
  natural language processing.
@@ -805,17 +859,14 @@ newline
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
 \size large
-However, we think that the DL applications that we look at in this thesis
- are a useful and insightful way to fundamentally rethink the communications
- system design problem, and they show promise for performance improvements
- in complex communications scenarios that are challenging to describe with
- tractable mathematical models.
+However, we assume that the DL applications we evaluate in this thesis are
+ a useful and insightful way to fundamentally rethink the problem of communicati
+ons network design, and they show promise for performance improvements in
+ complex communications scenarios that are difficult to describe with tractable
+ mathematical models.
+ Finally, we will look for the equalization stage, which, if it is seen
+ in the diagram above, fits on the channel decoder.
  
 \end_layout
 
@@ -838,20 +889,135 @@ newline
 
 \end_layout
 
+\begin_layout Subsubsection
+Channel overview
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 \align block
 
 \size large
-A telecommunications equalizer is a type of equalizer that is used in telecommun
-ication systems to adjust the frequency response of a signal, which may
- have a different frequency range and call for different adjustments, it
- is similar to an audio equalizer in that it is intended to work with audio
- signals.
- By lowering distortion or raising the signal-to-noise ratio, telecom equalizers
- are used to improve the quality of telecommunication systems.
- They can be used for a variety of things, including Bluetooth,wifi, IOT,
- droning, V2V, wireless broadband, and satellite communications.
+The wireless devices in urban areas offer a variety of signal propagation
+ settings with varying numbers of obstructions.
+ Despite the abundance of buildings, parks, and cars in high and medium
+ density towns, rural areas face impediments like mountains and dense vegetation.
+ There are impediments like furniture, people, walls, etc.
+ also in the networks made within houses, offices, restaurants, hotels,
+ etc.
+ The electromagnetic waves that convey the transmitter signal are obstructed,
+ diffracted, reflected, and refracted while in these propagation medium
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "balanis_2012"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Given the length of the signal's trajectory, the receiver receives several
+ signal variations that the transmitter sends, which arrive at the antenna
+ from various directions and with varying delays.
+ This phenomenon is known as the multipath effect.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+We begin with the ray-tracing technique and make advantage of the physical
+ geometry of the propagation environment to create a deterministic model
+ of the wireless channel.
+ The received signal 
+\begin_inset Formula $r(t)$
+\end_inset
+
+ is an accumulation of delayed, Doppler-shifted, and attenuated copies of
+ the original signal 
+\begin_inset Formula $s$
+\end_inset
+
+ as a consequence of multipath propagation.
+ The Doppler shift results from the relative motion of the transmitter,
+ receiver, and reflections in the scene, whereas the delay relies on the
+ length of each propagation path.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Propagation.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Delay multipath 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hong_thaj_viterbo_2022"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Equalization
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\size large
+In order to modify a signal's frequency response, which may have a wide
+ frequency range and necessitate various adjustments, telecommunications
+ equalizers are needed on the system.
+ Similar to an audio equalizer, this one is used to enhance the quality
+ of telecommunications systems by reducing distortion or increasing the
+ signal-to-noise ratio.
+ Bluetooth, WiFi, IOT, drones, V2V, wireless broadband, and satellite communicat
+ions are just a few of the everyday applications they can be used for.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -914,6 +1080,18 @@ Basic Equalizer
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -929,6 +1107,54 @@ Our goal is to develop an equalizer based on deep learning techniques and
  
 \end_layout
 
+\begin_layout Subsubsection
+Nueronal newtorks
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A neuronal network, also known as a neural network, is a type of artificial
+ intelligence (AI) system that is designed to mimic the functioning of the
+ human brain.
+ It is composed of many interconnected nodes, or "neurons," which are able
+ to process information and make decisions based on that information.
+ Neural networks are typically organized into layers, with each layer containing
+ a different number of neurons.
+ The input layer receives information from the outside world, and the output
+ layer produces the final result or decision based on that information.
+ The layers in between the input and output layers are called hidden layers,
+ and they perform various intermediate calculations and processing tasks.
+ Neural networks are trained using large amounts of data, which allows them
+ to learn and make predictions or decisions based on that data.
+ They are often used in applications such as image and speech recognition,
+ language translation, and predictive modeling.Overall, a neuronal network
+ is a type of AI system that is designed to mimic the functioning of the
+ human brain, and it is used in a wide range of applications to solve complex
+ problems and make decisions.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The layers in between the input and output layers are called hidden layers,
+ and they perform various intermediate calculations and processing tasks.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In order to make accurate predictions or decisions, neural networks must
+ be trained using large amounts of data.
+ This allows the network to learn and adapt, and to make better predictions
+ or decisions over time.
+ Neural networks are often used in applications such as image and speech
+ recognition, language translation, and predictive modeling.
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 \align block
@@ -941,7 +1167,73 @@ For this task, we use the backpropagation algorithm.
  the connections between the neurons in the network.
  It works by first making a prediction using the network, then calculating
  the error between the predicted output and the actual target output.
- This error is then propagated backwards through the network with mathematical
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Back_upsacale.jpg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Backpropagation overview 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "leonel_2018"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+This error is then propagated backwards through the network with mathematical
  partial derivatives respecting weights, and the weights of the connections
  are adjusted in a way that minimizes the error when it goes to zero 
 \begin_inset Formula $\frac{\partial E}{\partial W}=0$
@@ -970,12 +1262,6 @@ newline
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
 
 \end_layout
 
@@ -1032,7 +1318,7 @@ newline
 \size large
 Our goal is to mimic the existing equalizers over dispersive channels with
  neuronal networks, such as MMSE, LMMSE, and MAP.
- We will maseaure the BER curve that it is usually used 
+ We will maseaure the BER curve that it is usually used.
 \end_layout
 
 \begin_layout Standard
@@ -1051,8 +1337,33 @@ Objectives
 General Objective
 \end_layout
 
+\begin_layout Standard
+A general objective is a broad, overall goal that a person or organization
+ aims to achieve.
+ It is typically broad in scope and not specific to a particular situation
+ or context.
+ For example, a general objective for a company might be to "increase profitabil
+ity" or to "improve customer satisfaction."
+\end_layout
+
 \begin_layout Subsubsection
 Particular Objective
+\end_layout
+
+\begin_layout Standard
+In contrast, a particular objective is a specific and well-defined goal
+ that is targeted at achieving a specific result or outcome.
+ It is more specific than a general objective and is usually related to
+ a specific situation or context.
+ For example, a particular objective for a company might be to "increase
+ sales by 10% in the next quarter" or to "improve response time to customer
+ inquiries by 25% within the next month."
+\end_layout
+
+\begin_layout Standard
+In general, general objectives provide the overall direction and guidance
+ for an organization or individual, while particular objectives are the
+ specific steps and actions that are taken to achieve the general objectives.
 \end_layout
 
 \begin_layout Subsection
@@ -1138,86 +1449,6 @@ Neuronal Network
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-A neuronal network, also known as a neural network, is a type of artificial
- intelligence (AI) system that is designed to mimic the functioning of the
- human brain.
- It is composed of many interconnected nodes, or "neurons," which are able
- to process information and make decisions based on that information.Neural
- networks are typically organized into layers, with each layer containing
- a different number of neurons.
- The input layer receives information from the outside world, and the output
- layer produces the final result or decision based on that information.
- The layers in between the input and output layers are called hidden layers,
- and they perform various intermediate calculations and processing tasks.
- Neural networks are trained using large amounts of data, which allows them
- to learn and make predictions or decisions based on that data.
- They are often used in applications such as image and speech recognition,
- language translation, and predictive modeling.Overall, a neuronal network
- is a type of AI system that is designed to mimic the functioning of the
- human brain, and it is used in a wide range of applications to solve complex
- problems and make decisions.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The layers in between the input and output layers are called hidden layers,
- and they perform various intermediate calculations and processing tasks.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In order to make accurate predictions or decisions, neural networks must
- be trained using large amounts of data.
- This allows the network to learn and adapt, and to make better predictions
- or decisions over time.
- Neural networks are often used in applications such as image and speech
- recognition, language translation, and predictive modeling.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
@@ -1246,7 +1477,6 @@ linewidth}
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 
 \size large
 A doubly dispersive channel is a type of communication channel that exhibits
