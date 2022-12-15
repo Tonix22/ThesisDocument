@@ -376,13 +376,14 @@ En la actualidad, se está desarrollando la tecnología de redes de comunicació
  Los transmisores RF, que se utilizan en los sistemas de telecomunicaciones
  para transferir información, codifican la información a través de la amplitud
  y la fase de una señal portadora, normalmente llamada datos IQ.
- Sin embargo, estos datos se deforman al viajar a través de un canal de
+ No obstante, estos datos se deforman al viajar a través de un canal de
  alta movilidad, que son doblemente dispersivos, lo que implica que las
  propiedades de la señal se entremezclan con algún desplazamiento y difusión
  en tiempo y frecuencia.
- Existen algunos algoritmos clásicos que pueden implicar ecualizadores iterativo
-s complejos y lentos en tiempo de ejecución o hay equalizadores simples
- pero imprecisos.
+ Hay algunos algoritmos tradicionales que pueden requerir complejos ecualizadore
+s iterativos que pueden ser lentos en términos de tiempo de ejecución.
+ Sin embargo, también existen ecualizadores más sencillos pero que pueden
+ no ser tan precisos.
  En este trabajo se analizarán algunas soluciones que utilizan redes neuronales,
  en las que debemos equilibrar la complejidad del tiempo y la precisión
  para hacer frente a este desafío.
@@ -421,6 +422,10 @@ Podemos afirmar que los algoritmos convencionales funcion con garantia en
  incluidos los ecualizadores MSE, LMMSE y MAP.
  Realizaremos un seguimiento de diferentes tamaños de constelaciones y tasas
  de error de bit en una variedad de situaciones de interferencia y ruido.
+ Esperamos que la tasa de error de bits disminuya hasta, o funcione un poco
+ mejor que, el modelo de oro, los cuales son los equalizadores previamentes
+ mencionados.
+ 
 \begin_inset ERT
 status open
 
@@ -509,11 +514,13 @@ Due to its primary uses in control, road safety, autonomous driving, remote
  The RF broadcasts, which are used by telecommunications systems to transfer
  encoded information over the amplitude and phase of a carrier signal, are
  normally called IQ.
- However, this data is deformed as it travels through a high mobility channel.
+ On the other hand, this data is deformed as it travels through a high mobility
+ channel.
  High mobility channels are doubly dispersive, which implies that the signal
  properties are muddled with some temporal frequency shifting and spreading.
- There are some classical algorithms that may imply complex iterative equalizers
- and algorithms that are time-consuming or hard to maintain.
+ There are some traditional algorithms that may require complex iterative
+ equalizers that can be slow in terms of execution time.
+ However, there are also simpler equalizers that may not be as precise.
  We'll investigate the use of the neural network-based solutions and consider
  how we should balance time complexity and accuracy to meet this challenge.
  
@@ -543,17 +550,17 @@ newline
 \size large
 We can categorically assert that conventional algorithms continue to work
  in the context of contemporary development.
- However, recent advances in neural networks have simplified problems that
- were previously intractable, such as deciphering ADN sequences or creating
- images from text.
+ Nevertheless, recent advances in neural networks have simplified problems
+ that were previously intractable, such as deciphering ADN sequences or
+ creating images from text.
  In a word, they successfully tackle non-linear issues.
  The objective of this work is to mimic well-known equalization techniques,
  including MSE, LMMSE, and MAP equalizers.
  We'll evaluate how well the equalization performs under various noise condition
 s and with various bit-size encodings.
  We anticipate that the bit error rate will drop to, or perform somewhat
- better than, the golden mode.
-    
+ better than, the golden model, which are the aforementioned equalizers.
+ 
 \begin_inset ERT
 status open
 
@@ -578,14 +585,14 @@ newline
 \paragraph_spacing onehalf
 
 \size large
-According to literature study, there are a few cutting-edge methodologies
- that approach this objective but fall short of fully documenting all of
- the steps of equalization.
+According to literature studies, there are a few cutting-edge methodologies
+ that approach this target but fall short of fully documenting all of the
+ steps of equalization.
  This article offers a method for dealing with more complex circumstances,
- like line of sight or a lack of it.
+ such as line of sight or a lack of it.
  Last but not least, we aim to promote further research into this area,
  which is essentially untapped by some communication teams.
-  
+ 
 \begin_inset ERT
 status open
 
@@ -707,20 +714,16 @@ newline
 \end_layout
 
 \begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-The division of signal processing into a series of numerous distinct blocks,
- each of which performs a clearly defined and isolated function (such as
- source or channel coding, modulation, channel estimation, and equalization),
- is one of the guiding principles of communications system design.
- The effective, adaptable, and controlled systems we have today were made
- feasible by this strategy, but it is not guaranteed if individually tuned
- processing blocks yield the best end-to-end performance.
+One of the guiding principles of communication system design is the division
+ of signal processing into a series of distinct blocks, each of which performs
+ a clearly defined and isolated function such as source or channel coding,
+ modulation, channel estimation, and equalization.
+ This strategy has made it possible for us to have the effective, adaptable,
+ and controlled systems we have today, but it is not certain whether individuall
+y tuned processing blocks will yield the best end-to-end performance.
  
 \begin_inset ERT
 status open
@@ -791,10 +794,10 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The creation of the 6G architecture will be guided by an "AI native" design
- philosophy, allowing the network to become intelligent, solving individual
- stages of the channel, and capable of self-learning and self-adaptation
- in response to shifting network dynamics 
+The design philosophy guiding the creation of the 6G architecture will be
+ "AI native", allowing the network to become intelligent, capable of solving
+ individual stages of the channel, and able to self-learn and self-adapt
+ in response to changing network dynamics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "The_Roadmap_to_6G"
@@ -822,10 +825,10 @@ literal "false"
 \end_inset
 
 .
- Because it is challenging to define real-world pictures or language with
- strict mathematical models, DL excels in fields like computer vision and
- natural language processing.
- For instance, while it is now simple to develop DL algorithms that learn
+ Due to the challenge of defining real-world images or language with strict
+ mathematical models, deep learning (DL) excels in fields like computer
+ vision and natural language processing.
+ For example, while it is now simple to develop DL algorithms that learn
  to complete this task with accuracy greater than that of humans 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -834,40 +837,25 @@ literal "false"
 
 \end_inset
 
-, writing a robust system for the recognition of handwritten numbers or
- objects in photos is a nearly hard process.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newline
-\end_layout
-
-\end_inset
-
-
+.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-However, we assume that the DL applications we evaluate in this thesis are
- a useful and insightful way to fundamentally rethink the problem of communicati
-ons network design, and they show promise for performance improvements in
- complex communications scenarios that are difficult to describe with tractable
- mathematical models.
+Despite this, we assume that the DL applications we evaluate in this thesis
+ are a useful and insightful way to fundamentally rethink the problem of
+ communications network design, and they show promise for performance improvemen
+ts in complex communications scenarios that are difficult to describe with
+ tractable mathematical models.
  Finally, we will look for the equalization stage, which, if it is seen
  in the diagram above, fits on the channel decoder.
  
 \end_layout
 
 \begin_layout Subsection
-Problem statement
+Channel
 \size large
  
 \begin_inset ERT
@@ -886,7 +874,34 @@ newline
 \end_layout
 
 \begin_layout Subsubsection
-Channel overview
+Dispersion and doubly dispersion
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+In radio communication systems, dispersion refers to the spreading out of
+ a signal over a range of frequencies or wavelengths as it travels through
+ the air or other medium.
+ This can cause distortion of the signal, which can affect the performance
+ of the communication system.
+ Dispersion can be caused by a variety of factors, including the distance
+ the signal travels, the presence of obstacles or reflections, and the frequency
+ of the signal.
+ Dispersion can be mitigated through the use of various techniques, such
+ as frequency- or time-domain equalization, adaptive modulation, and error
+ correction codes.
+ A doubly dispersive channel is a type of communication channel that exhibits
+ dispersion in two different dimensions.
+ This means that the signals transmitted through the channel are not only
+ spread out in time, but also in some other aspect, such as frequency or
+ spatial dimensions.
+\end_layout
+
+\begin_layout Subsubsection
+Multipath fading and doppler shift
 \end_layout
 
 \begin_layout Standard
@@ -913,37 +928,20 @@ literal "false"
 \end_inset
 
 .
- To mitigate the effects of multipath fading, wireless communication systems
- can use techniques such as diversity reception and equalization to improve
- the performance of the communication channel.
- These techniques can help to reduce the impact of fading on the received
- signal and improve the quality and reliability of the communication.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-We begin with the ray-tracing technique and make advantage of the physical
+ We begin with the ray-tracing technique and make advantage of the physical
  geometry of the propagation environment to create a deterministic model
  of the wireless channel.
  The delay of a signal refers to the time it takes for the signal to travel
- from the transmitter to the receiver.
- The Doppler shift of a signal refers to the frequency shift of the signal
- due to the relative motion between the transmitter and receiver.
-\end_layout
+ from the transmitter to the receiver, and the Doppler shift of a signal
+ refers to the frequency shift of the signal due to the relative motion
+ between the transmitter and receiver.
+\size default
 
-\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -955,6 +953,10 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -981,40 +983,374 @@ literal "false"
 
 \begin_layout Standard
 
+\series bold
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\mathbf{r(t)=g_{1}s(t-\tau_{1})+g_{2}s(t-\tau_{2})}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
 \size large
-In the delay-Doppler representation, the delay and Doppler shift of the
- transmitted signal are plotted on a two-dimensional plane, with the delay
- represented on the vertical axis and the Doppler shift represented on the
- horizontal axis.
- This allows the characteristics of the wireless communication channel to
- be visualized and analyzed, which can help to improve the performance of
- the communication system.
+\begin_inset Formula $\mathbf{r(t)}$
+\end_inset
+
+ recieved signal
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{g_{n}}$
+\end_inset
+
+ baseband equivalent complex gain(attenuation)
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{\boldsymbol{\tau_{1}=\frac{r_{1}}{c}}}$
+\end_inset
+
+ where c is the speed of light
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{\boldsymbol{\tau_{2}=\frac{(r_{2}+r_{3})}{c}}}$
+\end_inset
+
+ delay in reflected path
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\mathbf{\tau_{2}-\tau_{1}}}$
+\end_inset
+
+ delay spread
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+In wireless communication, the Doppler shift can cause changes in the frequency
+ of a signal as it travels from the transmitter to the receiver.
+ This can happen when the transmitter or receiver (or both) are moving relative
+ to each other, causing the frequency of the signal to shift.
+ The Doppler shift can affect the performance of a wireless communication
+ system by causing changes in the signal-to-noise ratio and the signal-to-interf
+erence ratio, which can degrade the quality of the signal and make it more
+ difficult to detect and decode.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/DopplerBasic.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Doppler shifts due to the different angles of arrival 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hong_thaj_viterbo_2022"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 
-\size large
-In a doubly dispersive channel, the frequency and time characteristics of
- the transmitted signal can be distorted, causing the signal to spread out
- in both frequency and time.
- This can affect the quality and reliability of the communication, as the
- signal may become weaker and more susceptible to noise and interference.
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\mathbf{r(t)=g_{1}e^{j2\pi\nu_{1}(t-\tau_{1})}s(t-\tau_{1})+g_{2}e^{j2\pi\nu_{2}(t-\tau_{2})}s(t-\tau_{2})}}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Subsubsection
-Equalization
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{\boldsymbol{\nu_{1}=\frac{v}{c}f_{c}}}$
+\end_inset
+
+ LOS doppler shift
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{\boldsymbol{\nu_{1}=\frac{v*cos(\theta)}{c}f_{c}}}$
+\end_inset
+
+ doppler shift in reflected path
 \end_layout
 
 \begin_layout Standard
 \align block
 
 \size large
-In order to modify a signal's frequency response, which may have a wide
- frequency range and necessitate various adjustments, telecommunications
- equalizers are needed on the system.
- Similar to an audio equalizer, this one is used to enhance the quality
- of telecommunications systems by reducing distortion or increasing the
- signal-to-noise ratio.
+We can generalize for time dependent function the gain as follows: 
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\mathbf{g(\tau_{i},t)=g_{i}e^{j2\pi\nu_{i}(t-\tau_{i})}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\size large
+Therefore impulse time-frequency response of channel at fixed time t, can
+ be obtained by taking fourier transform along the delay dimension of 
+\begin_inset Formula $\mathbf{\boldsymbol{g(\tau,t)}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\mathbf{\boldsymbol{H(f,t)=\int g(\tau,t)e^{-j2\pi f\tau}d\tau}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\size large
+A time-frequency channel is a type of communication channel that is characterize
+d by time-varying frequency-selective fading.
+ This means that the channel experiences changes in its frequency response
+ over time, resulting in variations in the amplitude and phase of the signals
+ transmitted through it.
+ Because a channel is assumed to have a slow time-varying function of t,
+ we refer to this phenomenon as having a wide sense of being stationary.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Wide sense stationary
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+A wide sense stationary (WSS) process is a stochastic process in which the
+ mean and the autocorrelation function of the process do not change over
+ time.
+ This means that the statistical properties of the process, such as the
+ mean, variance, and autocorrelation, are constant and do not vary with
+ time.
+ WSS processes are commonly used in signal processing and telecommunications,
+ where they are used to model signals that are stationary over some time
+ interval.
+ WSS processes are a generalization of strictly stationary processes, which
+ are processes in which the mean and the autocorrelation function are constant
+ for all time.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+A wide sense stationary (WSS) process can be described by the following
+ equations:
+\end_layout
+
+\begin_layout Enumerate
+
+\size large
+The mean of the process is constant over time, and can be represented by
+ the equation:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\mathbf{\boldsymbol{E[X(t)]=\mu}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Where 
+\begin_inset Formula $\boldsymbol{E[X(t)]}$
+\end_inset
+
+ is the expected value of the process at time t, and 
+\begin_inset Formula $\boldsymbol{μ}$
+\end_inset
+
+ is the constant mean of the process.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\size large
+The autocovariance of the process, which is a measure of the correlation
+ between two points in time, is also constant over time, and can be represented
+ by the equation:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{R_{X}(t1,t2)=E[(X(t_{1})-\mu)(X(t_{2})-\mu)]=R(t_{1}-t_{2})}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Where
+\begin_inset Formula $\boldsymbol{R_{X}(t_{1},t_{2})}$
+\end_inset
+
+is the autocovariance of the process at times t1 and t2, and 
+\begin_inset Formula $\boldsymbol{R(t_{1}-t_{2})}$
+\end_inset
+
+ is the autocovariance function of the process, which is a function of the
+ time difference between t1 and t2
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\size large
+The autocorrelation function of the process, which is a measure of the correlati
+on between two points in time, is also constant over time, and can be represente
+d by the equation
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r_{X}(t1,t2)=\frac{R_{X}(t_{1},t_{2})}{\sqrt{R_{X}(t_{1},t_{1})R_{X}(t_{2},t_{2})}}=r(t_{1}-t_{2})}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Where 
+\begin_inset Formula $\mathbf{r_{X}(t_{1},t_{2})}$
+\end_inset
+
+ is the autocorrelation function of the process at times t1 and t2, and
+ 
+\begin_inset Formula $\boldsymbol{r(t_{1}-t_{2})}$
+\end_inset
+
+ is the autocorrelation function of the process, which is a function of
+ the time difference between t1 and t2.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Equalization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+A telecom channel equalizer is a device or algorithm used in telecommunications
+ systems to compensate for distortion or other impairments in a communication
+ channel.
+ The equalizer uses signal processing techniques to estimate the characteristics
+ of the channel, such as the impulse response or the frequency response,
+ and then applies a correction to the transmitted signal to counteract the
+ effects of the channel on the received signal.
+ This can improve the performance of the communication system by reducing
+ errors and increasing the data rate or signal-to-noise ratio.
  Bluetooth, WiFi, IOT, drones, V2V, wireless broadband, and satellite communicat
 ions are just a few of the everyday applications they can be used for.
  
@@ -1107,6 +1443,93 @@ Our goal is to develop an equalizer based on deep learning techniques and
 \end_layout
 
 \begin_layout Subsubsection
+MSE
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+MSE equalization, or minimum mean square error equalization, is a technique
+ used in digital communication systems to improve the performance of a channel
+ by reducing the mean square error (MSE) between the transmitted and received
+ signals.
+ MSE equalization is a widely used technique in digital communication systems,
+ as it can provide significant improvements in the performance of the channel
+ by reducing the effects of noise, interference, and other impairments.
+ It is often used in combination with other techniques, such as error correction
+ and modulation, to further improve the overall performance of the communication
+ system.
+\end_layout
+
+\begin_layout Subsubsection
+LMMSE
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+LMMSE equalization, or linear minimum mean square error equalization, is
+ a type of equalization used in digital communication systems to improve
+ the performance of a channel by reducing the mean square error (MSE) between
+ the transmitted and received signals.LMMSE equalization works by using a
+ linear model to approximate the relationship between the transmitted and
+ received signals.
+ The equation for LMMSE equalization is as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $w=R_{yy}^{-1}*R_{yx}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+    w is the vector of equalizer coefficients     
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+R_yy is the cross-correlation matrix of the received signal    
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+R_yx is the cross-correlation matrix of the transmitted and received signals
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this equation, the equalizer coefficients are calculated by multiplying
+ the inverse of the cross-correlation matrix of the received signal by the
+ cross-correlation matrix of the transmitted and received signals.
+ This provides an optimal solution for the equalizer coefficients, which
+ minimize the mean square error (MSE) between the transmitted and equalized
+ received signals.
+\end_layout
+
+\begin_layout Subsection
 Nueronal newtorks
 \end_layout
 
@@ -1447,85 +1870,6 @@ Mathematical Notation
 Neuronal Network
 \end_layout
 
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Subsection
-Doubly Dispersive Channels
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\size large
-A doubly dispersive channel is a type of communication channel that exhibits
- dispersion in two different dimensions.
- This means that the signals transmitted through the channel are not only
- spread out in time, but also in some other aspect, such as frequency or
- spatial dimensions.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Doubly dispersive channels can be challenging to deal with, as they can
- cause a variety of problems, such as signal distortion, loss of information,
- and increased noise.
- In order to overcome these challenges, various techniques and technologies
- are used, such as equalization, error correction, and modulation.
- These techniques can help to minimize the effects of dispersion and improve
- the overall performance of the communication system.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Doubly dispersive channels are commonly encountered in wireless communication
- systems, where the channel can be affected by a variety of factors, such
- as the distance between the transmitter and receiver, the presence of obstacles
-, and the characteristics of the environment.
- In order to overcome these challenges, advanced technologies and techniques
- are used to ensure reliable and efficient communication.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Time Frequency channel
 \end_layout
@@ -1554,12 +1898,7 @@ linewidth}
 \paragraph_spacing onehalf
 
 \size large
-A time-frequency channel is a type of communication channel that is characterize
-d by time-varying frequency-selective fading.
- This means that the channel experiences changes in its frequency response
- over time, resulting in variations in the amplitude and phase of the signals
- transmitted through it.
- Time-frequency channels are commonly encountered in wireless communication
+Time-frequency channels are commonly encountered in wireless communication
  systems, where the channel can be affected by a variety of factors, such
  as the distance between the transmitter and receiver, the presence of obstacles
 , and the characteristics of the environment.
@@ -1716,129 +2055,6 @@ end{minipage}
 
 \begin_layout Subsection
 Equalization
-\end_layout
-
-\begin_layout Subsubsection
-MSE
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-MSE equalization, or minimum mean square error equalization, is a technique
- used in digital communication systems to improve the performance of a channel
- by reducing the mean square error (MSE) between the transmitted and received
- signals.
- MSE equalization is a widely used technique in digital communication systems,
- as it can provide significant improvements in the performance of the channel
- by reducing the effects of noise, interference, and other impairments.
- It is often used in combination with other techniques, such as error correction
- and modulation, to further improve the overall performance of the communication
- system.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-LMMSE
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-LMMSE equalization, or linear minimum mean square error equalization, is
- a type of equalization used in digital communication systems to improve
- the performance of a channel by reducing the mean square error (MSE) between
- the transmitted and received signals.LMMSE equalization works by using a
- linear model to approximate the relationship between the transmitted and
- received signals.
- The equation for LMMSE equalization is as follows:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula $w=R_{yy}^{-1}*R_{yx}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-    w is the vector of equalizer coefficients     
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-R_yy is the cross-correlation matrix of the received signal    
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-R_yx is the cross-correlation matrix of the transmitted and received signals
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In this equation, the equalizer coefficients are calculated by multiplying
- the inverse of the cross-correlation matrix of the received signal by the
- cross-correlation matrix of the transmitted and received signals.
- This provides an optimal solution for the equalizer coefficients, which
- minimize the mean square error (MSE) between the transmitted and equalized
- received signals.
 \end_layout
 
 \begin_layout Section
