@@ -105,10 +105,6 @@
 \begin_body
 
 \begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename Imagenes/Cinvestav_Logo.jpg
@@ -898,15 +894,16 @@ Channel overview
 \align block
 
 \size large
-The wireless devices in urban areas offer a variety of signal propagation
- settings with varying numbers of obstructions.
- Despite the abundance of buildings, parks, and cars in high and medium
- density towns, rural areas face impediments like mountains and dense vegetation.
- There are impediments like furniture, people, walls, etc.
- also in the networks made within houses, offices, restaurants, hotels,
- etc.
- The electromagnetic waves that convey the transmitter signal are obstructed,
- diffracted, reflected, and refracted while in these propagation medium
+A multipath fading channel is a type of wireless communication channel that
+ experiences fading of the transmitted signal due to multiple paths of the
+ signal between the transmitter and receiver.
+ This can occur when the signal reflects off of obstacles such as buildings
+ or terrain, or when it is refracted by the atmosphere.
+ Multiple paths of the transmitted signal can cause constructive and destructive
+ interference at the receiver, resulting in rapid fluctuations in the received
+ signal strength.
+ This can cause the signal to fade in and out, which can affect the quality
+ and reliability of the communication.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -916,17 +913,11 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Given the length of the signal's trajectory, the receiver receives several
- signal variations that the transmitter sends, which arrive at the antenna
- from various directions and with varying delays.
- This phenomenon is known as the multipath effect.
+ To mitigate the effects of multipath fading, wireless communication systems
+ can use techniques such as diversity reception and equalization to improve
+ the performance of the communication channel.
+ These techniques can help to reduce the impact of fading on the received
+ signal and improve the quality and reliability of the communication.
 \end_layout
 
 \begin_layout Standard
@@ -937,20 +928,10 @@ Given the length of the signal's trajectory, the receiver receives several
 We begin with the ray-tracing technique and make advantage of the physical
  geometry of the propagation environment to create a deterministic model
  of the wireless channel.
- The received signal 
-\begin_inset Formula $r(t)$
-\end_inset
-
- is an accumulation of delayed, Doppler-shifted, and attenuated copies of
- the original signal 
-\begin_inset Formula $s$
-\end_inset
-
- as a consequence of multipath propagation.
- The Doppler shift results from the relative motion of the transmitter,
- receiver, and reflections in the scene, whereas the delay relies on the
- length of each propagation path.
- 
+ The delay of a signal refers to the time it takes for the signal to travel
+ from the transmitter to the receiver.
+ The Doppler shift of a signal refers to the frequency shift of the signal
+ due to the relative motion between the transmitter and receiver.
 \end_layout
 
 \begin_layout Standard
@@ -993,13 +974,31 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+In the delay-Doppler representation, the delay and Doppler shift of the
+ transmitted signal are plotted on a two-dimensional plane, with the delay
+ represented on the vertical axis and the Doppler shift represented on the
+ horizontal axis.
+ This allows the characteristics of the wireless communication channel to
+ be visualized and analyzed, which can help to improve the performance of
+ the communication system.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+In a doubly dispersive channel, the frequency and time characteristics of
+ the transmitted signal can be distorted, causing the signal to spread out
+ in both frequency and time.
+ This can affect the quality and reliability of the communication, as the
+ signal may become weaker and more susceptible to noise and interference.
 \end_layout
 
 \begin_layout Subsubsection
