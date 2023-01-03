@@ -871,6 +871,257 @@ ts in complex communications scenarios that are difficult to describe with
 \end_layout
 
 \begin_layout Subsection
+OFDM
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Orthogonal Frequency Division Multiplexing (OFDM) is a digital communication
+ technique that divides the available bandwidth into a large number of narrowban
+d subcarriers, and transmits data by modulating the subcarriers with symbols.
+ OFDM is widely used in wireless and wired communication systems, such as
+ Wi-Fi, LTE, and DOCSIS.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+\align block
+
+\size large
+The basic blocks of an OFDM system are:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/OFDM_typical.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+OFDM basic diagram 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OFDMdiagram"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Binary sequence
+\series default
+: This block generates the data to be transmitted.
+ The data is usually a sequence of bits.
+\end_layout
+
+\begin_layout Itemize
+\align block
+
+\series bold
+\size large
+QAM mapping
+\series default
+: Bits are grouped into blocks called symbols usally named as alphabet 
+\begin_inset Formula $\boldsymbol{\mathbb{A}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+IFFT block
+\series default
+: This block applies an Inverse Fast Fourier Transform (IFFT) to the modulated
+ symbols, dividing them into a set of subcarriers.
+\end_layout
+
+\begin_layout Itemize
+\align block
+
+\series bold
+\size large
+Cyclic prefix
+\series default
+: Helps OFDM symbols to reduce inter-symbol interference.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+At regular intervals, the transmitter inserts recognizable symbols known
+ as "pilots" into the transmitted signal.
+ These pilots are selected to have a known value and to be separated from
+ one another by a given number of symbols.
+ By comparing the known transmission symbols to the received symbols, the
+ receiver can then utilize the pilots to estimate the channel.
+ This may lower the system's data throughput.
+ Subsequently, the equalizer performs channel equalization using the coefficient
+s obtained by the estimator, to reduce the distortions caused by the communicati
+on channel in the received data.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Since we have been given a dataset that contains previously estimated channels,
+ we won't put too much emphasis on the channel estimation component of this
+ project.
+ Instead, in order to minimize errors and impairments at the receiver and
+ to transmit the symbols as correctly as possible, we will focus on canceling
+ the effects of the channel during the communication process.
+ In other words, neural networks are used to achieve channel equalization.
+ Because of the pseudoinverse's numerical instability and hast alphabet
+ symbols in complex domain, this is a research area, which we will be cover.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Advantages and Disadvantages in OFDM
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+The advantages offered by OFDM systems in broadband systems are as follows
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ofdm_book"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+High spectral efficiency
+\series default
+: OFDM can transmit a large amount of data over a wide frequency band by
+ dividing the available bandwidth into multiple narrowband subcarriers.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+Robustness to channel impairments
+\series default
+: OFDM is less sensitive to frequency-selective fading and interference
+ than other multiplexing techniques, making it well-suited for use in wireless
+ communication systems.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+Ease of implementation
+\series default
+: OFDM can be implemented using simple digital signal processing techniques,
+ making it relatively easy to design and implement.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Some disadvantages of OFDM include:
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+High peak-to-average power ratio
+\series default
+: OFDM signals have a high peak-to-average power ratio, which can cause
+ problems in power amplifier systems and limit the range of the transmitted
+ signal.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\series bold
+\size large
+Sensitivity to timing errors: 
+\series default
+OFDM is sensitive to timing errors, which can cause inter-symbol interference
+ and reduce the performance of the system.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Sensitivity to Doppler spread:
+\series default
+ Doppler spread causes interference between the subcarriers.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection
 Channel
 \size large
  
@@ -1182,6 +1433,7 @@ We can generalize for time dependent function the gain as follows:
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 \noindent
 \align block
 
@@ -1208,7 +1460,9 @@ Therefore impulse time-frequency response of channel at fixed time t, can
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 \noindent
+\align block
 
 \size large
 A time-frequency channel is a type of communication channel that is characterize
@@ -1270,6 +1524,9 @@ A wide sense stationary (WSS) process can be described by the following
 \end_layout
 
 \begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+\align block
 
 \size large
 The mean of the process is constant over time, and can be represented by
@@ -1306,6 +1563,9 @@ Where
 
 \end_deeper
 \begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+\align block
 
 \size large
 The autocovariance of the process, which is a measure of the correlation
@@ -1328,6 +1588,8 @@ The autocovariance of the process, which is a measure of the correlation
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+\align block
 
 \size large
 Where
@@ -1344,6 +1606,9 @@ is the autocovariance of the process at times t1 and t2, and
 
 \end_deeper
 \begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+\align block
 
 \size large
 The autocorrelation function of the process, which is a measure of the correlati
@@ -1366,6 +1631,8 @@ d by the equation
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+\align block
 
 \size large
 Where 
@@ -1464,6 +1731,7 @@ Basic Equalizer
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 Our goal is to develop an equalizer based on deep learning techniques and
@@ -1474,7 +1742,7 @@ Our goal is to develop an equalizer based on deep learning techniques and
 \end_layout
 
 \begin_layout Subsubsection
-MMSE
+MSE
 \end_layout
 
 \begin_layout Standard
@@ -1486,7 +1754,7 @@ MSE equalization, or minimum mean square error equalization, is a technique
  used in digital communication systems to improve the performance of a channel
  by reducing the mean square error (MSE) between the transmitted and received
  signals.
- MSE equalization is a widely used technique in digital communication systems,
+ This equalization is a widely used technique in digital communication systems,
  as it can provide significant improvements in the performance of the channel
  by reducing the effects of noise, interference, and other impairments.
  It is often used in combination with other techniques, such as error correction
@@ -1522,7 +1790,10 @@ literal "false"
 \align block
 
 \size large
-x is the transmitted signal 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ is the transmitted signal 
 \end_layout
 
 \begin_layout Itemize
@@ -1530,7 +1801,14 @@ x is the transmitted signal
 \align block
 
 \size large
-y is the received signal.
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ is the received signal.
+\end_layout
+
+\begin_layout Subsubsection
+MMSE
 \end_layout
 
 \begin_layout Standard
@@ -1570,7 +1848,10 @@ Since MMSE equalization is a linear equalization technique, the transmitted
 \align block
 
 \size large
-h is the filter coefficient.
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+ is the filter coefficient.
 \end_layout
 
 \begin_layout Itemize
@@ -1578,7 +1859,10 @@ h is the filter coefficient.
 \align block
 
 \size large
-x is the transmitted signal.
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ is the transmitted signal.
 \end_layout
 
 \begin_layout Itemize
@@ -1586,10 +1870,14 @@ x is the transmitted signal.
 \align block
 
 \size large
-y is the received signal.
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ is the received signal.
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 It is possible to modify the sent signal before it is transmitted across
@@ -1638,6 +1926,26 @@ Although these equations provide an overview of the MMSE, they can also
 
  and 
 \begin_inset Formula $\boldsymbol{Hx}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+The argmin function is a mathematical function that returns the indices
+ of the minimum values of a given array or matrix.
+ It is often used in optimization problems, where it is used to find the
+ values of the variables that minimize some objective function.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "argmin_reference"
+literal "false"
+
 \end_inset
 
 
@@ -1699,6 +2007,34 @@ literal "false"
 
 \end_layout
 
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+ Channel matrix
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{H^{+}}$
+\end_inset
+
+Moore-Penrose pseudoinverse 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{H^{H}}$
+\end_inset
+
+ Hermiatian matrix.
+ Complex square matrix that is equal to its own conjugate transpose
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 \align block
@@ -1716,22 +2052,39 @@ LMMSE
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+\align block
 
 \size large
-LMMSE equalization, or linear minimum mean square error equalization, is
- a type of equalization used in digital communication systems to improve
- the performance of a channel by reducing the mean square error (MSE) between
- the transmitted and received signals.LMMSE equalization works by using a
- linear model to approximate the relationship between the transmitted and
- received signals.
- The equation for LMMSE equalization is as follows:
+A form of linear filter called the Linear Minimum Mean Squared Error (LLMSE)
+ Equalizer seeks to reduce the mean squared error (MSE) between the actual
+ signal 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ and an estimation of the signal 
+\begin_inset Formula $\boldsymbol{\hat{x}}$
+\end_inset
+
+.
+ Incorporating second-order statistics of the data and the noise and treating
+ the noise as a random variable allows it to achieve this.
+ Compared to the Least Squares (LS) algorithm, this can perform better when
+ there is low signal-to-noise ratio (SNR).
+ To put it another way, the LLMSE equalization is a method that can be applied
+ to restore precision to a signal that has been distorted by noise, especially
+ when the noise level is high.
+ When there is a low signal-to-noise ratio (SNR) and a significant quantity
+ of noise in the signal, it performs exceptionally well.
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 
-\size large
-\begin_inset Formula $w=R_{yy}^{-1}*R_{yx}$
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{W_{LMMSE}=argminE||x-\hat{x}||^{2}}
+\end{equation}
+
 \end_inset
 
 
@@ -1739,46 +2092,74 @@ LMMSE equalization, or linear minimum mean square error equalization, is
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+\align block
 
 \size large
-where:
+This equation consider AWGN (Additive White Gaussian Noise) with variance
+ 
+\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+\end_inset
+
+.
+ It is called "white" because it has a flat power spectral density, meaning
+ that it has equal power at all frequencies.
+ It is called "additive" because it can be added to a signal without changing
+ its distribution.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{W_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+\end_inset
+
+ variance of AWGN
+\end_layout
+
+\begin_layout Subsubsection
+Pros and Cons
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+\align block
 
 \size large
-    w is the vector of equalizer coefficients     
-\end_layout
+As we can see in the previous methods, the calculation of the equalization
+ matrices is mainly based on finding the pseudo-inverse of certain matrix
+ factors.
+ However, directly solving for the inverse of the matrix can be computationally
+ complex 
+\begin_inset Formula $O(N^{3})$
+\end_inset
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-R_yy is the cross-correlation matrix of the received signal    
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-R_yx is the cross-correlation matrix of the transmitted and received signals
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In this equation, the equalizer coefficients are calculated by multiplying
- the inverse of the cross-correlation matrix of the received signal by the
- cross-correlation matrix of the transmitted and received signals.
- This provides an optimal solution for the equalizer coefficients, which
- minimize the mean square error (MSE) between the transmitted and equalized
- received signals.
+ and, in addition, numerically unstable.
+ This occurs if the matrix has a very small determinant, in which case the
+ true solution may be subject to large perturbations.
+ This will lead to a very complicated circuit architecture for numerical
+ calculation.
 \end_layout
 
 \begin_layout Subsection
-Nueronal newtorks
+
+\size large
+Neuronal
+\size default
+ networks
 \end_layout
 
 \begin_layout Standard
@@ -2116,193 +2497,6 @@ Mathematical Notation
 
 \begin_layout Subsection
 Neuronal Network
-\end_layout
-
-\begin_layout Subsubsection
-Time Frequency channel
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Time-frequency channels are commonly encountered in wireless communication
- systems, where the channel can be affected by a variety of factors, such
- as the distance between the transmitter and receiver, the presence of obstacles
-, and the characteristics of the environment.
- In order to overcome these challenges, advanced technologies and techniques
- are used to ensure reliable and efficient communication.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-QAM
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-QAM stands for quadrature amplitude modulation.
- It is a type of digital modulation that is used to transmit data over a
- wireless or wired communication channel.
- In QAM, the information is encoded in the amplitude and phase of a carrier
- signal.QAM is used in many different applications, including cable television,
- satellite communications, and broadband internet.
- It is particularly useful for transmitting high-speed data over long distances,
- and is often used in conjunction with other modulation techniques to improve
- the overall performance of a communication system.
- In general, QAM is a very useful and versatile modulation technique that
- allows for the efficient transmission of digital data over a wide range
- of communication channels.
- It is an essential component of many modern communication systems, and
- is likely to continue to be an important technology for many years to come.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-OFDM
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-hfill
-\backslash
-begin{minipage}{1
-\backslash
-linewidth}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\size large
-OFDM stands for Orthogonal Frequency Division Multiplexing.
- It is a type of digital modulation that is used in many modern communication
- systems, including wireless networks, cable television, and digital audio
- broadcasting.
-\end_layout
-
-\begin_layout Standard
-
-\size large
-In OFDM, the information to be transmitted is divided into multiple parallel
- streams, each of which is modulated onto a separate carrier frequency.
- The carrier frequencies are chosen to be orthogonal to each other, meaning
- that they are spaced apart at intervals of one quarter of the symbol duration.
- This allows the multiple parallel streams to be transmitted simultaneously
- without interference.
-\end_layout
-
-\begin_layout Standard
-
-\size large
-OFDM has many advantages over other modulation techniques, including its
- ability to transmit large amounts of data over a wide range of frequencies,
- its resilience to interference and noise, and its ability to adapt to changing
- channel conditions.
- It is an essential component of many modern communication systems, and
- is likely to continue to be an important technology for many years to come.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{minipage}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Equalization
 \end_layout
 
 \begin_layout Section
