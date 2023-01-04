@@ -369,62 +369,24 @@ newline
 \align block
 
 \size large
-En la actualidad, se está desarrollando la tecnología de redes de comunicación
- inalámbricas de alta movilidad, que tiene aplicaciones en la seguridad
- vial, la conducción autónoma, el monitoreo remoto de vehículos, el vuelo
- de drones y las necesidades de 6G.
- Los transmisores RF, que se utilizan en los sistemas de telecomunicaciones
- para transferir información, codifican la información a través de la amplitud
- y la fase de una señal portadora, normalmente llamada datos IQ.
- No obstante, estos datos se deforman al viajar a través de un canal de
- alta movilidad, que son doblemente dispersivos, lo que implica que las
- propiedades de la señal se entremezclan con algún desplazamiento y difusión
- en tiempo y frecuencia.
- Hay algunos algoritmos tradicionales que pueden requerir complejos ecualizadore
-s iterativos que pueden ser lentos en términos de tiempo de ejecución.
- Sin embargo, también existen ecualizadores más sencillos pero que pueden
- no ser tan precisos.
- En este trabajo se analizarán algunas soluciones que utilizan redes neuronales,
- en las que debemos equilibrar la complejidad del tiempo y la precisión
- para hacer frente a este desafío.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newline
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Standard
-\align block
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Podemos afirmar que los algoritmos convencionales funcion con garantia en
- el desarrollo contemporáneo.
- Sin embargo, los avances recientes en las redes neuronales han simplificado
- problemas que antes eran intratables, como descifrar secuencias de ADN
- o crear imágenes a partir de texto.
- En una palabra, abordan con éxito problemas no lineales.
- El objetivo de este trabajo es imitar técnicas de ecualización conocidas,
- incluidos los ecualizadores MSE, LMMSE y MAP.
- Realizaremos un seguimiento de diferentes tamaños de constelaciones y tasas
- de error de bit en una variedad de situaciones de interferencia y ruido.
- Esperamos que la tasa de error de bits disminuya hasta, o funcione un poco
- mejor que, el modelo de oro, los cuales son los equalizadores previamentes
- mencionados.
+En la actualidad, la tecnología de redes de comunicación inalámbricas de
+ alta movilidad está en constante evolución, y tiene aplicaciones en diversos
+ ámbitos, tales como la seguridad vial, la conducción autónoma, el monitoreo
+ remoto de vehículos, el vuelo de drones y los requisitos de 6G.
+ Los transmisores RF, que se emplean en los sistemas de telecomunicaciones
+ para transmitir información, codifican dicha información a través de la
+ amplitud y la fase de una señal portadora, comúnmente conocida como datos
+ IQ.
+ Sin embargo, al viajar a través de un canal de alta movilidad, estos datos
+ sufren distorsión, debido a la dispersión doble de dicho canal, lo que
+ implica que las propiedades de la señal se ven afectadas por el desplazamiento,
+ difusión en el tiempo y la frecuencia.
+ Aunque existen algoritmos tradicionales que requieren ecualizadores iterativos
+ complejos, que pueden ser lentos en términos de tiempo de ejecución pero
+ precisos, también existen ecualizadores más sencillos, aunque menos precisos.
+ En este trabajo se analizarán algunas soluciones basadas en redes neuronales,
+ buscando un equilibrio entre la complejidad del tiempo y la precisión para
+ hacer frente a este desafío.
  
 \begin_inset ERT
 status open
@@ -451,15 +413,54 @@ newline
 \align block
 
 \size large
-De acuerdo con la investigación en la literatura, existen varios enfoques
- de última generación que se acercan a lograr una buena equalizacion, pero
- no registran todas las etapas de la ecualización basados en métodos tradicional
-es.
- Por otro lado, se proporcionara una estrategia que incluso se resulve condicion
-es más complicadas del canal, como son canales de línea de vista o la falta
+Es posible afirmar que los algoritmos convencionales han demostrado ser
+ eficaces en el desarrollo actual.
+ Sin embargo, los recientes avances en redes neuronales han simplificado
+ problemas que antes eran intratables, como el descifrado de secuencias
+ de ADN o la creación de imágenes a partir de texto.
+ En resumen, abordan con éxito problemas no lineales.
+ El objetivo de este trabajo es imitar técnicas de ecualización conocidas
+ con naturaleza lineal, como los ecualizadores MSE, LMMSE y no linealies
+ como MAP.
+ Durante las pruebas realizaremos un seguimiento de diferentes tamaños de
+ constelaciones y tasas de error de bit en una variedad de situaciones de
+ interferencia y ruido.
+ Esperamos que la tasa de error de bits disminuya hasta, o funcione ligeramente
+ mejor que, el modelo de oro, que son los ecualizadores mencionados previamente.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Los últimos enfoques en investigación literaria demuestran la existencia
+ de diversas estrategias que se aproximan a lograr una buena ecualización,
+ aunque no registran todas las etapas de la ecualización basándose en métodos
+ tradicionales.
+ Por otro lado, se presentará una estrategia que incluso aborde condiciones
+ más complicadas del canal, tales como canales de línea de vista o la falta
  de ella.
-  Por último, pero no menos importante, se busca fomentar una mayor investigació
-n en este campo, prácticamente inexplorado por algunos equipos de comunicación.
+ Finalmente, pero no menos importante, se busca promover una mayor investigación
+ en este campo prácticamente inexplorado por algunos equipos de comunicación.
 \end_layout
 
 \begin_layout Standard
@@ -508,21 +509,21 @@ newline
 \noindent
 
 \size large
-Due to its primary uses in control, road safety, autonomous driving, remote
+Due to their primary uses in control, road safety, autonomous driving, remote
  monitoring of vehicles, drone flying, and 6G needs, the development of
  high-mobility wireless communication networks is cutting-edge technology.
  The RF broadcasts, which are used by telecommunications systems to transfer
  encoded information over the amplitude and phase of a carrier signal, are
- normally called IQ.
- On the other hand, this data is deformed as it travels through a high mobility
- channel.
- High mobility channels are doubly dispersive, which implies that the signal
- properties are muddled with some temporal frequency shifting and spreading.
+ normally called IQ data.
+ However, this data is distorted as it travels through a high mobility channel.
+ High mobility channels are doubly dispersive, which means that the signal
+ properties are mixed with some temporal frequency shifting and spreading.
  There are some traditional algorithms that may require complex iterative
  equalizers that can be slow in terms of execution time.
  However, there are also simpler equalizers that may not be as precise.
- We'll investigate the use of the neural network-based solutions and consider
- how we should balance time complexity and accuracy to meet this challenge.
+ In this work, we will investigate the use of neural network-based solutions
+ and consider how we should balance time complexity and accuracy to meet
+ this challenge.
  
 \begin_inset ERT
 status open
@@ -549,16 +550,17 @@ newline
 
 \size large
 We can categorically assert that conventional algorithms continue to work
- in the context of contemporary development.
- Nevertheless, recent advances in neural networks have simplified problems
- that were previously intractable, such as deciphering ADN sequences or
- creating images from text.
- In a word, they successfully tackle non-linear issues.
- The objective of this work is to mimic well-known equalization techniques,
- including MSE, LMMSE, and MAP equalizers.
- We'll evaluate how well the equalization performs under various noise condition
-s and with various bit-size encodings.
- We anticipate that the bit error rate will drop to, or perform somewhat
+ well in the context of contemporary development.
+ However, recent advances in neural networks have simplified problems that
+ were previously intractable, such as deciphering DNA sequences or creating
+ images from text.
+ In short, they successfully tackle non-linear issues.
+ The objective of this work is to mimic well-known equalization techniques
+ with linear properties such as MSE and LMMSE, as well as non-linear techniques
+ like MAP equalizers.
+ We will evaluate how well the equalization performs under various noise
+ conditions and with various bit-size encodings.
+ We anticipate that the bit error rate will drop to, or perform slightly
  better than, the golden model, which are the aforementioned equalizers.
  
 \begin_inset ERT
@@ -586,12 +588,12 @@ newline
 
 \size large
 According to literature studies, there are a few cutting-edge methodologies
- that approach this target but fall short of fully documenting all of the
+ that approach this goal but fall short of fully documenting all of the
  steps of equalization.
- This article offers a method for dealing with more complex circumstances,
+ This article presents a method for dealing with more complex circumstances,
  such as line of sight or a lack of it.
- Last but not least, we aim to promote further research into this area,
- which is essentially untapped by some communication teams.
+ Lastly, we aim to encourage further research into this largely untapped
+ area by some communication teams.
  
 \begin_inset ERT
 status open
@@ -673,8 +675,7 @@ Introduction
 
 \size large
 This chapter's main goal is to provide an overview of the technical facts
- and some of the current issues that drove this study.
- 
+ and some of the current issues that prompted this study.
 \end_layout
 
 \begin_layout Subsection
@@ -727,12 +728,11 @@ newline
 \size large
 One of the guiding principles of communication system design is the division
  of signal processing into a series of distinct blocks, each of which performs
- a clearly defined and isolated function such as source or channel coding,
+ a clearly defined and isolated functions such as source or channel coding,
  modulation, channel estimation, and equalization.
  This strategy has made it possible for us to have the effective, adaptable,
  and controlled systems we have today, but it is not certain whether individuall
-y tuned processing blocks will yield the best end-to-end performance.
- 
+y tuned processing blocks will yield the best end-to-end performance 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "proakis2002communication"
@@ -740,6 +740,9 @@ literal "false"
 
 \end_inset
 
+.
+ During implementation, we will also consider the abstraction of the other
+ communication blocks and assume that the channel has already been estimated.
  
 \begin_inset ERT
 status open
@@ -810,10 +813,10 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The design philosophy guiding the creation of the 6G architecture will be
- "AI native", allowing the network to become intelligent, capable of solving
- individual stages of the channel, and able to self-learn and self-adapt
- in response to changing network dynamics 
+On the other hand, the design philosophy guiding the creation of the 6G
+ architecture will be "AI native.", allowing the network to become intelligent,
+ capable of solving individual stages of the channel, and able to self-learn
+ and self-adapt in response to changing network dynamics 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "The_Roadmap_to_6G"
@@ -1011,16 +1014,27 @@ on channel in the received data.
 \paragraph_spacing onehalf
 
 \size large
-Since we have been given a dataset that contains previously estimated channels,
- we won't put too much emphasis on the channel estimation component of this
+Since we have been provided with a dataset that contains previously estimated
+ channels, we will not prioritize the channel estimation component of this
  project.
- Instead, in order to minimize errors and impairments at the receiver and
- to transmit the symbols as correctly as possible, we will focus on canceling
- the effects of the channel during the communication process.
- In other words, neural networks are used to achieve channel equalization.
- Because of the pseudoinverse's numerical instability and hast alphabet
- symbols in complex domain, this is a research area, which we will be cover.
- 
+ Rather, in order to minimize errors and impairments at the receiver and
+ to transmit the symbols as accurately as possible, we will focus on canceling
+ the effects of the received, but well-known, channel during the communication
+ process.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We are entering a new research area as we attempt to generalize the pseudo
+ inverse of the channel to cancel its effects.
+ It is well known that the matrix inverse is not a continuous function,
+ as some matrices may not have an inverse or may be singular.
+ However, we are using a subset of invertible matrices to mitigate this
+ issue, and also considering realistic physical phenomena.
+ Additionally, we must grapple with the numerical instability of the matrix
+ inverse, as well as the use of complex numbers in a neural network.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1123,7 +1137,134 @@ Sensitivity to Doppler spread:
  Doppler spread causes interference between the subcarriers.
 \end_layout
 
+\begin_layout Subsection
+QAM and IQ data
+\end_layout
+
 \begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+QAM (Quadrature Amplitude Modulation) is a type of digital modulation that
+ encodes data onto a carrier signal by modulating the amplitude and phase
+ of the signal.
+ It is commonly used in digital communication systems to transmit digital
+ data over analog channels.
+ IQ data refers to the in-phase and quadrature components of a complex-valued
+ signal.
+ In digital communication systems, the IQ data is typically used to represent
+ the amplitude and phase of the modulated carrier signal.
+ It's ussualy represented with complex numbers in an alphabet 
+\begin_inset Formula $\mathbb{A}\in\mathbb{C}^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/16QAM.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM constellation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "wiki_16qam"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\size large
+ A QAM constellation is a graphical representation of the possible symbol
+ points in alphabet, this ones are on the complex plane, with each point
+ representing a unique combination of the in-phase (I) and quadrature (Q)
+ components of the modulated signal.
+ The number of points in the constellation is determined by the number of
+ possible combinations of I and Q values, which is determined by the number
+ of bits per symbol used in the QAM modulation.
+ For example, in a 16-QAM constellation, there are 16 possible symbol points
+ arranged in a square grid, with each point representing 4 bits of data.
+ The distance between points in the constellation is a measure of the signal-to-
+noise ratio (SNR) required to reliably transmit the data.
+ QAM constellations can use gray code to assign the symbol points in the
+ constellation in a way that minimizes the error rate.
+ However, it is not the only method that can be used to assign the symbol
+ points in a QAM constellation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/QAM_noise.jpg
+	lyxscale 80
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK and 16 QAM with noise and phase displacement
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
