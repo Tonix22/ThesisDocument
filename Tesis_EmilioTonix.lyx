@@ -961,6 +961,12 @@ QAM mapping
 \end_inset
 
 .
+ We have a set of bits 
+\begin_inset Formula $2^{\mathbb{A}}$
+\end_inset
+
+ grouped inside the alphabet.
+ 
 \end_layout
 
 \begin_layout Itemize
