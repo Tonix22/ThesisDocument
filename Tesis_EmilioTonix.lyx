@@ -18,6 +18,36 @@
 \fancyfoot{}
 \fancyfoot[LE,RO]{\thepage}
 \fancyfoot[CO,RE]{Emilio Tonix}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
 \end_preamble
 \use_default_options true
 \maintain_unincluded_children false
@@ -1208,39 +1238,38 @@ literal "false"
 
 
 \size large
- A QAM constellation is a graphical representation of the possible symbol
- points in alphabet, this ones are on the complex plane, with each point
- representing a unique combination of the in-phase (I) and quadrature (Q)
+ In the field of communication systems, a QAM constellation refers to a
+ graphical representation of the symbol points in an alphabet on the complex
+ plane.
+ Each point represents a specific combination of the in-phase and quadrature
  components of the modulated signal.
  The number of points in the constellation is determined by the number of
- possible combinations of I and Q values, which is determined by the number
- of bits per symbol used in the QAM modulation.
- For example, in a 16-QAM constellation, there are 16 possible symbol points
- arranged in a square grid, with each point representing 4 bits of data.
- The distance between points in the constellation is a measure of the signal-to-
-noise ratio (SNR) required to reliably transmit the data.
- QAM constellations can use gray code to assign the symbol points in the
- constellation in a way that minimizes the error rate.
- However, it is not the only method that can be used to assign the symbol
- points in a QAM constellation.
+ possible combinations of in-phase and quadrature values, which is in turn
+ determined by the number of bits per symbol used in the QAM modulation
+ scheme.
+ For instance, in a 16-QAM constellation, there are 16 symbol points arranged
+ in a square grid, with each point corresponding to 4 bits of data.
+ The distance between points in the constellation serves as an indicator
+ of the signal-to-noise ratio required for reliable transmission of the
+ data.
+ It is common for QAM constellations to utilize gray code for assigning
+ the symbol points in a manner that minimizes the error rate.
+ However, this is not the only method that can be employed for this purpose
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Imagenes/QAM_noise.jpg
 	lyxscale 80
-	scale 20
+	scale 50
 
 \end_inset
 
@@ -1251,7 +1280,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-QPSK and 16 QAM with noise and phase displacement
+QPSK and 16 QAM with noise and phase displacement 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "QAMwithNoise"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1296,22 +1333,20 @@ Dispersion and doubly dispersion
 \align block
 
 \size large
-In radio communication systems, dispersion refers to the spreading out of
- a signal over a range of frequencies or wavelengths as it travels through
- the air or other medium.
- This can cause distortion of the signal, which can affect the performance
- of the communication system.
- Dispersion can be caused by a variety of factors, including the distance
- the signal travels, the presence of obstacles or reflections, and the frequency
- of the signal.
- Dispersion can be mitigated through the use of various techniques, such
- as frequency- or time-domain equalization, adaptive modulation, and error
- correction codes.
+Dispersion, in the context of radio communication systems, refers to the
+ spreading out of a signal over a range of frequencies or wavelengths as
+ it travels through a medium, such as air.
+ This phenomenon can lead to distortion of the signal and negatively impact
+ the performance of the communication system.
+ There are various factors that can contribute to dispersion, including
+ the distance the signal travels, the presence of obstacles or reflections,
+ and the frequency of the signal.
+ Techniques such as equalization, adaptive modulation, and error correction
+ codes can be used to mitigate the effects of dispersion.
  A doubly dispersive channel is a type of communication channel that exhibits
- dispersion in two different dimensions.
- This means that the signals transmitted through the channel are not only
- spread out in time, but also in some other aspect, such as frequency or
- spatial dimensions.
+ dispersion in two dimensions, such as time and frequency.
+ This means that the signals transmitted through the channel are spread
+ out in both time and another aspect, such as frequency or spatial dimensions.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2313,72 +2348,141 @@ Neuronal
 \paragraph_spacing onehalf
 
 \size large
-A neuronal network, also known as a neural network, is a type of artificial
- intelligence (AI) system that is designed to mimic the functioning of the
- human brain.
- It is composed of many interconnected nodes, or "neurons," which are able
- to process information and make decisions based on that information.
- Neural networks are typically organized into layers, with each layer containing
+Neural networks are a type of artificial intelligence system designed to
+ mimic the functioning of the human brain.
+ They consist of interconnected nodes, or "neurons," which are capable of
+ processing information and making decisions based on that information.
+ These networks are usually organized into layers, with each layer containing
  a different number of neurons.
- The input layer receives information from the outside world, and the output
- layer produces the final result or decision based on that information.
+ The input layer receives input from the external environment, while the
+ output layer produces the final result or decision based on that input.
  The layers in between the input and output layers are called hidden layers,
  and they perform various intermediate calculations and processing tasks.
- Neural networks are trained using large amounts of data, which allows them
+ Neural networks are trained using large amounts of data, allowing them
  to learn and make predictions or decisions based on that data.
- They are often used in applications such as image and speech recognition,
- language translation, and predictive modeling.
- Overall, a neuronal network is a type of AI system that is designed to
- mimic the functioning of the human brain, and it is used in a wide range
- of applications to solve complex problems and make decisions.
+ In this study case, the data consists of realistic channel realizations.
+\end_layout
+
+\begin_layout Subsubsection
+Linear Layer
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-The layers in between the input and output layers are called hidden layers,
- and they perform various intermediate calculations and processing tasks.
-\end_layout
+A linear layer in a neural network is a type of layer that applies a linear
+ transformation to the input data.
+ This transformation can be represented by a 
+\series bold
+matrix
+\series default
+ of weights, denoted as 
+\size larger
 
-\begin_layout Standard
-\paragraph_spacing onehalf
+\begin_inset Formula $\boldsymbol{W_{n}}$
+\end_inset
 
-\size large
-In order to make accurate predictions or decisions, neural networks must
- be trained using large amounts of data.
- This allows the network to learn and adapt, and to make better predictions
- or decisions over time.
- Neural networks are often used in applications such as image and speech
- recognition, language translation, and predictive modeling.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
 
 \size large
-For this task, we use the backpropagation algorithm.
- Backpropagation is a widely used algorithm in the field of artificial neural
- networks.
- It is a method for training a neural network by adjusting the weights of
- the connections between the neurons in the network.
- It works by first making a prediction using the network, then calculating
- the error between the predicted output and the actual target output.
+ ,and a biases 
+\series bold
+vector
+\series default
+, denoted as
+\size larger
  
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
+\begin_inset Formula $\boldsymbol{b_{n}}$
+\end_inset
 
 
-\backslash
-newline
+\size large
+, which are learned during the training process.
+ The subscript 
+\size larger
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\size large
+ refers to the nth layer.
+ The output of a linear layer is calculated by performing a matrix and vector
+ product between the input data 
+\size larger
+
+\begin_inset Formula $\boldsymbol{X_{n-1}}$
+\end_inset
+
+ 
+\size large
+and the weights 
+\size larger
+
+\begin_inset Formula $\boldsymbol{W_{n}}$
+\end_inset
+
+
+\size large
+ as well as adding the biases.
+ 
 \end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{X_{n}=W_{n}X_{n-1}+b_{n}}
+\end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{W_{n}}$
+\end_inset
+
+
+\size large
+weight matrix at layer n.
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{b_{n}}$
+\end_inset
+
+ 
+\size large
+bias at layer n
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{X_{n-1}}$
+\end_inset
+
+
+\size large
+Input or last layer data
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{X_{n}}$
+\end_inset
+
+ 
+\size large
+Output data
 \end_layout
 
 \begin_layout Standard
@@ -2389,11 +2493,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Imagenes/Diagrams/Back_upsacale.jpg
-	lyxscale 20
-	scale 20
+	filename Imagenes/Diagrams/NN_eq.png
+	lyxscale 70
+	scale 50
 
 \end_inset
 
@@ -2401,15 +2509,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Backpropagation overview 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "leonel_2018"
-literal "false"
-
-\end_inset
-
-
+Output as Y and input as X.
+ Vector matrix representation of system.
+ Desing done with manim
 \end_layout
 
 \end_inset
@@ -2420,6 +2522,43 @@ literal "false"
 \begin_layout Plain Layout
 
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Backpropagation 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+The goal of the layer is to optimize the weights parameters so that they
+ fit a target referred to as the ground truth.
+ The error, denoted by E, is calculated as the difference between the predicted
+ output (
+\begin_inset Formula $\hat{X}$
+\end_inset
+
+) and the actual target output (
+\begin_inset Formula $X_{n}$
+\end_inset
+
+).
+ To achieve this, we will utilize the backpropagation algorithm, which is
+ a common method in the field of artificial neural networks for training
+ the network by adjusting the weights between neurons in the network.
+ 
+\size larger
+
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Err=\hat{X}-X_{n}}
+\end{equation}
 
 \end_inset
 
@@ -2431,15 +2570,26 @@ literal "false"
 \align block
 
 \size large
-This error is then propagated backwards through the network with mathematical
- partial derivatives respecting weights, and the weights of the connections
- are adjusted in a way that minimizes the error when it goes to zero 
-\begin_inset Formula $\frac{\partial E}{\partial W}=0$
+This method analyzes the error rate in relation to the weights and inputs.
+ As we adjust our trainable parameters, {
+\size larger
+
+\begin_inset Formula $\boldsymbol{W_{n}}$
 \end_inset
 
-.
- This process is repeated many times with the goal of eventually arriving
- at a set of weights that allows the network to make accurate predictions.
+
+\size large
+, 
+\size larger
+
+\begin_inset Formula $\boldsymbol{b_{n}}$
+\end_inset
+
+
+\size large
+}, the error will change accordingly.
+ The goal is to minimize the error, or to find a point where the error gradient
+ is zero.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Goodfellow-et-al-2016"
@@ -2447,7 +2597,141 @@ literal "false"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\nabla W=\frac{\partial E}{X_{n\text{+1}}}\times X_{n-1}^{T}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\nabla X_{n-1}=W_{n}^{T}\times\frac{\partial E}{X_{n\text{+1}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{\nabla W}$
+\end_inset
+
+
+\size large
+Gradient of weights.The gradient is a multi-variable generalization of the
+ derivative.
+\end_layout
+
+\begin_layout Subsubsection
+Learning rate
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+During the process of updating the weights, the learning rate is a hyperparamete
+r that determines the size of the update step applied during the training
+ of a neural network..
+ It is a scalar value that is used to multiply the gradient of the loss
+ function with respect to the weights of the network during gradient descent.
+ The learning rate determines how fast the weights of the network are updated
+ during training.
+ A smaller learning rate results in slower updates, while a larger learning
+ rate results in faster updates.
+ The learning rate is typically set manually, and finding the optimal learning
+ rate for a given problem is an important aspect of training a neural network.
+
+\size default
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "learningrate"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{W_{n}=W_{n}-\gamma\nabla W}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{b_{n}=b_{n}-\gamma\frac{\partial E}{X_{n}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+If the learning rate is set too low, the optimization process may become
+ stuck in a local minimum or local maximum.
+ A local minimum is a point in the optimization landscape where the cost
+ function has a lower value than the surrounding points, but is not the
+ global minimum.
+ A local maximum is a point where the cost function has a higher value than
+ the surrounding points, but is not the global maximum.
+ This can lead to suboptimal performance or even failure of the optimization
+ process.
+ On the other hand, if the learning rate is set too high, the optimization
+ process may oscillate or diverge, also leading to suboptimal performance.
+ It is important to choose an appropriate learning rate for the optimization
+ process in order to avoid these problems.
+\end_layout
+
+\begin_layout Subsubsection
+Basic code implementation
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Although it may seem difficult to implement the code, it is actually quite
+ simple as it involves encapsulating the results of the previous layer's
+ calculations.
+\end_layout
+
+\begin_layout Standard
+
+\size large
 \begin_inset ERT
 status open
 
@@ -2455,7 +2739,7 @@ status open
 
 
 \backslash
-newline
+lstinputlisting[language=python]{Codigo/Linear.py}
 \end_layout
 
 \end_inset
@@ -2500,26 +2784,6 @@ newline
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Our goal is to mimic the existing equalizers over dispersive channels with
- neuronal networks, such as MMSE, LMMSE, and MAP.
- We will maseaure the BER curve that it is usually used.
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
