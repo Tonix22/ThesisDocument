@@ -137,9 +137,9 @@
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Imagenes/Cinvestav_Logo.jpg
-	lyxscale 50
-	scale 50
+	filename Imagenes/Cinvestav_Logo-transformed.jpeg
+	lyxscale 13
+	scale 12
 
 \end_inset
 
@@ -2748,30 +2748,12 @@ lstinputlisting[language=python]{Codigo/Linear.py}
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
-\align block
+And a basic implmentation of the Linear Class.
+\end_layout
+
+\begin_layout Standard
 
 \size large
-However, it is well known that in the telecom area, signal processing is
- done with complex numbers, and most of the implementations in NN use real
- numbers rather than complex ones.
- Some papers deal with this separating of real and imaginary parts on an
- independent network, and other sources accept that real and imaginary parts
- have a certain correlation 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "A_Survey_of_Complex_valued_nueronal_Netoworks"
-literal "false"
-
-\end_inset
-
-.
- In NN, we use activation functions to add non-linearity to the system,
- but one difficulty presented for this commonly used function is that they
- may not be complex-differentiable for certain local points.
- So we'll experiment with both aproaches and look into experimental results
- as matter of this problem.
- 
 \begin_inset ERT
 status open
 
@@ -2779,12 +2761,541 @@ status open
 
 
 \backslash
-newline
+lstinputlisting[language=python]{Codigo/TestLinear.py}
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Activation functions 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Activation functions are used in neural networks to introduce non-linearity
+ into the network.
+ This is important because many real-world problems are non-linear in nature
+ and a neural network with only linear functions would not be able to model
+ such problems accurately.
+ Activation functions allow the network to learn more complex patterns in
+ the data and improve the accuracy of the network.
+ They also help to prevent the network from becoming stuck in a local minimum
+ or plateau during training.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/ActivationFunctions.png
+	lyxscale 10
+	scale 10
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Activation function.
+ (a) Sigmoid, (b) tanh, (c) ReLU.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ActivationFunctionsImages"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The most popular activation functions in neural networks are the sigmoid
+ function, the hyperbolic tangent (tanh) function, and the rectified linear
+ unit (ReLU) function.
+ The sigmoid function maps any input value to a range between 0 and 1, while
+ the tanh function maps input values to the range between -1 and 1.
+ The ReLU function is a linear function that maps all negative input values
+ to 0 and all positive input values to their original value.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ActivationFunctions"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+However, there are "hardened" versions of activation functions that can
+ be evaluated computationally faster yet produce similar results.
+ Examples of these include hardtanh and hardsigmoid.
+ The Hardtanh function is defined as: 
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{hardtanh(x)=\begin{cases}
+-1, & \text{if }x<-1\\
+x, & \text{if }-1\le x\le1\\
+1, & \text{if }x>1
+\end{cases}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Hardtanh.png
+	lyxscale 25
+	scale 25
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hardtanh(red) and Tanh(blue)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Effective Techniques for Improving Model Generalization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the field of machine learning, it is important to ensure that the models
+ we build are able to accurately and effectively make predictions on new
+ data.
+ However, it is common for models to suffer from issues such as overfitting
+ or poor generalization to new data.
+ In this section, we will explore three techniques that can be used to improve
+ the performance of machine learning models: 
+\series bold
+regularization
+\series default
+, 
+\series bold
+normalization
+\series default
+, and 
+\series bold
+standardization
+\series default
+.
+ By properly applying these techniques, we can mitigate the risks of overfitting
+ and improve the ability of our models to generalize to new data.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Regularization_Bisong,Normalization_layers,standarization"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\shape italic
+\size large
+\emph on
+\bar under
+\color black
+Our data set, which includes doubly dispersive channels of a complex nature,
+ requires extra attention.
+ We will use distorted vectors or inverse matrices, which can result in
+ numerical instability, as our ground truth.
+ These extra precautions will help to guarantee the process' success.
+ Ignoring these recommendations may result in unsatisfactory outcomes, as
+ the neural network may not generalize as well and may perform poorly.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComplexnumbersNN"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Regularization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Regularization is a technique used in machine learning to prevent overfitting.
+ Overfitting occurs when a model is overly complex and captures the noise
+ in the training data, rather than the underlying relationships.
+ This results in poor generalization to new data.
+ Regularization works by adding a penalty term to the objective function
+ that the model is trying to minimize.
+ This penalty term discourages the model from learning relationships that
+ are too complex, and encourages it to learn simpler relationships that
+ generalize better.
+ There are several methods for regularization, including 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goodfellow-et-al-2016"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+L1 regularization: This method adds a penalty term to the cost function
+ that is proportional to the absolute value of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+L2 regularization: This method adds a penalty term to the cost function
+ that is proportional to the square of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+Dropout regularization: This method randomly sets a fraction of the weights
+ in the model to zero during training, which helps to prevent overfitting
+ by reducing the number of parameters in the model.
+ Dropout is only applied during the training process, and all neurons are
+ available during evaluation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trasasdenivelRegularization.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Level sets of the loss function and L1,L2 regularization 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "regimage"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+To implement regularization, you can modify the cost function of the model
+ to include the regularization term.
+ For example, in L2 regularization, the cost function would be modified
+ to include the sum of the squares of the weights, as shown in the following
+ equation:
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{\lambda}$
+\end_inset
+
+ 
+\size large
+regularization parameter
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{J(W)}$
+\end_inset
+
+ 
+\size large
+Cost function
+\end_layout
+
+\begin_layout Subsubsection
+Normalization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Data is scaled using a process called normalization to give it a unit norm
+ (or length).
+ This is frequently done to improve the data's suitability for particular
+ machine learning algorithms, such as those that use gradient descent or
+ have a set range for acceptable input data.
+ When comparing various features, normalization can also be used to scale
+ down the data to a common scale.
+ Data normalization methods include min-max normalization, mean normalization,
+ and z-score normalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Normalization of complex numbers
+\series default
+ involves dividing a complex number by its magnitude (or absolute value)
+ to obtain a complex number with a magnitude of 1.
+ This is typically done to simplify calculations and make it easier to compare
+ complex numbers.
+ The normalized form of a complex number is often written as ẑ = z/|v|,
+ where z is the original complex number and ẑ is the normalized form and
+ |v| is the max magnitud of the entire vector of the complex numbers.
+ Normalization of complex numbers is useful in many applications, including
+ signal processing and control systems, where it is often necessary to compare
+ complex numbers on an equal footing.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComplexnumbersNN"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{ẑ=\frac{z}{|v|}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{|v|}$
+\end_inset
+
+ Maximum magnitud of the vector
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{\boldsymbol{z}}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{ẑ}$
+\end_inset
+
+ Normalized value
+\end_layout
+
+\begin_layout Subsubsection
+Standarization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Standardization is a method used in machine learning to transform the values
+ of a feature or set of features to a standard scale.
+ The standard scale is typically defined as having a mean of 0 and a standard
+ deviation of 1.
+ Standardization is often used as a preprocessing step before training a
+ model, as it can help to improve the performance and convergence of the
+ model.
+ Standardization can be useful when the features in the dataset have different
+ scales or units, as it can help to bring them onto a common scale and make
+ it easier for the model to learn from the data.
+ Standardization can be applied to both real and complex-valued data.
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{z}=\frac{z-\mu}{\sigma}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\mu}$
+\end_inset
+
+ Mean of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\sigma}$
+\end_inset
+
+ Standard deviation of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{\boldsymbol{z}}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{ẑ}$
+\end_inset
+
+ Standarized value
 \end_layout
 
 \begin_layout Subsection
@@ -2859,7 +3370,7 @@ The concepts of the doubly dispersive channels are prepared and they use
 
 \series bold
 \size large
-Chapter 3 Related Work:
+Chapter 3 State of Art:
 \series default
  Describe the published approaches for classical equalization methods against
  deep learning models.
@@ -2899,7 +3410,7 @@ The conclusions and future work of this research are obtained.
 \end_layout
 
 \begin_layout Section
-Theoretical Framework
+State of Art
 \end_layout
 
 \begin_layout Subsection
@@ -2910,12 +3421,44 @@ Mathematical Notation
 Neuronal Network
 \end_layout
 
-\begin_layout Section
-Related work
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+However, it is well known that in the telecom area, signal processing is
+ done with complex numbers, and most of the implementations in NN use real
+ numbers rather than complex ones.
+ Some papers deal with this separating of real and imaginary parts on an
+ independent network, and other sources accept that real and imaginary parts
+ have a certain correlation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+.
+ In NN, we use activation functions to add non-linearity to the system,
+ but one difficulty presented for this commonly used function is that they
+ may not be complex-differentiable for certain local points.
+ So we'll experiment with both aproaches and look into experimental results
+ as matter of this problem.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
 \end_layout
 
-\begin_layout Subsection
-Introduction
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
