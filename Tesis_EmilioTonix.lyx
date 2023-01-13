@@ -1368,19 +1368,35 @@ SNR
 \end_layout
 
 \begin_layout Standard
-A signal-to-noise ratio contrasts the strength of the signal with the strength
- of the noise.
+\paragraph_spacing onehalf
+
+\size large
+SNR stands for Signal-to-Noise Ratio which contrasts the strength of the
+ signal with the strength of the noise.
  The most common way to measure it is in decibels (dB).
  In general, higher numbers indicate a better specification because there
  is a greater ratio of useful information (the signal) to unwanted data
  (the noise).
+ The following equation displays the necessary power spectral density of
+ the noise.
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "proakis2002communication"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
 \begin_inset Formula 
 \begin{equation}
-SNR=\frac{P_{signal}}{P_{noise}}
+\boldsymbol{N_{0}=\frac{P_{signal}}{P_{noise}}}
 \end{equation}
 
 \end_inset
@@ -1389,9 +1405,12 @@ SNR=\frac{P_{signal}}{P_{noise}}
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
 \begin_inset Formula 
 \begin{equation}
-P_{signal}=\sum|s|^{2}
+\boldsymbol{P_{signal}=\sum|s|^{2}}
 \end{equation}
 
 \end_inset
@@ -1400,7 +1419,9 @@ P_{signal}=\sum|s|^{2}
 \end_layout
 
 \begin_layout Standard
-\noindent
+\paragraph_spacing onehalf
+
+\size large
 For realistic simulations, noise is typically an AWGN, which is useful.
  In order to simulate bit error rates, AWGN can generate appropriate power
  levels.
@@ -1408,13 +1429,73 @@ For realistic simulations, noise is typically an AWGN, which is useful.
 \begin_inset Formula $\boldsymbol{\sigma^{2}}$
 \end_inset
 
-, which in simulations is used as follows
+, which in simulations is used as follows.
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
 \begin_inset Formula 
 \begin{equation}
-\sigma^{2}=10^{\frac{SNR}{10}}
+\boldsymbol{\sigma^{2}=10^{\frac{SNR_{dB}}{10}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Misunderstandings have arisen regarding the signs assigned to the positive
+ and negative exponents in the equation.
+ While there are conflicting explanations in various sources, to clear up
+ any confusion, it's important to consider the visual representation of
+ the equation
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{N_{0}=\frac{P_{signal}}{P_{noise}}=\frac{\sum|s|^{2}}{10^{\frac{SNR_{dB}}{10}}}=\sum|s|^{2}\times10^{-\frac{SNR_{dB}}{10}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The higher the SNR, the better the quality of the signal, since the noise
+ is relatively weaker.
+ In practice, the SNR is usually calculated for a specific frequency band
+ or for a specific signal-processing method.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The necessary noise variance (noise power) for producing Gaussian random
+ noise, assuming complex IQ plane for all digital modulations, is given
+ by
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{n=\sqrt{(N_{0}/2)}*(randn(size(s))+j*randn(size(s)))}
 \end{equation}
 
 \end_inset
@@ -1424,9 +1505,25 @@ For realistic simulations, noise is typically an AWGN, which is useful.
 
 \begin_layout Standard
 
+\size large
+with the recived signal 
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r=s+n}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
+\paragraph_spacing onehalf
 Channel
 \size large
  
@@ -3478,6 +3575,22 @@ shapes
  of intercarrier symbol interference (ISI) and to perform dimensionality
  reduction.
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Conv1"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goodfellow-et-al-2016"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
