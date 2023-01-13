@@ -171,16 +171,7 @@ Unidad Guadalajara
 \series bold
 \size huge
 \color black
-Doubly dispersive channels equalization 
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\series bold
-\size huge
-\color black
-using deep learning techniques
+Exploring Deep Learning Techniques for Equalizing Doubly Dispersive Channels
 \end_layout
 
 \begin_layout Standard
@@ -706,6 +697,73 @@ Introduction
 \size large
 This chapter's main goal is to provide an overview of the technical facts
  and some of the current issues that prompted this study.
+\end_layout
+
+\begin_layout Subsection
+Document organization
+\end_layout
+
+\begin_layout Standard
+
+\size large
+The structure of this document is as follows: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Chapter 1 Theoretical Framework: 
+\series default
+Fundamental ideas and concepts behind the current project.
+ Outlines the core concepts necessary to comprehend this study
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Chapter 2 State of Art:
+\series default
+ Examines the existing literature on classical equalization methods and
+ compares them to deep learning models.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Chapter 3 Present work:
+\series default
+ The present work includes the Python implementation of various models,
+ to train and test different experiments, as well as an overview of the
+ software architecture that makes this possible.
+ The focus is on explainable deep learning models of Quadrature Amplitude
+ Modulation (QAM) equalization based on neural networks, including the design
+ of the proposed models.
+ Additionally, the description, characteristics, and comparison with related
+ work will also be discussed
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Chapter 4 Results and Analysis:
+\series default
+ Explains the conception and execution of the idea, the experiments carried
+ out, and the analysis of the outcomes.
+ Here, we compare the BER (Bit Error Rate) graphs of our studied models.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Chapter 5 Conclusion and Outlook: 
+\series default
+The conclusions and potential future directions of this study are determined.
 \end_layout
 
 \begin_layout Subsection
@@ -1302,6 +1360,69 @@ literal "false"
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Subsubsection
+SNR
+\end_layout
+
+\begin_layout Standard
+A signal-to-noise ratio contrasts the strength of the signal with the strength
+ of the noise.
+ The most common way to measure it is in decibels (dB).
+ In general, higher numbers indicate a better specification because there
+ is a greater ratio of useful information (the signal) to unwanted data
+ (the noise).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+SNR=\frac{P_{signal}}{P_{noise}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{signal}=\sum|s|^{2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+For realistic simulations, noise is typically an AWGN, which is useful.
+ In order to simulate bit error rates, AWGN can generate appropriate power
+ levels.
+ Typically, noise power is determined by its variance 
+\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+\end_inset
+
+, which in simulations is used as follows
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\sigma^{2}=10^{\frac{SNR}{10}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
@@ -2089,13 +2210,18 @@ It is possible to modify the sent signal before it is transmitted across
  is the adjusted signal and x is the original transmitted signal.
 \end_layout
 
+\begin_layout Subsubsection
+LS
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 \align block
 
 \size large
-Although these equations provide an overview of the MMSE, they can also
- be rethought in the context of matrix linear algebra.
+Least squares (LS) equalization is a linear equalization method that aims
+ to minimize the mean squared error (MSE) between the estimated and the
+ transmitted symbols.
  The noise component of x is disregarded by the LS (Least-Squares) equalizer,
  which treats it as a deterministic variable.
  A linear filter 
@@ -2213,7 +2339,7 @@ Moore-Penrose pseudoinverse
 \begin_inset Formula $\boldsymbol{H^{H}}$
 \end_inset
 
- Hermiatian matrix.
+ Hermiatian transpose matrix.
  Complex square matrix that is equal to its own conjugate transpose
 \end_layout
 
@@ -3299,6 +3425,509 @@ Standardization is a method used in machine learning to transform the values
 \end_layout
 
 \begin_layout Subsection
+Convolutional Neuronal Networks
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A convolutional neural network (CNN) is a type of deep learning neural network
+ that is primarily used for image and video recognition.
+ It is designed to process data that has a grid-like topology, such as an
+ image.
+ The network is composed of multiple layers, including 
+\series bold
+convolutional layers
+\series default
+, 
+\series bold
+activation layers
+\series default
+, 
+\series bold
+pooling layers 
+\series default
+and
+\series bold
+ linear layers
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The convolutional layers apply a set of filters to the input data, where
+ each filter is a small matrix of weights.
+ This ones are used to identify features in the data such as 
+\series bold
+edges
+\series default
+, 
+\series bold
+textures
+\series default
+, and 
+\series bold
+shapes
+\series default
+, specifically, we will be utilizing these layers to extract the relationship
+ of intercarrier symbol interference (ISI) and to perform dimensionality
+ reduction.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+The 
+\series bold
+activation layers
+\series default
+ or activation functions introduce non-linearity to the network, allowing
+ it to learn complex representations of the input data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+The 
+\series bold
+pooling layers
+\series default
+ reduce the spatial dimensions of the data, which helps to reduce overfitting
+ and computational cost.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Max pooling is used to pick the feature with the highest activation in a
+ small region of the input feature map
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Average pooling is used to reduce the spatial size of the input data by
+ taking the average of the values of a small region of the input feature
+ map.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Max_pool_avg_pool.jpg
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Average and max pooling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+
+\series bold
+\size large
+Linear layers
+\series default
+ classify the features extracted by the convolutional layers into the desired
+ output.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align block
+
+\size large
+It should be noted that what is commonly referred to as 'convolution' in
+ the context of convolutional neural networks (CNNs) is actually a cross-correla
+tion operation, denoted with symbol 
+\begin_inset Formula $\mathbf{\bigstar}$
+\end_inset
+
+ and convolution usually is used 
+\begin_inset Formula $\boldsymbol{*}$
+\end_inset
+
+.
+ The term 'convolution' is used only for convention purposes.
+ The basic concept behind cross-correlation is to take a small matrix, referred
+ to as a kernel or filter, and slide it over the input data (such as an
+ image or audio signal).
+ At each position, the kernel is multiplied element-wise with the underlying
+ data, and the results are summed to produce a single output value, referred
+ to as a feature map.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Conv2d_Kernel.jpg
+	lyxscale 30
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Basic cross-correlation operation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The output of the convolution operation is a feature map, where each element
+ in the feature map is computed as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Y_{ij}=\sum K_{ab}\circ I_{i+a,j+b}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Where kernel(a,b) is the value of the filter at position (a,b), input(i+a,j+b)
+ is the value of the input at position (i+a,j+b) and output(i,j) is the
+ output value at position (i,j)
+\end_layout
+
+\begin_layout Subsubsection
+Channels
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A channel refers to a specific feature or dimension of the input data.
+ For example, in the case of image data, a channel can represent a color
+ channel such as red, green, or blue.
+ These channels are used to extract different features of the input image,
+ and they are processed separately by the CNN.
+ In our case study, we can use channels as a division between the real and
+ imaginary parts, or for feature extraction of intercarrier symbol interference
+ (ISI).
+ We can have N channels as input and M channels as output, depending on
+ how many features we want to deal with.
+ In the image below, we show a case of 3 channel input and two channel output,
+ also with a bias term.
+\size default
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/ConvolutionExpansion.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Convolutional Neural Network with 3-channel Input and 2-channel Output,
+ including bias term
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+A Generalized View of Linear Layers through Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Let's take a more detailed look at the math, given the following terms.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{j}$
+\end_inset
+
+ input channels with
+\begin_inset Formula $\boldsymbol{X_{j}}$
+\end_inset
+
+ matrices
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{d}$
+\end_inset
+
+ ouput channels 
+\begin_inset Formula $\boldsymbol{Y_{d}}$
+\end_inset
+
+matrices and this ones an output size of 
+\begin_inset Formula $\boldsymbol{X_{j}-K_{ij}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{K_{ij}}$
+\end_inset
+
+ kernels,where 
+\begin_inset Formula $\boldsymbol{i}$
+\end_inset
+
+ maps to 
+\begin_inset Formula $\boldsymbol{Y_{d}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{j}$
+\end_inset
+
+ to 
+\begin_inset Formula $\boldsymbol{X_{j}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\noindent
+\align block
+
+\size large
+\begin_inset Formula $\mathbf{\bigstar}$
+\end_inset
+
+ cross-correlation
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Y_{d}=B_{d}+\sum_{j=1}^{n}X_{j}\bigstar K_{ij}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We can think of the matrices as individual blocks and visualize them in
+ the image below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Conv2dGeneralization.png
+	lyxscale 40
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $Y_{d}$
+\end_inset
+
+ output given kernels
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Finally, with the use of abstraction, we can further simplify the problem
+ by representing it as a generalized version of tensors.
+ The internal tensor is given by the sum of the cross-correlations between
+ X channels and kernels.
+ In a more general perspective, this can be viewed as the inner product
+ of two tensors.
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Y=B+\langle K,X\rangle}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/MetaDense.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Higher dimensionality abstract version 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+It's worth noting that when we consider a kernel of 1 dimension and an input
+ of 1 channel, we can see that a dense layer is just a specific case of
+ a 2D convolutional layer (Conv2D).
+ Just as equation (15) and figure (8)
+\end_layout
+
+\begin_layout Subsection
 Motivation
 \end_layout
 
@@ -3311,12 +3940,13 @@ General Objective
 \end_layout
 
 \begin_layout Standard
-A general objective is a broad, overall goal that a person or organization
- aims to achieve.
- It is typically broad in scope and not specific to a particular situation
- or context.
- For example, a general objective for a company might be to "increase profitabil
-ity" or to "improve customer satisfaction."
+\paragraph_spacing onehalf
+\align block
+
+\size large
+We should analyze and test different techniques of neural networks applied
+ to frequency channel equalization, which is commonly used in OFDM.
+ The NN models will be based on existing equalizers with well-known equations.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3324,153 +3954,39 @@ Particular Objective
 \end_layout
 
 \begin_layout Standard
-In contrast, a particular objective is a specific and well-defined goal
- that is targeted at achieving a specific result or outcome.
- It is more specific than a general objective and is usually related to
- a specific situation or context.
- For example, a particular objective for a company might be to "increase
- sales by 10% in the next quarter" or to "improve response time to customer
- inquiries by 25% within the next month."
-\end_layout
-
-\begin_layout Standard
-In general, general objectives provide the overall direction and guidance
- for an organization or individual, while particular objectives are the
- specific steps and actions that are taken to achieve the general objectives.
-\end_layout
-
-\begin_layout Subsection
-Proposal
-\end_layout
-
-\begin_layout Subsection
-Document organization
-\end_layout
-
-\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
 
 \size large
-The structure of this document is as follows: 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Chapter 2 Theoretical Framework: 
-\series default
-The concepts of the doubly dispersive channels are prepared and they use
- to distort signals.
- Additionally, the fundamental ideas behind QAM, conventional equalization
- techniques, deep learning algorithms, and models are discussed.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Chapter 3 State of Art:
-\series default
- Describe the published approaches for classical equalization methods against
- deep learning models.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Chapter 4 Proposal:
-\series default
- Explainable deep learning models of QAM equalization based on Neural Networks.
- The design of the proposed model.
- The description, characteristics, and comparison with the related work
- are also discussed.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Chapter 5 Results:
-\series default
- Explains the conception and execution of the idea, the experiments carried
- out, and the analysis of the outcomes.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Chapter 6 Conclusions and Future Work: 
-\series default
-The conclusions and future work of this research are obtained.
+Our objective is to equalize a double dispersive channel, also known as
+ a frequency-time channel and intercarrier symbol interference (ISI) through
+ the utilization of various neural network strategies.
+ These strategies will focus on specific stages of the existing equalization
+ process.
+ We aim to leverage the non-linearity of neural networks and employ techniques
+ such as dimensionality expansion and reduction.
+ Our aim is to recover QAM and PSK constellation symbols that have been
+ distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
+ (NLOS) conditions, plus Gaussian noise.
+ Our ultimate goal is to achieve a bit error rate (BER) comparable to that
+ of the "golden models" or to reduce the computational complexity of current
+ methods.
 \end_layout
 
 \begin_layout Section
 State of Art
 \end_layout
 
-\begin_layout Subsection
-Mathematical Notation
-\end_layout
-
-\begin_layout Subsection
-Neuronal Network
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-However, it is well known that in the telecom area, signal processing is
- done with complex numbers, and most of the implementations in NN use real
- numbers rather than complex ones.
- Some papers deal with this separating of real and imaginary parts on an
- independent network, and other sources accept that real and imaginary parts
- have a certain correlation 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "A_Survey_of_Complex_valued_nueronal_Netoworks"
-literal "false"
-
-\end_inset
-
-.
- In NN, we use activation functions to add non-linearity to the system,
- but one difficulty presented for this commonly used function is that they
- may not be complex-differentiable for certain local points.
- So we'll experiment with both aproaches and look into experimental results
- as matter of this problem.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newline
-\end_layout
-
-\end_inset
-
-
+\begin_layout Section
+Present work
 \end_layout
 
 \begin_layout Section
-Proposed Aprroach
+Results and Analysis
 \end_layout
 
 \begin_layout Section
-Results
-\end_layout
-
-\begin_layout Section
-Conclusion
+Conclusion and Outlook
 \end_layout
 
 \begin_layout Subsection
