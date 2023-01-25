@@ -4532,11 +4532,23 @@ Our objective is to equalize a double dispersive channel, also known as
 \end_layout
 
 \begin_layout Section
-State of Art
+Present work
 \end_layout
 
-\begin_layout Section
-Present work
+\begin_layout Subsection
+Dataset
+\end_layout
+
+\begin_layout Subsection
+Golden model
+\end_layout
+
+\begin_layout Subsection
+First stage experiments
+\end_layout
+
+\begin_layout Subsection
+Second stage experiments
 \end_layout
 
 \begin_layout Section
