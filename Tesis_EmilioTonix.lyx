@@ -11,6 +11,8 @@
 \usepackage{ragged2e}
 \usepackage{blindtext}
 \usepackage{fancyhdr}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[RO,LE]{Doubly dispersive channels equalization using deep learning techniques}
@@ -2142,6 +2144,40 @@ Our goal is to develop an equalizer based on deep learning techniques and
 \end_layout
 
 \begin_layout Subsubsection
+Estimator
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+An estimator is a statistical function that maps an observation to an estimate
+ of a parameter of the signal being observed, normally known as 
+\size larger
+
+\begin_inset Formula $\hat{\boldsymbol{\theta}}$
+\end_inset
+
+
+\size large
+ .It is a mathematical function that takes the data, usually in the form
+ of a sample, and produces an estimate of an unknown parameter of the underlying
+ probability distribution.
+ It's important to note that the quality of an estimator is usually measured
+ by some metric such as Mean Squared Error (MSE), Mean Absolute Error (MAE)
+ or Maximum Likelihood (ML) that indicates how well the estimator is able
+ to estimate the true parameter 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MSE_MMSE"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
 MSE
 \end_layout
 
@@ -2150,16 +2186,39 @@ MSE
 \align block
 
 \size large
-MSE equalization, or minimum mean square error equalization, is a technique
- used in digital communication systems to improve the performance of a channel
- by reducing the mean square error (MSE) between the transmitted and received
- signals.
- This equalization is a widely used technique in digital communication systems,
- as it can provide significant improvements in the performance of the channel
- by reducing the effects of noise, interference, and other impairments.
- It is often used in combination with other techniques, such as error correction
- and modulation, to further improve the overall performance of the communication
- system.
+MSE equalization, or minimum mean square error, is a posterior estimator.It
+ is a measure of how well the estimator, denoted by 
+\size larger
+
+\begin_inset Formula $\hat{\boldsymbol{\theta}}$
+\end_inset
+
+
+\size large
+, is able to estimate the true parameter, denoted by 
+\size larger
+
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+
+\size large
+, based on the observed data .It is calculated after the estimator has been
+ applied to the data and produces a single scalar value that indicates how
+ far the estimated values are from the true values on average.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MSE_MMSE"
+literal "false"
+
+\end_inset
+
+ This technique is commonly used in digital communication systems to improve
+ the performance of an equalizer by reducing the mean square error (MSE)
+ between the transmitted and received signals.
+ It can provide significant improvements in the performance of the channel
+ equalization by reducing the effects of noise, interference, and other
+ impairments 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "proakis2002communication"
@@ -2167,7 +2226,10 @@ literal "false"
 
 \end_inset
 
-
+.
+ In the context of machine learning, our neural network will be a non-linear
+ estimator and can be evaluated by this estimator.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2177,7 +2239,7 @@ literal "false"
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE=E[(x-y)^{2}]}
+\boldsymbol{MSE(\hat{\theta})=E[(\theta-\hat{\theta})^{2}]}
 \end{equation}
 
 \end_inset
@@ -2190,10 +2252,10 @@ literal "false"
 \align block
 
 \size large
-\begin_inset Formula $\boldsymbol{x}$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
- is the transmitted signal 
+ is the transmitted signal with the original values
 \end_layout
 
 \begin_layout Itemize
@@ -2201,10 +2263,10 @@ literal "false"
 \align block
 
 \size large
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
- is the received signal.
+ is the predicted values of the received signal.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2235,23 +2297,12 @@ Since MMSE equalization is a linear equalization technique, the transmitted
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{H=\frac{E[xy]}{E[x^{2}]}}
+\boldsymbol{MMSE=min(E[(\theta-\hat{\theta})^{2}])}
 \end{equation}
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{H}$
-\end_inset
-
- is the filter coefficient.
 \end_layout
 
 \begin_layout Itemize
@@ -2276,35 +2327,15 @@ Since MMSE equalization is a linear equalization technique, the transmitted
  is the received signal.
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-It is possible to modify the sent signal before it is transmitted across
- the channel by using the weights determined values in the linear filter.
- The signal is modified and provided by: 
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{\hat{x}=Hx}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
 
 \size large
-\begin_inset Formula $\boldsymbol{\hat{x}}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}=E[x|y]}$
 \end_inset
 
- is the adjusted signal and x is the original transmitted signal.
+ is an estimator given by Y to an estimate the X
 \end_layout
 
 \begin_layout Subsubsection
@@ -3140,9 +3171,211 @@ Hardtanh(red) and Tanh(blue)
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
+
+\begin_layout Subsection
+Loss functions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A loss function is often defined as a scalar function of the model's parameters,
+ the input data, and the true output.
+ It quantifies how well the model is able to fit the data, and it's commonly
+ used to evaluate the performance of different models and to select the
+ best one.
+ In terms of estimators, a loss function can be seen as a measure of how
+ well the estimator is able to estimate the true parameter.
+ The goal of training a machine learning model is to find the optimal set
+ of parameters that minimize the loss function.
+ There are different types of loss functions, each one is suitable for different
+ types of problems.
+ For example, in a regression problem, the mean squared error (MSE) is a
+ commonly used loss function, while in a classification problem, the cross-entro
+py loss is often used.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Cross Entropy Loss
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Previously, we have discussed the Mean Squared Error (MSE) in the context
+ of estimators.
+ However, there is another cost function, known as the cross-entropy loss,
+ which can be utilized for evaluating models in the context of classification
+ problems.
+ Prior to elaborating on the cross-entropy loss, it is imperative to also
+ discuss the softmax function.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The softmax function is a mathematical technique which transforms a vector
+ of real numbers into a probability distribution over the classes.
+ The output of the softmax function is a vector of values between 0 and
+ 1 that sum up to 1, which can be interpreted as probabilities.
+ The softmax function is employed in this context as it provides a means
+ to convert the output, or scores, of the model into a probability distribution
+ that represents the uncertainty of the model's predictions.
+ Additionally, the softmax function ensures that the probability of each
+ class falls within the range of 0 and 1 and that the sum of all class probabili
+ties is 1, which is a necessary requirement for a probability distribution.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/softmax.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Softmax used to map real numbers to probabilty distribution.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "softmax"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+After the softmax output, it is measured by the cross-entropy loss function,
+ which checks the dissimilarity between the predicted and true probability
+ distributions.
+ One of the many advantages of this function is that it is also easy to
+ compute and differentiate, making it a suitable loss function for gradient-base
+d optimization algorithms.
+ The goal of the training process is to minimize the Kullback-Leibler divergence.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{D_{KL}(P||Q)=\sum P(i)log\frac{P(i)}{Q(i)}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This equation is also known as relative entropy.
+ This function will determine which of the given classes is more likely.
+ The predicted class distribution is represented by 
+\begin_inset Formula $P(y|x_{i};\theta)$
+\end_inset
+
+ where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ are the parameters and the true class distribution is represented by 
+\begin_inset Formula $P^{*}(y|x_{i})$
+\end_inset
+
+ which are taken into consideration.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{D_{KL}(P^{*}(y|x_{i})||P(y|x_{i};\theta)=\sum P^{*}(y|x_{i})log\frac{P^{*}(y|x_{i})}{P(y|x_{i};\theta)}}
+\end{equation}
+
+\end_inset
+
+
+\size large
+Rewriting the logarithm as two individual sections, we can observe that
+ the left part of the equation below does not depend on the 
+\begin_inset Formula $\theta$
+\end_inset
+
+ parameter.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\sum\underbrace{P^{*}(y|x_{i})log(P^{*}(y|x_{i}))}_{\text{Independent of }\theta}-P^{*}(y|x_{i})P(y|x_{i};\theta)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+And then we aim to make both distributions as similar as possible using
+ the best estimator.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\underset{\theta}{\text{argmin}}D_{KL}(P^{*}||P)\equiv\underset{\theta}{\text{argmin}}-\sum_{y}P^{*}(y|x_{i})P(y|x_{i};\theta)}
+\end{equation}
 
 \end_inset
 
@@ -3519,6 +3752,218 @@ Standardization is a method used in machine learning to transform the values
 \end_inset
 
  Standarized value
+\end_layout
+
+\begin_layout Subsubsection
+Gradient clipping
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Gradient clipping is a technique used to prevent the gradients of a neural
+ network from becoming too large during training.
+ It is commonly used to mitigate the problem of exploding gradients, which
+ can occur when the gradients become too large and cause the model's parameters
+ to diverge.
+ This means that if the gradient exceeds this threshold, it will be set
+ to the threshold value.
+ This effectively limits the size of the gradients and keeps them from becoming
+ too large.
+ 
+\begin_inset Formula $ $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm} 
+\backslash
+caption{Gradient Clipping} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State threshold $
+\backslash
+gets$ max
+\backslash
+_norm 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{each parameter p in the model}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $ 
+\backslash
+boldsymbol{g} 
+\backslash
+gets 
+\backslash
+frac{
+\backslash
+partial
+\backslash
+epsilon}{
+\backslash
+partial
+\backslash
+theta}$     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+If{$
+\backslash
+left
+\backslash
+|
+\backslash
+boldsymbol{g}
+\backslash
+right
+\backslash
+| > threshold$}         
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $
+\backslash
+boldsymbol{g} 
+\backslash
+gets 
+\backslash
+frac{
+\backslash
+boldsymbol{g}}{
+\backslash
+left
+\backslash
+|grad
+\backslash
+right
+\backslash
+|} 
+\backslash
+times$ threshold     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndIf     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State 
+\end_layout
+
+\begin_layout Plain Layout
+
+update
+\backslash
+_parameter(p, grad) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndFor 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/GradiantClipping.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gradient clipping
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
