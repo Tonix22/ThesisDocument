@@ -4539,8 +4539,113 @@ Present work
 Dataset
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This project introduces a dataset of 20,000 channel realizations, each with
+ a size of 48x48.
+ The dataset is divided into two groups of 10,000, with the first group
+ consisting of Line-of-Sight (LOS) channel realizations and the second group
+ consisting of Non-Line-of-Sight (NLOS) channel realizations.
+ Each value in the matrix is a complex number with a format of complex32.
+ The data is stored in the .mat format, which is a common format used for
+ storing variables on disk from Matlab code.
+ However, the data can also be used in Python using the Scipy library.
+ To ensure a robust prediction, the LOS and NLOS channels have been shuffled,
+ with one following the other.
+ As neural networks do not typically work well with complex numbers, the
+ real and imaginary parts of the channels have been separated and used as
+ two separate images.
+ The Pytorch high-level API is then used to create a data loader, generating
+ batches ready for training, validation, and testing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A comparison of LOS and NLOS channels in a log scale representation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Golden model
+\end_layout
+
+\begin_layout Standard
+
+\size large
+The golden model, as defined in this project, serves as a benchmark for
+ evaluating the performance of new models.
+ The golden model is based on the Minimum Mean Squared Error (MMSE) and
+ Linear Minimum Mean Squared Error (LMMSE) equalizers, which are discussed
+ in further detail in the equalization section of this document.When evaluating
+ the performance of a communication system, it is standard practice to plot
+ both the Bit Error Rate (BER) and Signal-to-Noise Ratio (SNR) on the same
+ graph, with SNR on the x-axis and BER on the y-axis.
+ BER is a measure of the number of errors that occur in a transmitted data
+ stream, relative to the total number of bits transmitted.
+ SNR, on the other hand, is a measure of the strength of the signal relative
+ to the background noise.
+ By comparing the BER and SNR values, it is possible to evaluate the performance
+ of the system under different levels of noise.
+ A decrease in BER as SNR increases indicates that the system is able to
+ transmit data more accurately.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden model plots LS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
