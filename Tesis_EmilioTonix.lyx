@@ -4563,6 +4563,7 @@ This project introduces a dataset of 20,000 channel realizations, each with
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -4572,6 +4573,23 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Channels/NLOS_Channel_log_view.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Channels/LOS_Channel_log_view.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -4624,14 +4642,10 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Golden model plots LS
+Golden model plot only QPSK
 \end_layout
 
 \end_inset
