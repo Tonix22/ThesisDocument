@@ -4532,7 +4532,11 @@ Our objective is to equalize a double dispersive channel, also known as
 \end_layout
 
 \begin_layout Section
-Present work
+State of Art
+\end_layout
+
+\begin_layout Section
+Present Work
 \end_layout
 
 \begin_layout Subsection
@@ -4548,7 +4552,8 @@ This project introduces a dataset of 20,000 channel realizations, each with
  The dataset is divided into two groups of 10,000, with the first group
  consisting of Line-of-Sight (LOS) channel realizations and the second group
  consisting of Non-Line-of-Sight (NLOS) channel realizations.
- Each value in the matrix is a complex number with a format of complex32.
+ Each value in the matrix is a complex number with a format of complex128,
+ float64 for real and imaginary parts.
  The data is stored in the .mat format, which is a common format used for
  storing variables on disk from Matlab code.
  However, the data can also be used in Python using the Scipy library.
@@ -4556,9 +4561,8 @@ This project introduces a dataset of 20,000 channel realizations, each with
  with one following the other.
  As neural networks do not typically work well with complex numbers, the
  real and imaginary parts of the channels have been separated and used as
- two separate images.
- The Pytorch high-level API is then used to create a data loader, generating
- batches ready for training, validation, and testing.
+ two separate image channels.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4593,7 +4597,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-A comparison of LOS and NLOS channels in a log scale representation
+A comparison of LOS and NLOS channel magnitud in a log scale representation.
 \end_layout
 
 \end_inset
@@ -4615,16 +4619,17 @@ Golden model
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 The golden model, as defined in this project, serves as a benchmark for
  evaluating the performance of new models.
- The golden model is based on the Minimum Mean Squared Error (MMSE) and
- Linear Minimum Mean Squared Error (LMMSE) equalizers, which are discussed
- in further detail in the equalization section of this document.When evaluating
- the performance of a communication system, it is standard practice to plot
- both the Bit Error Rate (BER) and Signal-to-Noise Ratio (SNR) on the same
- graph, with SNR on the x-axis and BER on the y-axis.
+ The golden model is based on the Least squares (LS) and Linear Minimum
+ Mean Squared (LMMSE) Error equalizers, which are discussed in further detail
+ in the equalization section of this document.When evaluating the performance
+ of a communication system, it is standard practice to plot both the Bit
+ Error Rate (BER) and Signal-to-Noise Ratio (SNR) on the same graph, with
+ SNR on the x-axis and BER on the y-axis.
  BER is a measure of the number of errors that occur in a transmitted data
  stream, relative to the total number of bits transmitted.
  SNR, on the other hand, is a measure of the strength of the signal relative
@@ -4637,15 +4642,37 @@ The golden model, as defined in this project, serves as a benchmark for
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/Golden_4QAM.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Results/Golden_16QAM.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Golden model plot only QPSK
+Golden model plot QPSK and 16QAM 
 \end_layout
 
 \end_inset
@@ -4663,11 +4690,475 @@ Golden model plot only QPSK
 \end_layout
 
 \begin_layout Subsection
-First stage experiments
+Software 
+\size large
+Architecture
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the field of machine learning, data is typically split into three sets:
+ training, validation, and testing.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Training set
+\series default
+: The training set is a subset of the data used to train the model.
+ The model uses the training data to learn the relationships between the
+ input features and the target output.
+ The model parameters are updated during the training process to minimize
+ the prediction error.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Validation set
+\series default
+: The validation set is a subset of the data used to evaluate the model
+ during training.
+ The purpose of the validation set is to ensure that the model is not overfittin
+g to the training data.
+ Overfitting occurs when the model is too complex and learns the noise in
+ the training data instead of the underlying relationships.
+ The model is evaluated on the validation set after each training epoch,
+ and its performance is used to determine when to stop training or to adjust
+ the model's hyperparameters.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Testing set
+\series default
+: The testing set is a subset of the data used to evaluate the model's performan
+ce after training.
+ The model is never trained on the test set and its performance on the test
+ set provides an estimate of its generalization performance to new, unseen
+ data.
+ The test set is used to determine the final accuracy of the model and its
+ ability to make predictions on new data.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Also, a modular and maintainable code with class inheritance and shared
+ attributes is necessary for code reusability.
+ Given that the project will undergo multiple experiments based on the same
+ code, a generic software architecture that can consume different instances
+ has been developed.
+ This, combined with the PyTorch Lightning framework, has made the development
+ process much easier and faster.
+ PyTorch Lightning also offers tools for distributed training that can be
+ used to scale the training of big models across several GPUs, TPUs, or
+ machines.
+ This tooling also facilitates the concept of batches, which involves having
+ multiple realizations of the data set in the format [BATCH, sequlen] or
+ [BATCH, channel, height, width].
+ By using batches, the training time is reduced and it becomes more manageable
+ to handle large amounts of data.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+These are the main classes used in the software development
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Received class
+\series default
+ utilizes the channel data set to generate 20,000 x 48 random points in
+ a QAM constellation.
+ This class provides the data loader elements to be loaded, which will produce
+ a tuple of values including the channels and the tx QAM.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\size large
+Data loader class
+\series default
+ divides the data into the previously mentioned three sets, making it easily
+ accessible to the data processing stage.
+ Within the data processing stage, there are various functions.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+\size large
+Get Y
+\shape default
+: Takes the channels and multiplies them by the tx QAM.
+ This function can also receive the noise activation as a parameter.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\shape italic
+\size large
+LS/LMSSE
+\shape default
+: This function was made because in some training scenarios, the ground
+ truth can originate from these functions.
+ Also to feed the Golden model.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+\size large
+SNR_BER_Test
+\shape default
+ and BER calc
+\shape italic
+:
+\shape default
+ This functions are utilized to calculate the final metrics of the model
+ after training.
+ The results are saved in a CSV file, containing the BER and SNR values.
+ These results can be later plotted by reading the CSV file using the pandas
+ library and plotting it using the matplotlib library.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The software architecture will be displayed in the image below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/SoftwareDiagrams/networkdevelop.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Software Architecture Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
-Second stage experiments
+Ultra-Lightweight Networks
+\end_layout
+
+\begin_layout Standard
+The ultra-lightweight networks are based on a core network made of three
+ simple linear layers and three hardtanh functions.
+ The input is 
+\begin_inset Formula $H^{H}Y,$
+\end_inset
+
+ which makes it easier for the network to converge as QAM points are brought
+ closer together when multiplied by the hermitian of the channel.
+ Additionally, IQ data is normalized to have a maximum magnitude of 1.
+ This is achieved by finding the maximum magnitude of the data and dividing
+ all elements by that value.
+ The training of these ultra-lightweight networks is done using the MSELoss
+ estimation.
+ One advantage of these networks is that their processing can be easily
+ ported to an embedded system or FPGA design, as the hardtanh functions
+ used are simply linear clipping functions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total Parameters
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Estimated memory size
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Angle Net
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12.3 K
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+49 KB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Network size Benchmark
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Polar Net
+\end_layout
+
+\begin_layout Subsubsection
+Real-Imaginary Net
 \end_layout
 
 \begin_layout Section
