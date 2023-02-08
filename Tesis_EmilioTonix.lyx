@@ -4900,6 +4900,9 @@ Ultra-Lightweight Networks
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 The ultra-lightweight networks are based on a core network made of three
  simple linear layers and three hardtanh functions.
  The input is 
@@ -4920,6 +4923,7 @@ The ultra-lightweight networks are based on a core network made of three
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -4929,11 +4933,10 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="5">
+<lyxtabular version="3" rows="4" columns="3">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -4956,29 +4959,11 @@ Total Parameters
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Estimated memory size
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Estimated memory size
 \end_layout
 
 \end_inset
@@ -4989,7 +4974,7 @@ Estimated memory size
 \begin_inset Text
 
 \begin_layout Plain Layout
-Angle Net
+Phase Net
 \end_layout
 
 \end_inset
@@ -5003,7 +4988,7 @@ Angle Net
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -5012,31 +4997,13 @@ Angle Net
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Polar Net
 \end_layout
 
 \end_inset
@@ -5045,25 +5012,7 @@ Angle Net
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+42 K 
 \end_layout
 
 \end_inset
@@ -5072,7 +5021,7 @@ Angle Net
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+168 KB
 \end_layout
 
 \end_inset
@@ -5083,7 +5032,7 @@ Angle Net
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+Real Imag Net
 \end_layout
 
 \end_inset
@@ -5092,25 +5041,7 @@ Angle Net
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+24.6 K 
 \end_layout
 
 \end_inset
@@ -5119,7 +5050,7 @@ Angle Net
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+98 KB
 \end_layout
 
 \end_inset
@@ -5144,6 +5075,39 @@ Network size Benchmark
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/Models_4QAM.png
+	lyxscale 40
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden Model vs Networks in 4-QAM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
@@ -5151,6 +5115,10 @@ Network size Benchmark
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+Phase Net
 \end_layout
 
 \begin_layout Subsubsection
