@@ -4536,7 +4536,7 @@ State of Art
 \end_layout
 
 \begin_layout Section
-Present Work
+Results and Analysis
 \end_layout
 
 \begin_layout Subsection
@@ -4867,7 +4867,7 @@ status open
 \begin_inset Graphics
 	filename Codigo/SoftwareDiagrams/networkdevelop.png
 	lyxscale 50
-	scale 35
+	scale 28
 
 \end_inset
 
@@ -4903,22 +4903,35 @@ Ultra-Lightweight Networks
 \paragraph_spacing onehalf
 
 \size large
-The ultra-lightweight networks are based on a core network made of three
- simple linear layers and three hardtanh functions.
- The input is 
-\begin_inset Formula $H^{H}Y,$
-\end_inset
+The Ultra-Lightweight Networks are designed with a core network consisting
+ of three linear layers and three hardtanh functions.
+ The input is multiplied by the Hermitian of the channel, which makes it
+ easier for the network to converge as QAM points become closer together.
+ Additionally, the IQ data is normalized to have a maximum magnitude of
+ 1 by dividing all elements by the maximum magnitude value of the data.
+\end_layout
 
- which makes it easier for the network to converge as QAM points are brought
- closer together when multiplied by the hermitian of the channel.
- Additionally, IQ data is normalized to have a maximum magnitude of 1.
- This is achieved by finding the maximum magnitude of the data and dividing
- all elements by that value.
- The training of these ultra-lightweight networks is done using the MSELoss
- estimation.
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The training of these Ultra-Lightweight Networks is performed using Mean
+ Squared Error (MSE) loss estimation.
  One advantage of these networks is that their processing can be easily
- ported to an embedded system or FPGA design, as the hardtanh functions
+ implemented on embedded systems or FPGA designs, as the hardtanh functions
  used are simply linear clipping functions.
+ Furthermore, these methods are fast in processing compared to traditional
+ methods, making them a suitable choice for equalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, it should be noted that while these methods perform well in noisy
+ scenarios, they may not be as effective in clean scenarios.
+ This trade-off should be considered when deciding to use these methods.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4927,10 +4940,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -5117,20 +5126,223 @@ Golden Model vs Networks in 4-QAM
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/Models_16QAM.png
+	lyxscale 30
+	scale 67
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden Model Vs Networ in 16-QAM PhaseNet not included
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Phase Net
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The PhaseNet is a specialized neural network that is designed to operate
+ in systems where the amplitude information of signals is not critical,
+ and bits are encoded based on the angles they occupy.
+ Despite its limited performance compared to other methods, such as the
+ Least Mean Squared Error (LMSSE), PhaseNet offers a faster computational
+ approach, making it a more efficient alternative.
+ The computation of the channel inverse, for example, is time-consuming,
+ while PhaseNet offers a more computationally efficient solution.
+ This makes PhaseNet a desirable option in situations where computational
+ speed is a priority.
+ However, it is important to note that its accuracy may decrease for SNRs
+ greater than 20dB.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The PhaseNet training produced an error of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+, which is considered one of the smaller errors among comparable neural
+ networks.
+ The training process consisted of 100,000 iterations with a batch size
+ of 10.
+ The constant validation loss observed during the training suggests that
+ the model does not overfit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/PhaseNet.png
+	lyxscale 60
+	scale 45
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Phase Net Layers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/Phanet_train_loss.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/Phanet_val_loss.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Phase Net Trainning and validation loss
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
 Polar Net
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The PolarNet consists of two networks: one for magnitude and the other for
+ phase.
+ The final output from both modules is concatenated to form a 48x2 matrix
+ that serves as the estimator output.
+ The ground truth has the same shape.
+ The input data of the PolarNet is normalized with respect to the maximum
+ absolute value in the batch.
+ The angle is mapped from 
+\begin_inset Formula $\boldsymbol{[-\pi,\pi]}$
+\end_inset
+
+ to [0, 1] using the equation
+\size largest
+ 
+\begin_inset Formula $\boldsymbol{\frac{\theta-\pi}{2\pi}}$
+\end_inset
+
+
+\size large
+.
+ This data mapping helps the network make better predictions and converge
+ faster.
+ It's important to note that the mean squared error (MSE) calculation does
+ not take into account the complex representation of the data and only considers
+ the values as two 2D spatial values, one for magnitude and the other for
+ phase.
+\end_layout
+
 \begin_layout Subsubsection
 Real-Imaginary Net
 \end_layout
 
-\begin_layout Section
-Results and Analysis
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Real Imaginary Net is similar to the Polar Net, with the difference
+ being that it concatenates the real and imaginary parts.
+ With low Signal-to-Noise Ratio (SNR), it performs similarly to the Polar
+ Net, but rapidly, the Bit Error Rate (BER) flattens regardless of the increase
+ in SNR.
+ During the experimentation process, we attempted to use the distance between
+ the target and output as an estimator for the network, but it performed
+ worse than when using Mean Squared Error (MSE) estimation.
 \end_layout
 
 \begin_layout Section
