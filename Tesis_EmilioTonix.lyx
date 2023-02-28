@@ -2178,6 +2178,82 @@ literal "false"
 \end_layout
 
 \begin_layout Subsubsection
+Zero forcing
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Zero Forcing Equalizer (ZFE) is a technique used in communication systems
+ to reduce the impact of intersymbol interference (ISI), caused by the presence
+ of multiple signal paths in a communication channel.
+ Although the ZFE is effective, it has some limitations, such as being susceptib
+le to noise and unable to handle certain types of channel distortions.
+ Nevertheless, it can improve the performance of communication systems in
+ specific scenarios.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In our case, we are dealing with a matrix channel that is already in the
+ frequency domain.
+ To accelerate the ZFE process, we extract the main diagonal of the channel
+ matrix using the "diag(H)" operation.
+ Then, we apply the operation of "Y" divided by "diag(H)" to obtain the
+ estimated transmitted symbols, where 
+\begin_inset Formula $\boldsymbol{Y=Hx+w}$
+\end_inset
+
+.
+ The H matrix, which multiplies the input data x, is almost canceled out
+ in the final approach.
+ Specifically, we have 
+\begin_inset Formula $\hat{x}\simeq x+\frac{w}{diag(H)}$
+\end_inset
+
+, where w is the noise vector and diag(H) is the main diagonal of the channel
+ matrix H.
+ This expression shows that the estimated transmitted symbols are obtained
+ by adding the input data to the noise vector w divided by the main diagonal
+ of the channel matrix.
+ In the equations bellow the estimator is shown.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{x}=\frac{Y}{diag(H)}=\frac{Hx+w}{diag(H)}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\size large
+Based on a paper, we will use zero forcing as a preprocessing stage for
+ some of our experiments
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
 MSE
 \end_layout
 
@@ -4535,6 +4611,290 @@ Our objective is to equalize a double dispersive channel, also known as
 State of Art
 \end_layout
 
+\begin_layout Subsection
+Introduction
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To support our research and development, we conducted a thorough study of
+ several key papers, which we organized into different categories based
+ on their relevance to the project.
+ In the following bullets, I will provide a brief overview of how each of
+ these articles contributed to the development of our project.
+ Please note that many papers in the literature deal with smaller input
+ and channel sizes than the 48x48 size used in our research.
+ It is possible that these studies were mostly focused on proofs of concepts
+ or making results fit better.
+ Nevertheless, we opted for a larger channel size to create a more realistic
+ scenario for our research.
+ So BER/SNR metrics should be based on the golden models rather than on
+ these articles.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The Roadmap to 6G – AI Empowered Wireless Networks
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This article justifies the use of neural networks in various stages of channel
+ communication and provides an overview of how neural networks can be applied
+ to 6G development.
+ While the article is more focused on distributed learning, we can argue
+ that our project is a starting point for making such applications possible,
+ particularly in the context of channel equalization
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+A Novel OFDM Equalizer for Large Doppler Shift Channel through Deep Learning
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This paper provided valuable insights into applying preprocessing stages
+ for our neural networks.
+ For instance, we learned to use 
+\begin_inset Formula $H^{H}Y$
+\end_inset
+
+ instead of pure 
+\begin_inset Formula $Y$
+\end_inset
+
+ as an input for the neural network, as well as applying zero forcing as
+ another preprocessing stage.
+ Both strategies are used in our polar network solution.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Recent Advances in Neural Network Techniques For Channel Equalization:A
+ Comprehensive Survey
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This paper discusses the Functional Link Artificial Neural Network (FLANN),
+ which transforms the input vector using a non-linear function that maps
+ the input space to a higher-dimensional space.
+ The expansion function, called the functional link, is usually a polynomial
+ function of the input variables.
+ In our final experiments, we adopted the idea of searching for equalization
+ in a higher-dimensional space, but did not use the polynomial function
+ approach.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The paper also notes that recurrent neural networks (RNNs) generally outperform
+ feed-forward neural networks (FNNs) in approximating a finite impulse response
+ (IIR) filter, while FNNs approximate a finite impulse response (FIR) filter.
+ However, IIR filters are known to be unstable.
+ Recent advances in neural networks, such as transformer neural networks,
+ have been developed to address this limitation.
+ Attention Is All You Need paper describes the transformer neural network
+ in detail.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In conclusion, this paper was instrumental in developing two distinct approaches
+ for our research, namely the classical feed-forward neural networks and
+ the transformer-based approach
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+An Introduction to Deep Learning for the Physical Layer
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This paper provides a detailed overview of neural networks and their application
+ to channel equations, with mathematical proofs included.
+ The paper describes the formal structure of feed-forward neural networks,
+ as well as some applications of convolutional neural networks.
+ It also introduces autoencoders for end-to-end communication systems and
+ proposes the idea that an autoencoder can be used to characterize a complete
+ channel.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+A Survey of Complex-Valued Neural Networks
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+As we know, IQ data is represented by complex numbers, which can make it
+ challenging to work with.
+ This paper provides a detailed description of a new loss function and adjustmen
+ts needed to describe backpropagation in complex networks.
+ The paper also shows how to evaluate cost functions, which is helpful for
+ conducting experiments with complex neural networks.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Searching for MobileNetV3
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+MobileNet achieves its high efficiency by using depthwise separable convolutions
+, which are a combination of a depthwise convolution and a pointwise convolution.
+ing depthwise separable convolutions, this significantly reduces the number
+ of parameters and computations required for a convolution operation, while
+ still maintaining high accuracy.
+ We used MobileNet in one of our experiments and compared it with the zero
+ forcing equalizer.
+ Since both methods are expected to be faster but less accurate, we decided
+ to compare them as a part of our study
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Attention Is All You Need
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+According to "Attention Is All You Need", a research paper on neural network
+ architecture, the Transformer is a new architecture that utilizes attention
+ mechanisms, instead of traditional recurrent or convolutional layers, to
+ process sequential input data, such as natural language text.
+ This architecture has demonstrated state-of-the-art performance in a variety
+ of natural language processing tasks, including language modeling and machine
+ translation.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Given that our data is sequential in nature and received symbol by symbol,
+ we could apply the Transformer architecture in our equalization stage.
+ The Transformer uses an attention mechanism that enables it to process
+ all input data in parallel, thereby computing the importance of each input
+ element relative to all other elements in the sequence.
+ This information is then used to weight the contribution of each element
+ to the output, and we believe that this resulting output could be an effective
+ method for canceling Inter-Symbol Interference (ISI) using attention mechanisms
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+An image is worth 16x16 words
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+An Image is Worth 16x16 Words" is a research paper that introduces a new
+ type of neural network architecture called the Vision Transformer (ViT),
+ which applies the Transformer architecture to image recognition tasks.
+ The ViT splits the input image into patches, which are then flattened and
+ transformed using self-attention mechanisms.
+ This approach allows the ViT to capture both local and global features
+ of the image and has achieved state-of-the-art performance in several image
+ recognition benchmarks.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+We could treat the IQ map as an 
+\begin_inset Quotes eld
+\end_inset
+
+image
+\begin_inset Quotes erd
+\end_inset
+
+ of points and give a discrete numeric number based on a grid.
+ We describe more in detail in the results section.
+ 
+\end_layout
+
+\end_deeper
 \begin_layout Section
 Results and Analysis
 \end_layout
