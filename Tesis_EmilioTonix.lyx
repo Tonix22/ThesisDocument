@@ -4043,6 +4043,120 @@ Gradient clipping
 \end_layout
 
 \begin_layout Subsection
+Z-score
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Z-score, also known as standard score, is a statistical measure that
+ indicates how many standard deviations an observation or data point is
+ from the mean of a data set.
+ It is used to standardize data and compare individual observations to a
+ population or sample mean.
+ The magnitude of the z-score represents how far away the data point is
+ from the mean in terms of standard deviations.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This method has its own section in our results due to its relevance.
+ It helps us to remove outliers and make our results more stable.
+ Outliers are data points that are significantly different from the other
+ data points in the data set and can skew statistical analyses or machine
+ learning models.
+ Z-score can be used to identify and reduce outliers in a data set.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To identify outliers using z-score, we first calculate the z-score for each
+ data point in the data set.
+ We can then set a threshold z-score value, usually between 2 and 3, beyond
+ which any data point is considered an outlier.
+ Data points that have a z-score above the threshold are identified as outliers
+ and can be removed from the data set.
+ This can help to improve the accuracy and reliability of our results or
+ predictions.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{z=\frac{x_{i}-\mu}{\sigma}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We use the z-score to filter outliers with a desired level of confidence,
+ which is typically set at 95%.
+ This corresponds to a z-score of 1.96, which means that approximately 95%
+ of the data points would fall within the confidence interval.
+ The 95% confidence level is commonly used in statistical analyses as a
+ standard level of confidence
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/ConfidenceInterval.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+95% Confidence interval 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "z_score_drawing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Convolutional Neuronal Networks
 \end_layout
 
@@ -4640,7 +4754,15 @@ To support our research and development, we conducted a thorough study of
 \noindent
 
 \size large
-The Roadmap to 6G – AI Empowered Wireless Networks
+The Roadmap to 6G – AI Empowered Wireless Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "The_Roadmap_to_6G"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4664,6 +4786,15 @@ This article justifies the use of neural networks in various stages of channel
 
 \size large
 A Novel OFDM Equalizer for Large Doppler Shift Channel through Deep Learning
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4695,7 +4826,15 @@ This paper provided valuable insights into applying preprocessing stages
 
 \size large
 Recent Advances in Neural Network Techniques For Channel Equalization:A
- Comprehensive Survey
+ Comprehensive Survey 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Recent_Advances_in_Neural_Network_Techniques_for_Channel_Equalization"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4745,7 +4884,15 @@ In conclusion, this paper was instrumental in developing two distinct approaches
 \noindent
 
 \size large
-An Introduction to Deep Learning for the Physical Layer
+An Introduction to Deep Learning for the Physical Layer 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Intro_DL_Physical_Layer"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4769,7 +4916,15 @@ This paper provides a detailed overview of neural networks and their application
 \noindent
 
 \size large
-A Survey of Complex-Valued Neural Networks
+A Survey of Complex-Valued Neural Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4792,7 +4947,15 @@ ts needed to describe backpropagation in complex networks.
 \noindent
 
 \size large
-Searching for MobileNetV3
+Searching for MobileNetV3 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MobilenetV3"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4818,7 +4981,15 @@ ing depthwise separable convolutions, this significantly reduces the number
 \noindent
 
 \size large
-Attention Is All You Need
+Attention Is All You Need 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "vaswani2017attention"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -4857,7 +5028,15 @@ Given that our data is sequential in nature and received symbol by symbol,
 \noindent
 
 \size large
-An image is worth 16x16 words
+An image is worth 16x16 words 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dosovitskiy2020image"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
