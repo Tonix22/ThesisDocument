@@ -5816,6 +5816,7 @@ The image below demonstrates how a complex network can handle polar segmentation
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -5909,6 +5910,7 @@ literal "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -5996,6 +5998,8 @@ One approach to dealing with the error is to take the complex magnitude
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+
+\size large
 If we take a polar approach where 
 \begin_inset Formula $d=re^{i\phi}$
 \end_inset
@@ -6011,6 +6015,8 @@ If we take a polar approach where
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{(e_{log}):=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}=\sum_{k=0}^{N-1}(log(o_{k})-log(d_{k}))*\overline{((log(o_{k})-log(d_{k})))}}
@@ -6023,6 +6029,8 @@ If we take a polar approach where
 
 \begin_layout Standard
 \align center
+
+\size large
 \begin_inset Formula $\boldsymbol{log\left(\frac{o_{k}}{d_{k}}\right)*\overline{log\left(\frac{o_{k}}{d_{k}}\right)}=log\left(\frac{\hat{r}e^{i\hat{\phi}}}{re^{i\phi}}\right)*log\left(\frac{\hat{r}e^{-i\hat{\phi}}}{re^{-i\phi}}\right)=log\left(\frac{\hat{r}}{r}e^{i(\hat{\phi}-\phi)}\right)*log\left(\frac{\hat{r}}{r}e^{-i(\hat{\phi}+\phi)}\right)}$
 \end_inset
 
@@ -6031,7 +6039,9 @@ If we take a polar approach where
 
 \begin_layout Standard
 \align center
-\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+log\left(e^{i(\hat{\phi}-\phi)}\right)\right]*\left[log(\frac{\hat{r}}{r})+log\left(e^{-i(\hat{\phi}-\phi)}\right)\right]=\left[log(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)\right]*\left[log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)\right]}$
+
+\size large
+\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+log\left(e^{i(\hat{\phi}-\phi)}\right)\right]*\left[log(\frac{\hat{r}}{r})+log\left(e^{-i(\hat{\phi}-\phi)}\right)\right]=}$
 \end_inset
 
 
@@ -6039,11 +6049,25 @@ If we take a polar approach where
 
 \begin_layout Standard
 \align center
+
+\size large
+\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)\right]*\left[log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)\right]}=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
 Multiply out the terms 
 \end_layout
 
 \begin_layout Standard
 \align center
+
+\size large
 \begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i^{2}(\hat{\phi}-\phi)^{2}}$
 \end_inset
 
@@ -6052,11 +6076,15 @@ Multiply out the terms
 
 \begin_layout Standard
 \align center
+
+\size large
 Simplify
 \end_layout
 
 \begin_layout Standard
 \align center
+
+\size large
 \begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+(\hat{\phi}-\phi)^{2}}$
 \end_inset
 
@@ -6065,6 +6093,8 @@ Simplify
 
 \begin_layout Standard
 \align center
+
+\size large
 We multiply the angle and radius by 0.5 in the loss function to give them
  equal importance since both are equally significant for the loss.
  
@@ -6072,6 +6102,8 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}
@@ -6084,15 +6116,22 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+
+\size large
 We now have an explicit representation of magnitude and phase in the loss
  function, which could be helpful in the polar equalization approach.
 \end_layout
 
 \begin_layout Subsubsection
+
+\size large
 Conclusion 
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 This theory was helpful in implementing a neural network with complex values
  directly, without splitting real part or phase and magnitude.
  However, in our experiments, it did not yield good results, but we took
@@ -6115,20 +6154,212 @@ literal "false"
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
 MobileNet achieves its high efficiency by using depthwise separable convolutions
-, which are a combination of a depthwise convolution and a pointwise convolution.
-ing depthwise separable convolutions, this significantly reduces the number
- of parameters and computations required for a convolution operation, while
- still maintaining high accuracy.
- We used MobileNet in one of our experiments and compared it with the zero
- forcing equalizer.
- Since both methods are expected to be faster but less accurate, we decided
- to compare them as a part of our study
+, which are a combination of a depthwise convolution and a pointwise convolution
+, while still maintaining high accuracy.
+ In terms of time complexity, MobileNet has a lower Big O notation complexity
+ compared to regular CNNs.
+ This results in faster inference times and lower memory requirements.
+ However, it's worth noting that the trade-off for MobileNet's efficiency
+ is a potential loss in accuracy compared to regular CNNs.
+ MobileNet's lightweight design makes it more suitable for applications
+ where resource constraints are an issue, such as on mobile devices or edge
+ devices with limited computing power.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+caption{MobileNet architectures} 
+\backslash
+label{tab:mobilenet} 
+\backslash
+begin{tabular}{|c|c|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Model} & 
+\backslash
+textbf{Input Resolution} & 
+\backslash
+textbf{FLOPS} & 
+\backslash
+textbf{Parameters} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline MobileNet v1 & 224x224 & 569 M & 4.2 million 
+\backslash
+
+\backslash
+ 
+\backslash
+hline MobileNet v2 & 224x224 & 300 M & 3.4 million 
+\backslash
+
+\backslash
+ 
+\backslash
+hline MobileNet v3 & 224x224 & 219 M & 5.4 million 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS stands for "Floating Point Operations Per Second".
+ It is a measure of a computer's performance based on the number of floating
+ point operations (such as additions, subtractions, multiplications, and
+ divisions) it can perform in a second.
+ It is commonly used to measure the performance of computer processors or
+ the computational requirements of machine learning models.
+\end_layout
+
+\begin_layout Subsubsection
+Reduced complexity for activation functions
+\end_layout
+
+\begin_layout Standard
+
+\size large
+One of the key components of his low computational cost is the implementation
+ of hardsigmoid and hardswish function, which is quite similar that we done
+ with hardtanh but with other activation function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+hswish[x]=x\frac{RELU6(x+3)}{6}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/hardsigmoid.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Hard functions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This functions are implemented in the last stage of mobile net with more
+ efficient functions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/LastMobileNetv3.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Last section optimized
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\noindent
+
+\size large
+We used MobileNet in one of our experiments to apply convolutional neural
+ networks to the channel and compared it with the zero-forcing equalizer.
+ We chose this approach because both methods are expected to be faster but
+ less accurate.
 \end_layout
 
 \begin_layout Subsection
