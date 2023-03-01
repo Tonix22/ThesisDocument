@@ -4737,8 +4737,8 @@ Introduction
 To support our research and development, we conducted a thorough study of
  several key papers, which we organized into different categories based
  on their relevance to the project.
- In the following bullets, I will provide a brief overview of how each of
- these articles contributed to the development of our project.
+ In the following sections, I will provide a brief overview of how each
+ of these articles contributed to the development of our project.
  Please note that many papers in the literature deal with smaller input
  and channel sizes than the 48x48 size used in our research.
  It is possible that these studies were mostly focused on proofs of concepts
@@ -4749,7 +4749,7 @@ To support our research and development, we conducted a thorough study of
  these articles.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4765,22 +4765,84 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
-\noindent
 
 \size large
-This article justifies the use of neural networks in various stages of channel
- communication and provides an overview of how neural networks can be applied
- to 6G development.
- While the article is more focused on distributed learning, we can argue
- that our project is a starting point for making such applications possible,
- particularly in the context of channel equalization
+The integration of AI technologies in the communication network provides
+ a promising future for efficient and reliable communication in 6G and beyond.
+ The "intelligent PHY layer" paradigm, through its ability to self-learn
+ and self-optimize, ensures that the system remains efficient and reliable
+ despite the various hardware and channel effects.
+ This model leverages AI technologies to enhance communication efficiency
+ and performance, and can autonomously learn and enhance performance through
+ the integration of cutting-edge sensing and data-gathering tools.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Hardware heterogeneity necessitates system redesign for different hardware
+ settings, which can be overcome using transfer learning.
+ This approach adjusts the neural network weights to work with custom hardware
+ architecture, regardless of the training on floating point or fixed point
+ backpropagation.
+ Therefore, network architecture is more crucial than numeric resolution
+ in contrast to traditional methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/RoadMap6G.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Roadmap showing the evolution of deep learning models in telecom and justifying
+ our research
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In conclusion, we present a roadmap in the image above depicting the expected
+ evolution of deep learning in the coming years.
+ This image justifies the necessity of our research.
+ The picture shows the progression of models from simpler to more intelligent
+ systems, with the intelligence level displayed in circles on the right
+ side of the image.
+\end_layout
+
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4797,30 +4859,398 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This documentation describes the proposed neural architecture called Cascaded
+ Net (CN) for equalization in OFDM systems.
+ The use of a zero-forcing preprocessor aims to prevent the network from
+ getting stuck in a saddle point or local minimum point.
+ The CN neural architecture is designed to address the equalization problem
+ in OFDM systems with Rayleigh fading and large Doppler shifts.
+ By cascading a deep trainable network behind a zero-forcing preprocessor,
+ the CN architecture achieves superior performance in comparison to traditional
+ equalization methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/ZeroForcePreprocess.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Deep learning equalizer with prepocesing stage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+As they are performing frequency domain equalization, their base equation
+ is the same as ours.
+ 
+\begin_inset Formula $\boldsymbol{Y=Hx+W}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Cascade net is defined as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\hat{\boldsymbol{X_{0}=(H^{H}H)^{-1}H^{H}Y}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{z_{i}=w_{i}\left[\begin{array}{c}
+H^{H}Y\\
+\hat{X_{i}}\\
+H^{H}H\hat{x_{i}}
+\end{array}\right]+b_{i}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{X_{i+1}}=\phi(z_{i})}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Where 
+\begin_inset Formula $\boldsymbol{w}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{b}$
+\end_inset
+
+ representes weights and bias as trainnable parameters.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\phi=tanh\left(\frac{x}{|t_{i}|}\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/CascaNet.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Cascade Net
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Their loss function or estimator is based on the Euclidean distance, with
+ a logarithmic regularization of outliers and the objective of minimizing
+ the distance between points.
+ They accumulate the total estimation for each layer i and finally sum it
+ up.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\mathbf{loss(X_{\theta}^{CN}(H,Y))=\sum_{i=1}^{L}log(i)||X-\hat{X||^{2}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To deal with complex matrix number they make a reformulation in the matrix
+ as follows.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\size large
+\begin_inset Graphics
+	filename Imagenes/Papers/ComplexMatrix.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\size default
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Matrix reformulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+BER perfomance
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The image below shows a benchmark of different equalizers, including ZF
+ (Zero Forcing), PIC (Parallel Interference Cancellation), DET (Deep MIMO
+ Detection Network)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DeepMimoOFDM"
+literal "false"
+
+\end_inset
+
+], and CN (Cascaded Net).
+ The modulation they used in the experiment below is QPSK.
+ and they assume that CSI is perfect.
+ The receiver is trained off-line for the single-user system with fixed
+ Doppler shift.
+ If Subcarrier number 
+\begin_inset Formula $N$
+\end_inset
+
+ is 32, 
+\begin_inset Formula $f_{N}$
+\end_inset
+
+ equals to 0.16.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Imagenes/Papers/CascadeResults.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-This paper provided valuable insights into applying preprocessing stages
- for our neural networks.
- For instance, we learned to use 
-\begin_inset Formula $H^{H}Y$
+Classical PIC methods perform well in low subcarrier frequency scenarios
+ (
+\begin_inset Formula $f_{N}$
+\end_inset
+
+ less than 0.1).
+ However, their performance degrades significantly with an increase in subcarrie
+r frequency due to significant error propagation, as stated in the first
+ section.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Deep MIMO detection (Det) faces a flat error curve in high SNR scenarios.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Cascaded Net (CN) consistently performs well compared to Zero Forcing (ZF)
+ and Det, which is in line with the argument made in the third section.
+\end_layout
+
+\begin_layout Subsubsection
+Performance Improvement Strategies for our solutions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+As a conclusion, we have opted to use 
+\begin_inset Formula $\boldsymbol{H^{H}Y}$
 \end_inset
 
  instead of pure 
-\begin_inset Formula $Y$
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
- as an input for the neural network, as well as applying zero forcing as
- another preprocessing stage.
- Both strategies are used in our polar network solution.
+ as an input for certain neural networks in our research.
+ We have also implemented zero forcing as an additional preprocessing stage.
+ These strategies have proven to be effective as they bring constellation
+ points closer to one another, reducing the network's burden to equalize
+ the signal to the ideal state, particularly when dealing with long distances
+ between ideal point and recieved point.
  
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4837,49 +5267,99 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-This paper discusses the Functional Link Artificial Neural Network (FLANN),
- which transforms the input vector using a non-linear function that maps
- the input space to a higher-dimensional space.
- The expansion function, called the functional link, is usually a polynomial
+This paper provides an overview of various channel equalization methods,
+ including the Multilayer Perceptron (MLP) equalizer, Functional Link Artificial
+ Neural Network (FLANN) equalizer, Chebyshev Neural Network (NN) equalizer,
+ and Radial Basis Function NN (RBFNN) equalizer.
+ Additionally, it presents a literature review and application of Recursive
+ Neural Network (RNN) and Fuzzy Neural Network equalizers.
+\end_layout
+
+\begin_layout Subsubsection
+FLANN
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The primary difference between FLANN hardware and MLP configuration is that
+ the nonlinear mapping replaces only the input, output, and hidden layers.
+ This mapping uses a non-linear function to transform the input vector,
+ mapping it to a higher-dimensional space.
+ The expansion function, called the functional link, is typically a polynomial
  function of the input variables.
- In our final experiments, we adopted the idea of searching for equalization
- in a higher-dimensional space, but did not use the polynomial function
+ In our final experiments, we explored the concept of searching for equalization
+ in a higher-dimensional space, but did not utilize the polynomial function
  approach.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
+RBF
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Radial basis functions (RBFs) are a type of basis function used in function
+ approximation and machine learning algorithms.
+ RBFs are a class of functions that depend only on the distance from the
+ center of the function, and their output decreases as the distance from
+ the center increases.
+ Gaussian RBF: This function takes the form of 
+\begin_inset Formula $e^{(-r^{2}/2)}$
+\end_inset
+
+, where r is the Euclidean distance from the center of the function.
+ This RBF is widely used in machine learning and function approximation
+ algorithms due to its smoothness and symmetry.
+\end_layout
+
+\begin_layout Subsubsection
+RNN
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-The paper also notes that recurrent neural networks (RNNs) generally outperform
- feed-forward neural networks (FNNs) in approximating a finite impulse response
- (IIR) filter, while FNNs approximate a finite impulse response (FIR) filter.
- However, IIR filters are known to be unstable.
- Recent advances in neural networks, such as transformer neural networks,
- have been developed to address this limitation.
- Attention Is All You Need paper describes the transformer neural network
- in detail.
+The article concludes by stating that Recurrent Neural Networks (RNNs) generally
+ outperform feed-forward neural networks (FNNs) and other methods.
+ RNNs approximate a finite impulse response (IIR) filter, whereas other
+ methods approximate a finite impulse response (FIR) filter.
+ It is worth noting that IIR filters are known to be unstable, but recent
+ advances in neural networks, such as LSTM, GRU, and Transformers, have
+ been developed to overcome this limitation 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsubsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-In conclusion, this paper was instrumental in developing two distinct approaches
- for our research, namely the classical feed-forward neural networks and
- the transformer-based approach
+The article discusses various approaches using different network architectures.
+ However, it lacks any BER/SNR plots and focuses solely on QPSK study.
+ According to this research, Recurrent Neural Networks (RNNs) appear to
+ be the most effective solution, rendering other proposed strategies unnecessary.
+ Given the significant advancements in RNNs in recent years and the emergence
+ of powerful tools like transformers, we should prioritize working with
+ transformers, also there is nothing similar to transformers in the existing
+ literature.
+ 
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4895,7 +5375,6 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -4910,8 +5389,7 @@ This paper provides a detailed overview of neural networks and their application
  channel.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4927,7 +5405,6 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -4941,8 +5418,7 @@ ts needed to describe backpropagation in complex networks.
  conducting experiments with complex neural networks.
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsubsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4958,7 +5434,6 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -4975,8 +5450,7 @@ ing depthwise separable convolutions, this significantly reduces the number
  to compare them as a part of our study
 \end_layout
 
-\end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -4992,7 +5466,6 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -5007,6 +5480,7 @@ According to "Attention Is All You Need", a research paper on neural network
  translation.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -5023,7 +5497,7 @@ Given that our data is sequential in nature and received symbol by symbol,
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
@@ -5039,7 +5513,6 @@ literal "false"
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -5055,6 +5528,7 @@ An Image is Worth 16x16 Words" is a research paper that introduces a new
  recognition benchmarks.
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
