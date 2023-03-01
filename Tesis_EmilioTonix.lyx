@@ -4725,7 +4725,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newpage
@@ -4913,7 +4912,18 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Deep learning equalizer with prepocesing stage
+Deep learning equalizer with prepocesing stage.
+ 
+\size large
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5050,7 +5060,17 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Cascade Net
+Cascade Net 
+\size large
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5125,7 +5145,17 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Matrix reformulation
+Matrix reformulation 
+\size large
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5181,15 +5211,17 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Imagenes/Papers/CascadeResults.png
 
 \end_inset
 
 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK equalization with different strategies in the paper
 \end_layout
 
 \end_inset
@@ -5368,13 +5400,87 @@ Conclusion
 \size large
 The article discusses various approaches using different network architectures.
  However, it lacks any BER/SNR plots and focuses solely on QPSK study.
- According to this research, Recurrent Neural Networks (RNNs) appear to
- be the most effective solution, rendering other proposed strategies unnecessary.
- Given the significant advancements in RNNs in recent years and the emergence
- of powerful tools like transformers, we should prioritize working with
- transformers, also there is nothing similar to transformers in the existing
- literature.
- 
+ According to this research, Recurrent Neural Networks (RNNs) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RNN_LSTM"
+literal "false"
+
+\end_inset
+
+ appear to be the most effective solution, rendering other proposed strategies
+ unnecessary.
+ Due to the significant advancements in Recurrent Neural Networks (RNNs)
+ over the years, powerful tools such as Sequence to Sequence (Seq2Seq)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "seq_to_seq"
+literal "false"
+
+\end_inset
+
+, Attention
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Attention"
+literal "false"
+
+\end_inset
+
+, and the Transformer
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
+literal "false"
+
+\end_inset
+
+ models have emerged.
+ More recently, the Vision Transformer (ViT) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dosovitskiy2020image"
+literal "false"
+
+\end_inset
+
+ has also been introduced.
+ Given these developments, it is important to prioritize working with ViT,
+ which represents a new and promising direction for image analysis.
+ Additionally, there is currently no similar technique in the existing literatur
+e that deals with channel equalization, making the ViT an even more valuable
+ tool for OFDM equalization, treating constelations points as sections of
+ an image.
+ In the infographic below, we have designed a timeline to make the evolution
+ of sequence analysis models clearer.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/TimeLineEvolution.jpg
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -5393,18 +5499,255 @@ literal "false"
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
 This paper provides a detailed overview of neural networks and their application
- to channel equations, with mathematical proofs included.
+ to channel equations, with formal mathematical description included.
  The paper describes the formal structure of feed-forward neural networks,
- as well as some applications of convolutional neural networks.
+ as well as some applications of convolutional neural networks, that was
+ described in the first section.
  It also introduces autoencoders for end-to-end communication systems and
  proposes the idea that an autoencoder can be used to characterize a complete
  channel.
+ What's remarkable about this approach is that it can be extended to channel
+ models and loss functions for which the optimal solutions are unknown,
+ making it highly versatile.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/ChannelAutoencoder.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Autoencoder as Channel 
+\size large
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Intro_DL_Physical_Layer"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In addition, the authors use adversarial networks to manage multiple transmitter
+-receiver pairs with competing capacity.
+ Although the Multiple-Input Multiple-Output (MIMO) scenario is not currently
+ implemented, it could be a promising area for future work.
+ Finally, the authors also discuss modulation classification, which involves
+ using Convolutional Neural Networks (CNNs) to automatically detect the
+ modulation scheme used in a communication process.
+\end_layout
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Autoencoder
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The goal of the transmitter is to send one of M possible messages,
+\begin_inset Formula $\boldsymbol{s∈M=\left\{ 1,2,...,M\right\} }$
+\end_inset
+
+, to the receiver using n discrete uses of the communication channel.
+ To achieve this, the transmitter applies a transformation, 
+\begin_inset Formula $\boldsymbol{f:M→Rn}$
+\end_inset
+
+, to the message 
+\begin_inset Formula $s$
+\end_inset
+
+, generating a transmitted signal 
+\begin_inset Formula $\boldsymbol{x=f(s)∈\mathbb{R}^{n}}$
+\end_inset
+
+.
+ Typically, the transmitter hardware imposes constraints on 
+\begin_inset Formula $x$
+\end_inset
+
+, such as an energy constraint 
+\begin_inset Formula $\boldsymbol{(||x||_{2}^{2}≤n)}$
+\end_inset
+
+, an amplitude constraint (
+\begin_inset Formula $\boldsymbol{|xi|≤1}$
+\end_inset
+
+ 
+\begin_inset Formula $\boldsymbol{\forall i}$
+\end_inset
+
+), or an average power constraint (
+\begin_inset Formula $\boldsymbol{E|xi|≤1}$
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{\forall i}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The communication rate of this system is 
+\begin_inset Formula $\boldsymbol{R=\frac{k}{n}}$
+\end_inset
+
+ [bit/channel use], where 
+\begin_inset Formula $\boldsymbol{k=log_{2}(M).}$
+\end_inset
+
+In the notation (n,k), the system is able to send one of 
+\begin_inset Formula $\boldsymbol{M=2^{k}}$
+\end_inset
+
+ messages (i.e., k bits) through n channel uses.
+ The communication channel is characterized by the conditional probability
+ density function 
+\begin_inset Formula $\boldsymbol{p(y|x}$
+\end_inset
+
+), where 
+\begin_inset Formula $\boldsymbol{y∈Rn}$
+\end_inset
+
+ represents the received signal.
+ After receiving 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+, the receiver applies a transformation 
+\begin_inset Formula $\boldsymbol{g:\mathbb{R}^{n}→M}$
+\end_inset
+
+ to generate the estimate 
+\begin_inset Formula $\boldsymbol{ŝ}$
+\end_inset
+
+ of the transmitted message 
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+.
+ As finall loss function it is used cross entropy loss, which is mention
+ in chapter one.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/BasedlineAE_results.png
+	lyxscale 50
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+BLER for the AE in differen (n,k) baseline communication.
+\size large
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Intro_DL_Physical_Layer"
+literal "false"
+
+\end_inset
+
+
+\size default
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this paper, was explored the idea that an autoencoder can learn channel
+ representation using all the information available in the system.
+ However, this research has not yet attempted more complex constellations,
+ such as QAM16.
+ In our research, we will build on this idea by using an autoencoder for
+ encoding only, and employing a forced decoding approach with a zero-forcing
+ algorithm.
 \end_layout
 
 \begin_layout Subsection
@@ -5423,17 +5766,337 @@ literal "false"
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-As we know, IQ data is represented by complex numbers, which can make it
- challenging to work with.
- This paper provides a detailed description of a new loss function and adjustmen
-ts needed to describe backpropagation in complex networks.
- The paper also shows how to evaluate cost functions, which is helpful for
- conducting experiments with complex neural networks.
+It is widely recognized that IQ data is represented by complex numbers,
+ which can pose challenges when working with them.
+ This paper offers a detailed description of a new loss function and the
+ necessary adjustments required to perform backpropagation in complex networks.
+ Additionally, the paper demonstrates how to preprocess data, activation
+ functions, and cost functions, which can be valuable for conducting experiments
+ with complex data or complex neural networks.
+\end_layout
+
+\begin_layout Subsubsection
+Normalize unitary circle
+\end_layout
+
+\begin_layout Standard
+
+\size large
+If we look at data in the complex plane we should first at deal with normalizati
+on, and normalization is given by diviing the data by his absolute max,
+ which lead all poins inside a unitary circle.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{f(z)=\frac{z}{max(|z|)}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+The image below demonstrates how a complex network can handle polar segmentation
+, and how weights and biases can be used to define a vector in the complex
+ plane
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/ComplexCircle.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A Geometric Interpretation of Segmentation and Function Evaluation in the
+ Complex Plane.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Activation functions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The hyperbolic tangent is an example of a fully complex activation function
+ and has been utilized in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "tanh_complex"
+literal "false"
+
+\end_inset
+
+.
+ It is apparent that singularities in the output may arise due to values
+ on the imaginary axis.
+ To prevent an explosion of values, it is necessary to appropriately scale
+ the inputs, which mention in the normalization in the section above.
+ According to some researchers, imposing the strict constraint of requiring
+ the activation function to be holomorphic may not be necessary.
+ A holomorphic function is a complex-valued function of a complex variable
+ that is complex differentiable at every point within its domain.
+ In other words, a function 
+\begin_inset Formula $\boldsymbol{f(z)}$
+\end_inset
+
+ is holomorphic at a point 
+\begin_inset Formula $\boldsymbol{z}$
+\end_inset
+
+ if the limit of the difference quotient of 
+\begin_inset Formula $\boldsymbol{f(z)}$
+\end_inset
+
+ as 
+\begin_inset Formula $\boldsymbol{z}$
+\end_inset
+
+ approaches that point exists and is independent of the path of approach.
+ Therefore, for a basic implementation, we should split the evaluation into
+ real and imaginary parts as separate sections to activate the values.
+ It's important to note that the real and imaginary parts should not be
+ mixed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/tanhcomplex.png
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Complex function separate for each real and imaginary part.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Survey_Complex_valued_NN"
+literal "false"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Loss functions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One approach to dealing with the error is to take the complex magnitude
+ of the differences between the estimator and the ground truth.
+ Given 
+\begin_inset Formula $\boldsymbol{d\in\mathbb{C}^{N}}$
+\end_inset
+
+(ground truth) and 
+\begin_inset Formula $\boldsymbol{o\in\mathbb{C}^{N}}$
+\end_inset
+
+(estimated output), the error 
+\begin_inset Formula $\boldsymbol{e=d-o}$
+\end_inset
+
+ we can calculate the complex mean square loss in a non-negative scalar.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+If we take a polar approach where 
+\begin_inset Formula $d=re^{i\phi}$
+\end_inset
+
+ and 
+\begin_inset Formula $o=\hat{r}e^{i\hat{\phi}}$
+\end_inset
+
+, we can convert the error into a log function to bring points closer and
+ cancel the exponentials.
+ Rewritten in this way, the equation becomes:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{(e_{log}):=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}=\sum_{k=0}^{N-1}(log(o_{k})-log(d_{k}))*\overline{((log(o_{k})-log(d_{k})))}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\boldsymbol{log\left(\frac{o_{k}}{d_{k}}\right)*\overline{log\left(\frac{o_{k}}{d_{k}}\right)}=log\left(\frac{\hat{r}e^{i\hat{\phi}}}{re^{i\phi}}\right)*log\left(\frac{\hat{r}e^{-i\hat{\phi}}}{re^{-i\phi}}\right)=log\left(\frac{\hat{r}}{r}e^{i(\hat{\phi}-\phi)}\right)*log\left(\frac{\hat{r}}{r}e^{-i(\hat{\phi}+\phi)}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+log\left(e^{i(\hat{\phi}-\phi)}\right)\right]*\left[log(\frac{\hat{r}}{r})+log\left(e^{-i(\hat{\phi}-\phi)}\right)\right]=\left[log(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)\right]*\left[log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)\right]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Multiply out the terms 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i^{2}(\hat{\phi}-\phi)^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Simplify
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+(\hat{\phi}-\phi)^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+We multiply the angle and radius by 0.5 in the loss function to give them
+ equal importance since both are equally significant for the loss.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+We now have an explicit representation of magnitude and phase in the loss
+ function, which could be helpful in the polar equalization approach.
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion 
+\end_layout
+
+\begin_layout Standard
+This theory was helpful in implementing a neural network with complex values
+ directly, without splitting real part or phase and magnitude.
+ However, in our experiments, it did not yield good results, but we took
+ it into account and recorded the experiment.
 \end_layout
 
 \begin_layout Subsection
@@ -5476,7 +6139,7 @@ ing depthwise separable convolutions, this significantly reduces the number
 Attention Is All You Need 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "vaswani2017attention"
+key "transformer"
 literal "false"
 
 \end_inset
