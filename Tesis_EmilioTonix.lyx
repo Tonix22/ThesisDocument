@@ -4719,6 +4719,21 @@ Our objective is to equalize a double dispersive channel, also known as
  Our ultimate goal is to achieve a bit error rate (BER) comparable to that
  of the "golden models" or to reduce the computational complexity of current
  methods.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\size large
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -5225,6 +5240,8 @@ Cascaded Net (CN) consistently performs well compared to Zero Forcing (ZF)
 \end_layout
 
 \begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
 Performance Improvement Strategies for our solutions
 \end_layout
 
@@ -5305,6 +5322,7 @@ RBF
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 Radial basis functions (RBFs) are a type of basis function used in function
@@ -5418,7 +5436,7 @@ ts needed to describe backpropagation in complex networks.
  conducting experiments with complex neural networks.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
 
