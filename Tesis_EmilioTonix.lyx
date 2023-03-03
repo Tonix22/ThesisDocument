@@ -6378,22 +6378,782 @@ literal "false"
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+"Attention is All You Need" is a research paper published by Google in 2017
+ that introduced the Transformer model, a neural network architecture for
+ sequence-to-sequence modeling.
+ The Transformer model is designed to handle variable-length sequences of
+ input data and generate variable-length output sequences, making it particularl
+y useful for tasks such as machine translation and natural language processing.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Transformer model differs from previous neural network architectures
+ by relying solely on attention mechanisms for input and output processing,
+ eliminating the need for recurrent
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RNN_LSTM"
+literal "false"
+
+\end_inset
+
+ and convolutional layers
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Conv1"
+literal "false"
+
+\end_inset
+
+.
+ The attention mechanism
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Attention"
+literal "false"
+
+\end_inset
+
+ allows the model to focus on different parts of the input sequence when
+ generating the output sequence, making it more accurate and efficient than
+ previous models.
+\end_layout
+
+\begin_layout Subsubsection
+Embedding
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The embedding refers to the process of representing 
+\series bold
+discrete input
+\series default
+ tokens as 
+\series bold
+continuous vectors
+\series default
+ that can be processed by the model.
+ This is achieved using an embedding layer, which maps each input token
+ to a high-dimensional 
+\begin_inset Formula $\mathbb{R}^{N}$
+\end_inset
+
+ vector in a learned embedding space.
+ Words cannot be represented as numbers directly.
+ Normally, numerical data is transformed into a discrete representation,
+ but in order to process it through a transformer network, these discrete
+ representations need to be mapped to a continuous vector space using an
+ embedding layer.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The input size of an embedding layer is typically the size of the vocabulary
+ 
+\begin_inset Formula $|A|$
+\end_inset
+
+, i.e., the number of unique tokens that the model can expect to encounter
+ in the input.
+ For example, if the vocabulary size is 10,000, then the input size of the
+ embedding layer would be 10,000.
+ The output size of the embedding layer is determined by the desired dimensional
+ity of the embedding space 
+\begin_inset Formula $\mathbb{R}^{M}$
+\end_inset
+
+, which is a hyperparameter that can be tuned by the model developer.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Normally, each word is assigned a unique index, and this index corresponds
+ to a row in the embedding matrix.
+ To obtain the embedding vector for a word, we retrieve the corresponding
+ row from the matrix and multiply it by each element in row to get the new
+ vector 
+\begin_inset Formula $V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/EmbbededLayer.jpg
+	lyxscale 30
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Embbeded Matrix
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The embedding layer allows the model to capture the semantic relationships
+ between different input tokens, and enables it to perform tasks such as
+ language modeling and machine translation.
+ Is typically followed by positional encoding, which adds information about
+ the position of each input token in the sequence.
+ Together, the embedding and positional encoding components provide a way
+ for the model to process variable-length input sequences of discrete tokens
+ in an efficient and effective manner.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Let X be an input sequence of length T, where each element 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is an integer representing the 
+\begin_inset Formula $i$
+\end_inset
+
+-th token in the vocabulary.
+ Let 
+\begin_inset Formula $E$
+\end_inset
+
+ be a learned embedding matrix of size
+\begin_inset Formula $V\times d$
+\end_inset
+
+, where 
+\begin_inset Formula $V$
+\end_inset
+
+ is the size of the vocabulary and 
+\begin_inset Formula $d$
+\end_inset
+
+ is the dimension of the embedding space.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The embedding layer can be defined as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\text{E}(X)=[\text{e}_{1},\text{e}_{2},\dots,\text{e}_{T}]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Positional encoding can be added to the embeddings as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\text{E'}(X)=[\text{e'}_{1},\text{e'}_{2},\dots,\text{e'}_{T}]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $\text{e'}_{i}=\text{e}_{i}+\text{PE}_{i}$
+\end_inset
+
+, and 
+\begin_inset Formula $\text{PE}_{i}$
+\end_inset
+
+ is the 
+\begin_inset Formula $i$
+\end_inset
+
+-th row of a learned positional encoding matrix of size 
+\begin_inset Formula $T\times d$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The resulting embeddings 
+\begin_inset Formula $\text{E'}(X)$
+\end_inset
+
+ are continuous vectors in a high-dimensional embedding space that can be
+ processed by the transformer model.
+\end_layout
+
+\begin_layout Subsubsection
+Multihead attention
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One of the key components of the Transformer model is multi-head attention.
+ Multi-head attention allows the model to attend to different parts of the
+ input sequence simultaneously, by splitting the input data into multiple
+ representations and computing attention on each of them.
+ This allows the model to capture complex relationships between different
+ parts of the input sequence, and enables it to handle long sequences more
+ efficiently.
+ In multi-head attention mechanism of a transformer model, the input sequence
+ is split into multiple vectors (heads), and each of these vectors is processed
+ independently.
+ The attention mechanism then operates on these vectors to compute weighted
+ combinations that represent different aspects of the input sequence.The
+ multi-head attention mechanism consists of three linear transformations:
+ Query, Key, and Value.
+ These transformations are learned parameters that are used to compute the
+ attention scores and weights for each head.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/Attention.png
+	scale 120
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attention respect to input vectors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "singh2020multihead"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-According to "Attention Is All You Need", a research paper on neural network
- architecture, the Transformer is a new architecture that utilizes attention
- mechanisms, instead of traditional recurrent or convolutional layers, to
- process sequential input data, such as natural language text.
- This architecture has demonstrated state-of-the-art performance in a variety
- of natural language processing tasks, including language modeling and machine
- translation.
+Query: This transformation takes the current decoder state as input and
+ maps it to a query vector.
+ The query vector is used to compute the similarity between the decoder
+ state and each of the key vectors.
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Key: This transformation takes the encoder output as input and maps it to
+ a key vector.
+ The key vector is used to compute the similarity between the decoder state
+ and each of the query vectors.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Value: This transformation takes the encoder output as input and maps it
+ to a value vector.
+ The value vector is used to compute the weighted sum of the encoder output,
+ based on the attention weights calculated from the query and key vectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/Multihead.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Multihead attention 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Let 
+\begin_inset Formula $Q$
+\end_inset
+
+, 
+\begin_inset Formula $K$
+\end_inset
+
+, and 
+\begin_inset Formula $V$
+\end_inset
+
+ be the query, key, and value matrices, respectively, for one head of the
+ multi-head attention mechanism.
+ Let 
+\begin_inset Formula $d_{k}$
+\end_inset
+
+ be the dimension of the key vectors, and let 
+\begin_inset Formula $d_{v}$
+\end_inset
+
+ be the dimension of the value vectors.
+ Let 
+\begin_inset Formula $h$
+\end_inset
+
+ be the number of heads.
+ Then, the multi-head attention mechanism can be defined as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+MultiHead(Q,K,V)=Concat(head_{1},\ldots,headh_{h})W^{O}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+where
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\text{head}_{i}=\text{Attention}(QW_{i}^{Q},KW_{i}^{K},VW_{i}^{V})$
+\end_inset
+
+ and
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\ensuremath{W_{i}^{Q}\in\mathbb{R}^{d{model}\times d_{k}}}$
+\end_inset
+
+,
+\begin_inset Formula $\ensuremath{W_{i}^{K}\in\mathbb{R}^{d_{model}\times d_{k}}}$
+\end_inset
+
+,
+\begin_inset Formula $\ensuremath{W_{i}^{V}\in\mathbb{R}^{d_{model}\times d_{v}}}$
+\end_inset
+
+and 
+\begin_inset Formula $\ensuremath{W^{O}\in\mathbb{R}^{hd_{v}\times d_{model}}}$
+\end_inset
+
+ are learned weight matrices.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+The Attention function can be defined as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+\begin_inset Formula 
+\begin{equation}
+Attention(Q,K,V)=softmax(\frac{QK^{T}}{\sqrt{d_{k}}}+Mask)V
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/Dot product.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Self attention dot product 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "singh2020multihead"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Mask
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In multi-head attention mechanism of a transformer model, a mask is a binary
+ matrix that is used to selectively prevent certain elements of the input
+ sequence from being attended to by the model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/Mask.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mask example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+There are two types of masks commonly used in the transformer model: padding
+ masks and sequence masks.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Padding masks: These masks are used to ignore padding tokens in the input
+ sequence, which are added to ensure that all input sequences are of the
+ same length.
+ Padding tokens have no semantic meaning and should not be attended to by
+ the model.
+ A padding mask is a binary matrix that has a value of 0 for padding tokens
+ and 1 for all other tokens.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Sequence masks: These masks are used to ensure that each position in the
+ output sequence can only attend to positions that have already been processed.
+ This is important for tasks such as language modeling, where the model
+ is trained to predict the next word in a sequence based on the previous
+ words.
+ A sequence mask is a binary matrix that has a value of 0 for all future
+ positions in the sequence and 1 for all other positions.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Masks are applied to the attention mechanism by adding them to the attention
+ weights before computing the weighted sum of the input sequence.
+ The mask ensures that certain elements of the input sequence are not attended
+ to by the model, which can improve the accuracy and efficiency of the model.
+\end_layout
+
+\begin_layout Subsubsection
+Encoder Decoder
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Once we have all building blocks we can say that transformer model consists
+ of an encoder and a decoder.
+ The encoder processes the input sequence, using multi-head attention and
+ position encoding to create a fixed-length representation of the input.
+ The decoder then generates the output sequence, using multi-head attention
+ and position encoding to attend to the input representation and generate
+ each output token.
+ The model is trained using maximum likelihood estimation, where the goal
+ is to minimize the cross-entropy loss between the predicted output sequence
+ and the ground truth.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/TransformerEncodeDecode.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Transformer with encode and decoder
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the transformer diagram, "Nx" is typically used to represent the number
+ of encoder-decoder layers in the model.
+ For example, a transformer model with 6 encoder layers and 6 decoder layers
+ might be represented as "Nx=6" in the diagram.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+The output of the Transformer model is a sequence of tokens, which can be
+ interpreted as a sequence of words, or other discrete units depending on
+ the task at hand.
+ These tokens can be further processed by other components of a larger system,
+ such as a language model or a downstream task-specific model.
+\end_layout
+
+\begin_layout Subsubsection
+Autoregresion
+\end_layout
+
+\begin_layout Standard
+In an autoregressive mode in the context of an autoencoder, the decoder
+ network is designed to generate the output sequence one element at a time,
+ based on the previously generated elements.
+ In other words, the decoder network takes the previous elements of the
+ output sequence as input and generates the next element of the sequence.
+ This is in contrast to a non-autoregressive mode, where the decoder network
+ generates the entire output sequence at once, without considering the previousl
+y generated elements.
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
@@ -6408,7 +7168,6 @@ Given that our data is sequential in nature and received symbol by symbol,
  method for canceling Inter-Symbol Interference (ISI) using attention mechanisms
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
