@@ -6143,10 +6143,10 @@ This theory was helpful in implementing a neural network with complex values
 \noindent
 
 \size large
-Searching for MobileNetV3 
+MobileNet 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "MobilenetV3"
+key "MobileNet"
 literal "false"
 
 \end_inset
@@ -6162,11 +6162,378 @@ literal "false"
 MobileNet achieves its high efficiency by using depthwise separable convolutions
 , which are a combination of a depthwise convolution and a pointwise convolution
 , while still maintaining high accuracy.
- In terms of time complexity, MobileNet has a lower Big O notation complexity
- compared to regular CNNs.
- This results in faster inference times and lower memory requirements.
+ In terms of time complexity, MobileNet has a lower multiplications compared
+ to regular CNNs.
+ This results in faster inference times and lower memory requirements,as
+ its name says usefull for mobile applications, also include embbeded system
+ applications for edge computing.
  However, it's worth noting that the trade-off for MobileNet's efficiency
- is a potential loss in accuracy compared to regular CNNs.
+ has a little less accuracy compared to regular CNNs.
+\end_layout
+
+\begin_layout Subsubsection
+Depthwise Separable Convolution
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Convolution is a mathematical concept that measures the overlap between
+ two functions as one of them slides over the other.
+ Mathematically, it can be expressed as a sum of products.
+ However, standard convolution operations can be slow to perform due to
+ the number of multiplications required.
+ An alternative method called depth-wise separable convolution can be used
+ to speed up the process.
+ This method breaks down the convolution process into two parts: depthwise
+ convolution and pointwise convolution.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Let us briefly review the fundamental concepts of convolution on an input
+ volume.
+ Let's take an input volume F with dimensions DF x DF x M, where DF represents
+ the width and height of the input volume and M is the number of input channels.
+ In the case of a color image, M would be equal to 3 for the R, G, and B
+ channels.
+ We perform convolution on a kernel K, which has dimensions DK x DK x M.
+ The output will be in the shape of DG x DG x 1.
+ When we apply N kernels to the input, we obtain an output volume G with
+ dimensions DG x DG x N.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/TraditionalConv.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Traditional convolution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In a traditional convolution, filters are applied across all input channels
+ and their values are combined in a single step.
+ However, in depthwise separable convolution, this process is split into
+ two stages.
+ The first stage is depthwise convolution, which applies convolution to
+ a single input channel at a time.
+ To perform depthwise convolution, we use filters or kernels K, which are
+ of shape DK x DK x 1.
+ Here, DK is the width and height of the square kernel, and it has a depth
+ of 1 because this convolution is only applied to a single channel.
+ Therefore, we require M such DK x DK x 1 kernels over the entire input
+ volume F, where F has a shape DF x DF x M.
+ For each of these M convolutions, we get an output of DG x DG x 1 in shape.
+ By stacking these outputs together, we obtain an output volume G of shape
+ DG x DG x M, which marks the end of the first phase, that is, the end of
+ depthwise convolution.
+ The number of multiplications in the depthwise convolution phase is obtained
+ by applying these multiplications to all M input channels separately, with
+ each channel having its own kernel.
+ Therefore, the total number of multiplications in this phase is :
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\boldsymbol{DW=M\times D_{G}{}^{2}\times D_{k}{}^{2}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/DepthwiseConv.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Depthwise convolution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Pointwise convolution refers to a 1x1 convolution operation applied to each
+ of the output channels generated by the depthwise convolution.
+ In this step, the input is a volume of shape DG x DG x M, where M is the
+ number of output channels generated by the depthwise convolution.
+ The filter used for this operation, denoted as KPC, has a shape of 1 x
+ 1 x M, which means that it is applied across all M output channels.
+ The resulting output has the same width and height as the input DG x DG,
+ and the number of output channels can be controlled by using N filters.
+ Therefore, the final output volume of the depthwise separable convolution
+ has a shape of DG x DG x N.
+ And hence, the number of multiplications for one instance of convolution
+ is M.
+ This is applied to the entire output of the first phase, which has a width
+ and height of DG.
+ So the total number of multiplications for this kernel is DG x DG x M.
+ So for some N kernels, we'll have this multiplications :
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{PW=N\times DG\times DG\times M}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+
+\size large
+\begin_inset Graphics
+	filename Imagenes/Papers/Pointwise.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\size large
+Pointwise convolution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Hence, the total multiplication count is the sum of multiplication counts
+ in the depthwise and pointwise convolution stages.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\mathbf{Total=DW+PW=M\times D_{G}{}^{2}\times D_{k}{}^{2}+N\times DG\times DG\times M}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\boldsymbol{Total=M\times D_{G}^{2}(D_{K}^{2}+N)}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We can compare the computational efficiency of standard convolution with
+ depthwise convolution by computing their ratio.
+ This ratio is obtained by summing the reciprocal of the depth of the output
+ volume, denoted as N, and the reciprocal of the squared dimensions of the
+ kernel, denoted as DK.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\boldsymbol{\frac{DepthWise}{Standard}=\frac{M\times D_{G}^{2}(D_{K}^{2}+N)}{N\times D_{G}^{2}\times D_{k}^{2}\times M}=\frac{1}{N}+\frac{1}{D_{k}^{2}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To better understand this, let's take an example.
+ Suppose the output feature volume N is 1024, and the kernel size is 3,
+ which means DK is 3.
+ Plugging these values into the equation, we obtain a ratio of 0.112.
+ This indicates that standard convolution requires 9 times more multiplications
+ than depthwise separable convolution.
+ This significant difference in computational power can have a considerable
+ impact on the performance and efficiency of convolutional neural networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[htbp] 
+\backslash
+centering 
+\backslash
+caption{Depthwise Separable vs Full Convolution MobileNet} 
+\backslash
+begin{tabular}{|c|c|c|c|} 
+\backslash
+hline Model & ImageNet Accuracy & Million Mult-Adds & Million Parameters
+ 
+\backslash
+ 
+\backslash
+hline Conv MobileNet & 71.7% & 4866 & 29.3 
+\backslash
+ 
+\backslash
+hline MobileNet & 70.6% & 569 & 4.2 
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsubsection
+MobileNetV3 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MobilenetV3"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+.
  MobileNet's lightweight design makes it more suitable for applications
  where resource constraints are an issue, such as on mobile devices or edge
  devices with limited computing power.
@@ -7125,6 +7492,7 @@ In the transformer diagram, "Nx" is typically used to represent the number
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 The output of the Transformer model is a sequence of tokens, which can be
