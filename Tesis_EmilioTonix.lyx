@@ -6485,18 +6485,30 @@ centering
 \backslash
 caption{Depthwise Separable vs Full Convolution MobileNet} 
 \backslash
-begin{tabular}{|c|c|c|c|} 
+label{tab:my-table} 
 \backslash
-hline Model & ImageNet Accuracy & Million Mult-Adds & Million Parameters
+begin{tabular}{|l|c|c|c|} 
+\backslash
+hline Model & ImageNet Accuracy & Mult-Adds (Million) & Parameters (Million)
  
 \backslash
- 
-\backslash
-hline Conv MobileNet & 71.7% & 4866 & 29.3 
+
 \backslash
  
 \backslash
-hline MobileNet & 70.6% & 569 & 4.2 
+hline Conv MobileNet & 71.7
+\backslash
+% & 4866 & 29.3 
+\backslash
+
+\backslash
+ 
+\backslash
+hline MobileNet & 70.6
+\backslash
+% & 569 & 4.2 
+\backslash
+
 \backslash
  
 \backslash
@@ -6504,15 +6516,11 @@ hline
 \backslash
 end{tabular} 
 \backslash
-end{table}
+end{table} 
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
@@ -6533,10 +6541,12 @@ literal "false"
 \noindent
 
 \size large
-.
- MobileNet's lightweight design makes it more suitable for applications
- where resource constraints are an issue, such as on mobile devices or edge
- devices with limited computing power.
+The MobileNetV3 architecture uses a combination of depthwise separable convoluti
+ons, linear bottlenecks, and other optimizations to reduce the number of
+ parameters and computational complexity while maintaining high accuracy.
+ It also includes new design elements, such as dynamic activation functions
+ and network architecture search techniques, to improve performance on a
+ variety of tasks.
 \end_layout
 
 \begin_layout Standard
@@ -6622,7 +6632,7 @@ Reduced complexity for activation functions
 \size large
 One of the key components of his low computational cost is the implementation
  of hardsigmoid and hardswish function, which is quite similar that we done
- with hardtanh but with other activation function.
+ with hardtanh but with other activation function type.
 \end_layout
 
 \begin_layout Standard
@@ -6672,8 +6682,8 @@ Hard functions
 \end_layout
 
 \begin_layout Standard
-This functions are implemented in the last stage of mobile net with more
- efficient functions
+These functions are integrated into the final stage of MobileNet to serve
+ as more efficient functions.
 \end_layout
 
 \begin_layout Standard
@@ -6723,10 +6733,11 @@ Conclusion
 \noindent
 
 \size large
-We used MobileNet in one of our experiments to apply convolutional neural
- networks to the channel and compared it with the zero-forcing equalizer.
- We chose this approach because both methods are expected to be faster but
- less accurate.
+For our project, we have opted to use MobileNetv3 to compress the channels
+ and encode them into a lower dimensional representation.
+ Since MobileNet is highly efficient, it makes for one of our top choices
+ for research, especially given the constraints in telecom where data processing
+ speed could be a critical factor
 \end_layout
 
 \begin_layout Subsection
