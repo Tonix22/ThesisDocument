@@ -7139,6 +7139,9 @@ Autoregresion
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 In an autoregressive mode in the context of an autoencoder, the decoder
  network is designed to generate the output sequence one element at a time,
  based on the previously generated elements.
@@ -7158,14 +7161,22 @@ Conclusion
 \noindent
 
 \size large
-Given that our data is sequential in nature and received symbol by symbol,
- we could apply the Transformer architecture in our equalization stage.
- The Transformer uses an attention mechanism that enables it to process
- all input data in parallel, thereby computing the importance of each input
- element relative to all other elements in the sequence.
- This information is then used to weight the contribution of each element
- to the output, and we believe that this resulting output could be an effective
- method for canceling Inter-Symbol Interference (ISI) using attention mechanisms
+Given that our data is sequential in nature and can be interpreted symbol
+ by symbol, the Transformer architecture can be applied in the equalization
+ stage.
+ The resulting encoding-decoding process could be an effective method for
+ canceling Inter-Symbol Interference (ISI) using attention mechanisms.
+ However, the challenge is that the data is in continuous space and we may
+ lose positional encoding if we directly treat continuous data.
+ Additionally, the Transformer architecture outputs symbols and not continuous
+ values, so we need a mechanism to discretize our received data 
+\begin_inset Formula $Y$
+\end_inset
+
+ and apply a token for each position to interpret the equalization as a
+ machine translation.
+ Therefore, our next step is to find a paper that can address this problem,
+ as it could be the final key piece of evidence to support our proposal.
 \end_layout
 
 \begin_layout Subsection
@@ -7184,43 +7195,169 @@ literal "false"
 
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-An Image is Worth 16x16 Words" is a research paper that introduces a new
- type of neural network architecture called the Vision Transformer (ViT),
- which applies the Transformer architecture to image recognition tasks.
- The ViT splits the input image into patches, which are then flattened and
- transformed using self-attention mechanisms.
- This approach allows the ViT to capture both local and global features
- of the image and has achieved state-of-the-art performance in several image
- recognition benchmarks.
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-We could treat the IQ map as an 
-\begin_inset Quotes eld
-\end_inset
-
-image
-\begin_inset Quotes erd
-\end_inset
-
- of points and give a discrete numeric number based on a grid.
- We describe more in detail in the results section.
+The Vision Transformer is a deep learning architecture that is specifically
+ designed for image classification tasks.
+ Unlike traditional Convolutional Neural Networks (CNNs) that use convolutional
+ layers to extract features from images, the ViT uses self-attention mechanisms
+ to capture relationships between different parts of the image.
+ Its architecture takes as input a sequence of patches, where each patch
+ represents a small square region of the image.
  
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/pasted1.png
+	lyxscale 80
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Basic example of image splitting in a grid for automatic fungi recognition.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "visionTransformer"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+These patches are then flattened and passed through a linear projection
+ layer to obtain a sequence of embeddings, which are then fed into a series
+ of transformer encoder layers.
+ The transformer encoder layers use self-attention mechanisms to model the
+ relationships between the different patches in the input sequence.
+ This allows the ViT to capture long-range dependencies between different
+ parts of the image, which is particularly useful for image classification
+ tasks where the spatial relationship between different parts of the image
+ is important.
+ It takes as input an image and outputs a class label or a set of class
+ probabilities, based on the features extracted from the image.
+\end_layout
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+The Grid
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The "16x16 words" phrase refers to the fact that the input image is divided
+ into a grid of 16x16 patches, each of which is treated as a "word" in the
+ input sequence.
+ This means that the ViT processes the image as a sequence of 256 patches,
+ each represented by an embedding, instead of as a single 2D array of pixel
+ values.
+ However, there is a trade-off between grid size and computational complexity,
+ as larger grids require more memory and processing power to train.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/VITexample-transformed.png
+	lyxscale 30
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vision transforrmer example of 14X14 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CollabVIT"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In conclusion, this paper has been instrumental in the development of our
+ Gridnet architecture.
+ Our approach involves using the complex plane as a 2D space, much like
+ an image, where IQ data points fall into specific grids.
+ We then assign each grid a patch-encoded value based on its position.
+ Instead of using a traditional encoder, we utilized a transformer decoder
+ to equalize the data with the ground truth.
+ Our goal is to leverage the grid-based structure of the complex plane to
+ effectively eliminate Inter-Symbol Interference (ISI) through the use of
+ multihead attention mechanisms.
+ This paper has provided us with important insights and tools that will
+ help us to continue improving our approach for a range of signal processing
+ applications.
+\end_layout
+
 \begin_layout Section
-Results and Analysis
+Methodology
 \end_layout
 
 \begin_layout Subsection
@@ -8027,6 +8164,10 @@ The Real Imaginary Net is similar to the Polar Net, with the difference
  During the experimentation process, we attempted to use the distance between
  the target and output as an estimator for the network, but it performed
  worse than when using Mean Squared Error (MSE) estimation.
+\end_layout
+
+\begin_layout Section
+Results
 \end_layout
 
 \begin_layout Section
