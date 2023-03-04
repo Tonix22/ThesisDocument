@@ -1236,9 +1236,15 @@ QAM and IQ data
 \align block
 
 \size large
-QAM (Quadrature Amplitude Modulation) is a type of digital modulation that
- encodes data onto a carrier signal by modulating the amplitude and phase
- of the signal.
+QAM (Quadrature Amplitude Modulation) 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:QAM-and-IQ"
+
+\end_inset
+
+is a type of digital modulation that encodes data onto a carrier signal
+ by modulating the amplitude and phase of the signal.
  It is commonly used in digital communication systems to transmit digital
  data over analog channels.
  IQ data refers to the in-phase and quadrature components of a complex-valued
@@ -1373,8 +1379,15 @@ SNR
 \paragraph_spacing onehalf
 
 \size large
-SNR stands for Signal-to-Noise Ratio which contrasts the strength of the
- signal with the strength of the noise.
+SNR 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:SNR"
+
+\end_inset
+
+stands for Signal-to-Noise Ratio which contrasts the strength of the signal
+ with the strength of the noise.
  The most common way to measure it is in decibels (dB).
  In general, higher numbers indicate a better specification because there
  is a greater ratio of useful information (the signal) to unwanted data
@@ -1522,6 +1535,73 @@ with the recived signal
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsubsection
+BER
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In digital communication systems, 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BER"
+
+\end_inset
+
+the transmission of data is not always error-free.
+ Bit errors may occur due to various factors such as noise, interference,
+ distortion, and fading.
+ Bit Error Rate (BER) is a common metric used to quantify the quality of
+ a digital communication system by measuring the probability of bit errors.
+ BER is defined as the ratio of the number of erroneous bits to the total
+ number of transmitted bits.
+ It is usually expressed in terms of power, as the probability of error
+ is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
+ The BER can be mathematically represented as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\mathsf{\boldsymbol{BER=\frac{N_{err}}{N_{tot}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $N_{err}$
+\end_inset
+
+ is the number of erroneous bits and 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+ is the total number of transmitted bits.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The BER is a critical parameter for evaluating the performance of a digital
+ communication system.
+ A high BER indicates poor system performance, which can lead to loss of
+ data, degraded audio or video quality, or even complete system failure.
+ Therefore, the BER is used as a benchmark to ensure that the digital communicat
+ion system meets the required performance specifications.
 \end_layout
 
 \begin_layout Subsection
@@ -2185,9 +2265,16 @@ Zero forcing
 \paragraph_spacing onehalf
 
 \size large
-The Zero Forcing Equalizer (ZFE) is a technique used in communication systems
- to reduce the impact of intersymbol interference (ISI), caused by the presence
- of multiple signal paths in a communication channel.
+The Zero Forcing Equalizer (ZFE)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Zero-forcing"
+
+\end_inset
+
+ is a technique used in communication systems to reduce the impact of intersymbo
+l interference (ISI), caused by the presence of multiple signal paths in
+ a communication channel.
  Although the ZFE is effective, it has some limitations, such as being susceptib
 le to noise and unable to handle certain types of channel distortions.
  Nevertheless, it can improve the performance of communication systems in
@@ -2423,9 +2510,15 @@ LS
 \align block
 
 \size large
-Least squares (LS) equalization is a linear equalization method that aims
- to minimize the mean squared error (MSE) between the estimated and the
- transmitted symbols.
+Least squares (LS)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:LS"
+
+\end_inset
+
+ equalization is a linear equalization method that aims to minimize the
+ mean squared error (MSE) between the estimated and the transmitted symbols.
  The noise component of x is disregarded by the LS (Least-Squares) equalizer,
  which treats it as a deterministic variable.
  A linear filter 
@@ -2568,6 +2661,12 @@ LMMSE
 
 \size large
 A form of linear filter called the Linear Minimum Mean Squared Error (LLMSE)
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:LMMSE"
+
+\end_inset
+
  Equalizer seeks to reduce the mean squared error (MSE) between the actual
  signal 
 \begin_inset Formula $\boldsymbol{x}$
@@ -6733,11 +6832,11 @@ Conclusion
 \noindent
 
 \size large
-For our project, we have opted to use MobileNetv3 to compress the channels
- and encode them into a lower dimensional representation.
- Since MobileNet is highly efficient, it makes for one of our top choices
- for research, especially given the constraints in telecom where data processing
- speed could be a critical factor
+For our project, we have opted to use MobileNetv3 to compress the communication
+ channel and encode it into a lower-dimensional representation.
+ Since MobileNet is highly efficient, it is one of our top choices for research,
+ especially given the constraints in telecom where data processing speed
+ could be a critical factor.
 \end_layout
 
 \begin_layout Subsection
@@ -7747,22 +7846,21 @@ Dataset
 \paragraph_spacing onehalf
 
 \size large
-This project introduces a dataset of 20,000 channel realizations, each with
- a size of 48x48.
- The dataset is divided into two groups of 10,000, with the first group
- consisting of Line-of-Sight (LOS) channel realizations and the second group
- consisting of Non-Line-of-Sight (NLOS) channel realizations.
+This project has a dataset of 20,000 channel realizations, each with a size
+ of 48x48.
+ The dataset is divided into two groups of 10,000: the first group consists
+ of Line-of-Sight (LOS) channel realizations, and the second group consists
+ of Non-Line-of-Sight (NLOS) channel realizations.
  Each value in the matrix is a complex number with a format of complex128,
- float64 for real and imaginary parts.
- The data is stored in the .mat format, which is a common format used for
- storing variables on disk from Matlab code.
- However, the data can also be used in Python using the Scipy library.
- To ensure a robust prediction, the LOS and NLOS channels have been shuffled,
- with one following the other.
- As neural networks do not typically work well with complex numbers, the
- real and imaginary parts of the channels have been separated and used as
- two separate image channels.
- 
+ float64 for the real and imaginary parts.
+ The data is stored in the .mat format, which is commonly used for storing
+ variables on disk from Matlab code.
+ However, the dataset is used in Python using the Scipy library.
+ To ensure robust predictions, the LOS and NLOS channels have been shuffled,
+ with one group following the other.
+ As neural networks typically do not work well with complex numbers, the
+ real and imaginary parts of the channels have been separated into two channels
+ in an image.
 \end_layout
 
 \begin_layout Standard
@@ -7771,10 +7869,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -7798,81 +7892,6 @@ status open
 
 \begin_layout Plain Layout
 A comparison of LOS and NLOS channel magnitud in a log scale representation.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Golden model
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The golden model, as defined in this project, serves as a benchmark for
- evaluating the performance of new models.
- The golden model is based on the Least squares (LS) and Linear Minimum
- Mean Squared (LMMSE) Error equalizers, which are discussed in further detail
- in the equalization section of this document.When evaluating the performance
- of a communication system, it is standard practice to plot both the Bit
- Error Rate (BER) and Signal-to-Noise Ratio (SNR) on the same graph, with
- SNR on the x-axis and BER on the y-axis.
- BER is a measure of the number of errors that occur in a transmitted data
- stream, relative to the total number of bits transmitted.
- SNR, on the other hand, is a measure of the strength of the signal relative
- to the background noise.
- By comparing the BER and SNR values, it is possible to evaluate the performance
- of the system under different levels of noise.
- A decrease in BER as SNR increases indicates that the system is able to
- transmit data more accurately.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/Golden_4QAM.png
-	lyxscale 40
-	scale 55
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Imagenes/Results/Golden_16QAM.png
-	lyxscale 40
-	scale 55
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Golden model plot QPSK and 16QAM 
 \end_layout
 
 \end_inset
@@ -7965,8 +7984,23 @@ Also, a modular and maintainable code with class inheritance and shared
  This, combined with the PyTorch Lightning framework, has made the development
  process much easier and faster.
  PyTorch Lightning also offers tools for distributed training that can be
- used to scale the training of big models across several GPUs, TPUs, or
- machines.
+ used to scale the training of big models across several GPUs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "gpu-basic-training"
+literal "false"
+
+\end_inset
+
+, TPUs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mnist-tpu-training"
+literal "false"
+
+\end_inset
+
+, or machines.
  This tooling also facilitates the concept of batches, which involves having
  multiple realizations of the data set in the format [BATCH, sequlen] or
  [BATCH, channel, height, width].
@@ -7988,8 +8022,21 @@ These are the main classes used in the software development
 \size large
 Received class
 \series default
- utilizes the channel data set to generate 20,000 x 48 random points in
- a QAM constellation.
+ utilizes the channel data set to generate 20,000 x 48 random 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:QAM-and-IQ"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ points.
  This class provides the data loader elements to be loaded, which will produce
  a tuple of values including the channels and the tx QAM.
  
@@ -8087,6 +8134,139 @@ Software Architecture Diagram
 \end_layout
 
 \begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Golden Model
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this project, the golden model serves as a benchmark for evaluating the
+ performance of new models.
+ The golden model is based on three equalizers: Least squares (LS), Linear
+ Minimum Mean Squared Error (LMMSE), and zero forcing, which are discussed
+ in more detail in sections
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:LS"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:LMMSE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Zero-forcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+of this document,respectively.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+When evaluating the performance of a communication system, it is standard
+ practice to plot both the Bit Error Rate 
+\color blue
+(
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:BER"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+) and Signal-to-Noise Ratio (SNR) on the same graph, with SNR on the x-axis
+ and BER on the y-axis.
+ BER measures the number of errors that occur in a transmitted data stream,
+ relative to the total number of bits transmitted, while SNR measures the
+ strength of the signal relative to the background noise.
+ Comparing the BER and SNR values allows us to evaluate the system's performance
+ under different levels of noise.
+ A higher SNR indicates a stronger signal relative to the background noise,
+ which should result in a lower BER.
+ Therefore, as the SNR increases, the BER should decrease.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/Golden_4QAM.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Results/Golden_16QAM.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden model plot QPSK and 16QAM
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
