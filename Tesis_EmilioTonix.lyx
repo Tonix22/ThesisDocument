@@ -7976,12 +7976,29 @@ ce after training.
 \paragraph_spacing onehalf
 
 \size large
-Also, a modular and maintainable code with class inheritance and shared
- attributes is necessary for code reusability.
- Given that the project will undergo multiple experiments based on the same
- code, a generic software architecture that can consume different instances
- has been developed.
- This, combined with the PyTorch Lightning framework, has made the development
+To achieve code reusability, it is important to write modular and maintainable
+ code that incorporates class inheritance and shared attributes.
+ In order to further enhance the object-oriented programming (OOP) structure
+ of our code, we implement the factory pattern.
+ The factory pattern allows us to create multiple experiments with little
+ changes but have the same base build and experiment structure, increasing
+ code efficiency and reusability 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "DesignPatterns"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This, combined with the PyTorch Lightning framework, has made the development
  process much easier and faster.
  PyTorch Lightning also offers tools for distributed training that can be
  used to scale the training of big models across several GPUs
@@ -8002,99 +8019,464 @@ literal "false"
 
 , or machines.
  This tooling also facilitates the concept of batches, which involves having
- multiple realizations of the data set in the format [BATCH, sequlen] or
+ multiple realizations of the dataset in the format [BATCH, seq_len] or
  [BATCH, channel, height, width].
  By using batches, the training time is reduced and it becomes more manageable
  to handle large amounts of data.
- 
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
 
 \size large
-These are the main classes used in the software development
+These are the main classes used in the software development:
 \end_layout
 
 \begin_layout Itemize
 \paragraph_spacing onehalf
+\noindent
 
 \series bold
 \size large
-Received class
-\series default
- utilizes the channel data set to generate 20,000 x 48 random 
-\color blue
-
-\begin_inset CommandInset ref
-LatexCommand nameref
-reference "subsec:QAM-and-IQ"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\color inherit
- points.
- This class provides the data loader elements to be loaded, which will produce
- a tuple of values including the channels and the tx QAM.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\size large
-Data loader class
-\series default
- divides the data into the previously mentioned three sets, making it easily
- accessible to the data processing stage.
- Within the data processing stage, there are various functions.
+Channel
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
-\shape italic
 \size large
-Get Y
-\shape default
-: Takes the channels and multiplies them by the tx QAM.
- This function can also receive the noise activation as a parameter.
+Loads a .mat file containing complex channel coefficient data and converts
+ it into a numpy array.
+ The class has a constructor __init__ that takes a Boolean parameter LOS
+ (default value True) indicating whether to load the line-of-sight (LOS)
+ or non-line-of-sight (NLOS) channel data.
 \end_layout
 
 \begin_layout Itemize
 \paragraph_spacing onehalf
+\noindent
 
-\shape italic
 \size large
-LS/LMSSE
-\shape default
-: This function was made because in some training scenarios, the ground
- truth can originate from these functions.
- Also to feed the Golden model.
+The Channel class has a single attribute con_list that is the numpy array
+ containing the channel data.
+ The class also defines a __getitem__ method that returns the channel data
+ for a specific index in the array.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The code also imports the scipy.io and numpy libraries and sets up the path
+ to the directory containing the .mat files.
  
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
-\shape italic
 \size large
-SNR_BER_Test
-\shape default
- and BER calc
-\shape italic
-:
-\shape default
- This functions are utilized to calculate the final metrics of the model
- after training.
- The results are saved in a CSV file, containing the BER and SNR values.
- These results can be later plotted by reading the CSV file using the pandas
- library and plotting it using the matplotlib library.
+Imports the Download_Mat_files function from the DownloadFiles module, and
+ adds the path to the conf and tools directories to the Python path.
+ 
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+QAM
+\series default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This class QAM is used to generate QAM modulation schemes and perform demodulati
+on on a complex symbol vector.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The constructor initializes the QAM modulation scheme.
+ It takes in the following parameters:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+num_symbols: The number of QAM symbols to generate.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+constelation: The size of the QAM constellation.
+ Valid values are 4, 16, 32, and 64.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+cont_type: The type of constellation used.
+ Valid values are "Data", "Unit_Pow", and "Norm".
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+noise: Deprecated
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+noise_power: Deprecated
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+load_type: A flag indicating the type of loading.
+ Valid values are "Complete" and "Alphabet".The Ultra-Lightweight Networks
+ are designed with a core network consisting of three linear layers and
+ three hardtanh functions.
+ The input is multiplied by the Hermitian of the channel, which makes it
+ easier for the network to converge as QAM points become closer together.
+ Additionally, the IQ data is normalized to have a maximum magnitude of
+ 1 by dividing all elements by the maximum magnitude value of the data.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The training of these Ultra-Lightweight Networks is performed using Mean
+ Squared Error (MSE) loss estimation.
+ One advantage of these networks is that their processing can be easily
+ implemented on embedded systems or FPGA designs, as the hardtanh functions
+ used are simply linear clipping functions.
+ Furthermore, these methods are fast in processing compared to traditional
+ methods, making them a suitable choice for equalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, it should be noted that while these methods perform well in noisy
+ scenarios, they may not be as effective in clean scenarios.
+ This trade-off should be considered when deciding to use these methods.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Rx: 
+\series default
+This class is a PyTorch Dataset that generates a dataset for a communication
+ channel.
+ The channel is defined by a complex matrix H, and QAM symbols are generated
+ with specific parameters such as constellation size, constellation type,
+ and load type.
+ The dataset consists of a total of 20000 realizations, with each realization
+ containing 48 QAM symbols.
+ The class generates QAM symbols, generates a complex matrix H, applies
+ the channel to the symbols, and adds additive white Gaussian noise to the
+ signal.
+ The class also defines the AWGN method to add noise with a given SNR.
+ The dataset can be loaded as batches using PyTorch's DataLoader.
+ The class overloads the __getitem__ method to return the channel tensor
+ and the corresponding transmitted tensor.
+ The channel tensor is a 48x48x2 tensor of the real and imaginary parts
+ of the complex matrix H, and the transmitted tensor is either the QAM symbol
+ bits or the QAM symbol complex values depending on the load type.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+RX_loader
+\series default
+: This class also splits the dataset into three parts for training, validation,
+ and testing.
+ The SNR_BER_TEST method of the class is used to calculate the bit error
+ rate (BER) for different signal-to-noise ratio (SNR) values.
+ This method uses the predict method of the trainer object to predict the
+ values of the output of the model and then calculate the BER.
+ Class also defines methods to calculate the output of the system given
+ the input, including Get_Y, MSE_X, LMSE_X, and ZERO_X.
+ These methods calculate the channel output, estimate the transmitted symbols,
+ and perform equalization to reduce the effect of the channel on the received
+ symbols.
+ The class also defines a method to filter the data based on z-score.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+init
+\series default
+: Initializes the Rx_loader object with the specified batch size, QAM and
+ loading type.
+ It also loads the RX dataset and splits it into training, validation and
+ testing sets.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+SNR_calc
+\series default
+: Calculates the signal-to-noise ratio (SNR) and bit error rate (BER) given
+ the predicted output and the actual output.
+ This is used for internal evaluation in the predict section of the Lightning
+ API.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+SNR_BER_TEST:
+\series default
+ Performs an SNR-BER test by iterating through a range of SNR values and
+ printing the BER for each value.
+ It also saves the BER values to a CSV file.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Get_Y:
+\series default
+ Takes in three arguments: H (channel tensor), x (transmitted symbol tensor),
+ conj (boolean flag to indicate whether to take the complex conjugate of
+ h), and noise_activ (boolean flag to indicate whether to add noise to the
+ received signal).
+ It returns the received signal tensor Y of shape (batch_size, 48).
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+If noise_activ is True
+\series default
+, it adds complex Gaussian noise to the received signal Y[i].
+ The noise power is computed as the ratio of the signal power to the signal-to-n
+oise ratio (SNR) in decibels.
+ The noise is generated using the PyTorch function torch.randn to create
+ random Gaussian noise with zero mean and standard deviation of sqrt(Pn/2),
+ where Pn is the noise power.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+If conj is True
+\series default
+, it takes the complex conjugate of h using the method conj().resolve_conj(),
+ and performs matrix multiplication with Y[i] to apply conjugate beamforming.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+MSE_X
+\series default
+: Computes the minimum mean square error (MMSE) estimate of the transmitted
+ signal x given the channel matrix H and received signal Y.
+ It returns a tensor of shape (batch_size, 48) of complex values.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+LMSE_X
+\series default
+: Computes the linear minimum mean square error (LMMSE) estimate of the
+ transmitted signal x given the channel matrix H, received signal Y and
+ SNR.
+ It returns a tensor of shape (batch_size, 48) of complex values.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Chann_diag
+\series default
+: Extracts the diagonal of each channel matrix in the tensor and returns
+ them as a tensor of shape (batch_size, 48) of complex values.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Chann_diag_complex
+\series default
+: Extracts the diagonal of each channel matrix in the tensor and returns
+ them as a tensor of shape (batch_size, 48) of complex values.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+ZERO_X
+\series default
+: Computes the zero forcing equalizer estimate of the transmitted signal
+ x given the channel matrix H and received signal Y.
+ It returns a tensor of shape (batch_size, 48) of complex values.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+filter_z_score
+\series default
+: Filters out outlier data points from the tensor based on the z-score.
+ It returns a filtered tensor and the indices of the valid data points.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+filter_z_score_matrix
+\series default
+: Filters out outlier data points from the diagonal tensor of a batch of
+ channel matrices based on the z-score.
+ It returns a filtered tensor and the indices of the valid data points.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+filter_tensor_by_zscore
+\series default
+: Filters out outlier data points from the batch tensor based on the z-score.
+ It returns a filtered tensor and the indices of the valid data points.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The default value of the threshold parameter in the filter_z_score() method
+ of the Rx_loader class is 1.96, which corresponds to a 95% confidence level
+ assuming a normal distribution.
+ This means that data points whose absolute z-score is greater than 1.96
+ will be considered as outliers and filtered out.
+ However, this value can be adjusted by the user based on their specific
+ requirements.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Rx_loader class is implemented in all classes throughout the project
+ for multiple experiments.
+ The golden models also use this class because all final application classes
+ inherit from this class and use the PyTorch Lightning framework to create
+ powerful combinations between custom datasets and helper functions required
+ for preprocessing.
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
@@ -8125,7 +8507,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Software Architecture Diagram
+Software Architecture Diagram Planning
 \end_layout
 
 \end_inset
@@ -8275,454 +8657,90 @@ Golden model plot QPSK and 16QAM
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Defining the Golden class, which takes the mode ("MSE"(LS), "LMSE", or "ZERO")
+ as input and initializes the Rx_loader superclass with the given BATCHSIZE,
+ QAM, and "Complete" load.
+ Depending on the mode, the class sets the self.estimator attribute to the
+ MSE_X, LMSE_X, or ZERO_X method.
+ The class also defines the forward method, the configure_optimizers method,
+ and the predict_step method, which calculates the bit error rate (BER)
+ for a given batch of data.
+ Finally, the class defines the predict_dataloader method, which returns
+ the test_loader.
+ In the main section of the script, a PyTorch Lightning Trainer object is
+ instantiated.
+ Finally, the SNR_BER_TEST method of the Golden object is called with the
+ Trainer object and a file name for the output log.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/ZeroForcingVSGolden.png
+	lyxscale 55
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden model LMMSE vs ZeroForing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
-Ultra-Lightweight Networks
+MobileNet zeroForcing
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The Ultra-Lightweight Networks are designed with a core network consisting
- of three linear layers and three hardtanh functions.
- The input is multiplied by the Hermitian of the channel, which makes it
- easier for the network to converge as QAM points become closer together.
- Additionally, the IQ data is normalized to have a maximum magnitude of
- 1 by dividing all elements by the maximum magnitude value of the data.
+\begin_layout Subsection
+Phase NEt
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The training of these Ultra-Lightweight Networks is performed using Mean
- Squared Error (MSE) loss estimation.
- One advantage of these networks is that their processing can be easily
- implemented on embedded systems or FPGA designs, as the hardtanh functions
- used are simply linear clipping functions.
- Furthermore, these methods are fast in processing compared to traditional
- methods, making them a suitable choice for equalization.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-However, it should be noted that while these methods perform well in noisy
- scenarios, they may not be as effective in clean scenarios.
- This trade-off should be considered when deciding to use these methods.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="4" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Name 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Total Parameters
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Estimated memory size
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Phase Net
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-12.3 K
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-49 KB
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
+\begin_layout Subsection
 Polar Net
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-42 K 
+\begin_layout Subsection
+Complex Net
 \end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-168 KB
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Real Imag Net
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-24.6 K 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-98 KB
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Network size Benchmark
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/Models_4QAM.png
-	lyxscale 40
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Golden Model vs Networks in 4-QAM
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/Models_16QAM.png
-	lyxscale 30
-	scale 67
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Golden Model Vs Networ in 16-QAM PhaseNet not included
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+\begin_layout Subsection
+GridNet
 \end_layout
 
 \begin_layout Subsubsection
-Phase Net
-\end_layout
-
-\begin_layout Standard
 \paragraph_spacing onehalf
-
-\size large
-The PhaseNet is a specialized neural network that is designed to operate
- in systems where the amplitude information of signals is not critical,
- and bits are encoded based on the angles they occupy.
- Despite its limited performance compared to other methods, such as the
- Least Mean Squared Error (LMSSE), PhaseNet offers a faster computational
- approach, making it a more efficient alternative.
- The computation of the channel inverse, for example, is time-consuming,
- while PhaseNet offers a more computationally efficient solution.
- This makes PhaseNet a desirable option in situations where computational
- speed is a priority.
- However, it is important to note that its accuracy may decrease for SNRs
- greater than 20dB.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The PhaseNet training produced an error of 
-\begin_inset Formula $10^{-4}$
-\end_inset
-
-, which is considered one of the smaller errors among comparable neural
- networks.
- The training process consisted of 100,000 iterations with a batch size
- of 10.
- The constant validation loss observed during the training suggests that
- the model does not overfit.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Networks/PhaseNet.png
-	lyxscale 60
-	scale 45
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Phase Net Layers
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Networks/Phanet_train_loss.png
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Networks/Phanet_val_loss.png
-	lyxscale 30
-	scale 30
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Phase Net Trainning and validation loss
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+Square Grid
 \end_layout
 
 \begin_layout Subsubsection
-Polar Net
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The PolarNet consists of two networks: one for magnitude and the other for
- phase.
- The final output from both modules is concatenated to form a 48x2 matrix
- that serves as the estimator output.
- The ground truth has the same shape.
- The input data of the PolarNet is normalized with respect to the maximum
- absolute value in the batch.
- The angle is mapped from 
-\begin_inset Formula $\boldsymbol{[-\pi,\pi]}$
-\end_inset
-
- to [0, 1] using the equation
-\size largest
- 
-\begin_inset Formula $\boldsymbol{\frac{\theta-\pi}{2\pi}}$
-\end_inset
-
-
-\size large
-.
- This data mapping helps the network make better predictions and converge
- faster.
- It's important to note that the mean squared error (MSE) calculation does
- not take into account the complex representation of the data and only considers
- the values as two 2D spatial values, one for magnitude and the other for
- phase.
-\end_layout
-
-\begin_layout Subsubsection
-Real-Imaginary Net
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The Real Imaginary Net is similar to the Polar Net, with the difference
- being that it concatenates the real and imaginary parts.
- With low Signal-to-Noise Ratio (SNR), it performs similarly to the Polar
- Net, but rapidly, the Bit Error Rate (BER) flattens regardless of the increase
- in SNR.
- During the experimentation process, we attempted to use the distance between
- the target and output as an estimator for the network, but it performed
- worse than when using Mean Squared Error (MSE) estimation.
+Polar Grid
 \end_layout
 
 \begin_layout Section
