@@ -8500,7 +8500,6 @@ status open
 
 \begin_layout Plain Layout
 
-\size large
 
 \backslash
 newline
@@ -9018,10 +9017,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Imagenes/Results/ZeroForcingVSGolden.png
@@ -9045,6 +9040,607 @@ Golden model LMMSE vs ZeroForing
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+PhaseNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This neural network corrects the distortion and restores the original phase
+ given channel and noise.
+ It can be used in applications such as phase modulation or PSK.
+ However, the network encounters a problem when evaluating the error between
+ the estimated and real values.
+ When the estimated value is in the second quadrant of the complex plane
+ and the real value is in the third quadrant, the error becomes quite large.
+ This is because the error is measured as the difference in angles, and
+ traversing the second, fourth, and third quadrants causes the error to
+ increase significantly.
+ It is important to note that angle values are usually represented within
+ the range of 
+\begin_inset Formula $-\pi$
+\end_inset
+
+ to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ in pytorch and numpy libraries.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/ErrorAngle.png
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Angle error - Red represents high error and green represents smaller error.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To address this issue, we require a more efficient way of calculating the
+ error to ensure that the estimate can be corrected accurately.
+ One approach we used was to create a complex value with a fixed radius
+ of 1 and an angle given by the neural network.
+ We constructed the complex value using Euler's formula with radius 1.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{O(\hat{\theta})=e^{i\hat{\theta}}=cos(\hat{\theta})+i*sin(\hat{\theta})}
+\end{equation}
+
+\end_inset
+
+By using this approach, we can concentrate solely on the phasors (angles)
+ and keep a constant radius.
+ We can objectively measure the difference between the complex value of
+ the estimated and real values using the method of least squares.
+ This method allows us to calculate the difference between two quadrants
+ more accurately, resulting in better estimation correction.
+ However, to avoid getting a complex error and obtain only a numerical error
+ value, we calculate the mean squared error (MSE) separately for the real
+ and imaginary parts.
+ Thus, our final loss function looks like this: 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE\left(O\left(\hat{\theta}\right)\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Preprocesing
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+caption{Preprocessing flags PhaseNet} 
+\backslash
+label{tab:preprocessing} 
+\backslash
+begin{tabular}{|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Preprocessing} & 
+\backslash
+textbf{Enable} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Conjugate & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Z-score & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline  Zero-Forcing & False 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Based on the experimentation, it can be concluded that preprocessing plays
+ a crucial role in enabling the neural network to converge successfully.
+ As demonstrated in the paper 
+\shape italic
+A Novel OFDM Equalizer for Large Doppler Shift Channel through Deep Learning
+\shape default
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "subsec:A-Novel-OFDM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, preprocessing helped to achieve a successful outcome.
+ In this network, our first preprocessing stage is to multiply 
+\begin_inset Formula $Y$
+\end_inset
+
+ by the Hermitian transpose of the channel, 
+\begin_inset Formula $H^{H}Y$
+\end_inset
+
+.
+ This results in 
+\begin_inset Formula $H^{H}Y$
+\end_inset
+
+ being the input to the network.
+ Next, we apply a z-score filter 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "subsec:Z-score"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ with a 95% confidence interval to eliminate outliers.
+ Finally, we normalize angles from -pi to pi to -1 to 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/PhasNet.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Preprocesing Stages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Parameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+caption{Neural Network Architecture} 
+\backslash
+label{tab:nn_architecture} 
+\backslash
+begin{tabular}{|c|c|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Layer} & 
+\backslash
+textbf{Input Shape} & 
+\backslash
+textbf{Output Shape} & 
+\backslash
+textbf{Number of Parameters} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 1       & [input
+\backslash
+_size]        & [hidden
+\backslash
+_size]        & (input
+\backslash
+_size + 1) * hidden
+\backslash
+_size 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Hardtanh       & [hidden
+\backslash
+_size]       & [hidden
+\backslash
+_size]        & 0                              
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 2       & [hidden
+\backslash
+_size]       & [hidden
+\backslash
+_size * 3]    & hidden
+\backslash
+_size * (hidden
+\backslash
+_size * 3 + 1) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 3       & [hidden
+\backslash
+_size * 3]   & [hidden
+\backslash
+_size]        & (hidden
+\backslash
+_size * 3 + 1) * hidden
+\backslash
+_size 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Hardtanh       & [hidden
+\backslash
+_size]       & [hidden
+\backslash
+_size]        & 0                              
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 4       & [hidden
+\backslash
+_size]       & [input
+\backslash
+_size]        & (hidden
+\backslash
+_size + 1) * input
+\backslash
+_size 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+caption{Network Parameters} 
+\backslash
+label{tab:params} 
+\backslash
+begin{tabular}{|l|l|l|} 
+\backslash
+hline Parameter & Shape & Number of Parameters 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.0.weight & torch.Size([240, 48]) & 11520 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.0.bias & torch.Size([240]) & 240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.2.weight & torch.Size([720, 240]) & 172800 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.2.bias & torch.Size([720]) & 720 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.3.weight & torch.Size([240, 720]) & 172800 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.3.bias & torch.Size([240]) & 240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.5.weight & torch.Size([48, 240]) & 11520 
+\backslash
+
+\backslash
+ 
+\backslash
+hline angle
+\backslash
+_net.5.bias & torch.Size([48]) & 48 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+textbf{Total} & model params size & 
+\backslash
+textbf{1.480(MB)} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Hyperparameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h]   
+\backslash
+centering   
+\backslash
+caption{Hyperparameters}   
+\backslash
+label{tab:hyperparams}   
+\backslash
+begin{tabular}{|l|l|}     
+\backslash
+hline     
+\backslash
+textbf{Hyperparameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     BATCHSIZE & 10 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     NUM
+\backslash
+_EPOCHS & 2 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     INPUT
+\backslash
+_SIZE & 48 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     HIDDEN
+\backslash
+_SIZE & 240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     LEARNING
+\backslash
+_RATE & 8e-5 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     CONJ & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline   
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Polar Net
+\end_layout
+
+\begin_layout Subsection
+Complex Net
 \end_layout
 
 \begin_layout Subsection
@@ -9166,18 +9762,6 @@ The code modifies the architecture of the pre-trained MobileNetv3-Small
 \end_layout
 
 \begin_layout Subsection
-Phase Net
-\end_layout
-
-\begin_layout Subsection
-Polar Net
-\end_layout
-
-\begin_layout Subsection
-Complex Net
-\end_layout
-
-\begin_layout Subsection
 GridNet
 \end_layout
 
@@ -9218,10 +9802,6 @@ options "plain"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 

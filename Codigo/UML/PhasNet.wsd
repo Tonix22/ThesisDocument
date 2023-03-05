@@ -1,0 +1,37 @@
+@startuml
+!theme toy
+skinparam defaultFontName Bold
+skinparam defaultFontStyle Bold
+
+[*] -> Y
+Y: Hx+n
+
+Y -> Conjugate
+Conjugate : H_H *Y
+
+Z_score : 95% cofidence
+
+Z_score -> Normalize : angle
+Normalize : angle / pi
+Normalize : -1 to 1
+
+Normalize --> Network
+
+Network : output
+
+Network -> BuildComplex
+BuildComplex : real: Cos(output)
+BuildComplex : imag: Sin(output)
+
+Loss : .5(MSE(real)+MSE(imag))
+Target: radius = 1 
+Target: x.angle()
+
+x: QPSK
+x -> Target
+Target --> Loss : to rect
+BuildComplex ->Loss
+
+Conjugate -> Z_score
+
+@enduml
