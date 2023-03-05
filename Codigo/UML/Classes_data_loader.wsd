@@ -1,0 +1,34 @@
+@startuml
+class Rx_loader {
+    - data: RX
+    - train_ratio: float
+    - val_ratio: float
+    - train_size: int
+    - val_size: int
+    - test_size: int
+    - train_set: DataLoader
+    - val_set: DataLoader
+    - test_set: DataLoader
+    - batch_size: int
+    - SNR_db: int
+    - BER: float
+    - errors: int
+    - bits_num: int
+    - BER_list: list
+    + __init__(batch_size: int, QAM: str, load: str)
+    + SNR_calc(x_hat: torch.Tensor, x: torch.Tensor, norm: bool = False)
+    + SNR_BER_TEST(trainer: object, csv_name: str)
+    + Get_Y(H: torch.Tensor, x: torch.Tensor, conj: bool = False, noise_activ: bool = True) -> torch.Tensor
+    + MSE_X(chann: torch.Tensor, Y: torch.Tensor) -> torch.Tensor
+    + LMSE_X(chann: torch.Tensor, Y: torch.Tensor) -> torch.Tensor
+    + Chann_diag(chann: torch.Tensor) -> torch.Tensor
+    + Chann_diag_complex(chann: torch.Tensor) -> torch.Tensor
+    + ZERO_X(chann: torch.Tensor, Y: torch.Tensor) -> torch.Tensor
+    + filter_z_score(data: torch.Tensor, threshold: float = 1.645) -> torch.Tensor
+    + filter_z_score_matrix(batch_tensor: torch.Tensor, threshold: float = 1.645) -> torch.Tensor
+}
+Rx_loader -> RX
+Rx_loader -> DataLoader
+Rx_loader -> torch.Tensor
+Rx_loader -> object
+@enduml

@@ -45,7 +45,7 @@ with Diagram("NetworkDevelop", show=False):
             
         with Cluster("Data Process"):
             Funcs   =  [Custom("Get Y","./icons/braces.png"),
-                        Custom("LS/LMMSE","./icons/braces.png"),
+                        Custom("LS/LMMSE/Zero","./icons/braces.png"),
                         Custom("BER_calc","./icons/braces.png"),
                         Custom("SNR_BER_TEST","./icons/braces.png")]
     

@@ -1,0 +1,17 @@
+@startuml
+class GenericNet {
+    - net: PytorchNN_implementation
+    - loss_f: GenericLoss
+    + __init__(hyperparmeters)
+    + forward(ang: Tensor): Tensor
+    + configure_optimizers(): optimizer
+    - common_step(batch: Tuple[Tensor, Tensor], predict: bool = False): Tensor
+    + training_step(batch: Tuple[Tensor, Tensor], batch_idx: int): Dict[str, Tensor]
+    + validation_step(batch: Tuple[Tensor, Tensor], batch_idx: int): Dict[str, Tensor]
+    + validation_epoch_end(outputs: Any) -> Dict[str, Tensor]
+    + predict_step(batch: Tuple[Tensor, Tensor], batch_idx: int): Tensor
+    + train_dataloader(): DataLoader
+    + val_dataloader(): DataLoader
+    + predict_dataloader(): DataLoader
+}
+@enduml

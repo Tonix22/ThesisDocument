@@ -1,0 +1,35 @@
+@startuml
+class RX {
+    - bitsframe: int
+    - sym_no: int
+    - total: int
+    - LOS: Channel
+    - NLOS: Channel
+    - Qsym: QAM
+    - H: numpy.ndarray
+    - device: torch.device
+    - power_factor: float
+    - load: str
+    + Generate()
+    + AWGN(SNR: float)
+    + __len__() : int
+    + __getitem__(idx: int) : Tuple[torch.Tensor, torch.Tensor]
+}
+class Channel {
+    - con_list: numpy.ndarray
+    + __init__(LOS: bool)
+    + __getitem__(index: int) : numpy.ndarray
+}
+class QAM {
+    - constelation: int
+    - QAM_N_arr: numpy.ndarray
+    - QAM_norm_arr: numpy.ndarray
+    - bits: numpy.ndarray
+    - GroundTruth: numpy.ndarray
+    - r: numpy.ndarray
+    + __init__(num_symbols: int, constelation: int, cont_type: str, noise: bool, noise_power: float, load_type: str)
+    + Demod(vec: List[complex], norm: bool) : numpy.ndarray
+}
+RX "contains" *-- "1" Channel
+RX "contains" *-- "1" QAM
+@enduml

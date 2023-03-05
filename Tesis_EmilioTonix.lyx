@@ -4149,9 +4149,16 @@ Z-score
 \paragraph_spacing onehalf
 
 \size large
-The Z-score, also known as standard score, is a statistical measure that
- indicates how many standard deviations an observation or data point is
- from the mean of a data set.
+The Z-score,
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Z-score"
+
+\end_inset
+
+ also known as standard score, is a statistical measure that indicates how
+ many standard deviations an observation or data point is from the mean
+ of a data set.
  It is used to standardize data and compare individual observations to a
  population or sample mean.
  The magnitude of the z-score represents how far away the data point is
@@ -4976,6 +4983,12 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:A-Novel-OFDM"
+
+\end_inset
+
 This documentation describes the proposed neural architecture called Cascaded
  Net (CN) for equalization in OFDM systems.
  The use of a zero-forcing preprocessor aims to prevent the network from
@@ -5171,6 +5184,13 @@ literal "false"
 
 
 \end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "Preprocesing"
 
 \end_inset
 
@@ -5890,6 +5910,13 @@ If we look at data in the complex plane we should first at deal with normalizati
 on, and normalization is given by diviing the data by his absolute max,
  which lead all poins inside a unitary circle.
  
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Normalize-unitary-circle"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7914,6 +7941,10 @@ Software
 Architecture
 \end_layout
 
+\begin_layout Subsubsection
+Data set
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
@@ -7972,6 +8003,10 @@ ce after training.
  ability to make predictions on new data.
 \end_layout
 
+\begin_layout Subsubsection
+Class design and documentation
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
@@ -8023,6 +8058,42 @@ literal "false"
  [BATCH, channel, height, width].
  By using batches, the training time is reduced and it becomes more manageable
  to handle large amounts of data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/SoftwareDiagrams/networkdevelop.png
+	lyxscale 50
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Software Architecture Diagram Planning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8147,6 +8218,42 @@ cont_type: The type of constellation used.
  
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Data
+\series default
+: constelation as it is.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Unit_Pow
+\series default
+: normalized power constelation
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Norm
+\series default
+: Normalized constelation to max magnitud to 1 in the complex plane.
+ 
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
 \noindent
@@ -8169,38 +8276,35 @@ noise_power: Deprecated
 
 \size large
 load_type: A flag indicating the type of loading.
- Valid values are "Complete" and "Alphabet".The Ultra-Lightweight Networks
- are designed with a core network consisting of three linear layers and
- three hardtanh functions.
- The input is multiplied by the Hermitian of the channel, which makes it
- easier for the network to converge as QAM points become closer together.
- Additionally, the IQ data is normalized to have a maximum magnitude of
- 1 by dividing all elements by the maximum magnitude value of the data.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The training of these Ultra-Lightweight Networks is performed using Mean
- Squared Error (MSE) loss estimation.
- One advantage of these networks is that their processing can be easily
- implemented on embedded systems or FPGA designs, as the hardtanh functions
- used are simply linear clipping functions.
- Furthermore, these methods are fast in processing compared to traditional
- methods, making them a suitable choice for equalization.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-However, it should be noted that while these methods perform well in noisy
- scenarios, they may not be as effective in clean scenarios.
- This trade-off should be considered when deciding to use these methods.
+ Valid values are "Complete" and "Alphabet".
  
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Complete
+\series default
+: This is used to get the complex plane data points
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Alphabet
+\series default
+: Get the token values, which could be used to retrieve the symbols sent
+ without having to put them in the complex domain.
+\end_layout
+
+\end_deeper
 \end_deeper
 \end_deeper
 \begin_layout Standard
@@ -8234,6 +8338,42 @@ This class is a PyTorch Dataset that generates a dataset for a communication
  The channel tensor is a 48x48x2 tensor of the real and imaginary parts
  of the complex matrix H, and the transmitted tensor is either the QAM symbol
  bits or the QAM symbol complex values depending on the load type.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/Classes_rx.png
+	lyxscale 70
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rx and their aggregated classes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -8331,7 +8471,19 @@ oise ratio (SNR) in decibels.
  The noise is generated using the PyTorch function torch.randn to create
  random Gaussian noise with zero mean and standard deviation of sqrt(Pn/2),
  where Pn is the noise power.
- 
+ More detail in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:SNR"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -8342,8 +8494,50 @@ oise ratio (SNR) in decibels.
 \size large
 If conj is True
 \series default
-, it takes the complex conjugate of h using the method conj().resolve_conj(),
- and performs matrix multiplication with Y[i] to apply conjugate beamforming.
+, it takes the complex conjugate of h using the method 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\size large
+
+\backslash
+newline
+\end_layout
+
+\end_inset
+
+ conj().resolve_conj(), and performs matrix multiplication with Y[i].
+ This helps in data preprocesing in section
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:A-Novel-OFDM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ more detail in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "Preprocesing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ image.
 \end_layout
 
 \end_deeper
@@ -8392,23 +8586,21 @@ Chann_diag
 
 \series bold
 \size large
-Chann_diag_complex
-\series default
-: Extracts the diagonal of each channel matrix in the tensor and returns
- them as a tensor of shape (batch_size, 48) of complex values.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
 ZERO_X
 \series default
-: Computes the zero forcing equalizer estimate of the transmitted signal
- x given the channel matrix H and received signal Y.
- It returns a tensor of shape (batch_size, 48) of complex values.
+: The method starts by computing the diagonal elements of the channel tensor
+ using the 
+\series bold
+Chann_diag
+\series default
+ method.
+ This helper method extracts the diagonal of each matrix in the tensor and
+ combines them into a new tensor.
+ Next, the method applies Zero Forcing (ZF) equalization by dividing the
+ received signal tensor Y by the diagonal tensor of the channel tensor chann.
+ The output is an estimated signal tensor x_hat, which is a tensor of complex
+ values with a shape of (batch_size, 48).
+ The method returns this tensor as its output.
 \end_layout
 
 \begin_layout Itemize
@@ -8436,18 +8628,6 @@ filter_z_score_matrix
  It returns a filtered tensor and the indices of the valid data points.
 \end_layout
 
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
-filter_tensor_by_zscore
-\series default
-: Filters out outlier data points from the batch tensor based on the z-score.
- It returns a filtered tensor and the indices of the valid data points.
-\end_layout
-
 \begin_deeper
 \begin_layout Itemize
 \paragraph_spacing onehalf
@@ -8466,6 +8646,46 @@ The default value of the threshold parameter in the filter_z_score() method
 \end_deeper
 \end_deeper
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/Classes_data_loader.png
+	lyxscale 70
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rx Data Loader and usefull classes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
@@ -8477,37 +8697,150 @@ The Rx_loader class is implemented in all classes throughout the project
  for preprocessing.
 \end_layout
 
+\begin_layout Subsubsection
+Generic Network Implementation
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-The software architecture will be displayed in the image below.
+The training_step and validation_step methods both call the common_step
+ method, which contains the shared implementation between the two.
+ This approach reduces code duplication and helps keep the implementation
+ DRY (Don't Repeat Yourself)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CleanCode"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The common_step method takes a batch of data and an optional flag to indicate
+ whether the batch is being used for prediction.
+ It then performs the 
+\series bold
+pre-processing
+\series default
+ of the data, which includes different strategies such as 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:Zero-forcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, obtaining Y with its conjugate 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "Preprocesing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, normalizing values 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Normalize-unitary-circle"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and filtering outliers by z-score
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Z-score"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+After the pre-processing is done, the method evaluates the model by computing
+ the predicted output and comparing it with the target output.
+ The 
+\series bold
+evaluation
+\series default
+ process involves passing the pre-processed data through the neural network
+ model, which generates the predicted output.
+ The predicted output is then compared with the target output using a loss
+ function, which calculates the difference between them.
+ The method returns the loss value, which is used for updating the model's
+ parameters during training.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+By separating the common implementation from the specific training and validatio
+n logic, we can easily reuse the same code for different stages of the training
+ process, and focus on implementing the logic that is specific to each stage.
+ This results in cleaner and more maintainable code, as well as faster developme
+nt times.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Codigo/SoftwareDiagrams/networkdevelop.png
-	lyxscale 50
-	scale 28
-
-\end_inset
-
 
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/GeneriNet.png
+	lyxscale 70
+	scale 40
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Software Architecture Diagram Planning
+Generic Net
 \end_layout
 
 \end_inset
@@ -8718,8 +9051,122 @@ Golden model LMMSE vs ZeroForing
 MobileNet zeroForcing
 \end_layout
 
+\begin_layout Standard
+The main idea of this code is to improve the zero-forcing approach for communica
+tion channels.
+ The channel is represented as a 48x48 matrix, but in order to apply the
+ zero-forcing approach, it needs to be converted into a single vector of
+ length 48.
+ However, since the channel data also contains noise, a conventional zero-forcin
+g approach may not be effective.
+ Therefore, in this implementation, the approach involves using two modified
+ MobileNets to process the channel data.
+ One network is used to obtain the absolute value of the channel matrix,
+ while the other network is used to obtain the angle matrix of the channel.
+\end_layout
+
+\begin_layout Standard
+The ground truth of the model is 
+\begin_inset Formula $\frac{Y}{X}$
+\end_inset
+
+, where 
+\begin_inset Formula $Y=Hx+n$
+\end_inset
+
+ and 
+\begin_inset Formula $X$
+\end_inset
+
+ is the ground truth.
+ Both 
+\begin_inset Formula $Y$
+\end_inset
+
+ and 
+\begin_inset Formula $X$
+\end_inset
+
+ are preprocessed with absolute complex normalization 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Normalize-unitary-circle"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ After the model processes the input data, 
+\begin_inset Formula $X$
+\end_inset
+
+ is estimated using 
+\begin_inset Formula $\frac{Y}{\theta}$
+\end_inset
+
+, where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ represents the output of the model.
+ The idea behind this is to mimic the process of 
+\begin_inset Formula $\frac{Y}{H}$
+\end_inset
+
+, as done in traditional zero-forcing, where 
+\begin_inset Formula $H$
+\end_inset
+
+ represents the channel matrix.
+ In other words, from given zero forcing 
+\begin_inset Formula $\hat{X}=\frac{Y}{diag(H)}$
+\end_inset
+
+ isolate H, 
+\begin_inset Formula $diag(H)=\frac{Y}{X}$
+\end_inset
+
+ and force the 
+\begin_inset Formula $X$
+\end_inset
+
+ to be the gorund truth, and 
+\begin_inset Formula $Y$
+\end_inset
+
+ recieved signal with channel and noise, so model estimation 
+\begin_inset Formula $\theta$
+\end_inset
+
+ which will try to a better fit than 
+\begin_inset Formula $diag(H)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The code modifies the architecture of the pre-trained MobileNetv3-Small
+ model to fit the specific requirements of the problem it aims to solve.
+ The changes mainly involve two layers: the first convolutional layer and
+ the final fully connected layer.
+ In this case, the number of input channels is set to 1 since the input
+ data has only one channel, as opposed to the standard 3 channels in RGB.
+ Moreover, the number of output channels is set to 16.
+ The final fully connected layer is replaced with an nn.Linear layer that
+ has the desired output size.
+ The output size is determined by the value of the encoded_space_dim parameter
+ passed to the PredesignedModel constructor, which is set to 48 in this
+ case.Furthermore, the modified model is converted to double precision.
+ This change is recursively propagated to all its submodules, which ensures
+ that all layers operate in double precision.
+\end_layout
+
 \begin_layout Subsection
-Phase NEt
+Phase Net
 \end_layout
 
 \begin_layout Subsection
