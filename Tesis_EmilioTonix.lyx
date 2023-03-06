@@ -6120,7 +6120,7 @@ One approach to dealing with the error is to take the complex magnitude
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}
+\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}\label{eq:46}
 \end{equation}
 
 \end_inset
@@ -6238,7 +6238,7 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}
+\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}\label{eq:48}
 \end{equation}
 
 \end_inset
@@ -6662,6 +6662,13 @@ MobileNetV3
 LatexCommand cite
 key "MobilenetV3"
 literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:MobileNetV3"
 
 \end_inset
 
@@ -9157,7 +9164,7 @@ By using this approach, we can concentrate solely on the phasors (angles)
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE\left(O\left(\hat{\theta}\right)\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)}
+\boldsymbol{MSE\left(O\left(\hat{\theta}\right)\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)}\label{eq:60}
 \end{equation}
 
 \end_inset
@@ -9958,58 +9965,709 @@ noprefix "false"
 
 \color black
 .
- The main idea is to explore the use of complex value networks and try to
- reduce the number of parameters in network, but trade off on the time complexit
-y as complex number operations are between each layer.
+ The main idea is to investigate the use of complex-valued neural networks
+ and attempt to reduce the number of network parameters.
+ However, this approach may increase the time complexity due to the need
+ for complex number operations between each layer.
+ Additionally, we aim to utilize state-of-the-art loss functions proposed
+ in mathematical formulas 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:46"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
  
+\color black
+and 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:48"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color black
+.Finally, for preprocessing, the hermitian transpose and normalization steps
+ are applied.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/ComplexUML.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Complex Network Implementation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/ComplexNet.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Complex Preprocesing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\color black
+In the upcoming subsections, we will explain the components required to
+ construct a complex network.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Apply Complex
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One of the key components of layers in this stage is the apply_complex functions
+ which is part of the complexLinear layers.
+ The apply_complex(fr, fi, input, dtype = torch.complex128) function takes
+ as input the real and imaginary parts of the weights fr and fi, the input
+ tensor input, and a data type dtype for the output tensor.
+ It applies a complex-valued linear transformation to the input tensor,
+ given by the expression:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Re(z)=Re(fr)*Re(x)-Im(fi)*Im(x)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Im(z)=Re(fi)*Re(x)+Im(fr)*Im(x)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Complex Linear
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The ComplexLinear(in_features, out_features) class defines a custom PyTorch
+ module for a complex-valued linear layer.
+ It has two attributes: fc_r is a standard PyTorch Linear module that applies
+ a linear transformation to the real part of the input, and fc_i is another
+ Linear module that applies a linear transformation to the imaginary part
+ of the input.
+ The forward(input) method of this module applies the complex-valued linear
+ transformation separately to the real and imaginary parts of the input
+ tensor using the apply_complex function.
+\end_layout
+
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Hardtanh Complex
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The HardTahn_complex class defines a custom PyTorch module for a complex-valued
+ hard tanh activation function.
+ It has two attributes: hard_real is a standard PyTorch Hardtanh module
+ that applies the hard tanh function to the real part of the input tensor,
+ and hard_imag is another Hardtanh module that applies the hard tanh function
+ to the imaginary part of the input tensor.
+ The forward(input) method of this module applies the hard tanh function
+ separately to the real and imaginary parts of the input tensor, and then
+ combines them into a complex-valued tensor using torch.float64 and the +1j*
+ syntax to create a complex number.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Parameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|l|l|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Layer} & 
+\backslash
+textbf{Input Size} & 
+\backslash
+textbf{Output Size} & 
+\backslash
+textbf{Number of Parameters} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 1 & 48 & 120 & 11,520 
+\backslash
+
+\backslash
+ 
+\backslash
+hline HardTanh 1 & 120 & 120 & 0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 2 & 120 & 240 & 138,240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 3 & 240 & 240 & 115,440 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 4 & 240 & 120 & 57,720 
+\backslash
+
+\backslash
+ 
+\backslash
+hline HardTanh 2 & 120 & 120 & 0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 5 & 120 & 240 & 138,240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Linear 6 & 240 & 48 & 23,088 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Total & 48 & 48 & 484,248 = 3.87 MB 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Number of parameters in the complex network.} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+HyperParameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Parameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Batch Size & 50 
+\backslash
+
+\backslash
+ 
+\backslash
+hline QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Number of Epochs & 100 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Learning Rate & 0.00001 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Values for network hyperparameters.} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Loss functions
+\end_layout
+
+\begin_layout Standard
+
+\size large
+In the experiments, we evaluate the performance of the complex network using
+ both custom loss functions
+\size default
+ 
+\size large
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:46"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color black
+and 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:48"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color black
+.
+
+\color inherit
+ The results of these experiments are presented in the next section.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/ComplexLoss.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Loss functions code
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 MobileNet zeroForcing
-\color black
-..
 \end_layout
 
 \begin_layout Standard
-The main idea of this code is to improve the zero-forcing approach for communica
-tion channels.
- The channel is represented as a 48x48 matrix, but in order to apply the
- zero-forcing approach, it needs to be converted into a single vector of
- length 48.
- However, since the channel data also contains noise, a conventional zero-forcin
-g approach may not be effective.
- Therefore, in this implementation, the approach involves using two modified
- MobileNets to process the channel data.
- One network is used to obtain the absolute value of the channel matrix,
- while the other network is used to obtain the angle matrix of the channel.
+\paragraph_spacing onehalf
+
+\size large
+We conducted experiments with this network to study how well convolutional
+ neural networks can be developed in signal equalization.
+ However, we opted to employ the efficient architecture of MobileNet as
+ our network's goal is to improve the effectiveness of the zero-forcing
+ method for communication channels.
+ Given the relative simplicity of the zero-forcing algorithm, we determined
+ that the 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:MobileNetV3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+architecture was well-suited for our purposes.
+ Its time efficiency and competence relative to zero-forcing made it a suitable
+ choice.
+ However, in the presence of noise in the channel data, the conventional
+ zero-forcing approach may not be effective as it does not consider noise
+ in its nature.
 \end_layout
 
 \begin_layout Standard
-The ground truth of the model is 
-\begin_inset Formula $\frac{Y}{X}$
+\paragraph_spacing onehalf
+
+\size large
+The channel is initially a 1x48x48 matrix, but it must be transformed into
+ a single vector of length 1x48 for the zero-forcing approach to be applicable.
+ Thus, this implementation employs two modified MobileNets to process the
+ channel data.
+ One network is responsible for extracting the absolute value of the channel
+ matrix, while the other network extracts the angle matrix of the channel.
+ Notably, the first and last layers were modified to fit the specific problem.
+ In the image below, they are marked in red.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/MobileNetCustom.png
+	lyxscale 70
+	scale 70
+
 \end_inset
 
-, where 
-\begin_inset Formula $Y=Hx+n$
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ilustartion of mobileNet customized for our target problem
+\end_layout
+
 \end_inset
 
- and 
-\begin_inset Formula $X$
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
- is the ground truth.
- Both 
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The models used in this project were taken from the PyTorch framework, so
+ there was no need to test their functionality.
+ We did not use pre-trained weights and instead trained the models from
+ scratch.
+ Thanks to the GPU, we were able to train the models faster.
+\size default
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Code of the layers replacement
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The idea behind this is to replicate the process of traditional zero-forcing
+ 
+\begin_inset Formula $\boldsymbol{\frac{Y}{H}}$
+\end_inset
+
+, where the channel matrix is represented by 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+ and the received signal is represented by 
+\begin_inset Formula $\boldsymbol{Y=Hx+n}$
+\end_inset
+
+.
+ In this process, we estimate the channel using the equation:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{x}=\frac{Y}{\hat{\theta}}}
+\end{equation}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\end_inset
+
+ represents the output of the model.
+ However, as we want the estimator values to be in the range of 
+\begin_inset Formula $\boldsymbol{0<\hat{\theta}<1}$
+\end_inset
+
+, we need to rearrange the estimation equation as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{x}=Y*\hat{\theta}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+As we are working with polar coordinates, we should note that when multiplying
+ two phasors, their amplitudes are multiplied, and their angles are added
+ together.
+ So basically net compensate the distorted phasor 
 \begin_inset Formula $Y$
 \end_inset
 
- and 
-\begin_inset Formula $X$
+ and estimation equations has this form:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{O(\hat{\theta})=Y_{mag}*\hat{\theta_{mag}}\angle\hat{\theta}_{angle}+Y_{angle}}
+\end{equation}
+
 \end_inset
 
- are preprocessed with absolute complex normalization 
+
+\end_layout
+
+\begin_layout Subsubsection
+Loss Function
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+For the loss function we face the same issue as PhaseNet regarding the calculati
+on of angle errors.
+ To avoid this problem, we adopt the same solution, which involves fixing
+ the radius to 1 and comparing the angles 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "subsec:Normalize-unitary-circle"
+reference "eq:60"
 plural "false"
 caps "false"
 noprefix "false"
@@ -10017,74 +10675,85 @@ noprefix "false"
 \end_inset
 
 .
- After the model processes the input data, 
-\begin_inset Formula $X$
-\end_inset
-
- is estimated using 
-\begin_inset Formula $\frac{Y}{\theta}$
-\end_inset
-
-, where 
-\begin_inset Formula $\theta$
-\end_inset
-
- represents the output of the model.
- The idea behind this is to mimic the process of 
-\begin_inset Formula $\frac{Y}{H}$
-\end_inset
-
-, as done in traditional zero-forcing, where 
-\begin_inset Formula $H$
-\end_inset
-
- represents the channel matrix.
- In other words, from given zero forcing 
-\begin_inset Formula $\hat{X}=\frac{Y}{diag(H)}$
-\end_inset
-
- isolate H, 
-\begin_inset Formula $diag(H)=\frac{Y}{X}$
-\end_inset
-
- and force the 
-\begin_inset Formula $X$
-\end_inset
-
- to be the gorund truth, and 
-\begin_inset Formula $Y$
-\end_inset
-
- recieved signal with channel and noise, so model estimation 
-\begin_inset Formula $\theta$
-\end_inset
-
- which will try to a better fit than 
-\begin_inset Formula $diag(H)$
-\end_inset
-
-.
+ So we end up with 3 evalautons for a single loss function.
  
 \end_layout
 
 \begin_layout Standard
-The code modifies the architecture of the pre-trained MobileNetv3-Small
- model to fit the specific requirements of the problem it aims to solve.
- The changes mainly involve two layers: the first convolutional layer and
- the final fully connected layer.
- In this case, the number of input channels is set to 1 since the input
- data has only one channel, as opposed to the standard 3 channels in RGB.
- Moreover, the number of output channels is set to 16.
- The final fully connected layer is replaced with an nn.Linear layer that
- has the desired output size.
- The output size is determined by the value of the encoded_space_dim parameter
- passed to the PredesignedModel constructor, which is set to 48 in this
- case.Furthermore, the modified model is converted to double precision.
- This change is recursively propagated to all its submodules, which ensures
- that all layers operate in double precision.
+\paragraph_spacing onehalf
+
+\size small
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Loss=}\boldsymbol{\begin{array}{c}
+\frac{1}{2}MSE(Y_{mag}*\hat{\theta_{mag}},x_{mag})+\\
+\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}_{angle}+Y_{angle}\right]_{real},\left[1\angle x_{angle}\right]_{real}\right)+\\
+\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}_{angle}+Y_{angle}\right]_{imag},\left[1\angle x_{angle}\right]_{imag}\right)
+\end{array}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+The first term computes the MSE between the magnitudes of the estimated
+ signal 
+\begin_inset Formula $\boldsymbol{Y_{mag}*\hat{\theta_{mag}}}$
+\end_inset
+
+ and the true signal magnitud 
+\begin_inset Formula $\boldsymbol{x_{mag}}$
+\end_inset
+
+.
+ Here, 
+\begin_inset Formula $\boldsymbol{Y_{mag}}$
+\end_inset
+
+ is the magnitude of the received signal 
+\begin_inset Formula $\boldsymbol{Y}$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{\hat{\theta_{mag}}}$
+\end_inset
+
+ is the estimated magnitude given by network.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+The second term computes the mean squared error (MSE) between the real component
+s of the estimated phasor, with fixed radius plus phase correction, and
+ the real value of the angle of x
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+The same as second term in loss, but with imaginary part.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The function also includes weighting factors for each term.
+ The first term is weighted by 1/2, while the second and third terms are
+ each weighted by 1/4.
 \end_layout
 
 \begin_layout Subsection
+\paragraph_spacing onehalf
 GridNet
 \end_layout
 
