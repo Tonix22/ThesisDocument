@@ -1,0 +1,34 @@
+@startuml
+!theme toy
+skinparam defaultFontName Bold
+skinparam defaultFontStyle Bold
+
+[*] -> Y
+Y: Hx+n
+
+Y -> ZeroForcing
+ZeroForcing : Y/diag(H)
+
+Z_score : 95% cofidence
+
+Z_score -> Normalize : magnitud
+Normalize : <T>.abs()/max(<T>.abs())
+Normalize : 0 to 1
+
+Normalize --> Network : Y
+Normalize --> Loss : X
+
+Network : output
+
+Network -> Loss
+
+Loss : MSE(Y,X)
+Target: x.abs()
+Target --> Normalize
+
+x: QAM
+x -> Target
+
+ZeroForcing -> Z_score
+
+@enduml

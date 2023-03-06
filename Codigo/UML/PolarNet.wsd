@@ -1,0 +1,41 @@
+@startuml
+!theme toy
+skinparam defaultFontName Bold
+skinparam defaultFontStyle Bold
+state PolarNet{
+    PhaseNet : Estim.angle()
+    
+    MagNet : Estim.abs()
+}
+
+[*] -> Y
+Y: Hx+n
+
+Y -> ZeroForcing
+Y -> Conjugate
+Conjugate : H_H *Y
+ZeroForcing : Y/diag(H)
+ZeroForcing --> Normalize : Y.abs()
+Conjugate -> Z_score
+
+Z_score : 95% cofidence
+
+Z_score --> Normalize : Y.angle()
+
+Normalize : <T>.abs()/max(<T>.abs())
+Normalize : 0 to 1
+
+Normalize --> PolarNet
+
+
+Target: x.abs()
+Target --> Normalize : X
+
+x: QAM
+x -> Target
+
+PolarNet -> BER_SNR : Estim
+Normalize -> BER_SNR : X 
+ 
+
+@enduml

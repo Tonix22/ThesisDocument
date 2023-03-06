@@ -5890,6 +5890,12 @@ literal "false"
 \noindent
 
 \size large
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:A-Survey-of"
+
+\end_inset
+
 It is widely recognized that IQ data is represented by complex numbers,
  which can pose challenges when working with them.
  This paper offers a detailed description of a new loss function and the
@@ -9319,21 +9325,19 @@ status open
 
 
 \backslash
-begin{table}[h] 
+begin{table}[h]   
 \backslash
-centering 
+centering   
 \backslash
-caption{Neural Network Architecture} 
+caption{Number of Parameters in the PyTorch nn.Sequential block}   
 \backslash
-label{tab:nn_architecture} 
+label{tab:num_params}   
 \backslash
-begin{tabular}{|c|c|c|c|} 
+begin{tabular}{|l|l|l|}     
 \backslash
-hline 
+hline     
 \backslash
 textbf{Layer} & 
-\backslash
-textbf{Input Shape} & 
 \backslash
 textbf{Output Shape} & 
 \backslash
@@ -9341,195 +9345,105 @@ textbf{Number of Parameters}
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline Linear 1       & [input
+hline     
 \backslash
-_size]        & [hidden
+texttt{nn.Linear(48, 240, bias=True)} & 
 \backslash
-_size]        & (input
+texttt{(batch
 \backslash
-_size + 1) * hidden
+_size, 240)} & 
 \backslash
-_size 
-\backslash
-
-\backslash
- 
-\backslash
-hline Hardtanh       & [hidden
-\backslash
-_size]       & [hidden
-\backslash
-_size]        & 0                              
+texttt{(48 + 1) * 240 = 11,760} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline Linear 2       & [hidden
+hline     
 \backslash
-_size]       & [hidden
+texttt{nn.Hardtanh()} & 
 \backslash
-_size * 3]    & hidden
+texttt{(batch
 \backslash
-_size * (hidden
+_size, 240)} & 
 \backslash
-_size * 3 + 1) 
-\backslash
-
-\backslash
- 
-\backslash
-hline Linear 3       & [hidden
-\backslash
-_size * 3]   & [hidden
-\backslash
-_size]        & (hidden
-\backslash
-_size * 3 + 1) * hidden
-\backslash
-_size 
+texttt{0} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline Hardtanh       & [hidden
+hline     
 \backslash
-_size]       & [hidden
+texttt{nn.Linear(240, 720, bias=True)} & 
 \backslash
-_size]        & 0                              
+texttt{(batch
 \backslash
-
+_size, 720)} & 
 \backslash
- 
-\backslash
-hline Linear 4       & [hidden
-\backslash
-_size]       & [input
-\backslash
-_size]        & (hidden
-\backslash
-_size + 1) * input
-\backslash
-_size 
+texttt{2 * 240$^2$ + 2 * 240 = 346,320} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline 
+hline     
 \backslash
-end{tabular} 
+texttt{nn.Linear(720, 240, bias=True)} & 
 \backslash
-end{table} 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
+texttt{(batch
 \backslash
-begin{table}[h] 
+_size, 240)} & 
 \backslash
-centering 
-\backslash
-caption{Network Parameters} 
-\backslash
-label{tab:params} 
-\backslash
-begin{tabular}{|l|l|l|} 
-\backslash
-hline Parameter & Shape & Number of Parameters 
+texttt{4 * 240$^2$ + 2 * 240 = 1,388,160} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline angle
+hline     
 \backslash
-_net.0.weight & torch.Size([240, 48]) & 11520 
+texttt{nn.Hardtanh()} & 
 \backslash
-
+texttt{(batch
 \backslash
- 
+_size, 240)} & 
 \backslash
-hline angle
-\backslash
-_net.0.bias & torch.Size([240]) & 240 
+texttt{0} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline angle
+hline     
 \backslash
-_net.2.weight & torch.Size([720, 240]) & 172800 
+texttt{nn.Linear(240, 48, bias=True)} & 
 \backslash
-
+texttt{(batch
 \backslash
- 
+_size, 48)} & 
 \backslash
-hline angle
-\backslash
-_net.2.bias & torch.Size([720]) & 720 
+texttt{(240 + 1) * 48 = 11,568} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline angle
+hline     
 \backslash
-_net.3.weight & torch.Size([240, 720]) & 172800 
+multicolumn{2}{|r|}{
 \backslash
-
+textbf{Total}} & 
 \backslash
- 
-\backslash
-hline angle
-\backslash
-_net.3.bias & torch.Size([240]) & 240 
+textbf{1,757,808 = 13.39 MB} 
 \backslash
 
 \backslash
- 
+     
 \backslash
-hline angle
-\backslash
-_net.5.weight & torch.Size([48, 240]) & 11520 
-\backslash
-
-\backslash
- 
-\backslash
-hline angle
-\backslash
-_net.5.bias & torch.Size([48]) & 48 
-\backslash
-
-\backslash
- 
-\backslash
-hline 
-\backslash
-textbf{Total} & model params size & 
-\backslash
-textbf{1.480(MB)} 
-\backslash
-
-\backslash
- 
-\backslash
-hline 
+hline   
 \backslash
 end{tabular} 
 \backslash
@@ -9636,15 +9550,424 @@ end{table}
 \end_layout
 
 \begin_layout Subsection
-Polar Net
+PolarNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Polar_Net consists of two networks: PhaseNet, which we've seen before,
+ and a new network called Mag_net.
+ The Polar_Net is an integration of these two as pretrained networks.
+ Since we're already familiar with PhaseNet, let's now focus on describing
+ MagNet.
+\end_layout
+
+\begin_layout Subsubsection
+MagNet Preprocesing and loss function
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The architecture of MagNet is quite similar to that of Polar_Net, but with
+ fewer parameters in the hidden layer.
+ As a result, we won't go into as much detail about the layer architecture.
+ However, we'll still pay close attention to the preprocessing stage.
+ Unlike PhaseNet, MagNet doesn't use the Hermitian transpose of the channel.
+ Instead, it uses the diagonal of the channel to perform zero forcing equalizati
+on as a preprocessing step.
+ Next, a z-score filter is applied, followed by complex normalization by
+ absolute.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The loss function for MagNet remains quite simple:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{O(\hat{\theta})=E\left[\left(\hat{\theta}-|\theta|_{2}^{2}\right)^{2}\right]}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To put it another way, the network produces its output in terms of the magnitude
+ of the complex numbers.
+ Then, for the loss function, the absolute value of the complex value of
+ the ground truth is taken.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/MagNet.png
+	lyxscale 70
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+MagNet Preprocesing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Magnet Parameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h]   
+\backslash
+centering   
+\backslash
+caption{Number of Parameters in the PyTorch nn.Sequential block}   
+\backslash
+label{tab:num_params}   
+\backslash
+begin{tabular}{|l|l|l|}     
+\backslash
+hline     
+\backslash
+textbf{Layer} & 
+\backslash
+textbf{Output Shape} & 
+\backslash
+textbf{Number of Parameters} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Linear(48, 120, bias=True)} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 120)} & 
+\backslash
+texttt{(48 + 1) * 120 = 5,880} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Hardtanh()} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 120)} & 
+\backslash
+texttt{0} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Linear(120, 240, bias=True)} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 240)} & 
+\backslash
+texttt{2 * 120$^2$ + 2 * 120 = 29,040} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Linear(240, 120, bias=True)} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 120)} & 
+\backslash
+texttt{4 * 120$^2$ + 2 * 120 = 57,840} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Hardtanh()} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 120)} & 
+\backslash
+texttt{0} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+texttt{nn.Linear(120, 48, bias=True)} & 
+\backslash
+texttt{(batch
+\backslash
+_size, 48)} & 
+\backslash
+texttt{(120 + 1) * 48 = 5,856} 
+\backslash
+
+\backslash
+     
+\backslash
+hline     
+\backslash
+multicolumn{2}{|r|}{
+\backslash
+textbf{Total}} & 
+\backslash
+textbf{98,716 = 789.7 KB} 
+\backslash
+
+\backslash
+     
+\backslash
+hline   
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+MagNet Hyperparameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{Hyperparameters} 
+\backslash
+label{tab:hyperparams} 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Hyperparameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline BATCHSIZE & 10 
+\backslash
+
+\backslash
+ 
+\backslash
+hline QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline NUM
+\backslash
+_EPOCHS & 10 
+\backslash
+
+\backslash
+  
+\backslash
+hline INPUT
+\backslash
+_SIZE & 48 
+\backslash
+
+\backslash
+ 
+\backslash
+hline HIDDEN
+\backslash
+_SIZE & 120 
+\backslash
+
+\backslash
+ 
+\backslash
+hline LEARNING
+\backslash
+_RATE & 5e-5 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+All Together
+\end_layout
+
+\begin_layout Standard
+The final size of the network is the sum of the Magnet parameters and the
+ Phase parameters, which is approximately 0.753 MB + 13.39 MB = 14.143 MB.
+ The reason why Magnet has fewer parameters is that more parameters in the
+ magnitude can lead to overfitting and the network may not generalize well
+ with new data.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/PolarNet.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Overview of PolarNet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Complex Net
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This network was motivated in the paper A Survey of Complex-Valued Neural
+ Networks 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "subsec:A-Survey-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color black
+.
+ The main idea is to explore the use of complex value networks and try to
+ reduce the number of parameters in network, but trade off on the time complexit
+y as complex number operations are between each layer.
+ 
+\end_layout
+
 \begin_layout Subsection
 MobileNet zeroForcing
+\color black
+..
 \end_layout
 
 \begin_layout Standard
