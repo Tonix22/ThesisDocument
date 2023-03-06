@@ -1,0 +1,34 @@
+@startuml
+!theme toy
+skinparam defaultFontName Bold
+skinparam defaultFontStyle Bold
+
+[*] -> Y
+Y: Hx+n
+
+Y -> Conj
+Conj : H_H*Y
+
+Z_score : 95% cofidence
+
+Z_score -> Normalize : Complex
+Normalize : <T>.abs()/max(<T>.abs())
+Normalize : 0 to 1
+
+Normalize --> Network : Y
+Normalize --> Loss : X
+
+Network : apply_complex
+
+Network -> Loss
+
+Loss : MSE(Y,X)
+Target: x.abs()
+Target --> Normalize : complex
+
+x: QAM
+x -> Target
+
+Conj -> Z_score
+
+@enduml

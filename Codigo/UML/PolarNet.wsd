@@ -16,15 +16,20 @@ Y -> Conjugate
 Conjugate : H_H *Y
 ZeroForcing : Y/diag(H)
 ZeroForcing --> Normalize : Y.abs()
+
+Normalize_angle : angle / pi
+Normalize_angle : -1 to 1
+
 Conjugate -> Z_score
 
 Z_score : 95% cofidence
 
-Z_score --> Normalize : Y.angle()
+Z_score --> Normalize_angle : Y.angle()
 
 Normalize : <T>.abs()/max(<T>.abs())
 Normalize : 0 to 1
 
+Normalize_angle --> PolarNet
 Normalize --> PolarNet
 
 
