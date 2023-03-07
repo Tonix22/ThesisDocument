@@ -1,0 +1,54 @@
+@startuml
+!theme toy
+skinparam defaultFontName Bold
+skinparam defaultFontStyle Bold
+
+[*] -> Y
+Y: Hx+n
+
+X: QAM
+X -> Normalize
+
+Y -> Conjugate
+Conjugate : H_H *Y
+
+Z_score : 95% cofidence
+
+Z_score --> Normalize 
+Normalize : val/max(abs)
+
+Normalize --> GridEncoding
+
+state Training{
+    GridEncoding : SquareGrid
+    GridEncoding : RadGrid
+    Network : Y
+    Loss : CrossEntropy
+}
+
+GridEncoding -> Network : Y
+GridEncoding --> Loss : X
+
+
+Network ->Loss : Y
+
+Conjugate --> Z_score
+
+state Predict{
+    GridEncoding -> Transformer : Y
+    SymbolStack <- Transformer
+    Transformer -> SymbolStack
+    SymbolStack : autoregression
+    SymbolStack --> RemoveTokens :50
+    RemoveTokens : <sos>
+    RemoveTokens : <eos>
+    GrideDecode <- RemoveTokens : 48
+    GrideDecode : SquareGrid
+    GrideDecode : RadGrid
+    GridEncoding -> GrideDecode : X 
+    BER_SNR <- GrideDecode
+}
+
+
+
+@enduml
