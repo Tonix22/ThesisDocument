@@ -1609,6 +1609,13 @@ ion system meets the required performance specifications.
 Channel
 \size large
  
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Channel"
+
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -7614,7 +7621,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Transformer with encode and decoder
+Transformer with encoder and decoder sections 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Transformer-with-encoder"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -7707,6 +7721,13 @@ An image is worth 16x16 words
 LatexCommand cite
 key "dosovitskiy2020image"
 literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:An-image-is"
 
 \end_inset
 
@@ -11005,24 +11026,90 @@ GridNet
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 At the moment we were conducting this research, nothing had been done before
  with transformers and signal equalization.
  We are aware that transformers are a heavier network, but recent advances
- in Edge Computing TPU processors are making them a more feasible solution
- at a relatively low cost.
- While there is a paper called "Radio Transformer" in the state of the art,
- it is used for modulation recognition, not for signal equalization.
+ in Edge Computing TPU processors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "coral2020accelerator"
+literal "false"
+
+\end_inset
+
+ are making them a more feasible solution at a relatively low cost.
+ While there is a paper called "Radio Transformer"
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RadioTransformer"
+literal "false"
+
+\end_inset
+
+ in the state of the art, it is used for modulation recognition, not for
+ signal equalization.
  Additionally, historically, this paper does not align with "Attention is
- All You Need" paper since it was written in 2016, whereas "Attention is
- All You Need" was written in 2017.
+ All You Need" 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
+literal "false"
+
+\end_inset
+
+ paper since it was written in 2016, whereas "Attention is All You Need"
+ was written in 2017.
 \end_layout
 
 \begin_layout Standard
-We were initially inspired by the concept of an image being worth 16x16
- words as described in the state of the art.
- However, we took this idea further and considered that the grid does not
- necessarily have to be based on Euclidean geometry; rather, we also rethought
- the grid in terms of a polar geometry.
+\paragraph_spacing onehalf
+
+\size large
+While we were initially inspired by the concept of an image being worth
+ 16x16 words 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "dosovitskiy2020image"
+literal "false"
+
+\end_inset
+
+ as described in the state of the art 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:An-image-is"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, we took this idea further by considering the encoder and decoder for the
+ original transformer design 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Transformer-with-encoder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+.
+ Additionally, we challenged the assumption that the grid must be based
+ on Euclidean geometry and instead rethought the grid in terms of a polar
+ geometry.
  This paradigm shift was justified by the fact that our best results were
  obtained using polar representation.
  Furthermore, polar representation results in a non-uniformly distributed
@@ -11033,39 +11120,172 @@ We were initially inspired by the concept of an image being worth 16x16
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 The main idea is to divide the complex plane into grids, with each grid
  slot considered as a bucket.
  When a received value 
-\begin_inset Formula $Y_{i}$
+\begin_inset Formula $\boldsymbol{Y_{i}}$
 \end_inset
 
  arrives, it is placed in an incorrect bucket 
-\begin_inset Formula $B_{i},$
+\begin_inset Formula $\boldsymbol{B_{i}},$
 \end_inset
 
 which is assigned a number 
-\begin_inset Formula $A_{i}$
+\begin_inset Formula $\boldsymbol{A_{i}}$
 \end_inset
 
 .
  To train the network, we assign the ground truth value with its correct
  bucket number 
-\begin_inset Formula $B_{j}$
+\begin_inset Formula $\boldsymbol{B_{j}}$
 \end_inset
 
 and calculate the maximum likelihood cost function between the estimation
  and ground truth , similar to correcting mistranslated text in a language
  task.
- Multihead attention impoves Bucket calculation ,because it takes care of
- the values passed before.
+ Multihead attention improves Bucket calculation, because it takes care
+ of the values passed before.
  In the context of signal processing, this attention mechanism helps to
  handle the ISI (Inter-Symbol Interference), which is a major challenge
- in dealing with highly dispersive channels.
+ in dealing with a doubly dispersive 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:Channel"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Finally, after predicting the bucket 
+\begin_inset Formula $\boldsymbol{B_{j}},$
+\end_inset
+
+the value passes through the degrid process, which involves placing the
+ value in the middle of the patch coordinates.
+ This process helps to further equalize the value as it is forced to be
+ placed in only this position or any other patch.
 \end_layout
 
 \begin_layout Subsubsection
 \paragraph_spacing onehalf
 Square Grid
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The encoding process involves binning the real and imaginary parts of the
+ data into a set of discrete bins and mapping them onto a 2D grid.
+ The decoding process reverses this process by mapping the values back to
+ their original locations in the complex plane.
+ The smallest number used for the grid is 4 because number 2 is reserved
+ for the start of sentence token (<sos>) and 3 is reserved for the end of
+ sentence token (<eos>), making it compatible with language models.
+ The largest number corresponds to the number of bins used in the encoding
+ process.
+ In other words number of bins is the size of our alphabet.
+ For the code implementation, we used binsx, binsy, and binxy as helpful
+ vectors to assign a patch number in the complex plane.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/GridNet.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Square grid enconding values with a step of 1/7 per cuadrant
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Encoding Recipe: 
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Loop over the bins for the real and imaginary parts: This loop iterates
+ over the bins defined for the real and imaginary parts of the data.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Find the indices of the data that lie within the current bin for the real
+ part: For each bin in the real part, the algorithm identifies the indices
+ of the elements in the input data that fall within the bin.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Same for imaginary part: For each bin in the imaginary part, the algorithm
+ identifies the indices of the elements in the input data that fall within
+ the bin.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Encode the data by selecting the corresponding bin indices from the bin
+ index matrix: The algorithm selects the corresponding bin indices from
+ the bin index matrix using the indices computed in the previous steps.
 \end_layout
 
 \begin_layout Subsubsection
