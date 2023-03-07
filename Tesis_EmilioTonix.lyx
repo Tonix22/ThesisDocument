@@ -12725,6 +12725,26 @@ To summarize, the Radial Grid prioritizes investing less in the vocabulary
 Results
 \end_layout
 
+\begin_layout Subsection
+PhaseNet
+\end_layout
+
+\begin_layout Subsection
+PolarNet
+\end_layout
+
+\begin_layout Subsection
+ComplexNet
+\end_layout
+
+\begin_layout Subsection
+MobileNet
+\end_layout
+
+\begin_layout Subsection
+GridNet
+\end_layout
+
 \begin_layout Section
 Conclusion and Outlook
 \end_layout
