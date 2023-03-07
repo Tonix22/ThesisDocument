@@ -3385,6 +3385,13 @@ py loss is often used.
 
 \begin_layout Subsubsection
 Cross Entropy Loss
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Cross-Entropy-Loss"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3437,6 +3444,12 @@ status open
 
 \begin_layout Plain Layout
 Softmax used to map real numbers to probabilty distribution.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Softmax"
+
+\end_inset
+
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -11162,10 +11175,7 @@ noprefix "false"
 
 \end_inset
 
-
-\color inherit
-.
- 
+ .
 \end_layout
 
 \begin_layout Standard
@@ -11201,8 +11211,225 @@ The encoding process involves binning the real and imaginary parts of the
  The largest number corresponds to the number of bins used in the encoding
  process.
  In other words number of bins is the size of our alphabet.
- For the code implementation, we used binsx, binsy, and binxy as helpful
- vectors to assign a patch number in the complex plane.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/SquareGrid.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Class attibutes to do the grid with bins
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+step
+\series default
+: A float value that represents the step size for binning, from -.85 to .85.
+ Note that step is for quadrant and not all plane.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binsx
+\series default
+: A tensor that contains the bins for the real part of the data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binsy
+\series default
+: A tensor that contains the bins for the imaginary part of the data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binxy
+\series default
+: A tensor that contains a 2D bin index matrix for encoding.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+x_indices
+\series default
+: A tensor that stores the indices of the bins for the real part of the
+ data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+y_indices
+\series default
+: A tensor that stores the indices of the bins for the imaginary part of
+ the data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+indices_shape
+\series default
+: A tuple that stores the shape of the input data for encoding.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+real_decoded
+\series default
+: A tensor that stores the decoded values for the real part of the data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+imag_decoded
+\series default
+: A tensor that stores the decoded values for the imaginary part of the
+ data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+decoded_shape
+\series default
+: A tuple that stores the shape of the input data for decoding.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Encoding Recipe: 
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Loop over the binsx for the real and binsy for the imaginary parts, and
+ check if the data value falls in the range of bin i and bin i+1.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Save all the values that fall in the bin as x_indices and y_indices.
+ These indices behave more like coordinates for the matrix of binsxy.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Encoding is done by putting the indices in the binxy vector.
+ The binxy vector returns a numerical token that represents the position
+ of the complex plane.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Here's an elegant code implementation 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[language=python,firstline=39, lastline=48]{Codigo/GridCode.py}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11221,7 +11448,7 @@ status open
 \begin_inset Graphics
 	filename Imagenes/Networks/GridNet.png
 	lyxscale 80
-	scale 80
+	scale 70
 
 \end_inset
 
@@ -11250,46 +11477,1107 @@ Square grid enconding values with a step of 1/7 per cuadrant
 \paragraph_spacing onehalf
 
 \size large
+Decoding Recipe: 
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Loop over the binsxy matrix and create a mask of indices that correspond
+ to the encoded values
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Use the mask of indices to assign values from the binsx and binsy vectors
+ to the corresponding real and imaginary decoded vectors.
+ Add half a step to each value to place it in the center of the bin.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Build a complex number vector using the real and imaginary decoded vectors.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Here's an elegant code implementation 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[language=python,firstline=64, lastline=76]{Codigo/GridCode.py}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The gridding step ensures that all possible values in the complex plane
+ are now bounded by the alphabet size |A|, which can be beneficial for neural
+ networks even if it doesn't compromise the space between QAM points spacing.
+ In the picture bellow we show some points that was enconded and decoded,
+ and we appreciate how they are centered after decoding.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/SquareGridDegrid.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Points after encoding and decoding, shown in a centered position of the
+ binxy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Polar Grid
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Polar Grid is quite similar to the number ordering of the Square Grid,
+ as it starts with 4 as its initial number.
+ However, in this code implementation, instead of having x and y bins, we
+ will have radius and angle bins.
+ One thing to note is that now we have two steps that can be totally independent
+: one step for the radius and the other for the angle.
+ In the Square Grid, the step was the same for both x and y coordinates.
+ One main advantage of the polar grid is that we don't need to take care
+ of the angle measurement error, as the encoding will handle it within the
+ transformer.
+ However, the polar grid uses more space with fewer patches compared to
+ the square grid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/RadGrid.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Class attributes for the Radial Grid
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+step_radius
+\series default
+: Steps between 0 and 1
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+step_angle
+\series default
+: Steps between 0 and 
+\begin_inset Formula $\boldsymbol{\pi}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binsr
+\series default
+: Number of bins for radius
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binsa
+\series default
+: Numbers of bins for angles
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+binra
+\series default
+: Combined Grid between radius and angle.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 Encoding Recipe: 
 \end_layout
 
 \begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-Loop over the bins for the real and imaginary parts: This loop iterates
- over the bins defined for the real and imaginary parts of the data.
+Loop over the binsr for the radius and binsa for the angle, and check if
+ the data value falls in the range of bin i and bin i+1.
 \end_layout
 
 \begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-Find the indices of the data that lie within the current bin for the real
- part: For each bin in the real part, the algorithm identifies the indices
- of the elements in the input data that fall within the bin.
+Save all the values that fall in the bin as r_indices and a_indices.
+ These indices behave more like coordinates for the matrix of binsra.
 \end_layout
 
 \begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-Same for imaginary part: For each bin in the imaginary part, the algorithm
- identifies the indices of the elements in the input data that fall within
- the bin.
+Encoding is done by putting the indices in the binra vector.
+ The binra vector returns a numerical token that represents the position
+ of the complex plane.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Here's an elegant code implementation 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[language=python,firstline=38, lastline=49]{Codigo/RadGrid.py}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/RadGrid.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Radial Grid encoding values.
+ Radius step = 0.25 and angle step = pi/6
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Decoding Recipe: 
 \end_layout
 
 \begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-Encode the data by selecting the corresponding bin indices from the bin
- index matrix: The algorithm selects the corresponding bin indices from
- the bin index matrix using the indices computed in the previous steps.
+Loop over the binsra matrix and create a mask of indices that correspond
+ to the encoded values
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Use the mask of indices to assign values from the binsr and binsa vectors
+ to the corresponding radius and angle decoded vectors.
+ Add half a step to each value to place it in the center of the bin.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Build a complex number vector using the magnitud and phase decoded vectors.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Here's an elegant code implementation 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting[language=python,firstline=59, lastline=74]{Codigo/RadGrid.py}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Similarly to the square grid, the values in the polar grid are also centered
+ in the grid during decoding, thus closing again the possible states of
+ the points in the complex plane.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/RadGridOriginalData.png
+	lyxscale 50
+	scale 57
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Networks/RadGridOriginal_Decoded_Data.png
+	lyxscale 50
+	scale 57
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Points after encoding and decoding, shown in a centered position of the
+ binra
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
-Polar Grid
+Transformer implementation
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Our transformer implementation can handle both grids by simply changing
+ a hyperparameter, which provides a generic interface for experimentation.
+ For positional embedding, we use a logical sequence of numbers ranging
+ from 0 to 48 positions.
+ Although there were some experiments with the sin embedding, it did not
+ work well for this task.
+ We apply a padding mask to the source and pass it to the transformer.
+ The transformer is not a custom implementation but rather a predefined
+ block already available in PyTorch that contains an encoder and decoder.
+ Note that we implemented a transformer from scratch during the study of
+ this network, but we decided to use PyTorch's standard APIs instead.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The vocabulary size is determined based on the number of patches we have
+ in the grid strategy.
+ This means that the number of possible values that a patch can take in
+ the grid is equal to the number of patches in the grid.
+ For example, if we have a grid with 25 patches, then the vocabulary size
+ is 25.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The loss function used in the training process is given by the cross-entropy
+ 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "subsec:Cross-Entropy-Loss"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ This is a commonly used loss function for multi-class classification tasks,
+ such as image classification.
+ Mathematically, the cross-entropy loss measures the distance between the
+ predicted probability distribution and the true probability distribution.
+ In the context of the grid encoding task, the predicted probability distributio
+n is the distribution over the patches in the grid, and the true probability
+ distribution is a one-hot vector representing the true patch in the grid.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Transformer-with-encoder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ in the state of the art can be used to visualize the transformer architecture
+ , at the right is placed the transformer decoder which its has output the
+ output probabilities for symbol 
+\begin_inset Formula $A_{i}$
+\end_inset
+
+ using the softmax function 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Softmax"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Transformer hyperparameters
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In this section, we first list the hyperparameters that directly affect
+ the final parameter size of the model.
+ Before we show the table, let's review the meaning of the parameters to
+ better understand the hyperparameters table.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Embedding_size
+\series default
+: the embedding size refers to the size of the vector that is used to represent
+ each input token in the network.
+ Each token in the input sequence is mapped to a high-dimensional vector
+ of fixed size, which is called the embedding.
+ The embedding captures the semantic meaning of the token in a continuous
+ vector space, which can be learned by the network during training.
+ In practice, the embedding size is often set to a value between 100 and
+ 1000, depending on the size of the input vocabulary and the complexity
+ of the task
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Num_heads
+\series default
+: Is a hyperparameter that controls the number of parallel self-attention
+ mechanisms in the network.
+ Self-attention is a mechanism that allows the model to weigh the importance
+ of different positions in the input sequence when making a prediction.
+ Self-attention is applied to the input sequence multiple times, with different
+ linear projections of the input sequence used as inputs to each attention
+ mechanism
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Encoder and Decoder Layers
+\series default
+: The output of the encoder layer is a sequence of hidden representations
+ that captures the relevant information from the input sequence.Both the
+ encoder and decoder layers can be stacked multiple times to improve the
+ quality of the feature representation and the final output sequence.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Forward Expansion
+\series default
+: After performing multi-head attention on the input, the result is passed
+ through a feedforward neural network (FFN) layer, which typically consists
+ of two fully connected layers with a ReLU activation function in between,
+ in our case was ever setup to GELU activation function.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+Dropout
+\series default
+: The dropout rate to apply during training to prevent overfitting.
+ This value typically ranges between 0.1 and 0.3.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Other parameters, such as CONJ_ACTIVE, refer to the same preprocessing step
+ of taking the conjugate of the channel 
+\begin_inset Formula $H^{H}Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering  
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Hyperparameters} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline BATCHSIZE & 100 
+\backslash
+
+\backslash
+ 
+\backslash
+hline QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline NUM
+\backslash
+_EPOCHS & 24 
+\backslash
+
+\backslash
+ 
+\backslash
+hline SNR & 45-25 
+\backslash
+
+\backslash
+ 
+\backslash
+hline CONJ
+\backslash
+_ACTIVE & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline NOISE & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline LEARNING
+\backslash
+_RATE & .0001 
+\backslash
+
+\backslash
+ 
+\backslash
+hline GRID & Square 
+\backslash
+
+\backslash
+ 
+\backslash
+hline STEP & 1/7 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Square GridNet hyperparameters} 
+\backslash
+label{tab:transformer_hyper} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering  
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Hyperparameters} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline BATCHSIZE & 100 
+\backslash
+
+\backslash
+ 
+\backslash
+hline QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline NUM
+\backslash
+_EPOCHS & 13 
+\backslash
+
+\backslash
+ 
+\backslash
+hline SNR & 45-20 
+\backslash
+
+\backslash
+ 
+\backslash
+hline CONJ
+\backslash
+_ACTIVE & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline NOISE & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline LEARNING
+\backslash
+_RATE & .0001 
+\backslash
+
+\backslash
+ 
+\backslash
+hline GRID & Polar 
+\backslash
+
+\backslash
+ 
+\backslash
+hline STEP
+\backslash
+_RADIUS & 0.25 
+\backslash
+
+\backslash
+ 
+\backslash
+hline STEP
+\backslash
+_ANGLE & $
+\backslash
+pi/6$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Polar GridNet hyperparameters} 
+\backslash
+label{tab:transformer_hyper} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Parameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Name} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline loss
+\backslash
+_f & CrossEntropyLoss 
+\backslash
+
+\backslash
+ 
+\backslash
+hline src
+\backslash
+_word
+\backslash
+_embedding & Embedding (101 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline src
+\backslash
+_position
+\backslash
+_embedding & Embedding (25.6 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline trg
+\backslash
+_word
+\backslash
+_embedding & Embedding (101 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline trg
+\backslash
+_position
+\backslash
+_embedding & Embedding (25.6 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline transformer & Transformer (44.1 M) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline fc
+\backslash
+_out & Linear (102 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline dropout & Dropout (0) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+multicolumn{2}{|l|}{Total params: 44.5 M} 
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{2}{|l|}{Total estimated model params size (MB): 177.990} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Square Grid Transformer Parameters} 
+\backslash
+label{tab:polar-grid-transformer-parameters} 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Name} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline loss
+\backslash
+_f & CrossEntropyLoss 
+\backslash
+
+\backslash
+ 
+\backslash
+hline src
+\backslash
+_word
+\backslash
+_embedding & Embedding (26.1 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline src
+\backslash
+_position
+\backslash
+_embedding & Embedding (25.6 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline trg
+\backslash
+_word
+\backslash
+_embedding & Embedding (26.1 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline trg
+\backslash
+_position
+\backslash
+_embedding & Embedding (25.6 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline transformer & Transformer (69.3 M) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline fc
+\backslash
+_out & Linear (26.2 K) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline dropout & Dropout (0) 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+multicolumn{2}{|l|}{Total params: 69.5 M} 
+\backslash
+
+\backslash
+ 
+\backslash
+multicolumn{2}{|l|}{Total estimated model params size (MB): 277.842} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Polar Grid Transformer Parameters} 
+\backslash
+label{tab:polar-grid-transformer-parameters} 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To summarize, the Radial Grid prioritizes investing less in the vocabulary
+ size and compensating for it by adjusting other hyperparameters such as
+ multi-head attention and increasing the number of feedforward parameters
+ in order to achieve better results.
 \end_layout
 
 \begin_layout Section

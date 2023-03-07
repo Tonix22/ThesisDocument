@@ -1,0 +1,16 @@
+@startuml
+
+class PolarGridCode {
+    - step_radius: float
+    - step_angle: float
+    - binsr: torch.Tensor
+    - binsa: torch.Tensor
+    - binra: torch.Tensor
+    
+    + __init__(step_radius: float, step_angle: float)
+    + Encode(data: np.ndarray or torch.Tensor) -> torch.Tensor
+    + Decode(encoded: np.ndarray or torch.Tensor) -> torch.Tensor
+    + plot_scatter_values(ax: plt.Axes, vect: torch.Tensor, title: str)
+}
+
+@enduml

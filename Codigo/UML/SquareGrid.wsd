@@ -1,0 +1,19 @@
+@startuml
+class GridCode {
+    - step: float
+    - binsx: Tensor
+    - binsy: Tensor
+    - binxy: Tensor
+    - x_indices: Tensor
+    - y_indices: Tensor
+    - indices_shape: Tuple
+    - real_decoded: Tensor
+    - imag_decoded: Tensor
+    - decoded_shape: Tuple
+    + __init__(step: float)
+    + Encode(data: Union[np.ndarray, torch.Tensor]) -> torch.Tensor
+    + Decode(encoded: Union[np.ndarray, torch.Tensor]) -> torch.Tensor
+    + plot_scatter_values(ax: matplotlib.axes.Axes, vect: torch.Tensor, title: str) -> None
+    + plot_grid_values(ax: matplotlib.axes.Axes) -> None
+}
+@enduml
