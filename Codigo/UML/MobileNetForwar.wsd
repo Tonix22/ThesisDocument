@@ -16,11 +16,12 @@ if (valid_data.numel() != 0) then (yes)
     :Normalize Y
     :m, a = self(magnitud, angle);
     :a = (a*torch.pi*2)-torch.pi;
-    :ang_real = torch.cos(a+Y.angle());
-    :ang_imag = torch.sin(a+Y.angle());
-    :target_angle = torch.polar(torch.ones(x.shape).to(torch.float64).to(self.device), torch.angle(x));
+    :ang_real = torch.cos(a+Y.angle())
+    ang_imag = torch.sin(a+Y.angle());
+    :target_angle = Polar(1,x.angle());
     :loss = .5*self.loss_f(m*Y.abs(), x.abs()) + 
-    .25*self.loss_f(target_angle.real, ang_real) + .25*self.loss_f(target_angle.imag, ang_imag);
+    .25*self.loss_f(target_angle.real, ang_real) + 
+    .25*self.loss_f(target_angle.imag, ang_imag);
 endif
 stop
 @enduml

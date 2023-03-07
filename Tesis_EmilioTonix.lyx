@@ -10654,6 +10654,86 @@ As we are working with polar coordinates, we should note that when multiplying
 \end_layout
 
 \begin_layout Subsubsection
+\paragraph_spacing onehalf
+\noindent
+Software Implementation 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In the common_step method, the input data is processed by the PredesignedModel
+ network, which is a pre-trained MobileNetv3 network that is modified to
+ fit the problem.
+ The output of the PredesignedModel network is passed through two separate
+ layers: one layer for the magnitude and one layer for the angle of the
+ signal.
+ The angle layer is used to estimate the phase shift of the received signal.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+It's worth noting that the channel is treated as an image of two channels,
+ one for the real and the other for the imaginary part.
+ In the software implementation, a complex128 channel of 1 channel is built,
+ and then the absolute and angle of this 1 channel matrix is taken to feed
+ both mobile nets.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+In this code implementation, the channel magnitude is normalized to the
+ maximum magnitude of 1.
+ This normalization is done after building the Y, to avoid altering the
+ results of calculating the input signal.
+ Then the z-score is computed, and outliers are filtered with a confidence
+ interval of 99%.
+ Finally, for the angle error calculation, the same ideas as in PolarNet
+ are followed.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/MobileNetForwar.png
+	lyxscale 80
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+MobilNet Forward process
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Loss Function
 \end_layout
 
@@ -10681,8 +10761,6 @@ noprefix "false"
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-
-\size small
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{Loss=}\boldsymbol{\begin{array}{c}
@@ -10752,9 +10830,237 @@ The function also includes weighting factors for each term.
  each weighted by 1/4.
 \end_layout
 
+\begin_layout Subsubsection
+Parameters
+\end_layout
+
+\begin_layout Standard
+MobileNetV3 model has about 2.24 million parameters in an efficient way.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|c|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Name} & 
+\backslash
+textbf{Type} & 
+\backslash
+textbf{Params} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 0 & loss
+\backslash
+_f & MSELoss 
+\backslash
+_ 0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 1 & abs
+\backslash
+_net & PredesignedModel = 1.6 M 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 2 & angle
+\backslash
+_net & PredesignedModel = 1.6 M 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 3 & final
+\backslash
+_merge
+\backslash
+_abs & Sequential = 18.6 K 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 4 & final
+\backslash
+_merge
+\backslash
+_ang & Sequential = 18.6 K 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+multicolumn{2}{|c|}{
+\backslash
+textbf{Total size}} & 
+\backslash
+textbf{3.2 MB + 37.2 KB} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Model architecture} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+HyperParameter
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[h] 
+\backslash
+centering 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline 
+\backslash
+textbf{Parameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Batch Size & 50 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Number of Epochs & 50 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Learning Rate & 0.0001 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Neural network hyperparameters} 
+\backslash
+label{tab:nn_params} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 \paragraph_spacing onehalf
 GridNet
+\end_layout
+
+\begin_layout Standard
+At the moment we were conducting this research, nothing had been done before
+ with transformers and signal equalization.
+ We are aware that transformers are a heavier network, but recent advances
+ in Edge Computing TPU processors are making them a more feasible solution
+ at a relatively low cost.
+ While there is a paper called "Radio Transformer" in the state of the art,
+ it is used for modulation recognition, not for signal equalization.
+ Additionally, historically, this paper does not align with "Attention is
+ All You Need" paper since it was written in 2016, whereas "Attention is
+ All You Need" was written in 2017.
+\end_layout
+
+\begin_layout Standard
+We were initially inspired by the concept of an image being worth 16x16
+ words as described in the state of the art.
+ However, we took this idea further and considered that the grid does not
+ necessarily have to be based on Euclidean geometry; rather, we also rethought
+ the grid in terms of a polar geometry.
+ This paradigm shift was justified by the fact that our best results were
+ obtained using polar representation.
+ Furthermore, polar representation results in a non-uniformly distributed
+ grid, where values closer to the center are penalized more heavily.
+ This is useful because, in the presence of additive white noise, values
+ are not expected to be centered, but rather more commonly found towards
+ the edges of the polar representation.
+\end_layout
+
+\begin_layout Standard
+The main idea is to divide the complex plane into grids, with each grid
+ slot considered as a bucket.
+ When a received value 
+\begin_inset Formula $Y_{i}$
+\end_inset
+
+ arrives, it is placed in an incorrect bucket 
+\begin_inset Formula $B_{i},$
+\end_inset
+
+which is assigned a number 
+\begin_inset Formula $A_{i}$
+\end_inset
+
+.
+ To train the network, we assign the ground truth value with its correct
+ bucket number 
+\begin_inset Formula $B_{j}$
+\end_inset
+
+and calculate the maximum likelihood cost function between the estimation
+ and ground truth , similar to correcting mistranslated text in a language
+ task.
+ Multihead attention impoves Bucket calculation ,because it takes care of
+ the values passed before.
+ In the context of signal processing, this attention mechanism helps to
+ handle the ISI (Inter-Symbol Interference), which is a major challenge
+ in dealing with highly dispersive channels.
 \end_layout
 
 \begin_layout Subsubsection
