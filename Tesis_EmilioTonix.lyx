@@ -6275,9 +6275,7 @@ We now have an explicit representation of magnitude and phase in the loss
 \end_layout
 
 \begin_layout Subsubsection
-
-\size large
-Conclusion 
+Conclusion
 \end_layout
 
 \begin_layout Standard
@@ -9955,7 +9953,11 @@ All Together
 
 \begin_layout Standard
 The final size of the network is the sum of the Magnet parameters and the
- Phase parameters, which is approximately 0.753 MB + 13.39 MB = 14.143 MB.
+ Phase parameters, which is approximately 
+\series bold
+0.753 MB + 13.39 MB = 14.143 MB
+\series default
+.
  The reason why Magnet has fewer parameters is that more parameters in the
  magnitude can lead to overfitting and the network may not generalize well
  with new data.
@@ -10595,31 +10597,8 @@ The models used in this project were taken from the PyTorch framework, so
  We did not use pre-trained weights and instead trained the models from
  scratch.
  Thanks to the GPU, we were able to train the models faster.
+
 \size default
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Code of the layers replacement
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
  
 \end_layout
 
@@ -12736,10 +12715,45 @@ To generate a report on the results, we conduct an average of five experiments
  We also care about high SNR and evaluate how well our method performs in
  both noisy and non-noisy scenarios.
  SNR ranges from 45 to 5 with a step of 2 between each SNR.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+PhaseNet is the only network that uses QPSK, while all the other networks
+ were tested in the 16QAM scenario.
+ The reason for using 16QAM is that it is the most challenging and practical
+ for real telecom scenarios, as it requires support for both angle and magnitude.
+ Therefore, it's crucial to consider both of these features for effective
+ equalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+PhaseNet, PolarNet, and ComplexNet are completely new contributions to the
+ state of the art, as they were developed from scratch specifically for
+ this research.
+ On the other hand, MobileNet and GridNet are based on existing models with
+ some modifications.
+ In the case of GridNet, the preprocessing stage is entirely new and unexplored
 \end_layout
 
 \begin_layout Subsection
 PhaseNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The angle error adjustment implemented for PhaseNet in the methodology proved
+ to be very useful for signal equalization.
+ The network performs well across a range of signal-to-noise ratios, from
+ 5dB to 40dB
 \end_layout
 
 \begin_layout Standard
@@ -12789,6 +12803,20 @@ PhaseNet vs LMMSE QPSK
 
 \begin_layout Subsection
 PolarNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This network combines a 16-PSK PhaseNet equalization with an additional
+ MagNet equalization.
+ From 30dB and downward, it appears to perform better than the golden model.
+ It's important to note that Polar is simply a combination of separately
+ trained models that are brought together to equalize Polar representation.
+ Therefore, it's not surprising that its behavior in low SNR is so optimal.
+ Furthermore, it is the lightest-weight network in this research for 16QAM.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -12890,6 +12918,19 @@ MobileNet
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Although MobileNet was not very effective, it is still considered one of
+ the fastest convolutional neural networks in the state of the art in terms
+ of processing speed.
+ From SNR23 and below, it could be a viable option instead of zero forcing.
+ In fact, it performs better than zero forcing in the range of 15dB to 25dB,
+ which is encouraging because it supports the hypothesis that it is essentially
+ a zero forcing with noise consideration.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -12935,6 +12976,22 @@ GridNet
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We conducted experiments with different grid steps for GridNet Square and
+ found that the best step size was 1/7.
+ In conclusion, having more batches in the complex planes results in higher
+ resolution but lower tolerance to noise, as the networks can quickly overfit.
+ On the other hand, using larger steps means that points affected by noise
+ fall within the same region or closer to each other, which could be advantageou
+s in noisy scenarios.
+ However, having squares that are too large could be harmful for final equalizat
+ion because the grids can be bigger than the distances between the ideal
+ constellation points.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -12976,6 +13033,27 @@ GridNet Square Grid vs LMMSE
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+GridNet with a polar grid resulted in some of the best performance between
+ 25dB and 45dB.
+ Our hypothesis that the attention mechanisms used are highly effective
+ in reducing inter-symbol interference (ISI) is true, such that the channel
+ and noise are almost completely recovered.
+ However, below 25dB, the model cannot handle the noise as effectively and
+ begins to present errors.
+ We trained the model with variable noise levels ranging from 25dB to 45dB,
+ and the hypothesis that the best equalization occurs within this range
+ is supported by the image below.
+ It may seem that reducing the noise training range could result in better
+ performance within the training range, but this idea is incorrect.
+ Training the network with more noise scenarios would cause the network
+ to learn more about the noise than the relevant data, resulting in a noisy
+ overfit.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -13003,13 +13081,18 @@ GridNet Polar Grid vs LMMSE
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Comparing both methods, Square and Polar, we notice that Polar performs
+ better from 15dB and beyond, but for the noisier scenarios, Square Net
+ is the better option.
 \end_layout
 
 \begin_layout Standard
@@ -13018,10 +13101,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -13033,6 +13112,10 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -13044,10 +13127,6 @@ GridNet Both Grid comparison and LMMSE
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -13055,6 +13134,23 @@ GridNet Both Grid comparison and LMMSE
 
 \begin_layout Subsection
 All methods comparison
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In a general perspective, PolarNet appears to perform well in the presence
+ of noise and could be a good choice due to its low memory footprint.
+ It can be considered the winner in the range between 13dB and 23dB.
+ However, in the most critical scenarios, it may not be the best option.
+ If we want to trade off between fast processing and accuracy, PolarNet
+ is the ideal choice.
+ For less noisy scenarios above 25dB, GridNet Polar is the winner.
+ And for the most noisy scenarios, GridNet Square is the best option.
+ If the SNR noise is well known in a production application, a good idea
+ would be to mix these three networks for different scenarios to produce
+ the best equalizer.
 \end_layout
 
 \begin_layout Standard
@@ -13140,15 +13236,20 @@ Closer look to all methods, from 5db to 27dB
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Taking a closer look at the most noisy scenario, we can see that GridNet
+ Square achieves the best equalization performance, followed by GridNet
+ Polar, and last but not least, PolarNet.
+\size default
+
 \begin_inset Float figure
 placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -13171,10 +13272,6 @@ Closer look to all methods, from 5db to 16dB
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -13182,6 +13279,30 @@ Closer look to all methods, from 5db to 16dB
 
 \begin_layout Section
 Conclusion and Outlook
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In conclusion, the field of neural networks has seen tremendous advancements
+ in recent years, with the development of more complex architectures, such
+ as deep neural networks, convolutional neural networks, and transformers.
+ It is essential to strike a balance between accuracy and memory footprint
+ for signal equalization to avoid affecting data throughput.
+ These advancements have led to significant improvements in the ability
+ of neural networks to process complex data, including doubly dispersive
+ channels.
+ These developments have resulted in numerous practical applications, ranging
+ from self-driving cars and drone flying to the development of new 6G technologi
+es.
+ However, despite the remarkable progress made in the field, there are still
+ many challenges that need to be addressed, such as reducing noise overfitting,
+ managing outliers, MIMO signal cleaning, and the need for more formal mathemati
+cal descriptions of some network architectures.
+ Further research is necessary to continue to advance the field and unlock
+ the full potential of neural networks in the telecom area, which is an
+ area that is just starting to show its potential.
 \end_layout
 
 \begin_layout Subsection
@@ -13257,6 +13378,22 @@ n and optimizing for actual runtime.
 LatexCommand cite
 key "alphatensor"
 literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
 
 \end_inset
 
