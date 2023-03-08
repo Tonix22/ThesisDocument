@@ -11046,7 +11046,7 @@ hline Learning Rate & 0.0001
 \backslash
  
 \backslash
-hline SNRdB & 40 
+hline SNRdB & 30 
 \backslash
 
 \backslash
@@ -12725,24 +12725,459 @@ To summarize, the Radial Grid prioritizes investing less in the vocabulary
 Results
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To generate a report on the results, we conduct an average of five experiments
+ in a consistent manner and then average them.
+ Therefore, some curves may appear smooth as a result of averaging multiple
+ results.
+ We also care about high SNR and evaluate how well our method performs in
+ both noisy and non-noisy scenarios.
+ SNR ranges from 45 to 5 with a step of 2 between each SNR.
+\end_layout
+
 \begin_layout Subsection
 PhaseNet
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PhaseNET/QPSK_vs_LMMSE_PhasNet.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PhaseNet vs LMMSE QPSK
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 PolarNet
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PolarNet/Polar_16QAM.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PolarNet vs LMMSE 16QAM 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 ComplexNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In complex net we try two different loss functions to traing the neuronal
+ network.
+ However, logarithmic polar loss was not so effective because present high
+ loss numbers that could be not so meaningfull for the network.
+ On the other hand, complex MSE loss was much more effective.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/ComplexNet/ComplexNet.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+ComplexNet vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 MobileNet
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/MobileNEt/MobileNet_16QAM.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+MobileNet vs ZeroForcing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 GridNet
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/GridNet/SquareGrid.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GridNet Square Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/GridNet/PolarGrid.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GridNet Polar Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/GridNet/Both.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GridNet Both Grid comparison and LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+All methods comparison
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralView1.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+General View of all methods
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralViewUntil25Db.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Closer look to all methods, from 5db to 27dB
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralViewUntil14dB.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Closer look to all methods, from 5db to 16dB
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -12751,6 +13186,81 @@ Conclusion and Outlook
 
 \begin_layout Subsection
 Future Work
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Model quantization is a technique for reducing the memory footprint and
+ computational cost of deep neural networks by converting the weights and
+ activations of the network to a lower numerical precision format.
+ This typically involves converting floating-point values to fixed-point
+ or integer values, which requires fewer bits to represent the same range
+ of values.Quantization can significantly reduce the memory and power requirement
+s of neural networks, making them more suitable for deployment on resource-const
+rained devices such as mobile phones and embedded systems.
+ However, it can also lead to a loss of accuracy, particularly when using
+ low-precision formats.
+ Therefore, adjustments need to be made to the network architecture and
+ training process to ensure that the quantized network still achieves good
+ performance.
+ One example of a system that uses model quantization for efficient inference
+ is Google's Coral platform.
+ Coral is a hardware and software platform for developing and deploying
+ machine learning models on edge devices such as the Raspberry Pi and Google's
+ Tensor Processing Units (TPUs).
+ Coral includes a set of tools for quantizing and compressing neural network
+ models to run on the Coral Edge TPU, a custom ASIC designed for low-power,
+ high-performance inference.
+ The Edge TPU supports 8-bit integer quantization and provides up to 4 TOPS
+ (trillion operations per second) of performance while consuming only a
+ few watts of power.
+ Coral's quantization tools include both post-training and quantization-aware
+ training methods, and are compatible with popular deep learning frameworks
+ such as TensorFlow and PyTorch.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "coral2020accelerator"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+One potential future work is to use the latest reinforcement learning algorithms
+ to discover a matrix inversion algorithm.
+ AlphaTensor is a well-known network that discovers many provably correct
+ matrix multiplication algorithms that improve over existing algorithms
+ in terms of the number of scalar multiplications, and is adaptable to different
+ use-cases, including discovering algorithms for structured matrix multiplicatio
+n and optimizing for actual runtime.
+ The results demonstrate that the space of matrix multiplication algorithms
+ is richer than previously thought, and AlphaTensor can efficiently search
+ this space to discover novel algorithms that outperform human-designed
+ ones on the same hardware.
+ Therefore, a possible future direction could be to create an algorithm
+ that outperforms existing ones and achieves a time complexity of almost
+ 
+\begin_inset Formula $O(N^{2})$
+\end_inset
+
+ for matrix inversion.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "alphatensor"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
