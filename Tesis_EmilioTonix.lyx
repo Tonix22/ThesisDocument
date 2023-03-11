@@ -1604,6 +1604,173 @@ The BER is a critical parameter for evaluating the performance of a digital
 ion system meets the required performance specifications.
 \end_layout
 
+\begin_layout Subsubsection
+BLER 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BLER"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Block Error Rate (BLER) is a measure of the reliability of a communication
+ system or a data transmission system by blocks.
+ BLER is defined as the ratio of the number of blocks of data received with
+ errors to the total number of blocks of data transmitted.
+ It is commonly used in wireless communication systems, where the transmission
+ of data can be affected by various factors such as fading, interference,
+ and noise.
+ In such systems, BLER is often used to evaluate the performance of the
+ system and to determine the optimal operating parameters such as power,
+ coding, and modulation schemes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{BLER=\frac{BlockErrCount}{TotalBlocks}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To check for errors in a block of data, a cyclic redundancy check (CRC)
+ is often used 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CRC"
+literal "false"
+
+\end_inset
+
+.
+ Given the estimated values and the ground truth, instead of comparing bit
+ by bit, a set of symbols is taken, and a CRC is calculated for a given
+ chunk of the data.
+ If the CRC of the equalized chunk is equal to the real value, there are
+ no errors.
+ However, if the CRC differs, the chunk is marked as incorrect, and it is
+ added to the BLER count.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[ht] 
+\backslash
+caption{Block Error Rate Calculation with CRC} 
+\backslash
+label{alg:block_error_rate_crc} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+Require 
+\backslash
+Statex Input data is 48 blocks of 48 symbols 
+\backslash
+Statex $txbits$: array of transmitted blocks 
+\backslash
+Statex $rxbits$: array of received blocks 
+\backslash
+Statex $crc
+\backslash
+_func$: CRC function for generating CRC codes 
+\backslash
+Ensure 
+\backslash
+Statex $BLER$: Block Error Rate of the communication system 
+\backslash
+State $total
+\backslash
+_blocks 
+\backslash
+gets 48$ 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets 0$ 
+\backslash
+For{$n 
+\backslash
+gets 0$ to $47$} 
+\backslash
+State $tx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(txbits[n].tobytes())$ 
+\backslash
+State $rx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(rxbits[n].tobytes())$ 
+\backslash
+If{$tx
+\backslash
+_crc 
+\backslash
+neq rx
+\backslash
+_crc$} 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets bad
+\backslash
+_blocks + 1$ 
+\backslash
+EndIf 
+\backslash
+EndFor 
+\backslash
+State $BLER 
+\backslash
+gets bad
+\backslash
+_blocks / total
+\backslash
+_blocks$ 
+\backslash
+State 
+\backslash
+Return $BLER$ 
+\backslash
+end{algorithmic} 
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 \paragraph_spacing onehalf
 Channel
@@ -4957,7 +5124,15 @@ status open
 
 \begin_layout Plain Layout
 Roadmap showing the evolution of deep learning models in telecom and justifying
- our research
+ our research 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "The_Roadmap_to_6G"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5360,7 +5535,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-QPSK equalization with different strategies in the paper
+QPSK equalization with different strategies in the paper 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ZeroForcingEqNN"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6821,7 +7004,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Hard functions
+Hard functions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MobilenetV3"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6865,7 +7056,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Last section optimized
+Last section optimized 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MobilenetV3"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9587,7 +9786,7 @@ hline     CONJ & True
 \backslash
  
 \backslash
-hline  SNRdB & 40 
+hline  SNRdB & 35 
 \backslash
 
 \backslash
@@ -12708,38 +12907,112 @@ Results
 \paragraph_spacing onehalf
 
 \size large
-To generate a report on the results, we conduct an average of five experiments
- in a consistent manner and then average them.
- Therefore, some curves may appear smooth as a result of averaging multiple
- results.
- We also care about high SNR and evaluate how well our method performs in
- both noisy and non-noisy scenarios.
- SNR ranges from 45 to 5 with a step of 2 between each SNR.
+The equalization of signals in telecommunications is a challenging problem,
+ particularly when dealing with noisy scenarios.
+ To evaluate the effectiveness of various equalization methods, we conducted
+ an average of five experiments in a consistent manner and then averaged
+ the results.
+ This methodology helps to smooth out the curves and provide a reliable
+ representation of the performance of each method.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In our research, we focused on both noisy and non-noisy scenarios and evaluated
+ the performance of our method across a wide range of signal-to-noise ratios
+ (SNRs) ranging from 45 to 5 with a step of 2 between each SNR.
+ This comprehensive evaluation helped us to identify the strengths and weaknesse
+s of each method and determine which methods are most effective in different
+ scenarios.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Our performance metrics are the
+\color blue
  
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:BER"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ (Bit Error Rate) and 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:BLER"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ (Block Error Rate) , which have been explained in the theoretical framework.
+ BER measures the ratio of incorrectly received bits to the total number
+ of transmitted bits, while BLER measures the ratio of incorrectly received
+ blocks to the total number of transmitted blocks.
+ A lower value for both metrics indicates better performance of the system.
+\end_layout
+
+\begin_layout Subsubsection
+Contributions
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-PhaseNet is the only network that uses QPSK, while all the other networks
- were tested in the 16QAM scenario.
- The reason for using 16QAM is that it is the most challenging and practical
- for real telecom scenarios, as it requires support for both angle and magnitude.
- Therefore, it's crucial to consider both of these features for effective
- equalization.
+One of the key contributions of our research is the development of new networks
+ specifically designed for this task.
+ PhaseNet, PolarNet, and ComplexNet are completely new contributions to
+ the state of the art, as they were developed from scratch specifically
+ for this research.
+ These networks incorporate some preprocessing techniques taken from the
+ state of the art, but the frame sizes used in other studies are relatively
+ small compared to the 48 required in this work.
+ Furthermore, we not only dealt with QPSK but also with 16QAM, which required
+ consideration of both phase and amplitude.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-PhaseNet, PolarNet, and ComplexNet are completely new contributions to the
- state of the art, as they were developed from scratch specifically for
- this research.
- On the other hand, MobileNet and GridNet are based on existing models with
- some modifications.
- In the case of GridNet, the preprocessing stage is entirely new and unexplored
+In contrast, MobileNet and GridNet are based on existing models with some
+ modifications.
+ However, in the case of GridNet, the Polar Grid preprocessing stage is
+ entirely new and unexplored, which adds a new dimension to the state-of-the-art
+ in signal equalization and deep learning.
+ The Polar Grid can be thought of as a natural evolution required from the
+ existing Square Grid.
+ However, the use of transformers in deep learning is a cutting-edge technique
+ that is still in the experimental stage for image recognition and natural
+ language processing.
+ Therefore, researchers have not had to deal with the requirement of complex
+ numbers, which can be treated in a polar system and consequently in the
+ Polar Grid.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+After conducting some research, we found that there is no existing paper
+ or document discussing the use of transformers in the signal processing
+ scenario.
 \end_layout
 
 \begin_layout Subsection
@@ -12750,10 +13023,36 @@ PhaseNet
 \paragraph_spacing onehalf
 
 \size large
-The angle error adjustment implemented for PhaseNet in the methodology proved
- to be very useful for signal equalization.
+The angle error adjustment implemented in the PhaseNet methodology has been
+ found to be very useful for signal equalization.
  The network performs well across a range of signal-to-noise ratios, from
- 5dB to 40dB
+ 5dB to 35dB.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, the graph shows a fall in performance at an SNR of 35dB compared
+ to 45dB.
+ This is because the model was trained using data with an SNR of 35dB, as
+ indicated in the hyperparameters table of PhaseNet.
+ When the model encounters new data with less noise, it does not equalize
+ the signal as well as it was trained to do.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Therefore, it is important to carefully balance the SNR of the training
+ data to ensure that the model can perform well across a wide range of noise
+ conditions.
+ This will help to improve the generalization ability of the model and ensure
+ that it can handle various noise conditions.
+ By doing so, the model can provide more reliable and accurate signal equalizati
+on in practical applications.
 \end_layout
 
 \begin_layout Standard
@@ -12762,10 +13061,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 
@@ -12784,7 +13079,67 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-PhaseNet vs LMMSE QPSK
+QPSK BER : PhaseNet vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+On the other hand, the block error rate performs very well and reduces the
+ highest noise scenario to an order of magnitude.
+ This helps to show that erroneous bits are specific outlier groups in certain
+ blocks, and in general, the equalizer guarantees good frame recovery.
+ Next, we can observe the same effect explained in the last paragraph about
+ the 35dB fall.
+ However, there is another fall in the BLER at 20dB SNR values.
+ One possible reason for this is that the noise is canceling some factor
+ of the channel, causing these points to be closer together and causing
+ the network to find some points as the best ones.
+ But this is not possible in noisier scenarios because the noise has much
+ power.
+ For 20dB, the signal is 100 times stronger than the noise, and an increase
+ of 10dB represents a tenfold increase in noise power, which essentially
+ means that information is lost and not feasible to recover.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_PhaseNet-10_3_2023-23_39.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK BLER : PhaseNet vs.
+ LMMSE
 \end_layout
 
 \end_inset
@@ -12811,11 +13166,44 @@ PolarNet
 \size large
 This network combines a 16-PSK PhaseNet equalization with an additional
  MagNet equalization.
- From 30dB and downward, it appears to perform better than the golden model.
- It's important to note that Polar is simply a combination of separately
- trained models that are brought together to equalize Polar representation.
- Therefore, it's not surprising that its behavior in low SNR is so optimal.
- Furthermore, it is the lightest-weight network in this research for 16QAM.
+ In this model, we assume that phase and magnitude are completely separate
+ from each other.
+ One of the main reasons is to maintain a more modular architecture, which
+ means that in a future implementation, it can be equalized a 16-PSK or
+ 16-QAM with almost the same processing stages.
+ Another key feature is that each network is specialized, reducing the error
+ to only its specific task.
+ Therefore, in theory, this will make the error not influence each other.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Observing the graph below, it can be seen that the model flattens at a BER
+ of 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ from 30dB to 45dB.
+ The main reason errors get stuck in neural networks is that they are generalize
+rs, which means that they learn to make predictions based on patterns in
+ the training data.
+ Therefore, all points seen forward should be treated with the expected
+ behavior.
+ In the case of training both networks and given MSE error applied to both
+ in the training stages, the least error was from 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+, which is pretty good enough of a nueronal networks using MSE.
+ However, when we mixed both networks, the error increases to 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+, resulting in an almost linear relation with BER.
+ Finnally we can se the same valley pattern in 20-25dB, as a result of the
+ PhaseNet integration in the Polarnet.
  
 \end_layout
 
@@ -12825,10 +13213,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -12843,7 +13227,60 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-PolarNet vs LMMSE 16QAM 
+16-QAM BER: PolarNet vs.
+ LMMSE 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+
+\size large
+For the BLER graph, we can visualize a smoother performance with lower values
+ between 35dB and 15dB, and it almost saturates at the same point as the
+ LMMSE.
+ It can be seen that the same model error truncation applies to this metric,
+ but it is not so far away from the golden model in the lowest noise scenarios.
+ In general, this means that most of the BLER is given by outlier values,
+ and the system can equalize consistently between a certain quantity of
+ blocks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_PolarNet-10_3_2023-23_36.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: PolarNet vs.
+ LMMSE
 \end_layout
 
 \end_inset
@@ -12870,10 +13307,19 @@ ComplexNet
 \size large
 In complex net we try two different loss functions to traing the neuronal
  network.
- However, logarithmic polar loss was not so effective because present high
- loss numbers that could be not so meaningfull for the network.
- On the other hand, complex MSE loss was much more effective.
- 
+ However, logarithmic polar loss was not as effective because it produced
+ high loss numbers that were larger than 1, which may not be very meaningful
+ for the network.
+ As a result, the network had difficulties updating its weights and optimizing
+ its performance using this loss function.
+ On the other hand, the complex MSE loss was much more effective because
+ its output values were lower than those of the initial loss functions.
+ This made it easier for the networks to determine which parameters were
+ good or not.
+ By using an effective loss function, the network can optimize its performance
+ and achieve higher accuracy in its predictions.
+ This is particularly important in communication systems where accuracy
+ and reliability are critical for successful operation.
 \end_layout
 
 \begin_layout Standard
@@ -12896,7 +13342,74 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-ComplexNet vs LMMSE
+16-QAM BER: ComplexNet with Two Losses vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the BLER results, we avoided plotting the ComplexNet Polar Loss training
+ because it performed poorly with a BLER of 1 across all blocks.
+ On the other hand, Abs loss networks attempted to approximate the golden
+ standard, but were not quite good enough.
+ One of the main reasons for this is that the proposed methods in the state-of-t
+he-art literature and the ones implemented in our research are not mature
+ enough to help with the equalization task.
+ As seen in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+, there are some assumptions about the activation functions in the complex
+ plane.
+ Additionally, we used automatic differentiation provided by the pytorch
+ framework, which may have struggled with complex conjugation.
+ Implementing a solution from complex differentiation can be challenging
+ and may require a separate research project for someone with strong mathematica
+l skills.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_ComplexNet-10_3_2023-23_43.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: ComplexNet with Two Losses vs.
+ LMMSE
 \end_layout
 
 \end_inset
@@ -12954,7 +13467,50 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-MobileNet vs ZeroForcing
+16-QAM BER: MobileNet vs.
+ ZeroForcing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_MobileNet-10_3_2023-23_45.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: MobileNet vs.
+ ZeroForcing
 \end_layout
 
 \end_inset
