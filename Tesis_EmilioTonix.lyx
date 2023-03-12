@@ -4969,7 +4969,53 @@ It's worth noting that when we consider a kernel of 1 dimension and an input
 \end_layout
 
 \begin_layout Subsection
-Motivation
+FLOPS
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS stands for "floating point operations per second." It is a measure
+ of the computational performance of a computer or processor, and it indicates
+ how many floating point arithmetic operations can be performed in one second.
+ Floating point operations include addition, subtraction, multiplication,
+ and division, as well as more complex operations like trigonometric functions,
+ logarithms, and exponentials.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS is commonly used as a benchmark for evaluating the performance of
+ CPUs, GPUs, and other computing devices.
+ It is often used in the context of high-performance computing, scientific
+ simulations, and machine learning applications, where large amounts of
+ data must be processed quickly.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One approach to measuring FLOPS that we used in this work is to calculate
+ the execution time and multiply it by the number of operations in each
+ equalizer.
+ This allows us to visualize the time complexity and efficiency of the equalizer
+s.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{1}{ExecTime}*Operations}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -9359,11 +9405,19 @@ Angle error - Red represents high error and green represents smaller error.
 \paragraph_spacing onehalf
 
 \size large
-To address this issue, we require a more efficient way of calculating the
- error to ensure that the estimate can be corrected accurately.
- One approach we used was to create a complex value with a fixed radius
- of 1 and an angle given by the neural network.
- We constructed the complex value using Euler's formula with radius 1.
+To address the issue of computing the error and achieving precise adjustment
+ of the estimation, we adopted a new technique.
+ This technique involves generating a complex number with a fixed radius
+ of 1 and a variable angle.
+ Since neural networks only output angles, we truncated the ground truth
+ complex values to a radius of one.
+ We used Euler's formula to construct this complex number in rectangular
+ form, based only on the angle.
+ Specifically, we used the output of the neural network, denoted as 
+\begin_inset Formula $\boldsymbol{O(\hat{\theta})}$
+\end_inset
+
+, with a radius of one to build the complex number.
 \end_layout
 
 \begin_layout Standard
@@ -9385,8 +9439,10 @@ By using this approach, we can concentrate solely on the phasors (angles)
  more accurately, resulting in better estimation correction.
  However, to avoid getting a complex error and obtain only a numerical error
  value, we calculate the mean squared error (MSE) separately for the real
- and imaginary parts.
- Thus, our final loss function looks like this: 
+ and imaginary parts.Furthermore, by limiting the radius to 1, the loss is
+ bounded, preventing it from exploding and introducing a large error.
+ This can help with the convergence of the neural network.
+ The equation below shows the error measurement that was developed.
 \end_layout
 
 \begin_layout Standard
@@ -9395,12 +9451,149 @@ By using this approach, we can concentrate solely on the phasors (angles)
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE\left(O\left(\hat{\theta}\right)\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)}\label{eq:60}
+\boldsymbol{MSE\left(\hat{\theta}\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)}\label{eq:62}
 \end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+However this expresion can be rewriten and it can be expand each term as
+ follows:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{E\left[\cos^{2}(\hat{\theta})\right]-2x_{\text{real}}E\left[\cos(\hat{\theta})\right]+x_{\text{real}}^{2}+E\left[\sin^{2}(\hat{\theta})\right]-2x_{\text{imag}}E\left[\sin(\hat{\theta})\right]+x_{\text{imag}}^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+We can simplify this by noting that:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{E\left[\cos^{2}(\hat{\theta})\right]+E\left[\sin^{2}(\hat{\theta})\right]=E\left[\cos^{2}(\hat{\theta})+\sin^{2}(\hat{\theta})\right]=E\left[1\right]=1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+and
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{-2x_{\text{real}}E\left[\cos(\hat{\theta})\right]-2x_{\text{imag}}E\left[\sin(\hat{\theta})\right]=-2(x_{\text{real}}\cos(\hat{\theta})+x_{\text{imag}}\sin(\hat{\theta}))}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+Substituting these simplifications back into the previous equation gives:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{\frac{1}{2}\left(1-2(x_{\text{real}}\cos(\hat{\theta})+x_{\text{imag}}\sin(\hat{\theta}))+x_{\text{real}}^{2}+x_{\text{imag}}^{2}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+which can be further simplified to:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\frac{1}{2}\left((\cos(\hat{\theta})-x_{\text{real}})^{2}+(\sin(\hat{\theta})-x_{\text{imag}})^{2}\right)}\label{eq63}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The final result is the same as the squared Euclidean distance, multiplied
+ by a factor of 1/2.
+ In complex form, it is represented by the squared magnitude of the difference
+ between the complex numbers, which is equivalent to 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:46"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+with a fixed radius of 1
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE\left(\hat{\theta}\right)=|O(\hat{\theta})-x|^{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Where 
+\begin_inset Formula $|.|$
+\end_inset
+
+ is the magnitud of the complex number.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9563,7 +9756,7 @@ status open
 
 
 \backslash
-begin{table}[h]   
+begin{table}[H]   
 \backslash
 centering   
 \backslash
@@ -9716,7 +9909,7 @@ status open
 
 
 \backslash
-begin{table}[h]   
+begin{table}[H]   
 \backslash
 centering   
 \backslash
@@ -9842,7 +10035,16 @@ on as a preprocessing step.
 \paragraph_spacing onehalf
 
 \size large
-The loss function for MagNet remains quite simple:
+The loss function for MagNet remains quite simple, let 
+\begin_inset Formula $\boldsymbol{O(\hat{\theta})}$
+\end_inset
+
+ be the output of the network, which approximates the magnitude of the ground
+ truth, and the magnitude of a complex number is denoted by 
+\begin_inset Formula $\boldsymbol{|.|}$
+\end_inset
+
+, the folowing error is given: 
 \end_layout
 
 \begin_layout Standard
@@ -9851,7 +10053,7 @@ The loss function for MagNet remains quite simple:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{O(\hat{\theta})=E\left[\left(\hat{\theta}-|\theta|_{2}^{2}\right)^{2}\right]}
+\boldsymbol{MSE(\hat{\theta})=E\left[\left(O(\hat{\theta})-|\theta|\right)^{2}\right]}
 \end{equation}
 
 \end_inset
@@ -10894,6 +11096,30 @@ As we are working with polar coordinates, we should note that when multiplying
 
 \end_layout
 
+\begin_layout Standard
+
+\size large
+Finally the MSE loss between this estimated 
+\begin_inset Formula $O(\hat{\theta})$
+\end_inset
+
+ and the true value is given this form.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE(\hat{\theta})=E\left[\left(O(\hat{\theta})-\theta\right)^{2}\right]}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 \paragraph_spacing onehalf
 \noindent
@@ -10961,7 +11187,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-MobilNet Forward process
+MobileNet Forward process
 \end_layout
 
 \end_inset
@@ -10984,11 +11210,11 @@ Loss Function
 \size large
 For the loss function we face the same issue as PhaseNet regarding the calculati
 on of angle errors.
- To avoid this problem, we adopt the same solution, which involves fixing
+ To avoid this problem, we adopt a similar solution, which involves fixing
  the radius to 1 and comparing the angles 
 \begin_inset CommandInset ref
 LatexCommand eqref
-reference "eq:60"
+reference "eq63"
 plural "false"
 caps "false"
 noprefix "false"
@@ -10997,7 +11223,8 @@ noprefix "false"
 
 .
  So we end up with 3 evalautons for a single loss function.
- 
+ However, in this loss, we chose to emphasize the Phasor concept to make
+ it more intuitive.
 \end_layout
 
 \begin_layout Standard
@@ -13486,15 +13713,26 @@ status open
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Since the MobileNet has knowledge of the noise and works as a denoiser,
+ its block rate is lower than the golden model until it is permitted.
+ Consequently, we naturally obtain an error model that ranges from 35dB
+ to high SNR, while this one is performing better than the zero-forcing
+ method at lower SNR than 30dB.
+ It is important to note, however, that the MobileNet has a higher computational
+ complexity, and there is a trade-off between computational speed and accuracy.
+ Nevertheless, MobileNet is one of the fastest and most lightweight convolutiona
+l neural networks in the state of the art.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -13571,7 +13809,38 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GridNet Square Grid vs LMMSE
+16-QAM BER: GridNet Square Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: GridNet Square Grid vs LMMSE
 \end_layout
 
 \end_inset
@@ -13831,6 +14100,452 @@ Closer look to all methods, from 5db to 16dB
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+FLOPS
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this section, we estimated the complexity of the model and calculated
+ the FLOPS for each equalizer.
+ To accomplish this task, we used the execution time and performed a static
+ code analysis to estimate the number of parameters.
+ By considering both the number of parameters and the execution time, we
+ could approximate the FLOPS of the equalizers.
+ Additionally, it is important to consider the processor and operating system
+ on which the algorithms run.
+ In the table below, we provide a detailed description of the specifications
+ of the system used to conduct the experiments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[htbp]   
+\backslash
+centering   
+\backslash
+caption{Processor specifications}    
+\backslash
+begin{tabular}{|l|l|}     
+\backslash
+hline     Property & Value 
+\backslash
+
+\backslash
+  
+\backslash
+hline     Architecture & x86
+\backslash
+_64 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    CPU op-mode(s) & 32-bit, 64-bit 
+\backslash
+
+\backslash
+  
+\backslash
+hline   Address sizes & 43 bits physical, 48 bits virtual 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    Byte Order & Little Endian 
+\backslash
+
+\backslash
+ 
+\backslash
+hline   CPU(s) & 16 
+\backslash
+
+\backslash
+  
+\backslash
+hline   Model name & AMD Ryzen 7 3700X 8-Core Processor 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    CPU family & 23 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    Model & 113 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Thread(s) per core & 2 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    Core(s) per socket & 8 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     Frequency boost & enabled 
+\backslash
+
+\backslash
+ 
+\backslash
+hline    CPU max MHz & 4426.1709 
+\backslash
+
+\backslash
+   
+\backslash
+hline  CPU min MHz & 2200.0000 
+\backslash
+
+\backslash
+  
+\backslash
+hline   BogoMIPS & 7186.16 
+\backslash
+
+\backslash
+  
+\backslash
+hline      
+\backslash
+end{tabular}   
+\backslash
+label{tab:processor_specs} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+LMMSE
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The matrix inversion operation requires 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+ operations, where n is the matrix size.
+ Therefore, the total number of operations involved in this operation is
+ 48 x 48 x 2 for the conjugate and Hermitian transpose operations, 48 x
+ 48 x 48 x 2 for the matrix multiplication operations, 48 x 48 x 3 for the
+ identity matrix, scalar multiplication, and matrix addition operations,
+ and 
+\begin_inset Formula $O(n^{3})$
+\end_inset
+
+ for the matrix inversion operation.
+ Combining these operations yields a total of 223,872 operations for this
+ particular operation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{Number of Operations by Type} 
+\backslash
+label{tab:operations} 
+\backslash
+begin{tabular}{|l|l|} 
+\backslash
+hline Operation & Number of Operations 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Conjugate & $48 
+\backslash
+times 48 
+\backslash
+times 2$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Hermitian transpose & $48 
+\backslash
+times 48 
+\backslash
+times 2$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Matrix multiplication & $48 
+\backslash
+times 48 
+\backslash
+times 48 
+\backslash
+times 2$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Identity matrix & $48 
+\backslash
+times 48 
+\backslash
+times 1$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Scalar multiplication & $48 
+\backslash
+times 48 
+\backslash
+times 1$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Matrix addition & $48 
+\backslash
+times 48 
+\backslash
+times 3$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Matrix inversion (approximate) & 110,592 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Matrix multiplication & $48 
+\backslash
+times 48 
+\backslash
+times 2$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+textbf{Total number of operations} & 
+\backslash
+textbf{223,872} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+The time measurements in the code give an average time of 5.96e-02, which
+ is equal to t = 59.6 ms.
+ Therefore, the estimated FLOPS is calculated as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{1}{59.6ms}\times223,872=3.74*10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Zero Forcing
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Extract diagonal: self.Chann_diag(chann).
+ This involves 48 extractions of diagonal elements.
+ Element-wise division: Y/self.Chann_diag(chann).
+ This involves 48 divisions of complex numbers.
+ So the total number of operations in this line of code is approximately
+ 48*2 = 96.
+ The time measurements in the code give an average time of 2.62e-03, which
+ is equal to t = 2.62 ms.
+ Therefore, the estimated FLOPS is calculated as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{1}{2.62ms}\times96=36*10^{3}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+PhaseNet,PolarNet, ComplexNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Given the in the methodology seciton the total number of operations in the
+ forward pass is approximately 1,761,808.
+ To calculate the FLOPS, we need to divide the total number of operations
+ by the execution time which give us 1.19e-01.
+ Therefore, the approximate FLOPS for this model is:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS=\frac{1,761,808}{.119}=14.8*10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+for Polar Net is 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS=\frac{1,761,808+5,856}{.392}=4.5*10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+and for ComplexNet is
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS=\frac{484,248}{.173}=2.7*10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+MobileNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS=\frac{3,236,000}{.834}=3.88*10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+GridNet
 \end_layout
 
 \begin_layout Section
