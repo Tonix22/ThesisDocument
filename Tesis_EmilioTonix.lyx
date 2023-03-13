@@ -13243,904 +13243,6 @@ After conducting some research, we found that there is no existing paper
 \end_layout
 
 \begin_layout Subsection
-PhaseNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The angle error adjustment implemented in the PhaseNet methodology has been
- found to be very useful for signal equalization.
- The network performs well across a range of signal-to-noise ratios, from
- 5dB to 35dB.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-However, the graph shows a fall in performance at an SNR of 35dB compared
- to 45dB.
- This is because the model was trained using data with an SNR of 35dB, as
- indicated in the hyperparameters table of PhaseNet.
- When the model encounters new data with less noise, it does not equalize
- the signal as well as it was trained to do.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Therefore, it is important to carefully balance the SNR of the training
- data to ensure that the model can perform well across a wide range of noise
- conditions.
- This will help to improve the generalization ability of the model and ensure
- that it can handle various noise conditions.
- By doing so, the model can provide more reliable and accurate signal equalizati
-on in practical applications.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/PhaseNET/QPSK_vs_LMMSE_PhasNet.png
-	lyxscale 70
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-QPSK BER : PhaseNet vs.
- LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-On the other hand, the block error rate performs very well and reduces the
- highest noise scenario to an order of magnitude.
- This helps to show that erroneous bits are specific outlier groups in certain
- blocks, and in general, the equalizer guarantees good frame recovery.
- Next, we can observe the same effect explained in the last paragraph about
- the 35dB fall.
- However, there is another fall in the BLER at 20dB SNR values.
- One possible reason for this is that the noise is canceling some factor
- of the channel, causing these points to be closer together and causing
- the network to find some points as the best ones.
- But this is not possible in noisier scenarios because the noise has much
- power.
- For 20dB, the signal is 100 times stronger than the noise, and an increase
- of 10dB represents a tenfold increase in noise power, which essentially
- means that information is lost and not feasible to recover.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_PhaseNet-10_3_2023-23_39.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-QPSK BLER : PhaseNet vs.
- LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-PolarNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This network combines a 16-PSK PhaseNet equalization with an additional
- MagNet equalization.
- In this model, we assume that phase and magnitude are completely separate
- from each other.
- One of the main reasons is to maintain a more modular architecture, which
- means that in a future implementation, it can be equalized a 16-PSK or
- 16-QAM with almost the same processing stages.
- Another key feature is that each network is specialized, reducing the error
- to only its specific task.
- Therefore, in theory, this will make the error not influence each other.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Observing the graph below, it can be seen that the model flattens at a BER
- of 
-\begin_inset Formula $10^{-3}$
-\end_inset
-
- from 30dB to 45dB.
- The main reason errors get stuck in neural networks is that they are generalize
-rs, which means that they learn to make predictions based on patterns in
- the training data.
- Therefore, all points seen forward should be treated with the expected
- behavior.
- In the case of training both networks and given MSE error applied to both
- in the training stages, the least error was from 
-\begin_inset Formula $10^{-4}$
-\end_inset
-
-, which is pretty good enough of a nueronal networks using MSE.
- However, when we mixed both networks, the error increases to 
-\begin_inset Formula $10^{-3}$
-\end_inset
-
-, resulting in an almost linear relation with BER.
- Finnally we can se the same valley pattern in 20-25dB, as a result of the
- PhaseNet integration in the Polarnet.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/PolarNet/Polar_16QAM.png
-	lyxscale 70
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BER: PolarNet vs.
- LMMSE 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing double
-
-\size large
-For the BLER graph, we can visualize a smoother performance with lower values
- between 35dB and 15dB, and it almost saturates at the same point as the
- LMMSE.
- It can be seen that the same model error truncation applies to this metric,
- but it is not so far away from the golden model in the lowest noise scenarios.
- In general, this means that most of the BLER is given by outlier values,
- and the system can equalize consistently between a certain quantity of
- blocks.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_PolarNet-10_3_2023-23_36.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BLER: PolarNet vs.
- LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-ComplexNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In complex net we try two different loss functions to traing the neuronal
- network.
- However, logarithmic polar loss was not as effective because it produced
- high loss numbers that were larger than 1, which may not be very meaningful
- for the network.
- As a result, the network had difficulties updating its weights and optimizing
- its performance using this loss function.
- On the other hand, the complex MSE loss was much more effective because
- its output values were lower than those of the initial loss functions.
- This made it easier for the networks to determine which parameters were
- good or not.
- By using an effective loss function, the network can optimize its performance
- and achieve higher accuracy in its predictions.
- This is particularly important in communication systems where accuracy
- and reliability are critical for successful operation.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/ComplexNet/ComplexNet.png
-	lyxscale 70
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BER: ComplexNet with Two Losses vs.
- LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In the BLER results, we avoided plotting the ComplexNet Polar Loss training
- because it performed poorly with a BLER of 1 across all blocks.
- On the other hand, Abs loss networks attempted to approximate the golden
- standard, but were not quite good enough.
- One of the main reasons for this is that the proposed methods in the state-of-t
-he-art literature and the ones implemented in our research are not mature
- enough to help with the equalization task.
- As seen in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "A_Survey_of_Complex_valued_nueronal_Netoworks"
-literal "false"
-
-\end_inset
-
-, there are some assumptions about the activation functions in the complex
- plane.
- Additionally, we used automatic differentiation provided by the pytorch
- framework, which may have struggled with complex conjugation.
- Implementing a solution from complex differentiation can be challenging
- and may require a separate research project for someone with strong mathematica
-l skills.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_ComplexNet-10_3_2023-23_43.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BLER: ComplexNet with Two Losses vs.
- LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-MobileNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Although MobileNet was not very effective, it is still considered one of
- the fastest convolutional neural networks in the state of the art in terms
- of processing speed.
- From SNR23 and below, it could be a viable option instead of zero forcing.
- In fact, it performs better than zero forcing in the range of 15dB to 25dB,
- which is encouraging because it supports the hypothesis that it is essentially
- a zero forcing with noise consideration.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/MobileNEt/MobileNet_16QAM.png
-	lyxscale 70
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BER: MobileNet vs.
- ZeroForcing
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Since the MobileNet has knowledge of the noise and works as a denoiser,
- its block rate is lower than the golden model until it is permitted.
- Consequently, we naturally obtain an error model that ranges from 35dB
- to high SNR, while this one is performing better than the zero-forcing
- method at lower SNR than 30dB.
- It is important to note, however, that the MobileNet has a higher computational
- complexity, and there is a trade-off between computational speed and accuracy.
- Nevertheless, MobileNet is one of the fastest and most lightweight convolutiona
-l neural networks in the state of the art.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_MobileNet-10_3_2023-23_45.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BLER: MobileNet vs.
- ZeroForcing
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-GridNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-We conducted experiments with different grid steps for GridNet Square and
- found that the best step size was 1/7.
- In conclusion, having more batches in the complex planes results in higher
- resolution but lower tolerance to noise, as the networks can quickly overfit.
- On the other hand, using larger steps means that points affected by noise
- fall within the same region or closer to each other, which could be advantageou
-s in noisy scenarios.
- However, having squares that are too large could be harmful for final equalizat
-ion because the grids can be bigger than the distances between the ideal
- constellation points.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/GridNet/SquareGrid.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BER: GridNet Square Grid vs LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_GridNetSquare-11_3_2023-0_24.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BLER: GridNet Square Grid vs LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-GridNet with a polar grid resulted in some of the best performance between
- 25dB and 45dB.
- Our hypothesis that the attention mechanisms used are highly effective
- in reducing inter-symbol interference (ISI) is true, such that the channel
- and noise are almost completely recovered.
- However, below 25dB, the model cannot handle the noise as effectively and
- begins to present errors.
- We trained the model with variable noise levels ranging from 25dB to 45dB,
- and the hypothesis that the best equalization occurs within this range
- is supported by the image below.
- It may seem that reducing the noise training range could result in better
- performance within the training range, but this idea is incorrect.
- Training the network with more noise scenarios would cause the network
- to learn more about the noise than the relevant data, resulting in a noisy
- overfit.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/GridNet/Results_-12_3_2023-22_49.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BER: GridNet Polar Grid vs LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_GridNetPolar-12_3_2023-22_34.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-16-QAM BLER: GridNet Polar Grid vs LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Comparing both methods, Square and Polar, we notice that Polar performs
- better from 15dB and beyond, but for the noisier scenarios, Square Net
- is the better option.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-GridNet Both Grid comparison and LMMSE
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-All methods comparison
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In a general perspective, PolarNet appears to perform well in the presence
- of noise and could be a good choice due to its low memory footprint.
- It can be considered the winner in the range between 13dB and 23dB.
- However, in the most critical scenarios, it may not be the best option.
- If we want to trade off between fast processing and accuracy, PolarNet
- is the ideal choice.
- For less noisy scenarios above 25dB, GridNet Polar is the winner.
- And for the most noisy scenarios, GridNet Square is the best option.
- If the SNR noise is well known in a production application, a good idea
- would be to mix these three networks for different scenarios to produce
- the best equalizer.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/All/GeneralView1.png
-	lyxscale 70
-	scale 70
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-General View of all methods
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/All/GeneralViewUntil25Db.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Closer look to all methods, from 5db to 27dB
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Taking a closer look at the most noisy scenario, we can see that GridNet
- Square achieves the best equalization performance, followed by GridNet
- Polar, and last but not least, PolarNet.
-\size default
-
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/All/GeneralViewUntil14dB.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Closer look to all methods, from 5db to 16dB
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 FLOPS
 \end_layout
 
@@ -14627,6 +13729,15 @@ Ranking by FLOPS
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This FLOPS value works like an estimate and should not be taken as definitive.
+ One of the main advantages of deep learning techniques is that they are
+ easy to parallelize, and FLOPS can be significantly reduceded.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -14784,8 +13895,925 @@ end{table}
 
 \end_layout
 
+\begin_layout Subsection
+BER and BLER
+\end_layout
+
+\begin_layout Subsubsection
+PhaseNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The angle error adjustment implemented in the PhaseNet methodology has been
+ found to be very useful for signal equalization.
+ The network performs well across a range of signal-to-noise ratios, from
+ 5dB to 35dB.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, the graph shows a fall in performance at an SNR of 35dB compared
+ to 45dB.
+ This is because the model was trained using data with an SNR of 35dB, as
+ indicated in the hyperparameters table of PhaseNet.
+ When the model encounters new data with less noise, it does not equalize
+ the signal as well as it was trained to do.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Therefore, it is important to carefully balance the SNR of the training
+ data to ensure that the model can perform well across a wide range of noise
+ conditions.
+ This will help to improve the generalization ability of the model and ensure
+ that it can handle various noise conditions.
+ By doing so, the model can provide more reliable and accurate signal equalizati
+on in practical applications.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PhaseNET/QPSK_vs_LMMSE_PhasNet.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK BER : PhaseNet vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+On the other hand, the block error rate performs very well and reduces the
+ highest noise scenario to an order of magnitude.
+ This helps to show that erroneous bits are specific outlier groups in certain
+ blocks, and in general, the equalizer guarantees good frame recovery.
+ Next, we can observe the same effect explained in the last paragraph about
+ the 35dB fall.
+ However, there is another fall in the BLER at 20dB SNR values.
+ One possible reason for this is that the noise is canceling some factor
+ of the channel, causing these points to be closer together and causing
+ the network to find some points as the best ones.
+ But this is not possible in noisier scenarios because the noise has much
+ power.
+ For 20dB, the signal is 100 times stronger than the noise, and an increase
+ of 10dB represents a tenfold increase in noise power, which essentially
+ means that information is lost and not feasible to recover.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_PhaseNet-10_3_2023-23_39.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK BLER : PhaseNet vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+PolarNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This network combines a 16-PSK PhaseNet equalization with an additional
+ MagNet equalization.
+ In this model, we assume that phase and magnitude are completely separate
+ from each other.
+ One of the main reasons is to maintain a more modular architecture, which
+ means that in a future implementation, it can be equalized a 16-PSK or
+ 16-QAM with almost the same processing stages.
+ Another key feature is that each network is specialized, reducing the error
+ to only its specific task.
+ Therefore, in theory, this will make the error not influence each other.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Observing the graph below, it can be seen that the model flattens at a BER
+ of 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+ from 30dB to 45dB.
+ The main reason errors get stuck in neural networks is that they are generalize
+rs, which means that they learn to make predictions based on patterns in
+ the training data.
+ Therefore, all points seen forward should be treated with the expected
+ behavior.
+ In the case of training both networks and given MSE error applied to both
+ in the training stages, the least error was from 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+, which is pretty good enough of a nueronal networks using MSE.
+ However, when we mixed both networks, the error increases to 
+\begin_inset Formula $10^{-3}$
+\end_inset
+
+, resulting in an almost linear relation with BER.
+ Finnally we can se the same valley pattern in 20-25dB, as a result of the
+ PhaseNet integration in the Polarnet.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PolarNet/Polar_16QAM.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: PolarNet vs.
+ LMMSE 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing double
+
+\size large
+For the BLER graph, we can visualize a smoother performance with lower values
+ between 35dB and 15dB, and it almost saturates at the same point as the
+ LMMSE.
+ It can be seen that the same model error truncation applies to this metric,
+ but it is not so far away from the golden model in the lowest noise scenarios.
+ In general, this means that most of the BLER is given by outlier values,
+ and the system can equalize consistently between a certain quantity of
+ blocks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_PolarNet-10_3_2023-23_36.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: PolarNet vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+ComplexNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In complex net we try two different loss functions to traing the neuronal
+ network.
+ However, logarithmic polar loss was not as effective because it produced
+ high loss numbers that were larger than 1, which may not be very meaningful
+ for the network.
+ As a result, the network had difficulties updating its weights and optimizing
+ its performance using this loss function.
+ On the other hand, the complex MSE loss was much more effective because
+ its output values were lower than those of the initial loss functions.
+ This made it easier for the networks to determine which parameters were
+ good or not.
+ By using an effective loss function, the network can optimize its performance
+ and achieve higher accuracy in its predictions.
+ This is particularly important in communication systems where accuracy
+ and reliability are critical for successful operation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/ComplexNet/ComplexNet.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: ComplexNet with Two Losses vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the BLER results, we avoided plotting the ComplexNet Polar Loss training
+ because it performed poorly with a BLER of 1 across all blocks.
+ On the other hand, Abs loss networks attempted to approximate the golden
+ standard, but were not quite good enough.
+ One of the main reasons for this is that the proposed methods in the state-of-t
+he-art literature and the ones implemented in our research are not mature
+ enough to help with the equalization task.
+ As seen in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "A_Survey_of_Complex_valued_nueronal_Netoworks"
+literal "false"
+
+\end_inset
+
+, there are some assumptions about the activation functions in the complex
+ plane.
+ Additionally, we used automatic differentiation provided by the pytorch
+ framework, which may have struggled with complex conjugation.
+ Implementing a solution from complex differentiation can be challenging
+ and may require a separate research project for someone with strong mathematica
+l skills.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_ComplexNet-10_3_2023-23_43.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: ComplexNet with Two Losses vs.
+ LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+MobileNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Although MobileNet was not very effective, it is still considered one of
+ the fastest convolutional neural networks in the state of the art in terms
+ of processing speed.
+ From SNR23 and below, it could be a viable option instead of zero forcing.
+ In fact, it performs better than zero forcing in the range of 15dB to 25dB,
+ which is encouraging because it supports the hypothesis that it is essentially
+ a zero forcing with noise consideration.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/MobileNEt/MobileNet_16QAM.png
+	lyxscale 70
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: MobileNet vs.
+ ZeroForcing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Since the MobileNet has knowledge of the noise and works as a denoiser,
+ its block rate is lower than the golden model until it is permitted.
+ Consequently, we naturally obtain an error model that ranges from 35dB
+ to high SNR, while this one is performing better than the zero-forcing
+ method at lower SNR than 30dB.
+ It is important to note, however, that the MobileNet has a higher computational
+ complexity, and there is a trade-off between computational speed and accuracy.
+ Nevertheless, MobileNet is one of the fastest and most lightweight convolutiona
+l neural networks in the state of the art.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_MobileNet-10_3_2023-23_45.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: MobileNet vs.
+ ZeroForcing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+GridNet
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We conducted experiments with different grid steps for GridNet Square and
+ found that the best step size was 1/7.
+ In conclusion, having more batches in the complex planes results in higher
+ resolution but lower tolerance to noise, as the networks can quickly overfit.
+ On the other hand, using larger steps means that points affected by noise
+ fall within the same region or closer to each other, which could be advantageou
+s in noisy scenarios.
+ However, having squares that are too large could be harmful for final equalizat
+ion because the grids can be bigger than the distances between the ideal
+ constellation points.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/GridNet/SquareGrid.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: GridNet Square Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_GridNetSquare-11_3_2023-0_24.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: GridNet Square Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+GridNet with a polar grid resulted in some of the best performance between
+ 25dB and 45dB.
+ Our hypothesis that the attention mechanisms used are highly effective
+ in reducing inter-symbol interference (ISI) can be sustatined by this results,
+ because at low SNR the only thing that affect signal is the ISR.It can be
+ seen in the image below that at 45dB the BER is almost 0, and this may
+ not be taken as exactly 0, what is happeing is that there are not enought
+ samples enought to an error ocurrs.
+ However, below 25dB, the model cannot handle the noise as effectively and
+ begins to present errors, and almost behave as LMMSE.
+ We trained the model with variable noise levels ranging from 25dB to 45dB,
+ and the hypothesis that the best equalization occurs within this range
+ is supported by the image below.
+ It may seem that reducing the noise training range could result in better
+ performance within the training range, but this idea is incorrect.
+ Training the network with more noise scenarios would cause the network
+ to learn more about the noise than the relevant data, resulting in a noisy
+ overfit.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/GridNet/Results_-12_3_2023-22_49.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: GridNet Polar Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+BLER (Block Error Rate) is not far behind in terms of the results, but LMMSE
+ is better from a lower SNR than 25dB and is more computationally efficient.
+ However, for the first time in our experiments, we achieved a 10e-3 BER
+ value, which is quite good.
+ It is known that at 45dB, the BER was 0, and we expect the BLER to follow
+ the same trend.
+ For the special case of SNR=37, the BLER is almost 0, but not exactly 0.
+ We iterated over 20,000 blocks and found that if only 1 block is incorrect
+ out of 20,000, the BLER is 5e-5.
+ It could be blamed on the plot library for having difficulty connecting
+ those points.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_GridNetPolar-12_3_2023-22_34.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: GridNet Polar Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Comparing both methods, Square and Polar, we notice that Polar performs
+ better from 15dB and beyond, but for the noisier scenarios, Square Net
+ is the better option.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GridNet Both Grid comparison and LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Outlook of results
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In a general perspective, PolarNet appears to perform well in the overall
+ presence of noise, and in the FLOPS ranking, it is in 5th place.
+ It can be considered the winner in the range between 13dB and 23dB.
+ However, in the most critical scenarios, it may not be the best option.
+ With these observations, it can be said that training independently on
+ the phase and magnitude has resulted in good performance.
+ If we want to trade off between fast processing and accuracy, MobileNet
+ is the ideal choice because ComplexNet has fewer FLOPS than LMMSE, but
+ it is not quite accurate as MobileNet in terms of BER and BLER.
+ However, complex numbers in nueronal networks is just and experimental
+ feature, and maybe in future could be improved to upperfom.
+ Finally, for less noisy scenarios above 25dB, we have the GridNet encodings,
+ Square was goodPolar is the winner due to the attention mechanism working
+ well to clean the ISI, but it is the most expensive in terms of FLOPS."
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralView1.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+General View of all methods
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralViewUntil25Db.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Closer look to all methods, from 5db to 27dB
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Taking a closer look at the most noisy scenario, we can see that GridNet
+ Square achieves the best equalization performance, followed by GridNet
+ Polar, and last but not least, PolarNet.
+\size default
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/All/GeneralViewUntil14dB.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Closer look to all methods, from 5db to 16dB
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Conclusion and Outlook
+Conclusion
 \end_layout
 
 \begin_layout Standard
