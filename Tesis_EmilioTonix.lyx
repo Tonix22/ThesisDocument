@@ -13828,6 +13828,7 @@ status open
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -13837,6 +13838,15 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_GridNetSquare-11_3_2023-0_24.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -13888,7 +13898,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Imagenes/Results/GridNet/PolarGrid.png
+	filename Imagenes/Results/GridNet/Results_-12_3_2023-22_49.png
 	lyxscale 80
 	scale 80
 
@@ -13898,11 +13908,51 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GridNet Polar Grid vs LMMSE
+16-QAM BER: GridNet Polar Grid vs LMMSE
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BLER/Results_GridNetPolar-12_3_2023-22_34.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: GridNet Polar Grid vs LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -13926,18 +13976,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Results/GridNet/Both.png
-	lyxscale 80
-	scale 80
-
-\end_inset
-
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -14415,7 +14453,7 @@ The time measurements in the code give an average time of 5.96e-02, which
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{1}{59.6ms}\times223,872=3.74*10^{6}}
+\boldsymbol{FLOPS\simeq\frac{1}{59.6ms}\times223,872=3.74\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -14447,7 +14485,7 @@ Extract diagonal: self.Chann_diag(chann).
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{1}{2.62ms}\times96=36*10^{3}}
+\boldsymbol{FLOPS\simeq\frac{1}{2.62ms}\times96=36\times10^{3}}
 \end{equation}
 
 \end_inset
@@ -14476,7 +14514,7 @@ Given the in the methodology seciton the total number of operations in the
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS=\frac{1,761,808}{.119}=14.8*10^{6}}
+\boldsymbol{FLOPS\simeq\frac{1,761,808}{.119}=14.8\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -14497,7 +14535,7 @@ for Polar Net is
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS=\frac{1,761,808+5,856}{.392}=4.5*10^{6}}
+\boldsymbol{FLOPS\simeq\frac{1,761,808+5,856}{.392}=4.5\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -14518,7 +14556,7 @@ and for ComplexNet is
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS=\frac{484,248}{.173}=2.7*10^{6}}
+\boldsymbol{FLOPS\simeq\frac{484,248}{.173}=2.7\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -14536,7 +14574,7 @@ MobileNet
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS=\frac{3,236,000}{.834}=3.88*10^{6}}
+\boldsymbol{FLOPS\simeq\frac{3,236,000}{.834}=3.88\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -14546,6 +14584,204 @@ MobileNet
 
 \begin_layout Subsubsection
 GridNet
+\end_layout
+
+\begin_layout Standard
+for GridNet Square is 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{44.5\times10^{6}}{1.93}=23.05\times10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+for GridNet Polar is 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{69.5\times10^{6}}{2.5}=27.8\times10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Ranking by FLOPS
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{FLOPS Ranking} 
+\backslash
+label{tab:operations} 
+\backslash
+begin{tabular}{|l|l|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline Name & FLOPS 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Zero Forcing & $36
+\backslash
+times10^{3}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\end_layout
+
+\begin_layout Plain Layout
+
+ComplexNet & $2.7
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+LMMSE & $3.74
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+MobileNet & $3.88
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+PolarNet & $4.5
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+PhaseNet & $14.8
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+GridNet Square & $23.05
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+GrideNet Polar & $27.8
+\backslash
+times10^{6}$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
