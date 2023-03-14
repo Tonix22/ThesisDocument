@@ -407,10 +407,16 @@ En la actualidad, la tecnología de redes de comunicación inalámbricas de
  Aunque existen algoritmos tradicionales que requieren ecualizadores iterativos
  complejos, que pueden ser lentos en términos de tiempo de ejecución pero
  precisos, también existen ecualizadores más sencillos, aunque menos precisos.
- En este trabajo se analizarán algunas soluciones basadas en redes neuronales,
- buscando un equilibrio entre la complejidad del tiempo y la precisión para
- hacer frente a este desafío.
- 
+ El propósito de este trabajo es examinar diversas soluciones basadas en
+ redes neuronales para la tarea de equalización en el procesamiento de señales.
+ El enfoque principal es encontrar un equilibrio óptimo entre la complejidad
+ temporal de la solución y su rendimiento en la tarea de equalización.
+ Para lograr este objetivo, se seguirá una metodología que involucra la
+ evaluación de una serie de redes neuronales organizadas desde las más sencillas
+ hasta las más complejas.
+ Cada red neuronal será evaluada en términos de su rendimiento y complejidad
+ para compararlas adecuadamente y determinar los compromisos necesarios
+ para su implementación.
 \begin_inset ERT
 status open
 
@@ -424,11 +430,6 @@ newline
 \end_inset
 
  
-\end_layout
-
-\begin_layout Standard
-\align block
-
 \end_layout
 
 \begin_layout Standard
@@ -437,19 +438,22 @@ newline
 
 \size large
 Es posible afirmar que los algoritmos convencionales han demostrado ser
- eficaces en el desarrollo actual.
+ eficaces en la tarea de equalización en esquemas de modulación como LTE
+ y Wi-Fi.
  Sin embargo, los recientes avances en redes neuronales han simplificado
  problemas que antes eran intratables, como el descifrado de secuencias
  de ADN o la creación de imágenes a partir de texto.
  En resumen, abordan con éxito problemas no lineales.
  El objetivo de este trabajo es imitar técnicas de ecualización conocidas
- con naturaleza lineal, como los ecualizadores MSE, LMMSE y no linealies
- como MAP.
- Durante las pruebas realizaremos un seguimiento de diferentes tamaños de
- constelaciones y tasas de error de bit en una variedad de situaciones de
- interferencia y ruido.
- Esperamos que la tasa de error de bits disminuya hasta, o funcione ligeramente
- mejor que, el modelo de oro, que son los ecualizadores mencionados previamente.
+ con naturaleza lineal, como los ecualizadores Zero Forcing, MSE, LMMSE
+ y no lineales como _______.
+ Durante las pruebas que se realizaron, se hizo un seguimiento de diversos
+ tamaños de constelaciones y tasas de error de bits en una variedad de situacion
+es con interferencia y ruido.
+ En los resultados de la investigación experimental, se demostró que la
+ tasa de error de bits(BER) y la tasa de bloques (BLER) disminuyó y se acercó
+ o incluso superó los modelos de oro, que son los ecualizadores mencionados
+ anteriormente.
 \begin_inset ERT
 status open
 
@@ -475,19 +479,18 @@ newline
 \align block
 
 \size large
-Los últimos enfoques en investigación literaria demuestran la existencia
- de diversas estrategias que se aproximan a lograr una buena ecualización,
- aunque no registran todas las etapas de la ecualización basándose en métodos
- tradicionales.
- Por otro lado, se presentará una estrategia que incluso aborde condiciones
- más complicadas del canal, tales como canales de línea de vista o la falta
- de ella.
- Finalmente, pero no menos importante, se busca promover una mayor investigación
- en este campo prácticamente inexplorado por algunos equipos de comunicación.
-\end_layout
-
-\begin_layout Standard
-
+Los últimos enfoques en investigación literaria han demostrado diversas
+ estrategias que se aproximan a lograr una buena ecualización con redes
+ nueronales.
+ Sin embargo, estos enfoques se basan en métodos tradicionales y no cubren
+ todas las etapas de la ecualización, además de tener escenarios relativamente
+ simples en comparación con el canal que se estudiará en este trabajo.
+ Por lo tanto, se abordan incluso condiciones tales como canales de línea
+ de vista o la falta de ella.
+ Por último, pero no menos importante, la presentación de los métodos desarrolla
+dos en esta investigación busca establecer un punto de partida para futuras
+ investigaciones en un campo de la comunicación prácticamente inexplorado
+ por algunos equipos.
 \end_layout
 
 \begin_layout Standard
@@ -544,47 +547,37 @@ Due to their primary uses in control, road safety, autonomous driving, remote
  There are some traditional algorithms that may require complex iterative
  equalizers that can be slow in terms of execution time.
  However, there are also simpler equalizers that may not be as precise.
- In this work, we will investigate the use of neural network-based solutions
- and consider how we should balance time complexity and accuracy to meet
- this challenge.
+ The aim of this study is to investigate different neural network-based
+ solutions for signal processing equalization.
+ The primary objective is to achieve an optimal balance between the solution's
+ temporal complexity and its performance in equalization.
+ To attain this objective, we will follow a methodology that entails evaluating
+ a range of neural networks arranged from simple to complex.
+ Performance and complexity will be assessed for each neural network to
+ facilitate a fair comparison and determine the required trade-offs for
+ implementation.
  
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newline
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
+\noindent
 
 \size large
-We can categorically assert that conventional algorithms continue to work
- well in the context of contemporary development.
+Conventional algorithms have demonstrated their effectiveness in the equalizatio
+n task for modulation schemes like LTE and Wi-Fi.
  However, recent advances in neural networks have simplified problems that
  were previously intractable, such as deciphering DNA sequences or creating
  images from text.
  In short, they successfully tackle non-linear issues.
  The objective of this work is to mimic well-known equalization techniques
- with linear properties such as MSE and LMMSE, as well as non-linear techniques
- like MAP equalizers.
- We will evaluate how well the equalization performs under various noise
- conditions and with various bit-size encodings.
- We anticipate that the bit error rate will drop to, or perform slightly
- better than, the golden model, which are the aforementioned equalizers.
+ with linear properties such as Zero Forcing, MSE, and LMMSE, as well as
+ non-linear techniques like ____ equalizers.
+ Various constellation sizes and bit error rates were monitored during the
+ tests conducted in various scenarios with interference and noise.
+ The experimental results indicated that the bit error rate (BER) and block
+ error rate (BLER) decreased and approached, or even exceeded, the gold
+ standard models of equalizers mentioned earlier.
  
 \begin_inset ERT
 status open
@@ -604,19 +597,16 @@ newline
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
 \size large
-According to literature studies, there are a few cutting-edge methodologies
- that approach this goal but fall short of fully documenting all of the
- steps of equalization.
- This article presents a method for dealing with more complex circumstances,
- such as line of sight or a lack of it.
- Lastly, we aim to encourage further research into this largely untapped
- area by some communication teams.
+Recent studies in literature have proposed multiple strategies to achieve
+ effective equalization with neuronal networks.
+ However, these methods rely on traditional approaches and fail to cover
+ all aspects of equalization, and their scenarios are relatively simpler
+ than the channel under consideration in this work.
+ As a result, we investigate conditions such as line of sight channels or
+ their absence.
+ Finally, this study aims to provide a starting point for future investigations
+ in a field of communication that remains unexplored by some teams.
  
 \begin_inset ERT
 status open
@@ -637,26 +627,6 @@ newline
 \paragraph_spacing onehalf
 \noindent
 \align block
-
-\end_layout
-
-\begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\end_inset
-
 
 \end_layout
 
@@ -706,12 +676,14 @@ Document organization
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 The structure of this document is as follows: 
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \series bold
 \size large
@@ -722,50 +694,57 @@ Fundamental ideas and concepts behind the current project.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \series bold
 \size large
 Chapter 2 State of Art:
 \series default
- Examines the existing literature on classical equalization methods and
- compares them to deep learning models.
- 
+ This section examines recent research on equalization using deep learning.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \series bold
 \size large
-Chapter 3 Present work:
+Chapter 3 Methodology:
 \series default
- The present work includes the Python implementation of various models,
- to train and test different experiments, as well as an overview of the
- software architecture that makes this possible.
- The focus is on explainable deep learning models of Quadrature Amplitude
- Modulation (QAM) equalization based on neural networks, including the design
- of the proposed models.
- Additionally, the description, characteristics, and comparison with related
- work will also be discussed
+ This work presents a Python implementation of various models for training
+ and testing different experiments, along with an overview of the software
+ architecture that enables these experiments.
+ The primary focus is on developing explainable deep learning models for
+ Quadrature Amplitude Modulation (QAM) equalization using neural networks,
+ including the design of the proposed models.
+ Additionally, each network's features are described, such as preprocessing,
+ number of parameters, hyperparameters, and references to the state-of-the-art
+ that support certain development stages.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \series bold
 \size large
 Chapter 4 Results and Analysis:
 \series default
- Explains the conception and execution of the idea, the experiments carried
- out, and the analysis of the outcomes.
- Here, we compare the BER (Bit Error Rate) graphs of our studied models.
+ This section covers the conception and execution of our idea, the experiments
+ conducted, and the analysis of the results.
+ We provide a comparison of our studied models in graphs and tables, focusing
+ on their bit error rate (BER), block error rate (BLER), floating-point
+ operations per second (FLOPS), and complexity.
+ 
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \series bold
 \size large
 Chapter 5 Conclusion and Outlook: 
 \series default
-The conclusions and potential future directions of this study are determined.
+A conclusion is drawn based on the results, contributions, and potential
+ future directions of this study.
 \end_layout
 
 \begin_layout Subsection
@@ -831,8 +810,6 @@ literal "false"
 \end_inset
 
 .
- During implementation, we will also consider the abstraction of the other
- communication blocks and assume that the channel has already been estimated.
  
 \begin_inset ERT
 status open
@@ -903,10 +880,16 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-On the other hand, the design philosophy guiding the creation of the 6G
- architecture will be "AI native.", allowing the network to become intelligent,
- capable of solving individual stages of the channel, and able to self-learn
- and self-adapt in response to changing network dynamics 
+While dividing signal processing into distinct blocks has been a guiding
+ principle of communication system design, it is important to consider how
+ this strategy might evolve in the future.
+ With the development of 6G networks, there is a growing interest in creating
+ an "AI-native" architecture that can self-learn and adapt to changing network
+ dynamics.
+ Adopting processing blocks capable of solving individual stages of the
+ channel can potentially help us achieve better end-to-end performance in
+ communication systems.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "The_Roadmap_to_6G"
@@ -953,14 +936,15 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-Despite this, we assume that the DL applications we evaluate in this thesis
- are a useful and insightful way to fundamentally rethink the problem of
- communications network design, and they show promise for performance improvemen
-ts in complex communications scenarios that are difficult to describe with
- tractable mathematical models.
- Finally, we will look for the equalization stage, which, if it is seen
- in the diagram above, fits on the channel decoder.
- 
+Machine learning is known to focus on non-linear solutions, which can explore
+ more complex and better-fitting solutions.
+ In this research, we will specifically focus on the equalization block
+ using various proposed networks.
+ It is assumed that other channel blocks will perform optimally, allowing
+ us to focus solely on the equalization block.
+ By doing this, we hope to gain insight into the performance of different
+ network proposals and determine which one is best suited for the task of
+ equalization.
 \end_layout
 
 \begin_layout Subsection
@@ -974,9 +958,34 @@ OFDM
 \size large
 Orthogonal Frequency Division Multiplexing (OFDM) is a digital communication
  technique that divides the available bandwidth into a large number of narrowban
-d subcarriers, and transmits data by modulating the subcarriers with symbols.
+d subcarriers and transmits data by modulating the subcarriers with symbols.
  OFDM is widely used in wireless and wired communication systems, such as
- Wi-Fi, LTE, and DOCSIS.
+ Wi-Fi, LTE, and DOCSIS, which are described by well-known standards, as
+ referenced follows 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "WiFi"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LTE"
+literal "false"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "docsis4"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1092,39 +1101,85 @@ At regular intervals, the transmitter inserts recognizable symbols known
  as "pilots" into the transmitted signal.
  These pilots are selected to have a known value and to be separated from
  one another by a given number of symbols.
- By comparing the known transmission symbols to the received symbols, the
- receiver can then utilize the pilots to estimate the channel.
- This may lower the system's data throughput.
- Subsequently, the equalizer performs channel equalization using the coefficient
-s obtained by the estimator, to reduce the distortions caused by the communicati
-on channel in the received data.
+ This estimation involves analyzing the correlations between the received
+ signal and the known pilot symbols, and then using this information to
+ estimate the channel response.
+ Using the estimated channel response, the receiver then performs channel
+ equalization to remove the distortions caused by the communication channel
+ from the received signal 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ChannelEstimation1"
+literal "false"
+
+\end_inset
+
+, and also there are more complex methods that can handle delay-time channel
+ estimation in an efficient embbeded pilot 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ChannelEstimation2"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Since we have been provided with a dataset that contains previously estimated
- channels, we will not prioritize the channel estimation component of this
- project.
- Rather, in order to minimize errors and impairments at the receiver and
- to transmit the symbols as accurately as possible, we will focus on canceling
- the effects of the received, but well-known, channel during the communication
- process.
+The research team has already completed a project on channel estimation
+ and equalization, using classical QR methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "QRGonzalo"
+literal "false"
+
+\end_inset
+
+ and an FPGA
+\begin_inset CommandInset citation
+LatexCommand cite
+key "FPGADef"
+literal "false"
+
+\end_inset
+
+ implementation for the equalization stage.
+ For this current research, our focus is solely on the equalization stage,
+ and we will not prioritize the channel estimation component.
+ Our goal is to cancel the effects of the well-known received channel during
+ the communication process.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-We are entering a new research area as we attempt to generalize the pseudo
- inverse of the channel to cancel its effects.
- It is well known that the matrix inverse is not a continuous function,
- as some matrices may not have an inverse or may be singular.
- However, we are using a subset of invertible matrices to mitigate this
- issue, and also considering realistic physical phenomena.
- Additionally, we must grapple with the numerical instability of the matrix
- inverse, as well as the use of complex numbers in a neural network.
+Our research is focused on the generalization of the pseudo-inverse using
+ neural networks to cancel out channel effects.
+ The pseudo-inverse is a well-known technique used to solve the problem
+ of matrix inversion when the matrix is not invertible or is singular 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "strang2019linear"
+literal "false"
+
+\end_inset
+
+.
+ While the pseudo-inverse is a well-known technique used to solve the problem
+ of matrix inversion, it's important to note that the matrix inverse is
+ not always well-defined.
+ In addition, numerical instability can also pose a challenge.
+ To address these issues, we mainly use invertible matrices, and we also
+ incorporate regularization methods to avoid singular matrices.
+ This approach more accurately simulates real-world scenarios.
+ Another aspect that our research addresses is the use of complex numbers
+ in neural networks, which can add an additional layer of complexity to
+ the problem.
 \end_layout
 
 \begin_layout Subsubsection
