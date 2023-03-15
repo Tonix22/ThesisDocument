@@ -1447,26 +1447,123 @@ stands for Signal-to-Noise Ratio which contrasts the strength of the signal
  In general, higher numbers indicate a better specification because there
  is a greater ratio of useful information (the signal) to unwanted data
  (the noise).
- The following equation displays the necessary power spectral density of
- the noise.
- 
+ Given this source 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "proakis2002communication"
+key "PythonModulation"
 literal "false"
 
 \end_inset
 
+, it can be explained how the noise is calculated for noise simulation with
+ the requirement of a certain SNR in dB.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Firstly, a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal transmitted over a communication channel is
+ considered.
+ The objective is to derive a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{r}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal received at the receiver after passing through
+ the Additive White Gaussian Noise (AWGN), this noise type is described
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "papoulis2002probability"
+literal "false"
+
+\end_inset
+
+.
+ The level of noise introduced by the AWGN channel is determined by the
+ provided Signal-to-Noise Ratio (SNR), and it is denoted as 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+\SpecialChar endofsentence
 
 \end_layout
 
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The length of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ is denoted by 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ The signal power of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ can be expressed as follows:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \paragraph_spacing onehalf
+\noindent
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{N_{0}=\frac{P_{signal}}{P_{noise}}}
+\boldsymbol{P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}}
 \end{equation}
 
 \end_inset
@@ -1474,13 +1571,56 @@ literal "false"
 
 \end_layout
 
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+If we have a complex IQ value 
+\begin_inset Formula $\boldsymbol{s_{i}=a_{i}+jb_{i}}$
+\end_inset
+
+, the modulus or magnitude of 
+\begin_inset Formula $\boldsymbol{s_{i}}$
+\end_inset
+
+ can be represented by 
+\begin_inset Formula $\boldsymbol{|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}}$
+\end_inset
+
+, where a and b are real numbers.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To compute the power spectral density of the noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, we use the following equation:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \paragraph_spacing onehalf
+\noindent
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{P_{signal}=\sum|s|^{2}}
+\boldsymbol{N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}\times10^{-\frac{SNR_{dB}}{10}}}
 \end{equation}
 
 \end_inset
@@ -1488,27 +1628,38 @@ literal "false"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-For realistic simulations, noise is typically an AWGN, which is useful.
- In order to simulate bit error rates, AWGN can generate appropriate power
- levels.
- Typically, noise power is determined by its variance 
-\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+Where 
+\begin_inset Formula $\boldsymbol{\boldsymbol{\gamma}=10^{\frac{SNR_{dB}}{10}}}$
 \end_inset
 
-, which in simulations is used as follows.
+ is the SNR in dB to linear scale
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Assuming a complex IQ plane for all digital modulations, the noise variance
+ (noise power) required for generating Gaussian random noise can be expressed
+ as follows:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \paragraph_spacing onehalf
+\noindent
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\sigma^{2}=10^{\frac{SNR_{dB}}{10}}}
+\boldsymbol{\sigma^{2}=\frac{N_{0}}{2}}
 \end{equation}
 
 \end_inset
@@ -1516,24 +1667,44 @@ For realistic simulations, noise is typically an AWGN, which is useful.
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-Misunderstandings have arisen regarding the signs assigned to the positive
- and negative exponents in the equation.
- While there are conflicting explanations in various sources, to clear up
- any confusion, it's important to consider the visual representation of
- the equation
+Then, the Gaussian random noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ of length 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+ is generated, with its samples drawn from a Gaussian distribution having
+ a mean of zero and a standard deviation as calculated using the last equation.
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
 \paragraph_spacing onehalf
+\noindent
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{N_{0}=\frac{P_{signal}}{P_{noise}}=\frac{\sum|s|^{2}}{10^{\frac{SNR_{dB}}{10}}}=\sum|s|^{2}\times10^{-\frac{SNR_{dB}}{10}}}
+\boldsymbol{f(x)=\begin{cases}
+\sigma\times\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
+\sigma\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
+\end{cases}}
 \end{equation}
 
 \end_inset
@@ -1541,47 +1712,38 @@ Misunderstandings have arisen regarding the signs assigned to the positive
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Enumerate
 \paragraph_spacing onehalf
+\noindent
 
 \size large
-The higher the SNR, the better the quality of the signal, since the noise
- is relatively weaker.
- In practice, the SNR is usually calculated for a specific frequency band
- or for a specific signal-processing method.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The necessary noise variance (noise power) for producing Gaussian random
- noise, assuming complex IQ plane for all digital modulations, is given
- by
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{n=\sqrt{(N_{0}/2)}*(randn(size(s))+j*randn(size(s)))}
-\end{equation}
-
+Here, 
+\begin_inset Formula $\boldsymbol{\mathcal{N}_{N}(0,1)}$
 \end_inset
 
-
+ represents the white Gaussian noise vector with a mean of 0 and a standard
+ deviation of 1
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
 
 \size large
-with the recived signal 
+Lastly, the generated noise vector is added to the original signal 
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+.
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{r=s+n}
@@ -1592,6 +1754,7 @@ with the recived signal
 
 \end_layout
 
+\end_deeper
 \begin_layout Subsubsection
 BER
 \end_layout
@@ -1645,6 +1808,70 @@ where
 \end_inset
 
  is the total number of transmitted bits.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The bit error rate (BER) can be defined in terms of the probability of error
+ (POE).
+ The POE can be calculated using three other variables: the error function
+ (erf), the energy per bit (Eb), and the noise power spectral density (No).
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+The error function,
+\begin_inset Formula $\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}}dt$
+\end_inset
+
+, is used to calculate the POE, and its value depends on the modulation
+ method used in the communication system.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+The energy per bit, 
+\begin_inset Formula $Eb$
+\end_inset
+
+, is a measure of the signal strength and can be calculated by dividing
+ the carrier power by the bit rate.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+The noise power spectral density, No, is a measure of the noise present
+ in the communication channel and is typically expressed in units of power
+ per Hz.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+By using these three variables, the POE can be calculated, and thus the
+ BER can be expressed in terms of POE.
+ This provides a measure of the communication system's performance that
+ takes into account both the strength of the signal and the noise present
+ in the channel.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathbf{POE=\frac{1}{2}(1-erf)\sqrt{\frac{E_{b}}{N_{o}}}}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1859,23 +2086,38 @@ Dispersion and doubly dispersion
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-Dispersion, in the context of radio communication systems, refers to the
- spreading out of a signal over a range of frequencies or wavelengths as
- it travels through a medium, such as air.
- This phenomenon can lead to distortion of the signal and negatively impact
- the performance of the communication system.
- There are various factors that can contribute to dispersion, including
- the distance the signal travels, the presence of obstacles or reflections,
- and the frequency of the signal.
- Techniques such as equalization, adaptive modulation, and error correction
- codes can be used to mitigate the effects of dispersion.
- A doubly dispersive channel is a type of communication channel that exhibits
- dispersion in two dimensions, such as time and frequency.
+Time delay dispersion is a measure of the variation in the arrival times
+ of a signal's components caused by transmission through a communication
+ channel.
+ It is a type of distortion that can occur in wireless communication systems
+ and is due to the differences in the propagation paths taken by different
+ parts of the transmitted signal.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Time delay dispersion can cause inter-symbol interference (ISI) in digital
+ communication systems, which can lead to errors in the received signal.
+ To mitigate the effects of time delay dispersion, techniques such as equalizati
+on, adaptive modulation, and error correction codes can be used.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A doubly dispersive channel is a type of communication channel that exhibits
+ dispersion in two dimensions, such as time and frequency, or time and spatial
+ dimensions.
  This means that the signals transmitted through the channel are spread
- out in both time and another aspect, such as frequency or spatial dimensions.
+ out in both dimensions, which can cause additional distortion and complexity
+ in the communication system.
+ To overcome the challenges of a doubly dispersive channel, advanced techniques
+ such as joint equalization and channel estimation can be employed.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1894,7 +2136,6 @@ Multipath fading and doppler shift
 \begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
-\align block
 
 \size large
 A multipath fading channel is a type of wireless communication channel that
@@ -2204,15 +2445,32 @@ Wide sense stationary
 
 \size large
 A wide sense stationary (WSS) process is a stochastic process in which the
- mean and the autocorrelation function of the process do not change over
- time.
- As a result, the process' statistical characteristics, such as the mean,
- variance, and autocorrelation, remain consistent across time.
- In signal processing and telecommunications, WSS processes are frequently
- used to simulate signals that are stationary over a period of time.
- A generalization of strictly stationary processes, or processes in which
- the mean and auto-correlation function are constant over time, are WSS
- processes.
+ mean and autocorrelation function of the process do not change over time.
+ As a result, the process exhibits statistical properties that are time-invarian
+t, such as the mean, variance, and autocorrelation.
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\size large
+In signal processing and telecommunications, WSS processes are often used
+ because they have simpler mathematical properties compared to strict sense
+ stationary (SSS) processes.
+ This simplification makes them easier to analyze and work with, which allows
+ for more efficient modeling and simulation of communication systems.
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\size large
+WSS processes are a generalization of strictly stationary processes, which
+ are processes in which the mean and autocorrelation function are constant
+ over time.
+ WSS processes relax this constraint and allow for some degree of variability
+ in the mean and autocorrelation function while still maintaining time-invariant
+ statistical properties.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -2453,6 +2711,160 @@ Our goal is to develop an equalizer based on deep learning techniques and
 \end_layout
 
 \begin_layout Subsubsection
+Introduction to communication system
+\end_layout
+
+\begin_layout Standard
+
+\size large
+In the time-frequency domain, the transmitted and received symbol blocks
+ 
+\begin_inset Formula $x,y\in\mathbb{C}^{NM\times1}$
+\end_inset
+
+ respectively, are obtained by computing the M-point discrete Fourier transform
+ (DFT) of the time-domain blocks s and r 
+\begin_inset Formula $s,r\in\mathbb{R}^{NM\times1}$
+\end_inset
+
+.
+ Specifically, x and y are represented as vectors.
+ We denote the M-point DFT as 
+\begin_inset Formula $F_{M}$
+\end_inset
+
+ and is expressed as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+F_{M}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
+1 & w_{0} & w_{0}^{2} & \dots & w_{0}^{M-1}\\
+1 & w_{0}^{2} & w_{0}^{4} & \dots & w_{0}^{2(M-1)}\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+1 & w_{0}^{M-1} & w_{0}^{2(M-1)} & \dots & w_{0}^{(M-1)^{2}}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+where 
+\begin_inset Formula $w_{0}=e^{-\frac{2\pi i}{M}}$
+\end_inset
+
+.
+ Finally the system is in the frequency domain as: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $y=F_{M}*r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x=F_{M}*s$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In a communication system, the received signal 
+\begin_inset Formula $y$
+\end_inset
+
+ given in the frequency domain can be modeled as a linear combination of
+ the transmitted signal 
+\begin_inset Formula $x$
+\end_inset
+
+ and the additive noise n, which can be expressed as:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{y=Hx+n}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where y, x, and n are vectors of length 
+\begin_inset Formula $N$
+\end_inset
+
+, and 
+\begin_inset Formula $H$
+\end_inset
+
+ is an 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ complex-valued matrix that represents the channel effects on the transmitted
+ signal.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The objective of the receiver is to estimate the transmitted signal x from
+ the received signal Y, which can be done by applying an inverse channel
+ matrix to the received signal.
+ This can be expressed as:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\hat{x}=H^{-1}y$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, the inverse channel matrix may not always exist or may be difficult
+ to compute, especially in the presence of noise and channel distortions.
+ Therefore, various signal processing techniques such as equalization, filtering
+, and error correction codes are used to improve the accuracy and reliability
+ of the transmitted signal estimation.
+ These techniques involve manipulating the received signal Y to extract
+ the transmitted signal x and minimize the effects of noise and channel
+ distortions.
+\end_layout
+
+\begin_layout Subsubsection
 Estimator
 \end_layout
 
@@ -2474,8 +2886,8 @@ An estimator is a statistical function that maps an observation to an estimate
  probability distribution.
  It's important to note that the quality of an estimator is usually measured
  by some metric such as Mean Squared Error (MSE), Mean Absolute Error (MAE)
- or Maximum Likelihood (ML) that indicates how well the estimator is able
- to estimate the true parameter 
+ or Likelihood that indicates how well the estimator is able to estimate
+ the true parameter 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "MSE_MMSE"
