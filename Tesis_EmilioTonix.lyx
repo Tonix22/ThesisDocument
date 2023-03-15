@@ -4122,19 +4122,26 @@ Pros and Cons
 \align block
 
 \size large
-As we can see in the previous methods, the calculation of the equalization
- matrices is mainly based on finding the pseudo-inverse of certain matrix
- factors.
- However, directly solving for the inverse of the matrix can be computationally
- complex 
-\begin_inset Formula $O(N^{3})$
+In conclusion, as demonstrated by the previously discussed methods, the
+ computation of equalization matrices primarily relies on finding the pseudo-inv
+erse of certain matrix factors.
+ However, directly solving for the inverse of the matrix can be both computation
+ally costly 
+\begin_inset Formula $\boldsymbol{O(N^{3})}$
 \end_inset
 
- and, in addition, numerically unstable.
- This occurs if the matrix has a very small determinant, in which case the
- true solution may be subject to large perturbations.
- This will lead to a very complicated circuit architecture for numerical
- calculation.
+ and numerically unstable.
+ This instability arises when the matrix has a very small determinant, which
+ may cause the true solution to be susceptible to large perturbations.
+ Consequently, this leads to a complex circuit architecture for numerical
+ calculations.
+ On the other hand, these methods are linear and will have a very predictable
+ behavior over noise conditions and BER.
+ As an alternative, neural networks offer a promising approach to address
+ these challenges in signal equalization.
+ They can adaptively learn the underlying structure of the data and are
+ capable of handling non-linear relationships, which may lead to more efficient
+ and robust equalization techniques.
 \end_layout
 
 \begin_layout Subsection
@@ -7153,6 +7160,46 @@ Autoencoder
 \paragraph_spacing onehalf
 
 \size large
+An autoencoder is a type of artificial neural network used primarily for
+ unsupervised learning tasks, such as dimensionality reduction, feature
+ extraction, and data compression.
+ It is designed to learn efficient representations of input data by encoding
+ and decoding the data through a neural network architecture.
+ The primary goal of an autoencoder is to reconstruct the input data with
+ the highest possible accuracy while learning a compact and meaningful represent
+ation of the data.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The architecture of an autoencoder can be likened to a communication system,
+ consisting of two main components: the encoder, which acts as the transmitter,
+ and the decoder, which serves as the receiver.
+ The encoder's responsibility is to compress the input data into a lower-dimensi
+onal representation, similar to the role of a transmitter in a communication
+ system.
+ This compressed representation, often referred to as the latent space or
+ bottleneck, is then sent through the channel.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+On the other hand, the decoder, which is analogous to the receiver in a
+ communication system, takes the lower-dimensional representation from the
+ channel and attempts to reconstruct the original input data.
+ In essence, the autoencoder architecture mirrors the basic structure of
+ a communication system, with the encoder and decoder functioning as transmitter
+ and receiver, respectively.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 The goal of the transmitter is to send one of M possible messages,
 \begin_inset Formula $\boldsymbol{s∈M=\left\{ 1,2,...,M\right\} }$
 \end_inset
@@ -7310,7 +7357,7 @@ Conclusion
 In this paper, was explored the idea that an autoencoder can learn channel
  representation using all the information available in the system.
  However, this research has not yet attempted more complex constellations,
- such as QAM16.
+ such as 16-QAM.
  In our research, we will build on this idea by using an autoencoder for
  encoding only, and employing a forced decoding approach with a zero-forcing
  algorithm.
@@ -14506,7 +14553,7 @@ After conducting some research, we found that there is no existing paper
 \end_layout
 
 \begin_layout Subsection
-FLOPS
+FLOPS and Time complexity
 \end_layout
 
 \begin_layout Standard
@@ -14647,6 +14694,22 @@ end{table}
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Time complexity refers to the number of operations or amount of time taken
+ by an algorithm to solve a problem, while Big O notation is a mathematical
+ notation used to describe the upper bound of the growth rate of an algorithm
+ in terms of its input size.
+ Specifically, Big O notation provides a way to express the worst-case time
+ complexity of an algorithm in terms of a simple function of the input size,
+ while ignoring constant factors and lower-order terms.
+ Therefore, time complexity analysis often involves determining the Big
+ O notation of an algorithm, which can provide useful insights into its
+ efficiency and scalability.
+\end_layout
+
 \begin_layout Subsubsection
 LMMSE
 \end_layout
@@ -14656,7 +14719,7 @@ LMMSE
 
 \size large
 The matrix inversion operation requires 
-\begin_inset Formula $O(n^{3})$
+\begin_inset Formula $\boldsymbol{O(n^{3})}$
 \end_inset
 
  operations, where n is the matrix size.
@@ -14665,7 +14728,7 @@ The matrix inversion operation requires
  48 x 48 x 2 for the matrix multiplication operations, 48 x 48 x 3 for the
  identity matrix, scalar multiplication, and matrix addition operations,
  and 
-\begin_inset Formula $O(n^{3})$
+\begin_inset Formula $\boldsymbol{O(n^{3})}$
 \end_inset
 
  for the matrix inversion operation.
@@ -14858,6 +14921,19 @@ Extract diagonal: self.Chann_diag(chann).
 
 \end_layout
 
+\begin_layout Standard
+
+\size large
+For the time complexity of this algorithm is conisdered a 
+\begin_inset Formula $O(n)$
+\end_inset
+
+ complexity, because diagonal is size of N.
+
+\size default
+ 
+\end_layout
+
 \begin_layout Subsubsection
 PhaseNet,PolarNet, ComplexNet
 \end_layout
@@ -14929,6 +15005,39 @@ and for ComplexNet is
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The time complexity of a linear layer in a neural network, also known as
+ a fully connected layer, is proportional to the number of weights and biases
+ in the layer.
+ Specifically, the time complexity of a forward pass through a linear layer
+ with input size m and output size n is 
+\begin_inset Formula $\boldsymbol{O(mn)}$
+\end_inset
+
+, which corresponds to the number of multiplications and additions required
+ to compute the output of the layer.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+During the forward pass, the input tensor is flattened into a vector and
+ multiplied by a weight matrix of size (m x n), resulting in an intermediate
+ tensor of size (n x 1).
+ The bias vector, which has size (n x 1), is then added to the intermediate
+ tensor to produce the output tensor of size (n x 1).
+ As our input size and ouput size is the same shape final complexity results
+ in 
+\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 MobileNet
 \end_layout
@@ -14945,6 +15054,28 @@ MobileNet
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The original MobileNet model has a time complexity of approximately 
+\begin_inset Formula $\boldsymbol{O(n^{2.3})}$
+\end_inset
+
+, MobileNetV2 has a time complexity of approximately 
+\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\end_inset
+
+ and MobileNetV3 has a time complexity of approximately 
+\begin_inset Formula $\boldsymbol{O(n\times log(n))}$
+\end_inset
+
+.
+ It's important to note that the actual runtime performance of MobileNet
+ can also be affected by factors such as the hardware platform, software
+ optimization, and batch size.
 \end_layout
 
 \begin_layout Subsubsection
@@ -14987,8 +15118,61 @@ for GridNet Polar is
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Transformer model, which is widely used in natural language processing,
+ has a time complexity of 
+\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\end_inset
+
+, where n is the length of the input sequence.
+ This is due to the self-attention mechanism, which computes a similarity
+ score between each pair of tokens in the input sequence, resulting in an
+ n x n matrix.
+ The computation of this matrix requires 
+\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\end_inset
+
+ time.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In addition to the self-attention mechanism, the Transformer also includes
+ feedforward layers and normalization layers, but their time complexity
+ is typically much lower than that of the self-attention mechanism.
+ Therefore, the overall time complexity of the Transformer can be approximated
+ as
+\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, there are optimizations that can be applied to reduce the time
+ complexity of the Transformer, such as restricting the maximum length of
+ the input sequence or using approximate attention mechanisms.
+ These optimizations can reduce the time complexity to
+\begin_inset Formula $\boldsymbol{O(n*log(n))}$
+\end_inset
+
+ or even 
+\begin_inset Formula $\boldsymbol{O(n)}$
+\end_inset
+
+, but at the cost of reduced accuracy or increased memory usage.
+\end_layout
+
 \begin_layout Subsubsection
-Ranking by FLOPS
+Ranking by FLOPS and Big(O) complexity
 \end_layout
 
 \begin_layout Standard
@@ -14998,6 +15182,9 @@ Ranking by FLOPS
 This FLOPS value works like an estimate and should not be taken as definitive.
  One of the main advantages of deep learning techniques is that they are
  easy to parallelize, and FLOPS can be significantly reduceded.
+ Big O notation is a mathematical notation used to describe the upper bound
+ of the growth rate of a function or algorithm in terms of its input size.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -15016,14 +15203,14 @@ caption{FLOPS Ranking}
 \backslash
 label{tab:operations} 
 \backslash
-begin{tabular}{|l|l|} 
+begin{tabular}{|l|l|l|} 
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-hline Name & FLOPS 
+hline Name & FLOPS & Big O Complexity
 \backslash
 
 \backslash
@@ -15036,7 +15223,7 @@ hline
 
 Zero Forcing & $36
 \backslash
-times10^{3}$ 
+times10^{3}$ & $O(n)$ 
 \backslash
 
 \backslash
@@ -15049,7 +15236,7 @@ hline
 
 ComplexNet & $2.7
 \backslash
-times10^{6}$ 
+times10^{6}$ & $O(n^2)$  
 \backslash
 
 \backslash
@@ -15062,7 +15249,7 @@ hline
 
 LMMSE & $3.74
 \backslash
-times10^{6}$ 
+times10^{6}$ &  $O(n^3)$ 
 \backslash
 
 \backslash
@@ -15075,7 +15262,7 @@ hline
 
 MobileNet & $3.88
 \backslash
-times10^{6}$ 
+times10^{6}$ &  $O(n*log(n))$
 \backslash
 
 \backslash
@@ -15088,7 +15275,7 @@ hline
 
 PolarNet & $4.5
 \backslash
-times10^{6}$ 
+times10^{6}$ &  $O(n^2)$
 \backslash
 
 \backslash
@@ -15101,7 +15288,7 @@ hline
 
 PhaseNet & $14.8
 \backslash
-times10^{6}$ 
+times10^{6}$ & $O(n^2)$
 \backslash
 
 \backslash
@@ -15114,7 +15301,7 @@ hline
 
 GridNet Square & $23.05
 \backslash
-times10^{6}$ 
+times10^{6}$ & $O(n*log(n))$ 
 \backslash
 
 \backslash
@@ -15127,7 +15314,7 @@ hline
 
 GrideNet Polar & $27.8
 \backslash
-times10^{6}$ 
+times10^{6}$ & $O(n*log(n))$ 
 \backslash
 
 \backslash
