@@ -2619,6 +2619,365 @@ Where
 
 \end_deeper
 \begin_layout Subsection
+Estimators
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+An estimator is a statistical function that maps an observation to an estimate
+ of a parameter of the signal being observed, normally known as 
+\begin_inset Formula $\hat{\boldsymbol{\theta}}$
+\end_inset
+
+ .It is a mathematical function that takes the data, usually in the form
+ of a sample, and produces an estimate of an unknown parameter of the underlying
+ probability distribution.
+ It's important to note that the quality of an estimator is usually measured
+ by some metric such as Mean Squared Error (MSE), Mean Absolute Error (MAE)
+ or Likelihood that indicates how well the estimator is able to estimate
+ the true parameter 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MSE_MMSE"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the context of estimation theory, there are two key concepts to understand:
+ posterior estimators and biased/unbiased estimators.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "statiticsbook"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Posterior estimator
+\series default
+: Is a method of estimating a parameter by incorporating prior knowledge
+ or belief about the parameter's distribution.
+ This prior information is combined with the observed data to derive a posterior
+ distribution for the parameter.
+ The posterior distribution represents our updated belief about the parameter
+ after considering the observed data.
+ The estimator is then derived from this posterior distribution.
+ The posterior estimator can be the mean, median, or mode of the posterior
+ distribution, depending on the specific problem and desired properties
+ of the estimator.
+ Let's denote the parameter of interest as 
+\begin_inset Formula $\boldsymbol{𝜃}$
+\end_inset
+
+ and the observed data as 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ Bayes' theorem can be written as
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{P(𝜃|X)}$
+\end_inset
+
+ is the posterior distribution of the parameter 
+\begin_inset Formula $\boldsymbol{𝜃}$
+\end_inset
+
+ given the data 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{P(X|𝜃)}$
+\end_inset
+
+ is the likelihood of observing the data 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
+ given the parameter 
+\begin_inset Formula $\boldsymbol{𝜃}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{P(𝜃)}$
+\end_inset
+
+ is the prior distribution of the parameter 
+\begin_inset Formula $\boldsymbol{𝜃}$
+\end_inset
+
+, representing our beliefs about 
+\begin_inset Formula $\boldsymbol{𝜃}$
+\end_inset
+
+ before observing the data.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{P(X)}$
+\end_inset
+
+ is the marginal likelihood of the data, which can be thought of as a normalizat
+ion constant.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Biased estimator:
+\series default
+ Is an estimator whose expected value does not equal the true value of the
+ parameter being estimated.
+ In other words, the estimator consistently overestimates or underestimates
+ the true parameter value.
+ Bias can be due to the estimator's functional form, the presence of outliers
+ in the data, or other factors that systematically affect the estimator.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Bias\left(\hat{\theta}\right)=E\left(\hat{\theta}\right)-𝜃}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Unbiased estimator:
+\series default
+ On average, the estimator provides an accurate estimate of the parameter.
+ However, it's important to note that an unbiased estimator can still have
+ a large variance, which means that individual estimates can be far from
+ the true parameter value.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{E\left(\hat{\theta}\right)=\theta}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+MSE
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Mean squared error (MSE) is a widely used performance metric in estimation
+ theory to evaluate the accuracy of an estimator.
+ It measures the average of the squared differences between the estimated
+ values and the true parameter values.
+ In other words, MSE quantifies the difference between the estimator and
+ the true parameter value, considering both the bias and the variance of
+ the estimator.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ is the transmitted signal with the original values
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\end_inset
+
+ is the predicted values of the received signal.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+However, reducing the MSE involves managing the trade-off between bias and
+ variance.
+ This trade-off can be more clearly seen when the MSE is decomposed into
+ the sum of the squared bias and the variance, we can better visualize the
+ idea rewritting the formula 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "statiticsbook"
+literal "false"
+
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE(\hat{\theta})=E\left\{ \left[\left(\hat{\theta}-E\left(\hat{\theta}\right)\right)+\left(E\left(\hat{\theta}\right)-\theta\right)\right]^{2}\right\} =var(\hat{\theta})+\left(E\left(\hat{\theta}\right)-\theta\right)^{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MSE(\hat{\theta})=var(\hat{\theta})+Bias^{2}(\theta)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The bias-variance trade-off refers to the challenge of finding an estimator
+ that minimizes both bias and variance.
+ In practice, this trade-off means that an estimator with low bias may have
+ high variance, while an estimator with low variance may have high bias.
+ The goal is to find the optimal balance between bias and variance, resulting
+ in the lowest MSE and the best overall estimator performance.
+\end_layout
+
+\begin_layout Subsubsection
+Bias and variance in Deep Learning
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the context of the deep learning models, including neural networks.
+ In this context, bias refers to the error introduced by approximating a
+ real-world problem with a simplified model, while variance represents the
+ model's sensitivity to small fluctuations in the training data.
+ A neural network with a high bias tends to produce simpler models that
+ may not capture the true underlying relationship between inputs and outputs,
+ resulting in underfitting.
+ On the other hand, a network with high variance tends to overfit the training
+ data, capturing noise and being sensitive to small changes in the input
+ data.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In supervised learning with neural networks, the goal is to find the right
+ balance between bias and variance to achieve good generalization performance
+ on unseen data.
+ This can be achieved by selecting the appropriate network architecture,
+ using regularization techniques, and fine-tuning hyperparameters.
+\end_layout
+
+\begin_layout Subsection
 Equalization
 \end_layout
 
@@ -2711,42 +3070,59 @@ Our goal is to develop an equalizer based on deep learning techniques and
 \end_layout
 
 \begin_layout Subsubsection
-Introduction to communication system
+OFDM Time-Frequency Input-Output Relationship
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:OFDM-Time-Frequency-Input-Output"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
-In the time-frequency domain, the transmitted and received symbol blocks
+The goal of this section is to provide a formal description of the key component
+s used in the upcoming estimation sections, and provide and introduction
+ about what estimation is looking for.
  
-\begin_inset Formula $x,y\in\mathbb{C}^{NM\times1}$
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The transmitted and received frequency symbol blocks 
+\begin_inset Formula $\boldsymbol{x,y\in\mathbb{C}^{N\times1}}$
 \end_inset
 
- respectively, are obtained by computing the M-point discrete Fourier transform
+ respectively, are obtained by computing the N-point discrete Fourier transform
  (DFT) of the time-domain blocks s and r 
-\begin_inset Formula $s,r\in\mathbb{R}^{NM\times1}$
+\begin_inset Formula $\boldsymbol{s,r\in\mathbb{R}^{N\times1}}$
 \end_inset
 
 .
- Specifically, x and y are represented as vectors.
- We denote the M-point DFT as 
-\begin_inset Formula $F_{M}$
+ We denote the N-point DFT as 
+\begin_inset Formula $\boldsymbol{F_{N}}$
 \end_inset
 
  and is expressed as follows:
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 \begin_inset Formula 
 \begin{equation}
-F_{M}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
-1 & w_{0} & w_{0}^{2} & \dots & w_{0}^{M-1}\\
-1 & w_{0}^{2} & w_{0}^{4} & \dots & w_{0}^{2(M-1)}\\
+\boldsymbol{F_{N}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
+1 & w_{0} & w_{0}^{2} & \dots & w_{0}^{N-1}\\
+1 & w_{0}^{2} & w_{0}^{4} & \dots & w_{0}^{2(N-1)}\\
 \vdots & \vdots & \vdots & \ddots & \vdots\\
-1 & w_{0}^{M-1} & w_{0}^{2(M-1)} & \dots & w_{0}^{(M-1)^{2}}
-\end{bmatrix}
+1 & w_{0}^{M-1} & w_{0}^{2(M-1)} & \dots & w_{0}^{(N-1)^{2}}
+\end{bmatrix}}
 \end{equation}
 
 \end_inset
@@ -2755,44 +3131,37 @@ F_{M}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 where 
-\begin_inset Formula $w_{0}=e^{-\frac{2\pi i}{M}}$
+\begin_inset Formula $\boldsymbol{w_{0}=e^{-\frac{2\pi i}{N}}}$
 \end_inset
 
 .
- Finally the system is in the frequency domain as: 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $y=F_{M}*r$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $x=F_{M}*s$
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In a communication system, the received signal 
-\begin_inset Formula $y$
+In the time domain, the received signal, 
+\begin_inset Formula $\boldsymbol{r}$
 \end_inset
 
- given in the frequency domain can be modeled as a linear combination of
- the transmitted signal 
-\begin_inset Formula $x$
+, is given by the convolution of the transmitted signal, 
+\begin_inset Formula $\boldsymbol{s}$
 \end_inset
 
- and the additive noise n, which can be expressed as:
+, and the channel impulse response, 
+\begin_inset Formula $\boldsymbol{h(t)}$
+\end_inset
+
+, plus the noise, 
+\begin_inset Formula $\boldsymbol{n(t)}$
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -2801,7 +3170,7 @@ In a communication system, the received signal
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{y=Hx+n}
+\boldsymbol{r=s\ast h(t)+n(t)}
 \end{equation}
 
 \end_inset
@@ -2813,16 +3182,172 @@ In a communication system, the received signal
 \paragraph_spacing onehalf
 
 \size large
-where y, x, and n are vectors of length 
-\begin_inset Formula $N$
+To analyze the system in the frequency domain, the DFT is applied to the
+ received signal, transmitted signal, and noise:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{y=F_{N}\times r}$
 \end_inset
 
-, and 
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{x=F_{N}\times s}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size large
+\begin_inset Formula $\boldsymbol{n=F_{N}\times n(t)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+When transforming from the time domain to the frequency domain, the linear
+ convolution operation in the time domain is converted into circular convolution.
+ Thus, the relationship between the transmitted signal and the received
+ signal in the frequency domain can be expressed as:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{Y=H⊙X}
+\end{equation}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+Each element of this relationship can be developed as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align center
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{y_{c}[n]=(x[n]\circledast h[n])_{n}=\sum_{m=0}^{N-1}x[m]h[(n-m)modN]}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
 \begin_inset Formula $H$
 \end_inset
 
+ is the channel frequency response, which is the DFT of the channel impulse
+ response, 
+\begin_inset Formula $h(t):$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{H=F_{N}h(t)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To mitigate the effect of Inter-Symbol Interference (ISI) caused by circular
+ convolution, a Cyclic Prefix (CP) is added to the transmitted signal before
+ transmission.
+ This helps maintain orthogonality between subcarriers and minimize ISI.
+ After adding the CP and assuming that the CP length is greater than or
+ equal to the channel impulse response length, the circular convolution
+ becomes equivalent to linear convolution, and the relationship between
+ the frequency-domain components becomes
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{y=Hx+n}\label{eq:eq27}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+ are vectors of length 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
  is an 
-\begin_inset Formula $N\times N$
+\begin_inset Formula $\boldsymbol{N\times N}$
 \end_inset
 
  complex-valued matrix that represents the channel effects on the transmitted
@@ -2834,9 +3359,16 @@ where y, x, and n are vectors of length
 \paragraph_spacing onehalf
 
 \size large
-The objective of the receiver is to estimate the transmitted signal x from
- the received signal Y, which can be done by applying an inverse channel
- matrix to the received signal.
+The objective of the receiver is to estimate the transmitted signal 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+ from the received signal 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+, which can be done by applying an inverse channel matrix to the received
+ signal.
  This can be expressed as:
 \end_layout
 
@@ -2844,7 +3376,11 @@ The objective of the receiver is to estimate the transmitted signal x from
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\hat{x}=H^{-1}y$
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{x}=H^{-1}y}
+\end{equation}
+
 \end_inset
 
 
@@ -2862,40 +3398,6 @@ However, the inverse channel matrix may not always exist or may be difficult
  These techniques involve manipulating the received signal Y to extract
  the transmitted signal x and minimize the effects of noise and channel
  distortions.
-\end_layout
-
-\begin_layout Subsubsection
-Estimator
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-An estimator is a statistical function that maps an observation to an estimate
- of a parameter of the signal being observed, normally known as 
-\size larger
-
-\begin_inset Formula $\hat{\boldsymbol{\theta}}$
-\end_inset
-
-
-\size large
- .It is a mathematical function that takes the data, usually in the form
- of a sample, and produces an estimate of an unknown parameter of the underlying
- probability distribution.
- It's important to note that the quality of an estimator is usually measured
- by some metric such as Mean Squared Error (MSE), Mean Absolute Error (MAE)
- or Likelihood that indicates how well the estimator is able to estimate
- the true parameter 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "MSE_MMSE"
-literal "false"
-
-\end_inset
-
-.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2920,33 +3422,59 @@ l interference (ISI), caused by the presence of multiple signal paths in
 le to noise and unable to handle certain types of channel distortions.
  Nevertheless, it can improve the performance of communication systems in
  specific scenarios.
+ Given the section above in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "eq:eq27"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+as the Input-Output relation.
+ The main diagonal of the channel matrix H is taken and divided by recieved
+ signal.
+ This matrix is already in the frequency domain.
+ To extract the main diagonal of the channel matrix the "diag(H)" operation
+ is used.
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{H_{\text{diag}}=\text{diag}(H)=diag\left(\begin{bmatrix}H_{11} & 0 & \dots & 0\\
+0 & H_{22} & \dots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \dots & H_{NN}
+\end{bmatrix}\right)=\left(\begin{array}{c}
+H_{11}\\
+H_{22}\\
+\vdots\\
+\vdots\\
+H_{NN}
+\end{array}\right)}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In our case, we are dealing with a matrix channel that is already in the
- frequency domain.
- To accelerate the ZFE process, we extract the main diagonal of the channel
- matrix using the "diag(H)" operation.
- Then, we apply the operation of "Y" divided by "diag(H)" to obtain the
- estimated transmitted symbols, where 
-\begin_inset Formula $\boldsymbol{Y=Hx+w}$
+Ideally, if the off-diagonal elements of the channel matrix H are relatively
+ small, the channel matrix can be approximated by its main diagonal.
+ Then, after diagonal division the estimated transmitted symbols can be
+ expressed as 
+\begin_inset Formula $\boldsymbol{\hat{\theta}\simeq x+\frac{n}{diag(H)}}$
 \end_inset
 
-.
- The H matrix, which multiplies the input data x, is almost canceled out
- in the final approach.
- Specifically, we have 
-\begin_inset Formula $\hat{x}\simeq x+\frac{w}{diag(H)}$
-\end_inset
-
-, where w is the noise vector and diag(H) is the main diagonal of the channel
+, where n is the noise vector and diag(H) is the main diagonal of the channel
  matrix H.
- This expression shows that the estimated transmitted symbols are obtained
- by adding the input data to the noise vector w divided by the main diagonal
- of the channel matrix.
  In the equations bellow the estimator is shown.
  
 \end_layout
@@ -2957,7 +3485,7 @@ In our case, we are dealing with a matrix channel that is already in the
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{x}=\frac{Y}{diag(H)}=\frac{Hx+w}{diag(H)}}
+\boldsymbol{\hat{\theta}=\frac{y}{diag(H)}=\frac{Hx+w}{diag(H)}}
 \end{equation}
 
 \end_inset
@@ -2969,8 +3497,7 @@ In our case, we are dealing with a matrix channel that is already in the
 \noindent
 
 \size large
-Based on a paper, we will use zero forcing as a preprocessing stage for
- some of our experiments
+Based on the paper
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ZeroForcingEqNN"
@@ -2978,168 +3505,7 @@ literal "false"
 
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Subsubsection
-MSE
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-MSE equalization, or minimum mean square error, is a posterior estimator.It
- is a measure of how well the estimator, denoted by 
-\size larger
-
-\begin_inset Formula $\hat{\boldsymbol{\theta}}$
-\end_inset
-
-
-\size large
-, is able to estimate the true parameter, denoted by 
-\size larger
-
-\begin_inset Formula $\boldsymbol{\theta}$
-\end_inset
-
-
-\size large
-, based on the observed data .It is calculated after the estimator has been
- applied to the data and produces a single scalar value that indicates how
- far the estimated values are from the true values on average.
-\begin_inset CommandInset citation
-LatexCommand cite
-key "MSE_MMSE"
-literal "false"
-
-\end_inset
-
- This technique is commonly used in digital communication systems to improve
- the performance of an equalizer by reducing the mean square error (MSE)
- between the transmitted and received signals.
- It can provide significant improvements in the performance of the channel
- equalization by reducing the effects of noise, interference, and other
- impairments 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "proakis2002communication"
-literal "false"
-
-\end_inset
-
-.
- In the context of machine learning, our neural network will be a non-linear
- estimator and can be evaluated by this estimator.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align center
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{MSE(\hat{\theta})=E[(\theta-\hat{\theta})^{2}]}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{\theta}$
-\end_inset
-
- is the transmitted signal with the original values
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{\hat{\theta}}$
-\end_inset
-
- is the predicted values of the received signal.
-\end_layout
-
-\begin_layout Subsubsection
-MMSE
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Since MMSE equalization is a linear equalization technique, the transmitted
- signal is first adjusted using a linear filter before being sent across
- the channel.
- By choosing the proper filter coefficients for the linear filter, the purpose
- of MMSE equalization is to reduce the MSE between the sent and received
- signals.
- The MMSE criteria, which stipulates that the filter coefficients should
- be set to minimize the MSE between the sent and received signals, may be
- used to compute the filter coefficients.
- The equation below can be used to do this: 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align center
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{MMSE=min(E[(\theta-\hat{\theta})^{2}])}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{x}$
-\end_inset
-
- is the transmitted signal.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{y}$
-\end_inset
-
- is the received signal.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset Formula $\boldsymbol{\hat{\theta}=E[x|y]}$
-\end_inset
-
- is an estimator given by Y to an estimate the X
+, we will use zero forcing as a preprocessing stage for some of our experiments.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3148,7 +3514,6 @@ LS
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
 Least squares (LS)
@@ -3160,51 +3525,45 @@ name "subsec:LS"
 
  equalization is a linear equalization method that aims to minimize the
  mean squared error (MSE) between the estimated and the transmitted symbols.
- The noise component of x is disregarded by the LS (Least-Squares) equalizer,
- which treats it as a deterministic variable.
- A linear filter 
-\begin_inset Formula $\boldsymbol{W}$
+ The goal of the least squares equalization is to find an estimate of the
+ transmitted signal, 
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
- that minimize the mean square error between 
-\begin_inset Formula $\boldsymbol{\hat{x}}$
+, that minimizes the mean squared error (MSE) between the received signal
+ and the predicted received signal.
+ To achieve this, we define the error vector 
+\begin_inset Formula $\boldsymbol{e}$
 \end_inset
 
- and 
-\begin_inset Formula $\boldsymbol{Hx}$
+ as the difference between the received signal and the predicted received
+ signal based on the estimated transmitted signal 
+\begin_inset Formula $\boldsymbol{e}=\boldsymbol{y}-\boldsymbol{H\theta},$
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{\theta=x}$
 \end_inset
 
 .
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-The argmin function is a mathematical function that returns the indices
- of the minimum values of a given array or matrix.
- It is often used in optimization problems, where it is used to find the
- values of the variables that minimize some objective function.
+ The objective is to minimize the mean squared error (MSE) 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "argmin_reference"
+key "statiticsbook"
 literal "false"
 
 \end_inset
 
-
+:
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W_{Ls}=argmin||\hat{x}-Hx||^{2}}
+\boldsymbol{\text{J(\ensuremath{\theta)}}=E\left(\lVert\boldsymbol{e}\rVert_{2}^{2}\right)=E\left(\lVert\boldsymbol{y}-\boldsymbol{H\theta}\rVert_{2}^{2}\right)=\left(y-H\theta\right)^{T}\left(y-H\theta\right)}
 \end{equation}
 
 \end_inset
@@ -3214,7 +3573,17 @@ literal "false"
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
+
+\size large
+where 
+\begin_inset Formula $\boldsymbol{\lVert\cdot\rVert_{2}}$
+\end_inset
+
+ indicates the 2-norm (Euclidean norm).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 With the solution in the Moore-Penrose pseudoinverse 
@@ -3240,9 +3609,8 @@ literal "false"
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{H^{+}=(H^{H}H)^{-1}H^{H}}
@@ -3254,6 +3622,7 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \size large
 \begin_inset Formula $\boldsymbol{H}$
@@ -3263,6 +3632,7 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \size large
 \begin_inset Formula $\boldsymbol{H^{+}}$
@@ -3272,6 +3642,7 @@ Moore-Penrose pseudoinverse
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
 
 \size large
 \begin_inset Formula $\boldsymbol{H^{H}}$
@@ -3283,58 +3654,18 @@ Moore-Penrose pseudoinverse
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-Its resistance to noise makes it appealing in a variety of communication
- systems, however because the noise component is ignored, it cannot operate
- satisfactorily with low SNR (signal to noise ratio).
- 
-\end_layout
-
-\begin_layout Subsubsection
-LMMSE
+Finally the estimator is:
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-A form of linear filter called the Linear Minimum Mean Squared Error (LLMSE)
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:LMMSE"
-
-\end_inset
-
- Equalizer seeks to reduce the mean squared error (MSE) between the actual
- signal 
-\begin_inset Formula $\boldsymbol{x}$
-\end_inset
-
- and an estimation of the signal 
-\begin_inset Formula $\boldsymbol{\hat{x}}$
-\end_inset
-
-.
- Incorporating second-order statistics of the data and the noise and treating
- the noise as a random variable allows it to achieve this.
- Compared to the Least Squares (LS) algorithm, this can perform better when
- there is low signal-to-noise ratio (SNR).
- To put it another way, the LLMSE equalization is a method that can be applied
- to restore precision to a signal that has been distorted by noise, especially
- when the noise level is high.
- When there is a low signal-to-noise ratio (SNR) and a significant quantity
- of noise in the signal, it performs exceptionally well.
-\end_layout
-
-\begin_layout Standard
-
-\size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W_{LMMSE}=argminE||x-\hat{x}||^{2}}
+\boldsymbol{\hat{\theta}=(H^{H}H)^{-1}H^{H}\theta}
 \end{equation}
 
 \end_inset
@@ -3344,7 +3675,429 @@ name "subsec:LMMSE"
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
+
+\size large
+Its resistance to noise makes it appealing in a variety of communication
+ systems, however because the noise component is ignored, it cannot operate
+ satisfactorily with low SNR (signal to noise ratio).
+ The unbiasedness of the equalizer depends on the specific equalization
+ problem and the assumptions made about the channel and noise characteristics,
+ and the variance of the least squares equalization method quantifies the
+ uncertainty in the estimated transmitted signal due to the presence of
+ noise in the received signal.
+ A higher variance implies a greater degree of uncertainty in the equalized
+ signal.
+\end_layout
+
+\begin_layout Subsubsection
+MMSE
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+MMSE equalization is a linear equalization technique that aims to minimize
+ the mean squared error between the transmitted signal and its estimate.
+ The MMSE equalizer balances the trade-off between bias and variance, unlike
+ the zero-forcing equalizer, which focuses solely on eliminating intersymbol
+ interference (ISI) without considering the noise amplification.
+ MMSE equalization can be thought of as a compromise between the desire
+ to eliminate ISI (which could introduce bias) and the need to limit noise
+ amplification (which affects variance).
+ The objective of MMSE equalization can be expressed as:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MMSE=min(E[(\hat{\theta}-\theta)^{2}])}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ is the transmitted signal.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\end_inset
+
+ is the estimated signal.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Mathematically, the MMSE estimator is defined as 
+\begin_inset Formula $\boldsymbol{\hat{\theta}_{MMSE}=E[\theta|y]}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Here, 
+\begin_inset Formula $\boldsymbol{\hat{\theta}_{MMSE}}$
+\end_inset
+
+ is the estimate of the transmitted signal 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ given the received signal
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+.
+ The MMSE estimator computes the conditional expectation of 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ given the observed signal 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+.
+ This means that the MMSE estimator takes into account both the prior informatio
+n about 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ and the likelihood of observing 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ given 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+LMMSE 
+\size large
+
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:LMMSE"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
+ of the MMSE estimator.
+ While the MMSE estimator can be nonlinear, the LMMSE estimator restricts
+ itself to linear functions of the observed data.
+ The goal of the LMMSE estimator is to find a linear estimate of the transmitted
+ signal that minimizes the mean squared error between the transmitted signal
+ and its linear estimate, given the received signal.
+ Compared to the Least Squares (LS) algorithm, this can perform better when
+ there is low signal-to-noise ratio (SNR).
+ To put it another way, the LMMSE equalization is a method that can be applied
+ to restore precision to a signal that has been distorted by noise, especially
+ when the noise level is high.
+ When there is a low signal-to-noise ratio (SNR) and a significant quantity
+ of noise in the signal, it performs exceptionally well.
+ Mathematically, the LMMSE estimator is defined as:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{\theta}_{LMMSE}=E[\theta]+C_{\theta y}C_{yy}^{-1}(y-E[y])}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{E[\theta]}$
+\end_inset
+
+ is the prior expectation of the transmitted signal.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{C_{\theta y}}$
+\end_inset
+
+ is the cross-covariance matrix between the transmitted signal and the received
+ signal.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{C_{yy}}$
+\end_inset
+
+ is the covariance matrix of the received signal.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{E[y]}$
+\end_inset
+
+ is the prior expectation of the received signal.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The LMMSE estimator seeks to find a linear estimate of 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ given the received signal 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{\theta}_{LMMSE}=Wy}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $\boldsymbol{W}$
+\end_inset
+
+ is the LMMSE equalizer matrix.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Using the LMMSE estimator definition 
+\begin_inset Formula $\boldsymbol{\hat{\theta}_{LMMSE}}$
+\end_inset
+
+, we can derive the LMMSE equalizer matrix W:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{W=C_{\theta y}C_{yy}^{-1}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We know that the covariance matrix of 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{C_{yy}}$
+\end_inset
+
+, is given by:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{C_{yy}=HC_{\theta\theta}H^{H}+\sigma^{2}I}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where
+\begin_inset Formula $\boldsymbol{C_{\theta\theta}}$
+\end_inset
+
+ is the covariance matrix of 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+, and 
+\begin_inset Formula $\boldsymbol{H^{H}}$
+\end_inset
+
+ denotes the conjugate transpose (Hermitian) of the matrix 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Now, we need to find the cross-covariance matrix between 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{C_{\theta y}=E[(\theta-E[\theta])(y-E[\theta])^{H}]=E[\theta y^{H}]=C_{\theta\theta}H^{H}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Assuming that the transmitted symbols are uncorrelated with equal power,
+ we have
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{C_{\theta\theta}=E[\theta\theta^{H}]=\rho I}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where
+\begin_inset Formula $\boldsymbol{\rho}$
+\end_inset
+
+ is the average symbol power, and for simplicity we keep at unitary power.
+ Substituting back the elements from Eq.
+ 37, we obtain the final estimation equation.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{W=H(HH^{H}+\sigma^{2}I)^{-1}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{\theta}_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}\boldsymbol{\theta}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 This equation consider AWGN (Additive White Gaussian Noise) with variance
@@ -3358,28 +4111,6 @@ This equation consider AWGN (Additive White Gaussian Noise) with variance
  It is called "additive" because it can be added to a signal without changing
  its distribution.
  
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{W_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{\sigma^{2}}$
-\end_inset
-
- variance of AWGN
 \end_layout
 
 \begin_layout Subsubsection
