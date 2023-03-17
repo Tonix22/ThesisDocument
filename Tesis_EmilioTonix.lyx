@@ -4189,6 +4189,13 @@ literal "false"
 
 \begin_layout Subsubsection
 OSIC
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:OSIC"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4492,6 +4499,13 @@ Since the squared distance calculation is inside the outer loop, the overall
 
 \begin_layout Subsubsection
 NearML
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:NearML"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11171,35 +11185,37 @@ noprefix "false"
 
  
 \color inherit
-of this document,respectively.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-When evaluating the performance of a communication system, it is standard
- practice to plot both the Bit Error Rate
+of this document,respectively, and for the non-linear models there was implement
+ed
 \color blue
- (
+ 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "subsec:BER"
+reference "subsec:OSIC"
 plural "false"
 caps "false"
 noprefix "false"
 
 \end_inset
 
-) 
+
 \color inherit
-and Signal-to-Noise Ratio (SNR) on the same graph, with SNR on the x-axis
- and BER on the y-axis.
- BER measures the number of errors that occur in a transmitted data stream,
- relative to the total number of bits transmitted, while SNR measures the
- strength of the signal relative to the background noise.
- Comparing the BER and SNR values allows us to evaluate the system's performance
- under different levels of noise.
+ and
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:NearML"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -11234,11 +11250,87 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Golden model plot QPSK and 16QAM
+Golden linear models plot QPSK and 16QAM
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+When evaluating the performance of a communication system, it is standard
+ practice to plot both the Bit Error Rate
+\color blue
+ (
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:BER"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) 
+\color inherit
+and Signal-to-Noise Ratio (SNR) on the same graph, with SNR on the x-axis
+ and BER on the y-axis.
+ BER measures the number of errors that occur in a transmitted data stream,
+ relative to the total number of bits transmitted, while SNR measures the
+ strength of the signal relative to the background noise.
+ Comparing the BER and SNR values allows us to evaluate the system's performance
+ under different levels of noise.To create a more representative view, it
+ was decided to average the results of 5 tests and plot the average.
+ Additionally, for each test, the SNR was incremented by a step of 2.
+ Therefore, an interpolation was performed to smooth the curves.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/Golden/Results_Non_linear_Golden_Models_QPSK_-17_3_2023-11_36.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Results/Golden/Results_Non_linear_Golden_Models_-17_3_2023-11_32.png
+	lyxscale 40
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Golden LMMSE and non-linear models plot QPSK and 16QAM
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -11298,7 +11390,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: LS, LMMSE, ZeroForcing
+16-QAM linear models BLER: LS, LMMSE, ZeroForcing
 \end_layout
 
 \end_inset
@@ -11345,9 +11437,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Imagenes/Results/ZeroForcingVSGolden.png
-	lyxscale 55
-	scale 55
+	filename Imagenes/Results/Golden/BLER/Results_Non_linear_Golden_Models_-17_3_2023-11_35.png
+	lyxscale 70
+	scale 70
 
 \end_inset
 
@@ -11355,11 +11447,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: LMMSE vs ZeroForing
+Golden LMMSE and non-linear models BLER 16QAM
 \end_layout
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -15230,54 +15326,6 @@ noprefix "false"
  A lower value for both metrics indicates better performance of the system.
 \end_layout
 
-\begin_layout Subsubsection
-Contributions
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-One of the key contributions of our research is the development of new networks
- specifically designed for this task.
- PhaseNet, PolarNet, and ComplexNet are completely new contributions to
- the state of the art, as they were developed from scratch specifically
- for this research.
- These networks incorporate some preprocessing techniques taken from the
- state of the art, but the frame sizes used in other studies are relatively
- small compared to the 48 required in this work.
- Furthermore, we not only dealt with QPSK but also with 16QAM, which required
- consideration of both phase and amplitude.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In contrast, MobileNet and GridNet are based on existing models with some
- modifications.
- However, in the case of GridNet, the Polar Grid preprocessing stage is
- entirely new and unexplored, which adds a new dimension to the state-of-the-art
- in signal equalization and deep learning.
- The Polar Grid can be thought of as a natural evolution required from the
- existing Square Grid.
- However, the use of transformers in deep learning is a cutting-edge technique
- that is still in the experimental stage for image recognition and natural
- language processing.
- Therefore, researchers have not had to deal with the requirement of complex
- numbers, which can be treated in a polar system and consequently in the
- Polar Grid.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-After conducting some research, we found that there is no existing paper
- or document discussing the use of transformers in the signal processing
- scenario.
-\end_layout
-
 \begin_layout Subsection
 FLOPS and Time complexity
 \end_layout
@@ -15898,7 +15946,202 @@ However, there are optimizations that can be applied to reduce the time
 \end_layout
 
 \begin_layout Subsubsection
-Ranking by FLOPS and Big(O) complexity
+OSIC
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Loop 1 (cols iterations): 1 division + dim subtractions + dim absolute values
+ + dim exponentiations + dim * log(dim) comparisons + 1 assignment + cols
+ multiplications + cols subtractions 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The operations inside the loop are executed cols times: cols * (1 + dim
+ + dim + dim + dim * log(dim) + 1 + cols + cols) 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Loop 2 (cols iterations): 1 assignment 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The operations inside the loop are executed cols times: cols * 1
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Total floating-point operations :
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{OP=cols*(3+4*dim+dim*log(dim)+2*cols)+cols}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Given cols = 48 and dim = 16 operations are 10,944, and the time taken 
+\begin_inset Formula $t=640ms$
+\end_inset
+
+ let's calculate the total floating-point operations per seconds (FLOPS):
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{10\times10^{3}}{640\times10^{-3}}=15\times10^{3}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+NearML
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To estimate the number of Multiply-Accumulate (MAC) operations in this algorithm
+, we can analyze the nested loops and matrix operations.
+ The algorithm's complexity is mainly determined by the following operations:
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Detection at level 'nt' loop (range(QRM)): This loop iterates 'QRM' times,
+ where QRM is the length of the constellation (conste).
+ Inside this loop, there is a nested loop that iterates 'nt - 1' times.
+ This nested loop contains vector subtraction and element-wise multiplication,
+ which have 'nt' operations each.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Estimation of the 'nt-1' levels loop (range(QRM)): This loop iterates 'QRM'
+ times.
+ Inside this loop, there is another loop that iterates 'nt - 1' times.
+ This nested loop contains a loop that iterates 'M' times (M = 4).
+ Inside this loop, there are vector subtraction and element-wise multiplication
+ with 'nt' operations each.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+In the last part of the algorithm, there is a loop iterating 'nt' times.
+ This loop has a single assignment operation.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Considering the main loops and the operations mentioned, we can estimate
+ the number of MAC operations as follows:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{MAC=QRM*(nt-1)*nt\left(1+M\right)+nt}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Given 
+\begin_inset Formula $\boldsymbol{nt=48}$
+\end_inset
+
+ , 
+\begin_inset Formula $\boldsymbol{QRM=16}$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{M=4}$
+\end_inset
+
+ ,the total MAC operations amount to 103,664.
+ Since each MAC consists of two operations, and the execution time is measured
+ at 7.35 seconds.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{180.528\times10^{3}}{7.35}*2\simeq49.110\times10^{3}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Performance Analysis: FLOPs and Time Complexity Benchmark
 \end_layout
 
 \begin_layout Standard
@@ -15925,7 +16168,7 @@ begin{table}[H]
 \backslash
 centering 
 \backslash
-caption{FLOPS Ranking} 
+caption{FLOPS and Time Complexity} 
 \backslash
 label{tab:operations} 
 \backslash
@@ -15937,6 +16180,42 @@ begin{tabular}{|l|l|l|}
 
 \backslash
 hline Name & FLOPS & Big O Complexity
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+OSIC & $ 15 
+\backslash
+times 10^3 $ & $O(N 
+\backslash
+times |
+\backslash
+mathbb{A}|) $  
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+NearML & $ 49.110
+\backslash
+times10^{3} $ & $O(|
+\backslash
+mathbb{A}|^2 
+\backslash
+times N 
+\backslash
+times M) $  
 \backslash
 
 \backslash
@@ -16195,11 +16474,114 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
 QPSK BLER : PhaseNet vs.
  LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+As seen in the graph below, non-linear models do not reach the same level
+ of performance as PhaseNet.
+ One positive aspect of the network is that the number of symbols for bigger
+ PSK does not affect the time complexity.
+ Only the number of symbols in the frame matters.
+ Given that, the OSIC and NML equalizers will take much longer time execution
+ for the 16 symbols case.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PhaseNET/BER_Non_linear_Golden vs PhaseNet_-17_3_2023-12_36.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK BER: PhaseNet vs.
+ OSIC and NML
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This network works well for block integrity, but in low noise scenarios,
+ OSIC performs better.
+ This may be because OSIC focuses on canceling interference.
+ Therefore, this probably means that PhaseNet is not quite as effective
+ for ICI, but it is good for removing noise.
+ The results we are seeing are likely due to more noise cancellation than
+ interference cancellation because this network does not follow an iterative
+ nature.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PhaseNET/BLER_Non_linear_Golden vs PhaseNet_-17_3_2023-12_36.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+QPSK BLER: PhaseNet vs.
+ OSIC and NML
 \end_layout
 
 \end_inset
@@ -16277,7 +16659,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Imagenes/Results/PolarNet/Polar_16QAM.png
+	filename Imagenes/Results/PolarNet/Linear/Polar_16QAM.png
 	lyxscale 70
 	scale 80
 
@@ -16306,7 +16688,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing double
+\paragraph_spacing onehalf
 
 \size large
 For the BLER graph, we can visualize a smoother performance with lower values
@@ -16329,7 +16711,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename Imagenes/Results/BLER/Results_PolarNet-10_3_2023-23_36.png
+	filename Imagenes/Results/PolarNet/Linear/Results_PolarNet-10_3_2023-23_36.png
 	lyxscale 80
 	scale 80
 
@@ -16341,6 +16723,115 @@ status open
 \begin_layout Plain Layout
 16-QAM BLER: PolarNet vs.
  LMMSE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The non-linear equalizers perform better than the network only up to 30dB.
+ At higher SNRs, the model does not perform well because it truncates its
+ error and does not perform better for non-noisy scenarios.
+ The model error is based on the training error itself, and it is important
+ to keep in mind that neural networks try to find a general solution with
+ fixed weight matrices.
+ Trying to achieve a lower BER may cause the neural network to overfit and
+ only learn non-noisy data.
+ Therefore, to maintain a balance between good denoising and overfitting,
+ sacrificing the performance beyond 30dB is necessary.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PolarNet/NonLinear/BER_Non_linear_Golden vs PolarNet_-17_3_2023-11_44.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: PolarNet vs.
+ OSIC and NML
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Despite the model being truncated for a BLER of 35dB, the compromise is
+ reasonable since the model outperforms the non-linear equalizers within
+ a range of 15dB to 35dB.
+ This suggests that most of the errors reported in the BER section are outliers.
+ By centering the input values around the mean, neural networks can learn
+ patterns in the data more effectively without being overly influenced by
+ extreme values.
+ Therefore, values closer to the mean can provide a balanced representation
+ of the data and be well-suited for neural networks, in this case it can
+ be seen in BLER plot.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/PolarNet/NonLinear/BLER_Non_linear_Golden vs PolarNet_-17_3_2023-11_44.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: PolarNet vs.
+ OSIC and NML
 \end_layout
 
 \end_inset
@@ -16772,6 +17263,7 @@ status open
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 BLER (Block Error Rate) is not far behind in terms of the results, but LMMSE
@@ -16994,6 +17486,9 @@ status open
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 In the image below, it is shown that PolarNet is the best option for block
  integrity between 30dB to 15dB.
  However, while GridNetPolar performs well at high SNR, it degrades faster
@@ -17037,6 +17532,9 @@ status open
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 Taking a closer look at the figure plot, MobileNet also has a very close
  BER performance to PolarNet, which is a good result because MobileNetV3
  is also one of the newest convolutional neural networks and is highly portable
@@ -17086,6 +17584,58 @@ status open
 
 \begin_layout Section
 Conclusion
+\end_layout
+
+\begin_layout Subsection
+Contributions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One of the key contributions of our research is the development of new networks
+ specifically designed for this task.
+ PhaseNet, PolarNet, and ComplexNet are completely new contributions to
+ the state of the art, as they were developed from scratch specifically
+ for this research.
+ These networks incorporate some preprocessing techniques taken from the
+ state of the art, but the frame sizes used in other studies are relatively
+ small compared to the 48 required in this work.
+ Furthermore, we not only dealt with QPSK but also with 16QAM, which required
+ consideration of both phase and amplitude.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In contrast, MobileNet and GridNet are based on existing models with some
+ modifications.
+ However, in the case of GridNet, the Polar Grid preprocessing stage is
+ entirely new and unexplored, which adds a new dimension to the state-of-the-art
+ in signal equalization and deep learning.
+ The Polar Grid can be thought of as a natural evolution required from the
+ existing Square Grid.
+ However, the use of transformers in deep learning is a cutting-edge technique
+ that is still in the experimental stage for image recognition and natural
+ language processing.
+ Therefore, researchers have not had to deal with the requirement of complex
+ numbers, which can be treated in a polar system and consequently in the
+ Polar Grid.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+After conducting some research, we found that there is no existing paper
+ or document discussing the use of transformers in the signal processing
+ scenario.
+\end_layout
+
+\begin_layout Subsection
+Outlook
 \end_layout
 
 \begin_layout Standard
