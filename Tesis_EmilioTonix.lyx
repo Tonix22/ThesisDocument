@@ -446,7 +446,7 @@ Es posible afirmar que los algoritmos convencionales han demostrado ser
  En resumen, abordan con éxito problemas no lineales.
  El objetivo de este trabajo es imitar técnicas de ecualización conocidas
  con naturaleza lineal, como los ecualizadores Zero Forcing, MSE, LMMSE
- y no lineales como _______.
+ y no lineales como OSIC y NearML.
  Durante las pruebas que se realizaron, se hizo un seguimiento de diversos
  tamaños de constelaciones y tasas de error de bits en una variedad de situacion
 es con interferencia y ruido.
@@ -572,7 +572,7 @@ n task for modulation schemes like LTE and Wi-Fi.
  In short, they successfully tackle non-linear issues.
  The objective of this work is to mimic well-known equalization techniques
  with linear properties such as Zero Forcing, MSE, and LMMSE, as well as
- non-linear techniques like ____ equalizers.
+ non-linear techniques like OSIC and NearML equalizers.
  Various constellation sizes and bit error rates were monitored during the
  tests conducted in various scenarios with interference and noise.
  The experimental results indicated that the bit error rate (BER) and block
@@ -4144,6 +4144,732 @@ ally costly
  and robust equalization techniques.
 \end_layout
 
+\begin_layout Subsection
+Non-linear equalizers
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Non-linear signal equalization techniques, like NearML and OSIC, play a
+ vital role in mitigating the challenges posed by signal distortions in
+ digital communication systems.
+ These methods provide better symbol detection accuracy and overall system
+ performance, making them invaluable tools in modern communication systems
+ design.
+ However, they compromise time complexity due to the iterative nature of
+ their applications.
+ In our research team, these methods have been previously applied in MATLAB
+ for benchmarking purposes in the work titled 
+\begin_inset Quotes eld
+\end_inset
+
+Evaluation of OFDM Systems With Virtual Carriers Over V2V Channels
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gonza"
+literal "false"
+
+\end_inset
+
+.
+ We needed to perform a coding language translation to Python in order to
+ make a fairer metric comparison under the same conditions as all the other
+ Equalization methods and Nueronal Networks.
+ Additionally, there was a well-planned architecture to integrate these
+ methods in an almost transparent manner.
+ Additional information about the software architecture can be found in
+ the methodology section.
+\end_layout
+
+\begin_layout Subsubsection
+OSIC
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Ordered Successive Interference Cancellation (OSIC) detection method.
+ This method is used for detecting transmitted symbols from a received signal
+ in digital communication systems.
+ The function accepts four inputs: the received signal vector, the channel
+ matrix, the constellation points, and the indices of the detected symbols.
+ The function starts by initializing several variables needed for the algorithm.
+ It then goes through each column of the channel matrix in reverse order.
+ For each column, it estimates the corresponding transmitted symbol by dividing
+ the received signal by the channel matrix value.
+ Then, it calculates the squared distance between the estimated symbol and
+ each constellation point.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The algorithm selects the constellation point with the smallest squared
+ distance as the detected symbol and updates the received signal vector
+ accordingly.
+ This process helps to cancel the interference caused by previously detected
+ symbols and improves the overall detection performance.
+ Finally, the detected symbols are rearranged according to the given indices
+ and stored in an output tensor.
+ The function returns this tensor containing the estimated transmitted symbols.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+: The received signal, which is a complex-valued column vector of length
+ 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{H}$
+\end_inset
+
+: The channel matrix of size 
+\begin_inset Formula $\boldsymbol{N\times N}$
+\end_inset
+
+, which represents the channel coefficients 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbb{\boldsymbol{A}}$
+\end_inset
+
+: The set of constellation points, which represents the possible symbol
+ values in the modulation scheme used for the transmitted signal.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathbf{r}$
+\end_inset
+
+: A temporary variable used for storing the residual signal during the algorithm.
+ It is initialized as the received signal 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ and updated in each iteration of the loop.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{k}$
+\end_inset
+
+: The loop index representing the current column of the channel matrix being
+ considered.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{a_{est}}$
+\end_inset
+
+: The estimated transmitted symbol value for the k-th column of the channel
+ matrix, computed as the ratio between the k-th element of the residual
+ signal 
+\begin_inset Formula $\mathbf{r}$
+\end_inset
+
+ and the k-th diagonal element of the channel matrix 
+\begin_inset Formula $\mathbf{H}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\text{dist}$
+\end_inset
+
+: A vector of squared distances between the estimated transmitted symbol
+ value 
+\begin_inset Formula $a_{est}$
+\end_inset
+
+ and the constellation points in 
+\begin_inset Formula $\mathbb{A}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\hat{\theta}_{osic}}$
+\end_inset
+
+: The estimated transmitted symbol vector of length N.
+ It is initialized as an empty vector and updated with the minimum-distance
+ constellation point in each iteration of the loop.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H] 
+\backslash
+caption{OSIC Detection Algorithm} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+Procedure{OSIC
+\backslash
+_Det}{$
+\backslash
+mathbf{y}$, $
+\backslash
+mathbf{H}$, $
+\backslash
+mathbb{A}$}     
+\backslash
+State $
+\backslash
+mathbf{r} 
+\backslash
+gets 
+\backslash
+mathbf{y}$     
+\backslash
+For{$k 
+\backslash
+gets N-1, N-2, 
+\backslash
+dots, 0$}         
+\backslash
+State $a_{est} 
+\backslash
+gets 
+\backslash
+frac{
+\backslash
+mathbf{r}[k]}{
+\backslash
+mathbf{H}[k, k]}$         
+\backslash
+State $
+\backslash
+text{dist} 
+\backslash
+gets |a_{est} - 
+\backslash
+mathbb{A}|^2$         
+\backslash
+State $
+\backslash
+hat{
+\backslash
+theta}_{osic}[k] 
+\backslash
+gets 
+\backslash
+arg
+\backslash
+min_{a 
+\backslash
+in 
+\backslash
+mathbb{A}} 
+\backslash
+text{dist}$         
+\backslash
+State $
+\backslash
+mathbf{r} 
+\backslash
+gets 
+\backslash
+mathbf{r} - 
+\backslash
+hat{
+\backslash
+theta}_{osic}[k] 
+\backslash
+cdot 
+\backslash
+mathbf{H}[:, k]$     
+\backslash
+EndFor     
+\backslash
+State 
+\backslash
+textbf{return} $
+\backslash
+hat{
+\backslash
+theta}_{osic}$ 
+\backslash
+EndProcedure 
+\backslash
+end{algorithmic} 
+\backslash
+end{algorithm} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+There is an outer loop iterates through the columns of the channel matrix,
+ which has a size of 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ Therefore, the outer loop has a complexity of 
+\begin_inset Formula $\boldsymbol{O(N)}$
+\end_inset
+
+.
+ Inside the outer loop, there's a calculation of squared distances between
+ the estimated symbol and each constellation point.
+ The constellation points have a size of 
+\begin_inset Formula $\boldsymbol{|\mathbb{A}|}$
+\end_inset
+
+.
+ This operation has a complexity of 
+\begin_inset Formula $\boldsymbol{O\left(|\mathbb{A}|\right)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Since the squared distance calculation is inside the outer loop, the overall
+ complexity of the OSIC_Det algorithm is 
+\begin_inset Formula $\boldsymbol{O(N*|\mathbb{A}|)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+NearML
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Near-ML detection algorithm functions as a tree search with nodes representi
+ng constellation points and depth equal to the number of transmitters.
+ It computes distances between received signals and candidate symbols, selecting
+ M best candidates at each level for pruning.
+ By backtracking and updating accumulated distances, it maintains the M
+ best candidates and performs additional pruning when necessary.
+ The algorithm ultimately selects the candidate with the minimum total distance,
+ resulting in a near-optimal solution with reduced search space and good
+ detection performance.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
+ is to estimate the transmitted symbols, denoted by 
+\begin_inset Formula $\boldsymbol{\hat{\theta}_{NML}}$
+\end_inset
+
+, given the received signal 
+\begin_inset Formula $\boldsymbol{Y}$
+\end_inset
+
+, channel matrix 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+, and the constellation points 
+\begin_inset Formula $\boldsymbol{\mathbb{A}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+: The number of best candidates to be stored at each level of the tree search.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{QRM}$
+\end_inset
+
+: 
+\begin_inset Formula $\boldsymbol{|\mathbb{A}|}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{a_{est}}$
+\end_inset
+
+: The temporary estimation of the transmitted symbol at a specific level,
+ calculated as the received signal divided by the corresponding channel
+ coefficient.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{d}$
+\end_inset
+
+: The distance between the temporary estimation 
+\begin_inset Formula $\boldsymbol{a_{est}}$
+\end_inset
+
+ and the constellation points.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{d_{min}}$
+\end_inset
+
+: The minimum total distance found so far, used for pruning.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{d_{total}}$
+\end_inset
+
+: The total distance of each candidate, used to find the best candidates.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{d_{minf}}$
+\end_inset
+
+: The minimum total distance found at the end of the tree search, used to
+ determine the best candidate.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{s_{est3}}$
+\end_inset
+
+: The reordered detected symbols according to the original index.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula $\boldsymbol{index[k]}$
+\end_inset
+
+: The original index of the detected symbols.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H] 
+\backslash
+caption{Near Maximum Likelihood Detection} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+Procedure{NearML}{$
+\backslash
+boldsymbol{y_p}$, $
+\backslash
+boldsymbol{H}$, $
+\backslash
+boldsymbol{
+\backslash
+mathbb{A}}$, $M$}     
+\backslash
+State Initialize tree search, set $nt$ as the number of columns of $
+\backslash
+boldsymbol{H}$, and set $QRM = |
+\backslash
+mathbb{A}|$     
+\backslash
+State Initialize variables, tensors, and arrays     
+\backslash
+State Compute the distances at level $nt$: $a_{est} = 
+\backslash
+frac{y_p[nt - 1]}{H[nt - 1, nt - 1]}$, $d = |a_{est} - 
+\backslash
+mathbb{A}|^2$     
+\backslash
+State Sort the distances and initialize the parent nodes and parent received
+ signals     
+\backslash
+For{$n$ in range($QRM$)}         
+\backslash
+For{$k$ in range($nt-1$, $0$, $-1$)}             
+\backslash
+State Compute the distances at level $k$: $a_{est} = 
+\backslash
+frac{y_p[k - 1]}{H[k - 1, k - 1]}$, $d = |a_{est} - 
+\backslash
+mathbb{A}|^2$             
+\backslash
+State Sort the distances and update the best candidates             
+\backslash
+State Perform pruning: check if $d_{min} > d_{total}$             
+\backslash
+If{pruning condition met}                 
+\backslash
+State Skip the remaining branches and move to the next subtree         
+    
+\backslash
+EndIf         
+\backslash
+EndFor         
+\backslash
+State Store the $M$ best candidates         
+\backslash
+State Update the minimum total distance: $d_{min} = 
+\backslash
+min(d_{total})$         
+\backslash
+If{a new tree is opened}             
+\backslash
+State Check the pruning condition: $d_{min} > d_{p}$             
+\backslash
+State Reset the skip flag if needed         
+\backslash
+EndIf     
+\backslash
+EndFor     
+\backslash
+State Determine the vector with the minimum distance: $d_{minf} = 
+\backslash
+min(d_{total})$     
+\backslash
+State Reorder the detected symbols according to the original index: $
+\backslash
+hat{
+\backslash
+theta}_{
+\backslash
+text{NearML}}[index[k]] = s_{est3}[k]$ 
+\backslash
+EndProcedure 
+\backslash
+end{algorithmic} 
+\backslash
+end{algorithm} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Based on the provided NearML code, the time complexity can be analyzed by
+ considering the nested loops and the operations inside them.
+ The outer loop iterates 
+\begin_inset Formula $\boldsymbol{QRM}$
+\end_inset
+
+ times, where 
+\begin_inset Formula $\boldsymbol{QRM}$
+\end_inset
+
+ is the number of constellation symbols (denoted as 
+\begin_inset Formula $\boldsymbol{|𝔸|}$
+\end_inset
+
+).
+ Inside this loop, there is another loop that iterates nt times, where 
+\begin_inset Formula $\boldsymbol{nt}$
+\end_inset
+
+ represents the number of columns in the channel matrix 
+\begin_inset Formula $\boldsymbol{H}$
+\end_inset
+
+ which is 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ Within the inner loop, there are operations that take 
+\begin_inset Formula $\boldsymbol{M}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{QRM}$
+\end_inset
+
+ time.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Therefore, the overall time complexity of the NearML algorithm can be approximat
+ed as 
+\begin_inset Formula $\boldsymbol{O\left(|𝔸|\times N\times\left(M+|𝔸|\right)\right)}\boldsymbol{\simeq O\left(|𝔸|^{2}\times N\times M\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Approach to symbol detection: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+OSIC: This algorithm processes the received signal in a sequential manner,
+ starting from the strongest to the weakest received symbol.
+ It detects the strongest symbol first and then removes its interference
+ from the received signal before detecting the next symbol.
+ This process continues until all symbols are detected.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+NearML: Is a tree search algorithm that explores all possible symbol combination
+s and computes the distances between the received signal and candidate symbols.
+ It then selects the candidate with the minimum total distance as the detected
+ transmitted symbol.
+ The algorithm employs pruning techniques to reduce the search space while
+ still maintaining good detection performance.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Complexity: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+OSIC: The complexity of the algorithm is relatively lower compared to NearML,
+ as it processes the received signal in a sequential manner and does not
+ require an exhaustive search of all possible symbol combinations.
+ This makes OSIC faster and more suitable for real-time applications with
+ lower computational resources.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+NearML: The complexity of NearML is higher, as it involves an exhaustive
+ search of all possible symbol combinations in the tree.
+ However, the pruning techniques employed in the algorithm help reduce the
+ search space and improve computational efficiency.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 
 \size large
