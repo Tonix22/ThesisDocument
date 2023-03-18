@@ -16968,7 +16968,112 @@ status open
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+ComplexNet performs marginally better than NML in situations with higher
+ noise levels and is nearly identical to OSIC for values below 15dB.
+ Intriguingly, the model's loss closely mirrors that of OSIC, indicating
+ that the neural networks are attempting to generalize a solution similar
+ to OSIC.
+ The primary advantage of these neural networks is their greater parallelizabili
+ty.
+ Concerning time complexity, the network's growth is only dependent on the
+ N scale and not the alphabet of symbols.
+ Therefore, for larger QAM systems, this network may be a more suitable
+ solution.
+ It is recommended to conduct further testing with higher QAM constellations.
+ However, higher QAM constelations is outside this research scope.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/ComplexNet/BER_Non_linear_Golden vs ComplexNet_-17_3_2023-12_31.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: ComplexNet vs.
+ OSIC and NML
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the block error rate, nearly all errors are independent of the frame
+ or the manner in which data is received.
+ The model does not take into account whether the data is close to the mean
+ or an outlier, as it faces difficulties in generalizing effectively.
+ Consequently, the presence or absence of outliers in the data has little
+ impact on the model's inherent error.
+ This could be attributed to the error function, and as previously mentioned,
+ the research on complex values for neural networks is still in its early
+ stages.
+ Therefore, it is reasonable to expect that the current state-of-the-art
+ implementation may not be well-suited for this specific problem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/ComplexNet/BLER_Non_linear_Golden vs ComplexNet_-17_3_2023-12_35.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: ComplexNet vs.
+ OSIC and NML
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -17073,6 +17178,109 @@ status open
 \begin_layout Plain Layout
 16-QAM BLER: MobileNet vs.
  ZeroForcing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+It appears that MobileNet performs best at 22dB and lower SNR values.
+ One notable success of this network is that its output is simply a one-hot
+ encoded vector representing the channel.
+ By dividing this vector with the received signal, a more intelligent zero-forci
+ng approach is achieved.
+ Furthermore, MobileNet is among the most time-efficient networks in terms
+ of complexity.
+ These two factors make it a suitable solution for scenarios with higher
+ noise levels.
+ Additionally, compared to non-linear methods, this network requires only
+ a single feedforward evaluation rather than iterative processing, as seen
+ in non-linear models.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/MobileNEt/Non-lineal/BER/Results_Zero_Non_linear_Golden vs MobileNet_-17_3_2023-11_53.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BER: MobileNet vs.
+ Zero forcing, OSIC and NML
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The block error rate is quite good for values lower than 30dB, which can
+ be attributed to the intelligent zero-forcing approach that effectively
+ cancels the Intersymbol Interference (ISI), resulting in an improved BLER.
+ This helps to ensure data integrity is maintained as much as possible.
+ One potential future strategy could involve using this network as a preprocessi
+ng step to feed data into other advanced networks, further enhancing their
+ performance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/MobileNEt/Non-lineal/BLER/Results_Zero_Non_linear_Golden vs MobileNet_-17_3_2023-11_54.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+16-QAM BLER: MobileNet vs.
+ Zero forcing, OSIC and NML
 \end_layout
 
 \end_inset
