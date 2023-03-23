@@ -2954,10 +2954,10 @@ Bias and variance in Deep Learning
 \paragraph_spacing onehalf
 
 \size large
-In the context of the deep learning models, including neural networks.
- In this context, bias refers to the error introduced by approximating a
- real-world problem with a simplified model, while variance represents the
- model's sensitivity to small fluctuations in the training data.
+In the context of deep learning models, including neural networks, bias
+ refers to the error introduced by approximating a real-world problem with
+ a simplified model, while variance represents the model's sensitivity to
+ small fluctuations in the training data.
  A neural network with a high bias tends to produce simpler models that
  may not capture the true underlying relationship between inputs and outputs,
  resulting in underfitting.
@@ -3117,12 +3117,12 @@ The transmitted and received frequency symbol blocks
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{F_{N}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
+\boldsymbol{F}_{N}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
 1 & w_{0} & w_{0}^{2} & \dots & w_{0}^{N-1}\\
 1 & w_{0}^{2} & w_{0}^{4} & \dots & w_{0}^{2(N-1)}\\
 \vdots & \vdots & \vdots & \ddots & \vdots\\
 1 & w_{0}^{M-1} & w_{0}^{2(M-1)} & \dots & w_{0}^{(N-1)^{2}}
-\end{bmatrix}}
+\end{bmatrix}
 \end{equation}
 
 \end_inset
@@ -3135,7 +3135,7 @@ The transmitted and received frequency symbol blocks
 
 \size large
 where 
-\begin_inset Formula $\boldsymbol{w_{0}=e^{-\frac{2\pi i}{N}}}$
+\begin_inset Formula $w_{0}=e^{-\frac{2\pi i}{N}}$
 \end_inset
 
 .
@@ -3146,11 +3146,11 @@ where
 
 \size large
 In the time domain, the received signal, 
-\begin_inset Formula $\boldsymbol{r}$
+\begin_inset Formula $\boldsymbol{r(t)}$
 \end_inset
 
 , is given by the convolution of the transmitted signal, 
-\begin_inset Formula $\boldsymbol{s}$
+\begin_inset Formula $\boldsymbol{s(t)}$
 \end_inset
 
 , and the channel impulse response, 
@@ -3170,7 +3170,7 @@ In the time domain, the received signal,
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r=s\ast h(t)+n(t)}
+\boldsymbol{r=s(t)*h(t)+n(t)}
 \end{equation}
 
 \end_inset
@@ -3243,7 +3243,6 @@ When transforming from the time domain to the frequency domain, the linear
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align center
 
 \size large
 Each element of this relationship can be developed as follows:
@@ -3292,6 +3291,43 @@ where
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{H}=\begin{bmatrix}h_{(0)(0)} & 0 & \dots & h_{(0)(t-1)}\\
+h_{(1)(0)} & h_{(1)(1)} & \dots & h_{(1)(t-1)}\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & h_{(d-1)(0)} & \dots & h_{(d-1)(t-1)}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Here, 
+\begin_inset Formula $d$
+\end_inset
+
+ represents the number of delays (i.e., the length of the channel impulse
+ response), and 
+\begin_inset Formula $t$
+\end_inset
+
+ represents the number of time samples in the OFDM symbol.
+ Each element of the matrix is represented as 
+\begin_inset Formula $h_{(delay)(time)}$
+\end_inset
+
+, where delay and time represent the indices of the corresponding delay
+ and time samples, respectively.
 \end_layout
 
 \begin_layout Standard
@@ -3444,17 +3480,17 @@ as the Input-Output relation.
  is used.
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{H_{\text{diag}}=\text{diag}(H)=diag\left(\begin{bmatrix}H_{11} & 0 & \dots & 0\\
-0 & H_{22} & \dots & 0\\
+\boldsymbol{H_{\text{diag}}}=\text{diag}(\boldsymbol{H})=diag\left(\begin{bmatrix}h_{11} & 0 & \dots & 0\\
+0 & h_{22} & \dots & 0\\
 \vdots & \vdots & \ddots & \vdots\\
-0 & 0 & \dots & H_{NN}
+0 & 0 & \dots & h_{NN}
 \end{bmatrix}\right)=\left(\begin{array}{c}
-H_{11}\\
-H_{22}\\
+h_{11}\\
+h_{22}\\
 \vdots\\
 \vdots\\
-H_{NN}
-\end{array}\right)}
+h_{NN}
+\end{array}\right)
 \end{equation}
 
 \end_inset
@@ -3485,12 +3521,24 @@ Ideally, if the off-diagonal elements of the channel matrix H are relatively
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}=\frac{y}{diag(H)}=\frac{Hx+w}{diag(H)}}
+\boldsymbol{\hat{\theta}=y\circ\div diag(H)=\left(Hx+w\right)\circ\div diag(H)}
 \end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Where 
+\begin_inset Formula $\boldsymbol{\circ\div}$
+\end_inset
+
+ represents the elementwise division.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4152,9 +4200,10 @@ Non-linear equalizers
 \paragraph_spacing onehalf
 
 \size large
-Non-linear signal equalization techniques, like NearML and OSIC, play a
- vital role in mitigating the challenges posed by signal distortions in
- digital communication systems.
+NearML (Near Maximum Likelihood) and OSIC (Ordered Successive Interference
+ Cancellation) are two non-linear signal equalization techniques used in
+ digital communication systems to mitigate the challenges posed by signal
+ distortions.
  These methods provide better symbol detection accuracy and overall system
  performance, making them invaluable tools in modern communication systems
  design.
@@ -4460,8 +4509,8 @@ end{algorithm}
 \paragraph_spacing onehalf
 
 \size large
-There is an outer loop iterates through the columns of the channel matrix,
- which has a size of 
+The outer loop iterates through the columns of the channel matrix, which
+ has a size of 
 \begin_inset Formula $\boldsymbol{N}$
 \end_inset
 
@@ -5089,14 +5138,18 @@ The goal of the layer is to optimize the weights parameters so that they
  fit a target referred to as the ground truth.
  The error, denoted by E, is calculated as the difference between the predicted
  output (
-\begin_inset Formula $\hat{X}$
+\begin_inset Formula $\boldsymbol{\hat{X}}$
 \end_inset
 
 ) and the actual target output (
-\begin_inset Formula $X_{n}$
+\begin_inset Formula $\boldsymbol{X_{n}}$
 \end_inset
 
-).
+), where 
+\begin_inset Formula $n$
+\end_inset
+
+ is the index of the sample in the dataset.
  To achieve this, we will utilize the backpropagation algorithm, which is
  a common method in the field of artificial neural networks for training
  the network by adjusting the weights between neurons in the network.
@@ -5176,6 +5229,15 @@ literal "false"
 
 \begin_layout Itemize
 
+\size large
+\begin_inset Formula $\boldsymbol{\boldsymbol{\times}}$
+\end_inset
+
+Matrix multiplication 
+\end_layout
+
+\begin_layout Itemize
+
 \size larger
 \begin_inset Formula $\boldsymbol{\nabla W}$
 \end_inset
@@ -5195,17 +5257,38 @@ Learning rate
 \align block
 
 \size large
-During the process of updating the weights, the learning rate is a hyperparamete
-r that determines the size of the update step applied during the training
- of a neural network..
- It is a scalar value that is used to multiply the gradient of the loss
- function with respect to the weights of the network during gradient descent.
- The learning rate determines how fast the weights of the network are updated
- during training.
- A smaller learning rate results in slower updates, while a larger learning
- rate results in faster updates.
- The learning rate is typically set manually, and finding the optimal learning
- rate for a given problem is an important aspect of training a neural network.
+When training a neural network, the weights 
+\begin_inset Formula $\boldsymbol{W_{n}}$
+\end_inset
+
+ and bias terms 
+\begin_inset Formula $\boldsymbol{b_{n}}$
+\end_inset
+
+ are updated iteratively using an optimization algorithm such as gradient
+ descent.
+ The learning rate
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+ is a hyperparameter that plays a crucial role in this process by determining
+ the size of the update step applied to the weights and biases at each iteration.
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\size large
+The learning rate 
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+ is a scalar value that is multiplied by the gradient of the loss function
+ with respect to the weights of the network.
+ This gradient provides information about the direction and magnitude of
+ the weight update required to minimize the loss function.
+ A smaller learning rate leads to smaller updates and slower convergence,
+ while a larger learning rate results in larger updates and faster convergence.
 
 \size default
  
