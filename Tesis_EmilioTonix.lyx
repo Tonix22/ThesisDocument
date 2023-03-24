@@ -2836,7 +2836,14 @@ Unbiased estimator:
 
 \end_deeper
 \begin_layout Subsubsection
-MSE
+MSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:MSE"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5254,7 +5261,6 @@ Learning rate
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
 When training a neural network, the weights 
@@ -5267,8 +5273,8 @@ When training a neural network, the weights
 
  are updated iteratively using an optimization algorithm such as gradient
  descent.
- The learning rate
-\begin_inset Formula $\boldsymbol{\gamma}$
+ The learning rate 
+\begin_inset Formula $\gamma$
 \end_inset
 
  is a hyperparameter that plays a crucial role in this process by determining
@@ -5276,11 +5282,11 @@ When training a neural network, the weights
 \end_layout
 
 \begin_layout Standard
-\align block
+\paragraph_spacing onehalf
 
 \size large
 The learning rate 
-\begin_inset Formula $\boldsymbol{\gamma}$
+\begin_inset Formula $\gamma$
 \end_inset
 
  is a scalar value that is multiplied by the gradient of the loss function
@@ -5307,7 +5313,7 @@ literal "false"
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W_{n}=W_{n}-\gamma\nabla W}
+\boldsymbol{W_{n}}=\boldsymbol{W_{n}}-\gamma\boldsymbol{\nabla W}
 \end{equation}
 
 \end_inset
@@ -5320,7 +5326,7 @@ literal "false"
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{b_{n}=b_{n}-\gamma\frac{\partial E}{X_{n}}}
+\boldsymbol{b_{n}}=\boldsymbol{b_{n}}-\gamma\boldsymbol{\frac{\partial E}{X_{n}}}
 \end{equation}
 
 \end_inset
@@ -5349,58 +5355,6 @@ If the learning rate is set too low, the optimization process may become
 \end_layout
 
 \begin_layout Subsubsection
-Basic code implementation
-\end_layout
-
-\begin_layout Standard
-
-\size large
-Although it may seem difficult to implement the code, it is actually quite
- simple as it involves encapsulating the results of the previous layer's
- calculations.
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-lstinputlisting[language=python]{Codigo/Linear.py}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-And a basic implmentation of the Linear Class.
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-lstinputlisting[language=python]{Codigo/TestLinear.py}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
 Activation functions 
 \end_layout
 
@@ -5417,6 +5371,26 @@ Activation functions are used in neural networks to introduce non-linearity
  the data and improve the accuracy of the network.
  They also help to prevent the network from becoming stuck in a local minimum
  or plateau during training.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+However, the traditional activation functions pose some challenges when
+ it comes to embedded devices.
+ They often involve computationally expensive operations such as exponentiation,
+ division, and floating-point arithmetic.
+ These operations can significantly increase the processing time and power
+ consumption, making them less attractive for resource-constrained embedded
+ systems.
+ To address these concerns, researchers have proposed hardened versions
+ of activation functions.
+ Hardened activation functions are designed to be computationally less demanding
+ while maintaining similar performance to their traditional counterparts.
+ Examples of hardened activation functions include the binary step function,
+ RELU, Hardtahn, Hardsigmoid.
  
 \end_layout
 
@@ -5471,13 +5445,14 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The most popular activation functions in neural networks are the sigmoid
- function, the hyperbolic tangent (tanh) function, and the rectified linear
- unit (ReLU) function.
- The sigmoid function maps any input value to a range between 0 and 1, while
- the tanh function maps input values to the range between -1 and 1.
- The ReLU function is a linear function that maps all negative input values
- to 0 and all positive input values to their original value.
+The most widely used activation functions in neural networks include the
+ sigmoid, hyperbolic tangent (tanh), and rectified linear unit (ReLU) functions.
+ The sigmoid function transforms any input value into a range from 0 to
+ 1, while the tanh function adjusts input values to fall within the -1 to
+ 1 range.
+ The ReLU function operates linearly, setting all negative input values
+ to 0 and retaining all positive input values in their initial form.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ActivationFunctions"
@@ -5490,13 +5465,15 @@ literal "false"
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-However, there are "hardened" versions of activation functions that can
- be evaluated computationally faster yet produce similar results.
- Examples of these include hardtanh and hardsigmoid.
- The Hardtanh function is defined as: 
+As we have seen before, there exist "hardened" variants of activation functions,
+ such as hardtanh and hardsigmoid, that offer more efficient computational
+ evaluations while maintaining comparable outcomes to their traditional
+ counterparts.
+ These hardened activation functions enable faster neural network computations
+ while still delivering similar results, with the Hardtanh function being
+ the most used for this research that can be described as follows:
 \end_layout
 
 \begin_layout Standard
@@ -5572,10 +5549,29 @@ A loss function is often defined as a scalar function of the model's parameters,
  of parameters that minimize the loss function.
  There are different types of loss functions, each one is suitable for different
  types of problems.
- For example, in a regression problem, the mean squared error (MSE) is a
- commonly used loss function, while in a classification problem, the cross-entro
-py loss is often used.
- 
+ There are various types of loss functions, each tailored to specific types
+ of problems.
+ For example, in a regression problem, the mean squared error (MSE), as
+ mentioned in section 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:MSE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , is a commonly used loss function.
+ Conversely, in classification problems, the cross-entropy loss is often
+ employed.
+ Due to its significance, we will delve deeper into the cross-entropy loss
+ in the following section, discussing how it operates within the context
+ of deep learning.
 \end_layout
 
 \begin_layout Subsubsection
@@ -5694,24 +5690,85 @@ d optimization algorithms.
 \end_layout
 
 \begin_layout Standard
+
+\size large
+In this equation, 
+\begin_inset Formula $\boldsymbol{D_{KL}(P∣∣Q)}$
+\end_inset
+
+ represents the KL divergence between two probability distributions 
+\begin_inset Formula $\boldsymbol{P}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{Q}$
+\end_inset
+
+, where 
+\begin_inset Formula $\boldsymbol{P}$
+\end_inset
+
+ is the true distribution and 
+\begin_inset Formula $\boldsymbol{Q}$
+\end_inset
+
+ is the approximating distribution.
+ The double vertical bars (
+\begin_inset Formula $\boldsymbol{||}$
+\end_inset
+
+) in the notation denote "divergence between" the two distributions.
+ The KL divergence is widely used in information theory and machine learning
+ to evaluate the dissimilarity between two distributions.
+ It is important to note that the Kullback-Leibler (KL) divergence is not
+ symmetric.
+ In other words, the KL divergence between distributions P and Q, denoted
+ as 
+\begin_inset Formula $\boldsymbol{D_{KL}(P∣∣Q)}$
+\end_inset
+
+, is not equal to the KL divergence between 
+\begin_inset Formula $\boldsymbol{Q}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{P}$
+\end_inset
+
+, denoted as 
+\begin_inset Formula $\boldsymbol{D_{KL}(Q∣∣P)}$
+\end_inset
+
+.
+ The asymmetry of the KL divergence implies that it should not be regarded
+ as a true distance metric in the strict mathematical sense.
+ Instead, it serves as a measure of dissimilarity between two probability
+ distributions.
+ This characteristic is also reflected in its alternative name, relative
+ entropy.
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-This equation is also known as relative entropy.
- This function will determine which of the given classes is more likely.
- The predicted class distribution is represented by 
-\begin_inset Formula $P(y|x_{i};\theta)$
+The KL divergence plays a crucial role in determining which class is more
+ probable.
+ The predicted class distribution, denoted by 
+\begin_inset Formula $P(y∣x_{i};θ)$
 \end_inset
 
- where 
-\begin_inset Formula $\theta$
+, is influenced by the parameters 
+\begin_inset Formula $θ$
 \end_inset
 
- are the parameters and the true class distribution is represented by 
-\begin_inset Formula $P^{*}(y|x_{i})$
+, while the true class distribution is represented by 
+\begin_inset Formula $P∗(y∣x_{i})$
 \end_inset
 
- which are taken into consideration.
+.
+ Both of these distributions are taken into account when assessing the dissimila
+rity between them.
 \end_layout
 
 \begin_layout Standard
@@ -6485,10 +6542,17 @@ Convolutional Neuronal Networks
 \paragraph_spacing onehalf
 
 \size large
-A convolutional neural network (CNN) is a type of deep learning neural network
- that is primarily used for image and video recognition.
- It is designed to process data that has a grid-like topology, such as an
- image.
+During the research, we will need to work with channel matrices as inputs
+ for neural networks.
+ As these are matrices rather than vectors, we will discuss convolutional
+ neural networks (CNNs), which are a type of deep learning neural network
+ primarily used for image recognition and dimensional reduction.
+ This type of network excel at feature extraction, which is a critical aspect
+ of their success in various applications, especially in image recognition
+ and computer vision tasks.
+ Feature extraction is the process of identifying and extracting relevant
+ patterns or features from raw data, helping the model to discern and recognize
+ important characteristics within the input.
  The network is composed of multiple layers, including 
 \series bold
 convolutional layers
@@ -6643,6 +6707,7 @@ Linear layers
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 \noindent
 \align block
 
@@ -6705,13 +6770,17 @@ Basic cross-correlation operation
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 The output of the convolution operation is a feature map, where each element
  in the feature map is computed as follows:
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{Y_{ij}=\sum K_{ab}\circ I_{i+a,j+b}}
@@ -6723,6 +6792,9 @@ The output of the convolution operation is a feature map, where each element
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
 Where kernel(a,b) is the value of the filter at position (a,b), input(i+a,j+b)
  is the value of the input at position (i+a,j+b) and output(i,j) is the
  output value at position (i,j)
@@ -7046,6 +7118,18 @@ s.
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Performance variations in parallel algorithms stem from differences in design,
+ implementation, and parallelism efficiency.
+ Factors like memory access patterns, communication overhead, and load balancing
+ also influence performance on multi-core systems.
+ As a result, floating-point operation rates can change depending on algorithm
+ effectiveness and work distribution among cores.
+\end_layout
+
 \begin_layout Subsection
 Objectives
 \end_layout
@@ -7059,9 +7143,21 @@ General Objective
 \align block
 
 \size large
-We should analyze and test different techniques of neural networks applied
- to frequency channel equalization, which is commonly used in OFDM.
- The NN models will be based on existing equalizers with well-known equations.
+We aim to analyze and test various neural network techniques for frequency
+ channel equalization in OFDM systems.
+ Our approach involves breaking the process into simpler and more complex
+ tasks based on time complexity, delegating complex tasks like matrix inversion
+ to neural networks while handling lighter tasks in a preprocessing stage.
+ As matrix inversion is sensitive to initial conditions, our research will
+ explore how neural networks can effectively address these challenges.
+ Combining preprocessing methods such as 
+\begin_inset Formula $\boldsymbol{H^{H}}$
+\end_inset
+
+ and zero forcing with the non-linearity of neural networks generally leads
+ to better performance than classical equalization in terms of BER and BLER.
+ We will evaluate this performance across various noise levels, ranging
+ from 5dB to 45dB.
 \end_layout
 
 \begin_layout Subsubsection
@@ -7073,20 +7169,50 @@ Particular Objective
 \align block
 
 \size large
-Our objective is to equalize a double dispersive channel, also known as
- a frequency-time channel and intercarrier symbol interference (ISI) through
- the utilization of various neural network strategies.
- These strategies will focus on specific stages of the existing equalization
- process.
- We aim to leverage the non-linearity of neural networks and employ techniques
- such as dimensionality expansion and reduction.
- Our aim is to recover QAM and PSK constellation symbols that have been
- distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
- (NLOS) conditions, plus Gaussian noise.
- Our ultimate goal is to achieve a bit error rate (BER) comparable to that
- of the "golden models" or to reduce the computational complexity of current
- methods.
+A double dispersive channel presents significant challenges for communication
+ systems due to its frequency and time variations, noise, and intercarrier
+ symbol interference (ISI).
+ Our objective is to recover QAM and PSK constellation symbols that have
+ been distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
+ (NLOS) conditions, while achieving a bit error rate (BER) and block error
+ rate (BLER) that are comparable to established benchmarks known as "golden
+ models." To achieve this, we explore a range of techniques, including linear
+ methods such as Least Squares (LS), Linear Minimum Mean Square Error (LMMSE),
+ and Zero Forcing, as well as non-linear techniques such as Ordered Successive
+ Interference Cancellation (OSIC) and Near Maximum Likelihood (NearML).
  
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+We begin our exploration in the field of deep learning with feedforward
+ layers, followed by the integration of complex numbers in neuronal networks,
+ then convolutional layers, and finally transformers.
+ We aim to leverage the non-linearity of neural networks and explore a range
+ of techniques, starting from simpler models that use linear layers and
+ basic activation functions and then advancing to more sophisticated techniques
+ involving complex numbers integrated into neural network architectures.
+ To extract the most relevant information from the channel, we employ dimensiona
+lity reduction using a Convolutional Neural Network (CNN) and a non-linear
+ process.
+ Furthermore, we examine the use of attention mechanisms to reduce intercarrier
+ symbol interference (ISI).
+ Finally, the FLOPS metric and time complexity will play an important role
+ in benchmarking and conducting a relevant analysis of the situations in
+ which neural networks can be used.
+ This analysis will help to determine which neural network architecture
+ is better suited to a given situation and to develop a better tradeoff
+ between accuracy and computational complexity.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
 \begin_inset ERT
 status open
 
@@ -7786,7 +7912,7 @@ The article concludes by stating that Recurrent Neural Networks (RNNs) generally
 \end_layout
 
 \begin_layout Subsubsection
-Conclusion
+Overview and Insights
 \end_layout
 
 \begin_layout Standard
@@ -7794,7 +7920,7 @@ Conclusion
 \noindent
 
 \size large
-The article discusses various approaches using different network architectures.
+The study discusses various approaches using different network architectures.
  However, it lacks any BER/SNR plots and focuses solely on QPSK study.
  According to this research, Recurrent Neural Networks (RNNs) 
 \begin_inset CommandInset citation
