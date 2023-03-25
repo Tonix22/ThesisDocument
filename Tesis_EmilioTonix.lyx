@@ -728,10 +728,10 @@ Chapter 3 Methodology:
 \size large
 Chapter 4 Results and Analysis:
 \series default
- This section covers the conception and execution of our idea, the experiments
- conducted, and the analysis of the results.
- We provide a comparison of our studied models in graphs and tables, focusing
- on their bit error rate (BER), block error rate (BLER), floating-point
+ In this section, the conception and execution of the idea, the experiments
+ conducted, and the analysis of the results are covered.
+ A comparison of the studied models is provided in graphs and tables, with
+ a focus on their bit error rate (BER), block error rate (BLER), floating-point
  operations per second (FLOPS), and complexity.
  
 \end_layout
@@ -7029,19 +7029,20 @@ Introduction
 \noindent
 
 \size large
-To support our research and development, we conducted a thorough study of
- several key papers, which we organized into different categories based
+To support our research and development, a thorough study of several key
+ papers was conducted, which were organized into different categories based
  on their relevance to the project.
- In the following sections, I will provide a brief overview of how each
- of these articles contributed to the development of our project.
- Please note that many papers in the literature deal with smaller input
- and channel sizes than the 48x48 size used in our research.
+ In the following sections, a brief overview will be provided of how each
+ of these articles contributed to the development of the project.
+ It should be noted that many papers in the literature deal with smaller
+ input and channel sizes than the 48x48 size used in the research.
  It is possible that these studies were mostly focused on proofs of concepts
  or making results fit better.
- Nevertheless, we opted for a larger channel size to create a more realistic
- scenario for our research.
- So BER/SNR metrics should be based on the golden models rather than on
- these articles.
+ Nevertheless, a larger channel size was opted for to create a more realistic
+ scenario for the research.
+ Therefore, BER/SNR metrics should be based on the golden models rather
+ than on these articles, because conditions are not fairly equivalent.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -7137,12 +7138,12 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-In conclusion, we present a roadmap in the image above depicting the expected
- evolution of deep learning in the coming years.
- This image justifies the necessity of our research.
- The picture shows the progression of models from simpler to more intelligent
- systems, with the intelligence level displayed in circles on the right
- side of the image.
+In the image above, a roadmap is presented that depicts the expected evolution
+ of deep learning in the coming years.
+ This image justifies the necessity of the research.
+ The progression of models from simpler to more intelligent systems is shown,
+ with the intelligence level displayed in circles on the right side of the
+ image.
 \end_layout
 
 \begin_layout Subsection
@@ -7562,6 +7563,10 @@ Classical PIC methods perform well in low subcarrier frequency scenarios
  However, their performance degrades significantly with an increase in subcarrie
 r frequency due to significant error propagation, as stated in the first
  section.
+ Subcarrier frequency refers to the frequency at which the data is transmitted
+ in a multi-carrier communication system, such as (OFDM).
+ The data is divided into several subcarriers that are transmitted simultaneousl
+y, each using a different frequency.
 \end_layout
 
 \begin_layout Enumerate
@@ -7579,34 +7584,6 @@ Deep MIMO detection (Det) faces a flat error curve in high SNR scenarios.
 \size large
 Cascaded Net (CN) consistently performs well compared to Zero Forcing (ZF)
  and Det, which is in line with the argument made in the third section.
-\end_layout
-
-\begin_layout Subsubsection
-\paragraph_spacing onehalf
-\noindent
-Performance Improvement Strategies for our solutions
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-As a conclusion, we have opted to use 
-\begin_inset Formula $\boldsymbol{H^{H}Y}$
-\end_inset
-
- instead of pure 
-\begin_inset Formula $\boldsymbol{Y}$
-\end_inset
-
- as an input for certain neural networks in our research.
- We have also implemented zero forcing as an additional preprocessing stage.
- These strategies have proven to be effective as they bring constellation
- points closer to one another, reducing the network's burden to equalize
- the signal to the ideal state, particularly when dealing with long distances
- between ideal point and recieved point.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -7708,9 +7685,7 @@ Overview and Insights
 \noindent
 
 \size large
-The study discusses various approaches using different network architectures.
- However, it lacks any BER/SNR plots and focuses solely on QPSK study.
- According to this research, Recurrent Neural Networks (RNNs) 
+According to this research, Recurrent Neural Networks (RNNs) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "RNN_LSTM"
@@ -7720,8 +7695,8 @@ literal "false"
 
  appear to be the most effective solution, rendering other proposed strategies
  unnecessary.
- Due to the significant advancements in Recurrent Neural Networks (RNNs)
- over the years, powerful tools such as Sequence to Sequence (Seq2Seq)
+ Over the years, significant advancements in RNNs have led to the emergence
+ of powerful tools such as Sequence to Sequence (Seq2Seq)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "seq_to_seq"
@@ -7746,23 +7721,14 @@ literal "false"
 \end_inset
 
  models have emerged.
- More recently, the Vision Transformer (ViT) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "dosovitskiy2020image"
-literal "false"
-
-\end_inset
-
- has also been introduced.
- Given these developments, it is important to prioritize working with ViT,
- which represents a new and promising direction for image analysis.
- Additionally, there is currently no similar technique in the existing literatur
-e that deals with channel equalization, making the ViT an even more valuable
- tool for OFDM equalization, treating constelations points as sections of
- an image.
- In the infographic below, we have designed a timeline to make the evolution
- of sequence analysis models clearer.
+ It is important to note that the best results found in this research are
+ based on outdated evolution of the sequential models.
+ Further research and explanation are needed to complement these ideas and
+ generate new state-of-the-art models by merging the latest advances in
+ signal equalization and deep learning.
+ To illustrate how outdated RNNs are, we will show an evolution of the sequentia
+l networks in the figure below.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -7890,7 +7856,15 @@ In addition, the authors use adversarial networks to manage multiple transmitter
 \begin_layout Subsubsection
 \paragraph_spacing onehalf
 \noindent
-Autoencoder
+Autoencoder 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "autoencoderBasis"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8084,20 +8058,21 @@ literal "false"
 \end_layout
 
 \begin_layout Subsubsection
-Conclusion
+Analysis
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In this paper, was explored the idea that an autoencoder can learn channel
- representation using all the information available in the system.
- However, this research has not yet attempted more complex constellations,
- such as 16-QAM.
- In our research, we will build on this idea by using an autoencoder for
- encoding only, and employing a forced decoding approach with a zero-forcing
- algorithm.
+The paper examined the possibility of using an autoencoder to learn channel
+ representation by incorporating all available information in the system.
+ However, it did not explore the use of more complex constellations, such
+ as 16-QAM, and the frame size used in this research was smaller than intended.
+ Despite these limitations, the concepts related to coding and decoding
+ data in different dimensional spaces offer valuable insights for the project.
+ Thus, this paper is useful for our research, particularly for developing
+ encoding-based solutions.
 \end_layout
 
 \begin_layout Subsection
@@ -8483,20 +8458,6 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 \size large
 We now have an explicit representation of magnitude and phase in the loss
  function, which could be helpful in the polar equalization approach.
-\end_layout
-
-\begin_layout Subsubsection
-Conclusion
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This theory was helpful in implementing a neural network with complex values
- directly, without splitting real part or phase and magnitude.
- However, in our experiments, it did not yield good results, but we took
- it into account and recorded the experiment.
 \end_layout
 
 \begin_layout Subsection
@@ -9107,21 +9068,6 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection
-Conclusion
-\end_layout
-
-\begin_layout Standard
-\noindent
-
-\size large
-For our project, we have opted to use MobileNetv3 to compress the communication
- channel and encode it into a lower-dimensional representation.
- Since MobileNet is highly efficient, it is one of our top choices for research,
- especially given the constraints in telecom where data processing speed
- could be a critical factor.
 \end_layout
 
 \begin_layout Subsection
@@ -9923,7 +9869,7 @@ y generated elements.
 \end_layout
 
 \begin_layout Subsubsection
-Conclusion
+Overview and Insights
 \end_layout
 
 \begin_layout Standard
@@ -9931,22 +9877,14 @@ Conclusion
 \noindent
 
 \size large
-Given that our data is sequential in nature and can be interpreted symbol
- by symbol, the Transformer architecture can be applied in the equalization
- stage.
- The resulting encoding-decoding process could be an effective method for
- canceling Inter-Symbol Interference (ISI) using attention mechanisms.
- However, the challenge is that the data is in continuous space and we may
- lose positional encoding if we directly treat continuous data.
- Additionally, the Transformer architecture outputs symbols and not continuous
- values, so we need a mechanism to discretize our received data 
-\begin_inset Formula $Y$
-\end_inset
-
- and apply a token for each position to interpret the equalization as a
- machine translation.
- Therefore, our next step is to find a paper that can address this problem,
- as it could be the final key piece of evidence to support our proposal.
+In the equalization stage, the Transformer architecture can be applied to
+ cancel Inter-Symbol Interference (ISI) using attention mechanisms, as the
+ data is sequential and can be interpreted symbol by symbol.
+ However, positional encoding may be lost when treating continuous data,
+ which poses a challenge.
+ Furthermore, the Transformer architecture outputs symbols instead of continuous
+ values, necessitating a mechanism to discretize the received data Y and
+ apply a token for each position, treating equalization as a machine translation.
 \end_layout
 
 \begin_layout Subsection
@@ -10110,7 +10048,7 @@ literal "false"
 \end_layout
 
 \begin_layout Subsubsection
-Conclusion
+Overview and Insights
 \end_layout
 
 \begin_layout Standard
@@ -10118,19 +10056,14 @@ Conclusion
 \noindent
 
 \size large
-In conclusion, this paper has been instrumental in the development of our
- Gridnet architecture.
- Our approach involves using the complex plane as a 2D space, much like
- an image, where IQ data points fall into specific grids.
- We then assign each grid a patch-encoded value based on its position.
- Instead of using a traditional encoder, we utilized a transformer decoder
- to equalize the data with the ground truth.
- Our goal is to leverage the grid-based structure of the complex plane to
- effectively eliminate Inter-Symbol Interference (ISI) through the use of
- multihead attention mechanisms.
- This paper has provided us with important insights and tools that will
- help us to continue improving our approach for a range of signal processing
- applications.
+This paper played a crucial role in the development of our Gridnet architecture,
+ which utilizes the complex plane as a 2D space to assign patch-encoded
+ values to IQ data points falling into specific grids.
+ Instead of a traditional encoder, we employed a transformer decoder to
+ equalize the data with the ground truth, leveraging the grid-based structure
+ to eliminate Inter-Symbol Interference (ISI) through multihead attention
+ mechanisms.
+ 
 \end_layout
 
 \begin_layout Section
