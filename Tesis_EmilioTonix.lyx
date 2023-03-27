@@ -3444,7 +3444,14 @@ However, the inverse channel matrix may not always exist or may be difficult
 \end_layout
 
 \begin_layout Subsubsection
-Zero forcing
+Zero forcing 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Zero-forcing-sec"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5545,8 +5552,8 @@ A loss function is often defined as a scalar function of the model's parameters,
  best one.
  In terms of estimators, a loss function can be seen as a measure of how
  well the estimator is able to estimate the true parameter.
- The goal of training a machine learning model is to find the optimal set
- of parameters that minimize the loss function.
+ The goal of training a machine learning model is to find the sub-optimal
+ set of parameters that minimize the loss function.
  There are different types of loss functions, each one is suitable for different
  types of problems.
  There are various types of loss functions, each tailored to specific types
@@ -6323,7 +6330,14 @@ literal "false"
 \end_layout
 
 \begin_layout Subsection
-Convolutional Neuronal Networks
+Convolutional Neuronal Networks 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:CNN"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7577,188 +7591,17 @@ y, each using a different frequency.
 Deep MIMO detection (Det) faces a flat error curve in high SNR scenarios.
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 \paragraph_spacing onehalf
 \noindent
 
 \size large
 Cascaded Net (CN) consistently performs well compared to Zero Forcing (ZF)
- and Det, which is in line with the argument made in the third section.
+ and (Det), which is in line with the argument made in the third section.
 \end_layout
 
-\begin_layout Subsection
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Recent Advances in Neural Network Techniques For Channel Equalization:A
- Comprehensive Survey 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Recent_Advances_in_Neural_Network_Techniques_for_Channel_Equalization"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-This paper provides an overview of various channel equalization methods,
- including the Multilayer Perceptron (MLP) equalizer, Functional Link Artificial
- Neural Network (FLANN) equalizer, Chebyshev Neural Network (NN) equalizer,
- and Radial Basis Function NN (RBFNN) equalizer.
- Additionally, it presents a literature review and application of Recursive
- Neural Network (RNN) and Fuzzy Neural Network equalizers.
-\end_layout
-
-\begin_layout Subsubsection
-FLANN
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The primary difference between FLANN hardware and MLP configuration is that
- the nonlinear mapping replaces only the input, output, and hidden layers.
- This mapping uses a non-linear function to transform the input vector,
- mapping it to a higher-dimensional space.
- The expansion function, called the functional link, is typically a polynomial
- function of the input variables.
- In our final experiments, we explored the concept of searching for equalization
- in a higher-dimensional space, but did not utilize the polynomial function
- approach.
-\end_layout
-
-\begin_layout Subsubsection
-RBF
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Radial basis functions (RBFs) are a type of basis function used in function
- approximation and machine learning algorithms.
- RBFs are a class of functions that depend only on the distance from the
- center of the function, and their output decreases as the distance from
- the center increases.
- Gaussian RBF: This function takes the form of 
-\begin_inset Formula $e^{(-r^{2}/2)}$
-\end_inset
-
-, where r is the Euclidean distance from the center of the function.
- This RBF is widely used in machine learning and function approximation
- algorithms due to its smoothness and symmetry.
-\end_layout
-
-\begin_layout Subsubsection
-RNN
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The article concludes by stating that Recurrent Neural Networks (RNNs) generally
- outperform feed-forward neural networks (FNNs) and other methods.
- RNNs approximate a finite impulse response (IIR) filter, whereas other
- methods approximate a finite impulse response (FIR) filter.
- It is worth noting that IIR filters are known to be unstable, but recent
- advances in neural networks, such as LSTM, GRU, and Transformers, have
- been developed to overcome this limitation 
-\end_layout
-
-\begin_layout Subsubsection
-Overview and Insights
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-According to this research, Recurrent Neural Networks (RNNs) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "RNN_LSTM"
-literal "false"
-
-\end_inset
-
- appear to be the most effective solution, rendering other proposed strategies
- unnecessary.
- Over the years, significant advancements in RNNs have led to the emergence
- of powerful tools such as Sequence to Sequence (Seq2Seq)
-\begin_inset CommandInset citation
-LatexCommand cite
-key "seq_to_seq"
-literal "false"
-
-\end_inset
-
-, Attention
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Attention"
-literal "false"
-
-\end_inset
-
-, and the Transformer
-\begin_inset CommandInset citation
-LatexCommand cite
-key "transformer"
-literal "false"
-
-\end_inset
-
- models have emerged.
- It is important to note that the best results found in this research are
- based on outdated evolution of the sequential models.
- Further research and explanation are needed to complement these ideas and
- generate new state-of-the-art models by merging the latest advances in
- signal equalization and deep learning.
- To illustrate how outdated RNNs are, we will show an evolution of the sequentia
-l networks in the figure below.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Networks/TimeLineEvolution.jpg
-	lyxscale 20
-	scale 28
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
+\end_deeper
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
@@ -7861,6 +7704,13 @@ Autoencoder
 LatexCommand cite
 key "autoencoderBasis"
 literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Autoencoder"
 
 \end_inset
 
@@ -8485,12 +8335,26 @@ MobileNet achieves its high efficiency by using depthwise separable convolutions
 , which are a combination of a depthwise convolution and a pointwise convolution
 , while still maintaining high accuracy.
  In terms of time complexity, MobileNet has a lower multiplications compared
- to regular CNNs.
+ to regular 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:CNN"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  This results in faster inference times and lower memory requirements,as
  its name says usefull for mobile applications, also include embbeded system
  applications for edge computing.
- However, it's worth noting that the trade-off for MobileNet's efficiency
- has a little less accuracy compared to regular CNNs.
+ It is important to mention that MobileNet's efficiency comes at the cost
+ of slightly lower accuracy compared to conventional CNNs.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9054,6 +8918,189 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Recent Advances in Neural Network Techniques For Channel Equalization:A
+ Comprehensive Survey 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Recent_Advances_in_Neural_Network_Techniques_for_Channel_Equalization"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This paper provides an overview of various channel equalization methods,
+ including the Multilayer Perceptron (MLP) equalizer, Functional Link Artificial
+ Neural Network (FLANN) equalizer, Chebyshev Neural Network (NN) equalizer,
+ and Radial Basis Function NN (RBFNN) equalizer.
+ Additionally, it presents a literature review and application of Recursive
+ Neural Network (RNN) and Fuzzy Neural Network equalizers.
+\end_layout
+
+\begin_layout Subsubsection
+FLANN
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The primary difference between FLANN hardware and MLP configuration is that
+ the nonlinear mapping replaces only the input, output, and hidden layers.
+ This mapping uses a non-linear function to transform the input vector,
+ mapping it to a higher-dimensional space.
+ The expansion function, called the functional link, is typically a polynomial
+ function of the input variables.
+ In our final experiments, we explored the concept of searching for equalization
+ in a higher-dimensional space, but did not utilize the polynomial function
+ approach.
+\end_layout
+
+\begin_layout Subsubsection
+RBF
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Radial basis functions (RBFs) are a type of basis function used in function
+ approximation and machine learning algorithms.
+ RBFs are a class of functions that depend only on the distance from the
+ center of the function, and their output decreases as the distance from
+ the center increases.
+ Gaussian RBF: This function takes the form of 
+\begin_inset Formula $e^{(-r^{2}/2)}$
+\end_inset
+
+, where r is the Euclidean distance from the center of the function.
+ This RBF is widely used in machine learning and function approximation
+ algorithms due to its smoothness and symmetry.
+\end_layout
+
+\begin_layout Subsubsection
+RNN
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The article concludes by stating that Recurrent Neural Networks (RNNs) generally
+ outperform feed-forward neural networks (FNNs) and other methods.
+ RNNs approximate a finite impulse response (IIR) filter, whereas other
+ methods approximate a finite impulse response (FIR) filter.
+ It is worth noting that IIR filters are known to be unstable, but recent
+ advances in neural networks, such as LSTM, GRU, and Transformers, have
+ been developed to overcome this limitation 
+\end_layout
+
+\begin_layout Subsubsection
+Overview and Insights
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Based on research, Recurrent Neural Networks (RNNs) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "RNN_LSTM"
+literal "false"
+
+\end_inset
+
+ are the most effective solutions for BER performance.
+ RNNs have made significant advancements over the years, leading to the
+ emergence of powerful tools like Sequence to Sequence 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "seq_to_seq"
+literal "false"
+
+\end_inset
+
+, which can handle longer sequences with the Attention mechanism.
+ This development allows the model to weigh different parts of the input
+ sequence based on their relevance to the current decoding step, improving
+ interpretability of the model's predictions.
+ Next this models has an evolution on transformers 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
+literal "false"
+
+\end_inset
+
+ models, which had emerged as an alternative, relying solely on self-attention
+ to process input sequences, leading to greater parallelization during training
+ and reduced computational complexity compared to RNN-based models.
+ However, it's important to note that the best results found in this research
+ are based on an outdated evolution of sequential models.
+ The latest research on transformers and attention mechanisms will be presented
+ to explain these advancements and show readers how to merge the latest
+ advances in signal equalization and deep learning to create new state-of-the-ar
+t models.
+ The figure below shows an evolution of sequential networks to illustrate
+ how outdated RNNs are.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Networks/TimeLineEvolution.jpg
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+From RNN to Image Transformers
 \end_layout
 
 \end_inset
@@ -9988,7 +10035,14 @@ These patches are then flattened and passed through a linear projection
 \begin_layout Subsubsection
 \paragraph_spacing onehalf
 \noindent
-The Grid
+The Grid 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:The-Grid"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10045,25 +10099,6 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsubsection
-Overview and Insights
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-This paper played a crucial role in the development of our Gridnet architecture,
- which utilizes the complex plane as a 2D space to assign patch-encoded
- values to IQ data points falling into specific grids.
- Instead of a traditional encoder, we employed a transformer decoder to
- equalize the data with the ground truth, leveraging the grid-based structure
- to eliminate Inter-Symbol Interference (ISI) through multihead attention
- mechanisms.
- 
 \end_layout
 
 \begin_layout Section
@@ -12088,9 +12123,24 @@ The architecture of MagNet is quite similar to that of Polar_Net, but with
  However, we'll still pay close attention to the preprocessing stage.
  Unlike PhaseNet, MagNet doesn't use the Hermitian transpose of the channel.
  Instead, it uses the diagonal of the channel to perform zero forcing equalizati
-on as a preprocessing step.
+on as a preprocessing step 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Zero-forcing-sec"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  Next, a z-score filter is applied, followed by complex normalization by
  absolute.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -12533,10 +12583,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Codigo/UML/ComplexUML.png
@@ -12972,8 +13018,35 @@ MobileNet zeroForcing
 \paragraph_spacing onehalf
 
 \size large
-We conducted experiments with this network to study how well convolutional
- neural networks can be developed in signal equalization.
+We conducted experiments with this network to study how well 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:CNN"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ can be developed in signal equalization in the state of art 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "subsec:Autoencoder"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  However, we opted to employ the efficient architecture of MobileNet as
  our network's goal is to improve the effectiveness of the zero-forcing
  method for communication channels.
