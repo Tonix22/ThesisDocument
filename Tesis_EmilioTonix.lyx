@@ -667,8 +667,8 @@ Introduction
 \paragraph_spacing onehalf
 
 \size large
-This chapter's main goal is to provide an overview of the technical facts
- and some of the current issues that prompted this study.
+The main goal of this chapter is to provide an overview of the technical
+ aspects necessary to understand the problem statement of this study.
 \end_layout
 
 \begin_layout Subsection
@@ -690,7 +690,7 @@ The structure of this document is as follows:
 Chapter 1 Theoretical Framework: 
 \series default
 Fundamental ideas and concepts behind the current project.
- Outlines the core concepts necessary to comprehend this study
+ Outlines the core concepts necessary to comprehend this study.
 \end_layout
 
 \begin_layout Itemize
@@ -930,21 +930,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Machine learning is known to focus on non-linear solutions, which can explore
- more complex and better-fitting solutions.
- In this research, we will specifically focus on the equalization block
- using various proposed networks.
- It is assumed that other channel blocks will perform optimally, allowing
- us to focus solely on the equalization block.
- By doing this, we hope to gain insight into the performance of different
- network proposals and determine which one is best suited for the task of
- equalization.
 \end_layout
 
 \begin_layout Subsection
@@ -1417,637 +1402,6 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-SNR
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-SNR 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:SNR"
-
-\end_inset
-
-stands for Signal-to-Noise Ratio which contrasts the strength of the signal
- with the strength of the noise.
- The most common way to measure it is in decibels (dB).
- In general, higher numbers indicate a better specification because there
- is a greater ratio of useful information (the signal) to unwanted data
- (the noise).
- Given this source 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PythonModulation"
-literal "false"
-
-\end_inset
-
-, it can be explained how the noise is calculated for noise simulation with
- the requirement of a certain SNR in dB.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Firstly, a vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- that represents the signal transmitted over a communication channel is
- considered.
- The objective is to derive a vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{r}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- that represents the signal received at the receiver after passing through
- the Additive White Gaussian Noise (AWGN), this noise type is described
- in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "papoulis2002probability"
-literal "false"
-
-\end_inset
-
-.
- The level of noise introduced by the AWGN channel is determined by the
- provided Signal-to-Noise Ratio (SNR), and it is denoted as 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{\gamma}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-\SpecialChar endofsentence
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The length of the vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- is denoted by 
-\begin_inset Formula $\boldsymbol{N}$
-\end_inset
-
-.
- The signal power of the vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- can be expressed as follows:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-If we have a complex IQ value 
-\begin_inset Formula $\boldsymbol{s_{i}=a_{i}+jb_{i}}$
-\end_inset
-
-, the modulus or magnitude of 
-\begin_inset Formula $\boldsymbol{s_{i}}$
-\end_inset
-
- can be represented by 
-\begin_inset Formula $\boldsymbol{|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}}$
-\end_inset
-
-, where a and b are real numbers.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-To compute the power spectral density of the noise vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{n}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-, we use the following equation:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}\times10^{-\frac{SNR_{dB}}{10}}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Where 
-\begin_inset Formula $\boldsymbol{\boldsymbol{\gamma}=10^{\frac{SNR_{dB}}{10}}}$
-\end_inset
-
- is the SNR in dB to linear scale
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Assuming a complex IQ plane for all digital modulations, the noise variance
- (noise power) required for generating Gaussian random noise can be expressed
- as follows:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{\sigma^{2}=\frac{N_{0}}{2}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Then, the Gaussian random noise vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{n}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- of length 
-\begin_inset Formula $\boldsymbol{N}$
-\end_inset
-
- is generated, with its samples drawn from a Gaussian distribution having
- a mean of zero and a standard deviation as calculated using the last equation.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{f(x)=\begin{cases}
-\sigma\times\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
-\sigma\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
-\end{cases}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Here, 
-\begin_inset Formula $\boldsymbol{\mathcal{N}_{N}(0,1)}$
-\end_inset
-
- represents the white Gaussian noise vector with a mean of 0 and a standard
- deviation of 1
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Lastly, the generated noise vector is added to the original signal 
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{r=s+n}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Subsubsection
-BER
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In digital communication systems, 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:BER"
-
-\end_inset
-
-the transmission of data is not always error-free.
- Bit errors may occur due to various factors such as noise, interference,
- distortion, and fading.
- Bit Error Rate (BER) is a common metric used to quantify the quality of
- a digital communication system by measuring the probability of bit errors.
- BER is defined as the ratio of the number of erroneous bits to the total
- number of transmitted bits.
- It is usually expressed in terms of power, as the probability of error
- is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
- The BER can be mathematically represented as follows:
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\mathsf{\boldsymbol{BER=\frac{N_{err}}{N_{tot}}}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where 
-\begin_inset Formula $N_{err}$
-\end_inset
-
- is the number of erroneous bits and 
-\begin_inset Formula $N_{tot}$
-\end_inset
-
- is the total number of transmitted bits.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The bit error rate (BER) can be defined in terms of the probability of error
- (POE).
- The POE can be calculated using three other variables: the error function
- (erf), the energy per bit (Eb), and the noise power spectral density (No).
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The error function,
-\begin_inset Formula $\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}}dt$
-\end_inset
-
-, is used to calculate the POE, and its value depends on the modulation
- method used in the communication system.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The energy per bit, 
-\begin_inset Formula $Eb$
-\end_inset
-
-, is a measure of the signal strength and can be calculated by dividing
- the carrier power by the bit rate.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The noise power spectral density, No, is a measure of the noise present
- in the communication channel and is typically expressed in units of power
- per Hz.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-By using these three variables, the POE can be calculated, and thus the
- BER can be expressed in terms of POE.
- This provides a measure of the communication system's performance that
- takes into account both the strength of the signal and the noise present
- in the channel.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\mathbf{POE=\frac{1}{2}(1-erf)\sqrt{\frac{E_{b}}{N_{o}}}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The BER is a critical parameter for evaluating the performance of a digital
- communication system.
- A high BER indicates poor system performance, which can lead to loss of
- data, degraded audio or video quality, or even complete system failure.
- Therefore, the BER is used as a benchmark to ensure that the digital communicat
-ion system meets the required performance specifications.
-\end_layout
-
-\begin_layout Subsubsection
-BLER 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:BLER"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Block Error Rate (BLER) is a measure of the reliability of a communication
- system or a data transmission system by blocks.
- BLER is defined as the ratio of the number of blocks of data received with
- errors to the total number of blocks of data transmitted.
- It is commonly used in wireless communication systems, where the transmission
- of data can be affected by various factors such as fading, interference,
- and noise.
- In such systems, BLER is often used to evaluate the performance of the
- system and to determine the optimal operating parameters such as power,
- coding, and modulation schemes.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{BLER=\frac{BlockErrCount}{TotalBlocks}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-To check for errors in a block of data, a cyclic redundancy check (CRC)
- is often used 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "CRC"
-literal "false"
-
-\end_inset
-
-.
- Given the estimated values and the ground truth, instead of comparing bit
- by bit, a set of symbols is taken, and a CRC is calculated for a given
- chunk of the data.
- If the CRC of the equalized chunk is equal to the real value, there are
- no errors.
- However, if the CRC differs, the chunk is marked as incorrect, and it is
- added to the BLER count.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[ht] 
-\backslash
-caption{Block Error Rate Calculation with CRC} 
-\backslash
-label{alg:block_error_rate_crc} 
-\backslash
-begin{algorithmic}[1] 
-\backslash
-Require 
-\backslash
-Statex Input data is 48 blocks of 48 symbols 
-\backslash
-Statex $txbits$: array of transmitted blocks 
-\backslash
-Statex $rxbits$: array of received blocks 
-\backslash
-Statex $crc
-\backslash
-_func$: CRC function for generating CRC codes 
-\backslash
-Ensure 
-\backslash
-Statex $BLER$: Block Error Rate of the communication system 
-\backslash
-State $total
-\backslash
-_blocks 
-\backslash
-gets 48$ 
-\backslash
-State $bad
-\backslash
-_blocks 
-\backslash
-gets 0$ 
-\backslash
-For{$n 
-\backslash
-gets 0$ to $47$} 
-\backslash
-State $tx
-\backslash
-_crc 
-\backslash
-gets crc
-\backslash
-_func(txbits[n].tobytes())$ 
-\backslash
-State $rx
-\backslash
-_crc 
-\backslash
-gets crc
-\backslash
-_func(rxbits[n].tobytes())$ 
-\backslash
-If{$tx
-\backslash
-_crc 
-\backslash
-neq rx
-\backslash
-_crc$} 
-\backslash
-State $bad
-\backslash
-_blocks 
-\backslash
-gets bad
-\backslash
-_blocks + 1$ 
-\backslash
-EndIf 
-\backslash
-EndFor 
-\backslash
-State $BLER 
-\backslash
-gets bad
-\backslash
-_blocks / total
-\backslash
-_blocks$ 
-\backslash
-State 
-\backslash
-Return $BLER$ 
-\backslash
-end{algorithmic} 
-\backslash
-end{algorithm}
-\end_layout
-
 \end_inset
 
 
@@ -2435,8 +1789,8 @@ literal "false"
 
 \end_layout
 
-\begin_layout Subsubsection
-Wide sense stationary
+\begin_layout Subsection
+Equalization
 \end_layout
 
 \begin_layout Standard
@@ -2444,180 +1798,330 @@ Wide sense stationary
 \align block
 
 \size large
-A wide sense stationary (WSS) process is a stochastic process in which the
- mean and autocorrelation function of the process do not change over time.
- As a result, the process exhibits statistical properties that are time-invarian
-t, such as the mean, variance, and autocorrelation.
-\end_layout
-
-\begin_layout Standard
-\align block
-
-\size large
-In signal processing and telecommunications, WSS processes are often used
- because they have simpler mathematical properties compared to strict sense
- stationary (SSS) processes.
- This simplification makes them easier to analyze and work with, which allows
- for more efficient modeling and simulation of communication systems.
-\end_layout
-
-\begin_layout Standard
-\align block
-
-\size large
-WSS processes are a generalization of strictly stationary processes, which
- are processes in which the mean and autocorrelation function are constant
- over time.
- WSS processes relax this constraint and allow for some degree of variability
- in the mean and autocorrelation function while still maintaining time-invariant
- statistical properties.
+A telecom channel equalizer is a device or algorithm used in telecommunications
+ systems to compensate for distortion or other impairments in a communication
+ channel.
+ The equalizer uses signal processing techniques to estimate the characteristics
+ of the channel, such as the impulse response or the frequency response,
+ and then applies a correction to the transmitted signal to counteract the
+ effects of the channel on the received signal.
+ This can improve the performance of the communication system by reducing
+ errors and increasing the data rate or signal-to-noise ratio.
+ Bluetooth, WiFi, IOT, drones, V2V, wireless broadband, and satellite communicat
+ions are just a few of the everyday applications they can be used for.
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "papoulis2002probability"
+key "goldsmith_2005"
 literal "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-\align block
-
-\size large
-A wide sense stationary (WSS) process can be described by the following
- equations:
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-\align block
-
-\size large
-The mean of the process is constant over time, and can be represented by
- the equation:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\mathbf{\boldsymbol{E[X(t)]=\mu}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\size large
-Where 
-\begin_inset Formula $\boldsymbol{E[X(t)]}$
-\end_inset
-
- is the expected value of the process at time t, and 
-\begin_inset Formula $\boldsymbol{μ}$
-\end_inset
-
- is the constant mean of the process.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-\align block
-
-\size large
-The autocovariance of the process, which is a measure of the correlation
- between two points in time, is also constant over time, and can be represented
- by the equation:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{R_{X}(t1,t2)=E[(X(t_{1})-\mu)(X(t_{2})-\mu)]=R(t_{1}-t_{2})}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Where
-\begin_inset Formula $\boldsymbol{R_{X}(t_{1},t_{2})}$
-\end_inset
-
-is the autocovariance of the process at times t1 and t2, and 
-\begin_inset Formula $\boldsymbol{R(t_{1}-t_{2})}$
-\end_inset
-
- is the autocovariance function of the process, which is a function of the
- time difference between t1 and t2
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-\align block
-
-\size large
-The autocorrelation function of the process, which is a measure of the correlati
-on between two points in time, is also constant over time, and can be represente
-d by the equation
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{r_{X}(t1,t2)=\frac{R_{X}(t_{1},t_{2})}{\sqrt{R_{X}(t_{1},t_{1})R_{X}(t_{2},t_{2})}}=r(t_{1}-t_{2})}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Where 
-\begin_inset Formula $\mathbf{r_{X}(t_{1},t_{2})}$
-\end_inset
-
- is the autocorrelation function of the process at times t1 and t2, and
  
-\begin_inset Formula $\boldsymbol{r(t_{1}-t_{2})}$
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newline
+\end_layout
+
 \end_inset
 
- is the autocorrelation function of the process, which is a function of
- the time difference between t1 and t2.
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Diagrams/Equalizer_Basic.jpg
+	lyxscale 30
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Basic Equalizer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Our goal is to develop an equalizer based on deep learning techniques and
+ research how it performs in terms of timing and memory complexity.
+ We take as a reference the classical methods that manage a good bit error
+ rate, and we will take them as a golden model of accuracy.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Conclusion 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Approach to symbol detection: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+OSIC: This algorithm processes the received signal in a sequential manner,
+ starting from the strongest to the weakest received symbol.
+ It detects the strongest symbol first and then removes its interference
+ from the received signal before detecting the next symbol.
+ This process continues until all symbols are detected.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+NearML: Is a tree search algorithm that explores all possible symbol combination
+s and computes the distances between the received signal and candidate symbols.
+ It then selects the candidate with the minimum total distance as the detected
+ transmitted symbol.
+ The algorithm employs pruning techniques to reduce the search space while
+ still maintaining good detection performance.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Complexity: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+OSIC: The complexity of the algorithm is relatively lower compared to NearML,
+ as it processes the received signal in a sequential manner and does not
+ require an exhaustive search of all possible symbol combinations.
+ This makes OSIC faster and more suitable for real-time applications with
+ lower computational resources.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+NearML: The complexity of NearML is higher, as it involves an exhaustive
+ search of all possible symbol combinations in the tree.
+ However, the pruning techniques employed in the algorithm help reduce the
+ search space and improve computational efficiency.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Problem statement
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+As demonstrated by the previously discussed methods, the computation of
+ equalization matrices primarily relies on finding the pseudo-inverse of
+ certain matrix factors.
+ However, directly solving for the inverse of the matrix can be both computation
+ally costly 
+\begin_inset Formula $\boldsymbol{O(N^{3})}$
+\end_inset
+
+ and numerically unstable.
+ This instability arises when the matrix has a very small determinant, which
+ may cause the true solution to be susceptible to large perturbations.
+ Consequently, this leads to a complex circuit architecture for numerical
+ calculations.
+ On the other hand, these methods are linear and will have a very predictable
+ behavior over noise conditions and BER.
+ As an alternative, neural networks offer a promising approach to address
+ these challenges in signal equalization.
+ They can adaptively learn the underlying structure of the data and are
+ capable of handling non-linear relationships, which may lead to more efficient
+ and robust equalization techniques.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Machine learning is known to focus on non-linear solutions, which can explore
+ more complex and better-fitting solutions.
+ In this research, we will specifically focus on the equalization block
+ using various proposed networks.
+ It is assumed that other channel blocks will perform optimally, allowing
+ us to focus solely on the equalization block.
+ By doing this, we hope to gain insight into the performance of different
+ network proposals and determine which one is best suited for the task of
+ equalization.
+\end_layout
+
+\begin_layout Subsection
+Objectives
+\end_layout
+
+\begin_layout Subsubsection
+General Objective
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+We aim to analyze and test various neural network techniques for frequency
+ channel equalization in OFDM systems.
+ Our approach involves breaking the process into simpler and more complex
+ tasks based on time complexity, delegating complex tasks like matrix inversion
+ to neural networks while handling lighter tasks in a preprocessing stage.
+ As matrix inversion is sensitive to initial conditions, our research will
+ explore how neural networks can effectively address these challenges.
+ Combining preprocessing methods such as 
+\begin_inset Formula $\boldsymbol{H^{H}}$
+\end_inset
+
+ and zero forcing with the non-linearity of neural networks generally leads
+ to better performance than classical equalization in terms of BER and BLER.
+ We will evaluate this performance across various noise levels, ranging
+ from 5dB to 45dB.
+\end_layout
+
+\begin_layout Subsubsection
+Particular Objective
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+A double dispersive channel presents significant challenges for communication
+ systems due to its frequency and time variations, noise, and intercarrier
+ symbol interference (ISI).
+ Our objective is to recover QAM and PSK constellation symbols that have
+ been distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
+ (NLOS) conditions, while achieving a bit error rate (BER) and block error
+ rate (BLER) that are comparable to established benchmarks known as "golden
+ models." To achieve this, we explore a range of techniques, including linear
+ methods such as Least Squares (LS), Linear Minimum Mean Square Error (LMMSE),
+ and Zero Forcing, as well as non-linear techniques such as Ordered Successive
+ Interference Cancellation (OSIC) and Near Maximum Likelihood (NearML).
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+We begin our exploration in the field of deep learning with feedforward
+ layers, followed by the integration of complex numbers in neuronal networks,
+ then convolutional layers, and finally transformers.
+ We aim to leverage the non-linearity of neural networks and explore a range
+ of techniques, starting from simpler models that use linear layers and
+ basic activation functions and then advancing to more sophisticated techniques
+ involving complex numbers integrated into neural network architectures.
+ To extract the most relevant information from the channel, we employ dimensiona
+lity reduction using a Convolutional Neural Network (CNN) and a non-linear
+ process.
+ Furthermore, we examine the use of attention mechanisms to reduce intercarrier
+ symbol interference (ISI).
+ Finally, the FLOPS metric and time complexity will play an important role
+ in benchmarking and conducting a relevant analysis of the situations in
+ which neural networks can be used.
+ This analysis will help to determine which neural network architecture
+ is better suited to a given situation and to develop a better tradeoff
+ between accuracy and computational complexity.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+State of Art
+\end_layout
+
+\begin_layout Subsection
+Introduction
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To support our research and development, a thorough study of several key
+ papers was conducted, which were organized into different categories based
+ on their relevance to the project.
+ In the following sections, a brief overview will be provided of how each
+ of these articles contributed to the development of the project.
+ It should be noted that many papers in the literature deal with smaller
+ input and channel sizes than the 48x48 size used in the research.
+ It is possible that these studies were mostly focused on proofs of concepts
+ or making results fit better.
+ Nevertheless, a larger channel size was opted for to create a more realistic
+ scenario for the research.
+ Therefore, BER/SNR metrics should be based on the golden models rather
+ than on these articles, because conditions are not fairly equivalent.
+ 
+\end_layout
+
 \begin_layout Subsection
 Estimators
 \end_layout
@@ -2985,95 +2489,7 @@ In supervised learning with neural networks, the goal is to find the right
 \end_layout
 
 \begin_layout Subsection
-Equalization
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-A telecom channel equalizer is a device or algorithm used in telecommunications
- systems to compensate for distortion or other impairments in a communication
- channel.
- The equalizer uses signal processing techniques to estimate the characteristics
- of the channel, such as the impulse response or the frequency response,
- and then applies a correction to the transmitted signal to counteract the
- effects of the channel on the received signal.
- This can improve the performance of the communication system by reducing
- errors and increasing the data rate or signal-to-noise ratio.
- Bluetooth, WiFi, IOT, drones, V2V, wireless broadband, and satellite communicat
-ions are just a few of the everyday applications they can be used for.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "goldsmith_2005"
-literal "false"
-
-\end_inset
-
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newline
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Diagrams/Equalizer_Basic.jpg
-	lyxscale 30
-	scale 15
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Basic Equalizer
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Our goal is to develop an equalizer based on deep learning techniques and
- research how it performs in terms of timing and memory complexity.
- We take as a reference the classical methods that manage a good bit error
- rate, and we will take them as a golden model of accuracy.
- 
+Equalization techniques
 \end_layout
 
 \begin_layout Subsubsection
@@ -3177,7 +2593,7 @@ In the time domain, the received signal,
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r=s(t)*h(t)+n(t)}
+\boldsymbol{r(t)=s(t)*h(t)+n(t)}
 \end{equation}
 
 \end_inset
@@ -4175,37 +3591,6 @@ This equation consider AWGN (Additive White Gaussian Noise) with variance
  
 \end_layout
 
-\begin_layout Subsubsection
-Pros and Cons
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-In conclusion, as demonstrated by the previously discussed methods, the
- computation of equalization matrices primarily relies on finding the pseudo-inv
-erse of certain matrix factors.
- However, directly solving for the inverse of the matrix can be both computation
-ally costly 
-\begin_inset Formula $\boldsymbol{O(N^{3})}$
-\end_inset
-
- and numerically unstable.
- This instability arises when the matrix has a very small determinant, which
- may cause the true solution to be susceptible to large perturbations.
- Consequently, this leads to a complex circuit architecture for numerical
- calculations.
- On the other hand, these methods are linear and will have a very predictable
- behavior over noise conditions and BER.
- As an alternative, neural networks offer a promising approach to address
- these challenges in signal equalization.
- They can adaptively learn the underlying structure of the data and are
- capable of handling non-linear relationships, which may lead to more efficient
- and robust equalization techniques.
-\end_layout
-
 \begin_layout Subsection
 Non-linear equalizers
 \end_layout
@@ -4879,74 +4264,637 @@ ed as
 
 \end_layout
 
+\begin_layout Subsection
+Signal quality metrics
+\end_layout
+
 \begin_layout Subsubsection
-Conclusion 
+SNR
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Approach to symbol detection: 
+SNR 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:SNR"
+
+\end_inset
+
+stands for Signal-to-Noise Ratio which contrasts the strength of the signal
+ with the strength of the noise.
+ The most common way to measure it is in decibels (dB).
+ In general, higher numbers indicate a better specification because there
+ is a greater ratio of useful information (the signal) to unwanted data
+ (the noise).
+ Given this source 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonModulation"
+literal "false"
+
+\end_inset
+
+, it can be explained how the noise is calculated for noise simulation with
+ the requirement of a certain SNR in dB.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Firstly, a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal transmitted over a communication channel is
+ considered.
+ The objective is to derive a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{r}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal received at the receiver after passing through
+ the Additive White Gaussian Noise (AWGN), this noise type is described
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "papoulis2002probability"
+literal "false"
+
+\end_inset
+
+.
+ The level of noise introduced by the AWGN channel is determined by the
+ provided Signal-to-Noise Ratio (SNR), and it is denoted as 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+\SpecialChar endofsentence
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The length of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ is denoted by 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ The signal power of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ can be expressed as follows:
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+If we have a complex IQ value 
+\begin_inset Formula $\boldsymbol{s_{i}=a_{i}+jb_{i}}$
+\end_inset
+
+, the modulus or magnitude of 
+\begin_inset Formula $\boldsymbol{s_{i}}$
+\end_inset
+
+ can be represented by 
+\begin_inset Formula $\boldsymbol{|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}}$
+\end_inset
+
+, where a and b are real numbers.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To compute the power spectral density of the noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, we use the following equation:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}\times10^{-\frac{SNR_{dB}}{10}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Where 
+\begin_inset Formula $\boldsymbol{\boldsymbol{\gamma}=10^{\frac{SNR_{dB}}{10}}}$
+\end_inset
+
+ is the SNR in dB to linear scale
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Assuming a complex IQ plane for all digital modulations, the noise variance
+ (noise power) required for generating Gaussian random noise can be expressed
+ as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\sigma^{2}=\frac{N_{0}}{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Then, the Gaussian random noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ of length 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+ is generated, with its samples drawn from a Gaussian distribution having
+ a mean of zero and a standard deviation as calculated using the last equation.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{f(x)=\begin{cases}
+\sigma\times\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
+\sigma\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
+\end{cases}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Here, 
+\begin_inset Formula $\boldsymbol{\mathcal{N}_{N}(0,1)}$
+\end_inset
+
+ represents the white Gaussian noise vector with a mean of 0 and a standard
+ deviation of 1
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Lastly, the generated noise vector is added to the original signal 
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r=s+n}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+BER
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-OSIC: This algorithm processes the received signal in a sequential manner,
- starting from the strongest to the weakest received symbol.
- It detects the strongest symbol first and then removes its interference
- from the received signal before detecting the next symbol.
- This process continues until all symbols are detected.
+In digital communication systems, 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BER"
+
+\end_inset
+
+the transmission of data is not always error-free.
+ Bit errors may occur due to various factors such as noise, interference,
+ distortion, and fading.
+ Bit Error Rate (BER) is a common metric used to quantify the quality of
+ a digital communication system by measuring the probability of bit errors.
+ BER is defined as the ratio of the number of erroneous bits to the total
+ number of transmitted bits.
+ It is usually expressed in terms of power, as the probability of error
+ is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
+ The BER can be mathematically represented as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\mathsf{\boldsymbol{BER=\frac{N_{err}}{N_{tot}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $N_{err}$
+\end_inset
+
+ is the number of erroneous bits and 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+ is the total number of transmitted bits.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The bit error rate (BER) can be defined in terms of the probability of error
+ (POE).
+ The POE can be calculated using three other variables: the error function
+ (erf), the energy per bit (Eb), and the noise power spectral density (No).
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+The error function,
+\begin_inset Formula $\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}}dt$
+\end_inset
+
+, is used to calculate the POE, and its value depends on the modulation
+ method used in the communication system.
  
 \end_layout
 
 \begin_layout Itemize
-\paragraph_spacing onehalf
 
 \size large
-NearML: Is a tree search algorithm that explores all possible symbol combination
-s and computes the distances between the received signal and candidate symbols.
- It then selects the candidate with the minimum total distance as the detected
- transmitted symbol.
- The algorithm employs pruning techniques to reduce the search space while
- still maintaining good detection performance.
-\end_layout
+The energy per bit, 
+\begin_inset Formula $Eb$
+\end_inset
 
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-
-\size large
-Complexity: 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-
-\size large
-OSIC: The complexity of the algorithm is relatively lower compared to NearML,
- as it processes the received signal in a sequential manner and does not
- require an exhaustive search of all possible symbol combinations.
- This makes OSIC faster and more suitable for real-time applications with
- lower computational resources.
+, is a measure of the signal strength and can be calculated by dividing
+ the carrier power by the bit rate.
  
 \end_layout
 
 \begin_layout Itemize
+
+\size large
+The noise power spectral density, No, is a measure of the noise present
+ in the communication channel and is typically expressed in units of power
+ per Hz.
+\end_layout
+
+\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-NearML: The complexity of NearML is higher, as it involves an exhaustive
- search of all possible symbol combinations in the tree.
- However, the pruning techniques employed in the algorithm help reduce the
- search space and improve computational efficiency.
+By using these three variables, the POE can be calculated, and thus the
+ BER can be expressed in terms of POE.
+ This provides a measure of the communication system's performance that
+ takes into account both the strength of the signal and the noise present
+ in the channel.
 \end_layout
 
-\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\mathbf{POE=\frac{1}{2}(1-erf)\sqrt{\frac{E_{b}}{N_{o}}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The BER is a critical parameter for evaluating the performance of a digital
+ communication system.
+ A high BER indicates poor system performance, which can lead to loss of
+ data, degraded audio or video quality, or even complete system failure.
+ Therefore, the BER is used as a benchmark to ensure that the digital communicat
+ion system meets the required performance specifications.
+\end_layout
+
+\begin_layout Subsubsection
+BLER 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BLER"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Block Error Rate (BLER) is a measure of the reliability of a communication
+ system or a data transmission system by blocks.
+ BLER is defined as the ratio of the number of blocks of data received with
+ errors to the total number of blocks of data transmitted.
+ It is commonly used in wireless communication systems, where the transmission
+ of data can be affected by various factors such as fading, interference,
+ and noise.
+ In such systems, BLER is often used to evaluate the performance of the
+ system and to determine the optimal operating parameters such as power,
+ coding, and modulation schemes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{BLER=\frac{BlockErrCount}{TotalBlocks}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To check for errors in a block of data, a cyclic redundancy check (CRC)
+ is often used 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CRC"
+literal "false"
+
+\end_inset
+
+.
+ Given the estimated values and the ground truth, instead of comparing bit
+ by bit, a set of symbols is taken, and a CRC is calculated for a given
+ chunk of the data.
+ If the CRC of the equalized chunk is equal to the real value, there are
+ no errors.
+ However, if the CRC differs, the chunk is marked as incorrect, and it is
+ added to the BLER count.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[ht] 
+\backslash
+caption{Block Error Rate Calculation with CRC} 
+\backslash
+label{alg:block_error_rate_crc} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+Require 
+\backslash
+Statex Input data is 48 blocks of 48 symbols 
+\backslash
+Statex $txbits$: array of transmitted blocks 
+\backslash
+Statex $rxbits$: array of received blocks 
+\backslash
+Statex $crc
+\backslash
+_func$: CRC function for generating CRC codes 
+\backslash
+Ensure 
+\backslash
+Statex $BLER$: Block Error Rate of the communication system 
+\backslash
+State $total
+\backslash
+_blocks 
+\backslash
+gets 48$ 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets 0$ 
+\backslash
+For{$n 
+\backslash
+gets 0$ to $47$} 
+\backslash
+State $tx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(txbits[n].tobytes())$ 
+\backslash
+State $rx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(rxbits[n].tobytes())$ 
+\backslash
+If{$tx
+\backslash
+_crc 
+\backslash
+neq rx
+\backslash
+_crc$} 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets bad
+\backslash
+_blocks + 1$ 
+\backslash
+EndIf 
+\backslash
+EndFor 
+\backslash
+State $BLER 
+\backslash
+gets bad
+\backslash
+_blocks / total
+\backslash
+_blocks$ 
+\backslash
+State 
+\backslash
+Return $BLER$ 
+\backslash
+end{algorithmic} 
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 
 \size large
@@ -5104,10 +5052,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Imagenes/Diagrams/NN_eq.png
@@ -5127,10 +5071,6 @@ Output as Y and input as X.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -5439,10 +5379,6 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -5506,10 +5442,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -5656,7 +5588,7 @@ literal "false"
 
 \end_inset
 
- 
+
 \end_layout
 
 \end_inset
@@ -5837,499 +5769,6 @@ And then we aim to make both distributions as similar as possible using
 \end_layout
 
 \begin_layout Subsection
-Effective Techniques for Improving Model Generalization
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In the field of machine learning, it is important to ensure that the models
- we build are able to accurately and effectively make predictions on new
- data.
- However, it is common for models to suffer from issues such as overfitting
- or poor generalization to new data.
- In this section, we will explore three techniques that can be used to improve
- the performance of machine learning models: 
-\series bold
-regularization
-\series default
-, 
-\series bold
-normalization
-\series default
-, and 
-\series bold
-standardization
-\series default
-.
- By properly applying these techniques, we can mitigate the risks of overfitting
- and improve the ability of our models to generalize to new data.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Regularization_Bisong,Normalization_layers,standarization"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\shape italic
-\size large
-\emph on
-\bar under
-\color black
-Our data set, which includes doubly dispersive channels of a complex nature,
- requires extra attention.
- We will use distorted vectors or inverse matrices, which can result in
- numerical instability, as our ground truth.
- These extra precautions will help to guarantee the process' success.
- Ignoring these recommendations may result in unsatisfactory outcomes, as
- the neural network may not generalize as well and may perform poorly.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ComplexnumbersNN"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Regularization
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Regularization is a technique used in machine learning to prevent overfitting.
- Overfitting occurs when a model is overly complex and captures the noise
- in the training data, rather than the underlying relationships.
- This results in poor generalization to new data.
- Regularization works by adding a penalty term to the objective function
- that the model is trying to minimize.
- This penalty term discourages the model from learning relationships that
- are too complex, and encourages it to learn simpler relationships that
- generalize better.
- There are several methods for regularization, including 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Goodfellow-et-al-2016"
-literal "false"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Enumerate
-\align block
-
-\size large
-L1 regularization: This method adds a penalty term to the cost function
- that is proportional to the absolute value of the weights.
-\end_layout
-
-\begin_layout Enumerate
-\align block
-
-\size large
-L2 regularization: This method adds a penalty term to the cost function
- that is proportional to the square of the weights.
-\end_layout
-
-\begin_layout Enumerate
-\align block
-
-\size large
-Dropout regularization: This method randomly sets a fraction of the weights
- in the model to zero during training, which helps to prevent overfitting
- by reducing the number of parameters in the model.
- Dropout is only applied during the training process, and all neurons are
- available during evaluation.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename trasasdenivelRegularization.png
-	lyxscale 50
-	scale 60
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Level sets of the loss function and L1,L2 regularization 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "regimage"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-To implement regularization, you can modify the cost function of the model
- to include the regularization term.
- For example, in L2 regularization, the cost function would be modified
- to include the sum of the squares of the weights, as shown in the following
- equation:
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size larger
-\begin_inset Formula $\boldsymbol{\lambda}$
-\end_inset
-
- 
-\size large
-regularization parameter
-\end_layout
-
-\begin_layout Itemize
-
-\size larger
-\begin_inset Formula $\boldsymbol{J(W)}$
-\end_inset
-
- 
-\size large
-Cost function
-\end_layout
-
-\begin_layout Subsubsection
-Normalization 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Data is scaled using a process called normalization to give it a unit norm
- (or length).
- This is frequently done to improve the data's suitability for particular
- machine learning algorithms, such as those that use gradient descent or
- have a set range for acceptable input data.
- When comparing various features, normalization can also be used to scale
- down the data to a common scale.
- Data normalization methods include min-max normalization, mean normalization,
- and z-score normalization.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\series bold
-\size large
-Normalization of complex numbers
-\series default
- involves dividing a complex number by its magnitude (or absolute value)
- to obtain a complex number with a magnitude of 1.
- This is typically done to simplify calculations and make it easier to compare
- complex numbers.
- The normalized form of a complex number is often written as ẑ = z/|v|,
- where z is the original complex number and ẑ is the normalized form and
- |v| is the max magnitud of the entire vector of the complex numbers.
- Normalization of complex numbers is useful in many applications, including
- signal processing and control systems, where it is often necessary to compare
- complex numbers on an equal footing.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ComplexnumbersNN"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{ẑ=\frac{z}{|v|}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{|v|}$
-\end_inset
-
- Maximum magnitud of the vector
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\mathsf{\boldsymbol{z}}$
-\end_inset
-
- Input value
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{ẑ}$
-\end_inset
-
- Normalized value
-\end_layout
-
-\begin_layout Subsubsection
-Standarization 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Standardization is a method used in machine learning to transform the values
- of a feature or set of features to a standard scale.
- The standard scale is typically defined as having a mean of 0 and a standard
- deviation of 1.
- Standardization is often used as a preprocessing step before training a
- model, as it can help to improve the performance and convergence of the
- model.
- Standardization can be useful when the features in the dataset have different
- scales or units, as it can help to bring them onto a common scale and make
- it easier for the model to learn from the data.
- Standardization can be applied to both real and complex-valued data.
-\end_layout
-
-\begin_layout Standard
-
-\size larger
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{\hat{z}=\frac{z-\mu}{\sigma}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{\mu}$
-\end_inset
-
- Mean of the data
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{\sigma}$
-\end_inset
-
- Standard deviation of the data
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\mathsf{\boldsymbol{z}}$
-\end_inset
-
- Input value
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{ẑ}$
-\end_inset
-
- Standarized value
-\end_layout
-
-\begin_layout Subsection
-Z-score
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The Z-score,
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Z-score"
-
-\end_inset
-
- also known as standard score, is a statistical measure that indicates how
- many standard deviations an observation or data point is from the mean
- of a data set.
- It is used to standardize data and compare individual observations to a
- population or sample mean.
- The magnitude of the z-score represents how far away the data point is
- from the mean in terms of standard deviations.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This method has its own section in our results due to its relevance.
- It helps us to remove outliers and make our results more stable.
- Outliers are data points that are significantly different from the other
- data points in the data set and can skew statistical analyses or machine
- learning models.
- Z-score can be used to identify and reduce outliers in a data set.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-To identify outliers using z-score, we first calculate the z-score for each
- data point in the data set.
- We can then set a threshold z-score value, usually between 2 and 3, beyond
- which any data point is considered an outlier.
- Data points that have a z-score above the threshold are identified as outliers
- and can be removed from the data set.
- This can help to improve the accuracy and reliability of our results or
- predictions.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{z=\frac{x_{i}-\mu}{\sigma}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-We use the z-score to filter outliers with a desired level of confidence,
- which is typically set at 95%.
- This corresponds to a z-score of 1.96, which means that approximately 95%
- of the data points would fall within the confidence interval.
- The 95% confidence level is commonly used in statistical analyses as a
- standard level of confidence
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/ConfidenceInterval.png
-	lyxscale 70
-	scale 70
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-95% Confidence interval 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "z_score_drawing"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
 Convolutional Neuronal Networks 
 \begin_inset CommandInset label
 LatexCommand label
@@ -6484,10 +5923,6 @@ Average and max pooling
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -6652,10 +6087,6 @@ Convolutional Neural Network with 3-channel Input and 2-channel Output,
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -6789,10 +6220,6 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -6831,10 +6258,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Imagenes/MetaDense.png
@@ -6847,7 +6270,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Higher dimensionality abstract version 
+Higher dimensionality abstract version
 \end_layout
 
 \end_inset
@@ -6868,195 +6291,6 @@ It's worth noting that when we consider a kernel of 1 dimension and an input
  of 1 channel, we can see that a dense layer is just a specific case of
  a 2D convolutional layer (Conv2D).
  Just as equation (15) and figure (8)
-\end_layout
-
-\begin_layout Subsection
-FLOPS
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-FLOPS stands for "floating point operations per second." It is a measure
- of the computational performance of a computer or processor, and it indicates
- how many floating point arithmetic operations can be performed in one second.
- Floating point operations include addition, subtraction, multiplication,
- and division, as well as more complex operations like trigonometric functions,
- logarithms, and exponentials.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-FLOPS is commonly used as a benchmark for evaluating the performance of
- CPUs, GPUs, and other computing devices.
- It is often used in the context of high-performance computing, scientific
- simulations, and machine learning applications, where large amounts of
- data must be processed quickly.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-One approach to measuring FLOPS that we used in this work is to calculate
- the execution time and multiply it by the number of operations in each
- equalizer.
- This allows us to visualize the time complexity and efficiency of the equalizer
-s.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{FLOPS\simeq\frac{1}{ExecTime}*Operations}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Performance variations in parallel algorithms stem from differences in design,
- implementation, and parallelism efficiency.
- Factors like memory access patterns, communication overhead, and load balancing
- also influence performance on multi-core systems.
- As a result, floating-point operation rates can change depending on algorithm
- effectiveness and work distribution among cores.
-\end_layout
-
-\begin_layout Subsection
-Objectives
-\end_layout
-
-\begin_layout Subsubsection
-General Objective
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-We aim to analyze and test various neural network techniques for frequency
- channel equalization in OFDM systems.
- Our approach involves breaking the process into simpler and more complex
- tasks based on time complexity, delegating complex tasks like matrix inversion
- to neural networks while handling lighter tasks in a preprocessing stage.
- As matrix inversion is sensitive to initial conditions, our research will
- explore how neural networks can effectively address these challenges.
- Combining preprocessing methods such as 
-\begin_inset Formula $\boldsymbol{H^{H}}$
-\end_inset
-
- and zero forcing with the non-linearity of neural networks generally leads
- to better performance than classical equalization in terms of BER and BLER.
- We will evaluate this performance across various noise levels, ranging
- from 5dB to 45dB.
-\end_layout
-
-\begin_layout Subsubsection
-Particular Objective
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-A double dispersive channel presents significant challenges for communication
- systems due to its frequency and time variations, noise, and intercarrier
- symbol interference (ISI).
- Our objective is to recover QAM and PSK constellation symbols that have
- been distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
- (NLOS) conditions, while achieving a bit error rate (BER) and block error
- rate (BLER) that are comparable to established benchmarks known as "golden
- models." To achieve this, we explore a range of techniques, including linear
- methods such as Least Squares (LS), Linear Minimum Mean Square Error (LMMSE),
- and Zero Forcing, as well as non-linear techniques such as Ordered Successive
- Interference Cancellation (OSIC) and Near Maximum Likelihood (NearML).
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-We begin our exploration in the field of deep learning with feedforward
- layers, followed by the integration of complex numbers in neuronal networks,
- then convolutional layers, and finally transformers.
- We aim to leverage the non-linearity of neural networks and explore a range
- of techniques, starting from simpler models that use linear layers and
- basic activation functions and then advancing to more sophisticated techniques
- involving complex numbers integrated into neural network architectures.
- To extract the most relevant information from the channel, we employ dimensiona
-lity reduction using a Convolutional Neural Network (CNN) and a non-linear
- process.
- Furthermore, we examine the use of attention mechanisms to reduce intercarrier
- symbol interference (ISI).
- Finally, the FLOPS metric and time complexity will play an important role
- in benchmarking and conducting a relevant analysis of the situations in
- which neural networks can be used.
- This analysis will help to determine which neural network architecture
- is better suited to a given situation and to develop a better tradeoff
- between accuracy and computational complexity.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-newpage
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-State of Art
-\end_layout
-
-\begin_layout Subsection
-Introduction
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-To support our research and development, a thorough study of several key
- papers was conducted, which were organized into different categories based
- on their relevance to the project.
- In the following sections, a brief overview will be provided of how each
- of these articles contributed to the development of the project.
- It should be noted that many papers in the literature deal with smaller
- input and channel sizes than the 48x48 size used in the research.
- It is possible that these studies were mostly focused on proofs of concepts
- or making results fit better.
- Nevertheless, a larger channel size was opted for to create a more realistic
- scenario for the research.
- Therefore, BER/SNR metrics should be based on the golden models rather
- than on these articles, because conditions are not fairly equivalent.
- 
 \end_layout
 
 \begin_layout Subsection
@@ -10103,6 +9337,553 @@ literal "false"
 
 \begin_layout Section
 Methodology
+\end_layout
+
+\begin_layout Subsection
+Effective Techniques for Improving Model Generalization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the field of machine learning, it is important to ensure that the models
+ we build are able to accurately and effectively make predictions on new
+ data.
+ However, it is common for models to suffer from issues such as overfitting
+ or poor generalization to new data.
+ In this section, we will explore three techniques that can be used to improve
+ the performance of machine learning models: 
+\series bold
+regularization
+\series default
+, 
+\series bold
+normalization
+\series default
+, and 
+\series bold
+standardization
+\series default
+.
+ By properly applying these techniques, we can mitigate the risks of overfitting
+ and improve the ability of our models to generalize to new data.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Regularization_Bisong,Normalization_layers,standarization"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\shape italic
+\size large
+\emph on
+\bar under
+\color black
+Our data set, which includes doubly dispersive channels of a complex nature,
+ requires extra attention.
+ We will use distorted vectors or inverse matrices, which can result in
+ numerical instability, as our ground truth.
+ These extra precautions will help to guarantee the process' success.
+ Ignoring these recommendations may result in unsatisfactory outcomes, as
+ the neural network may not generalize as well and may perform poorly.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComplexnumbersNN"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Regularization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Regularization is a technique used in machine learning to prevent overfitting.
+ Overfitting occurs when a model is overly complex and captures the noise
+ in the training data, rather than the underlying relationships.
+ This results in poor generalization to new data.
+ Regularization works by adding a penalty term to the objective function
+ that the model is trying to minimize.
+ This penalty term discourages the model from learning relationships that
+ are too complex, and encourages it to learn simpler relationships that
+ generalize better.
+ There are several methods for regularization, including 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goodfellow-et-al-2016"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+L1 regularization: This method adds a penalty term to the cost function
+ that is proportional to the absolute value of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+L2 regularization: This method adds a penalty term to the cost function
+ that is proportional to the square of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\align block
+
+\size large
+Dropout regularization: This method randomly sets a fraction of the weights
+ in the model to zero during training, which helps to prevent overfitting
+ by reducing the number of parameters in the model.
+ Dropout is only applied during the training process, and all neurons are
+ available during evaluation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trasasdenivelRegularization.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Level sets of the loss function and L1,L2 regularization 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "regimage"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+To implement regularization, you can modify the cost function of the model
+ to include the regularization term.
+ For example, in L2 regularization, the cost function would be modified
+ to include the sum of the squares of the weights, as shown in the following
+ equation:
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{\lambda}$
+\end_inset
+
+ 
+\size large
+regularization parameter
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\boldsymbol{J(W)}$
+\end_inset
+
+ 
+\size large
+Cost function
+\end_layout
+
+\begin_layout Subsubsection
+Normalization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Data is scaled using a process called normalization to give it a unit norm
+ (or length).
+ This is frequently done to improve the data's suitability for particular
+ machine learning algorithms, such as those that use gradient descent or
+ have a set range for acceptable input data.
+ When comparing various features, normalization can also be used to scale
+ down the data to a common scale.
+ Data normalization methods include min-max normalization, mean normalization,
+ and z-score normalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\series bold
+\size large
+Normalization of complex numbers
+\series default
+ involves dividing a complex number by its magnitude (or absolute value)
+ to obtain a complex number with a magnitude of 1.
+ This is typically done to simplify calculations and make it easier to compare
+ complex numbers.
+ The normalized form of a complex number is often written as ẑ = z/|v|,
+ where z is the original complex number and ẑ is the normalized form and
+ |v| is the max magnitud of the entire vector of the complex numbers.
+ Normalization of complex numbers is useful in many applications, including
+ signal processing and control systems, where it is often necessary to compare
+ complex numbers on an equal footing.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComplexnumbersNN"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{ẑ=\frac{z}{|v|}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{|v|}$
+\end_inset
+
+ Maximum magnitud of the vector
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{\boldsymbol{z}}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{ẑ}$
+\end_inset
+
+ Normalized value
+\end_layout
+
+\begin_layout Subsubsection
+Standarization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Standardization is a method used in machine learning to transform the values
+ of a feature or set of features to a standard scale.
+ The standard scale is typically defined as having a mean of 0 and a standard
+ deviation of 1.
+ Standardization is often used as a preprocessing step before training a
+ model, as it can help to improve the performance and convergence of the
+ model.
+ Standardization can be useful when the features in the dataset have different
+ scales or units, as it can help to bring them onto a common scale and make
+ it easier for the model to learn from the data.
+ Standardization can be applied to both real and complex-valued data.
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\hat{z}=\frac{z-\mu}{\sigma}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\mu}$
+\end_inset
+
+ Mean of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\sigma}$
+\end_inset
+
+ Standard deviation of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{\boldsymbol{z}}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{ẑ}$
+\end_inset
+
+ Standarized value
+\end_layout
+
+\begin_layout Subsection
+Z-score
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Z-score,
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Z-score"
+
+\end_inset
+
+ also known as standard score, is a statistical measure that indicates how
+ many standard deviations an observation or data point is from the mean
+ of a data set.
+ It is used to standardize data and compare individual observations to a
+ population or sample mean.
+ The magnitude of the z-score represents how far away the data point is
+ from the mean in terms of standard deviations.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This method has its own section in our results due to its relevance.
+ It helps us to remove outliers and make our results more stable.
+ Outliers are data points that are significantly different from the other
+ data points in the data set and can skew statistical analyses or machine
+ learning models.
+ Z-score can be used to identify and reduce outliers in a data set.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To identify outliers using z-score, we first calculate the z-score for each
+ data point in the data set.
+ We can then set a threshold z-score value, usually between 2 and 3, beyond
+ which any data point is considered an outlier.
+ Data points that have a z-score above the threshold are identified as outliers
+ and can be removed from the data set.
+ This can help to improve the accuracy and reliability of our results or
+ predictions.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{z=\frac{x_{i}-\mu}{\sigma}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We use the z-score to filter outliers with a desired level of confidence,
+ which is typically set at 95%.
+ This corresponds to a z-score of 1.96, which means that approximately 95%
+ of the data points would fall within the confidence interval.
+ The 95% confidence level is commonly used in statistical analyses as a
+ standard level of confidence
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/ConfidenceInterval.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+95% Confidence interval 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "z_score_drawing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+FLOPS
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS stands for "floating point operations per second." It is a measure
+ of the computational performance of a computer or processor, and it indicates
+ how many floating point arithmetic operations can be performed in one second.
+ Floating point operations include addition, subtraction, multiplication,
+ and division, as well as more complex operations like trigonometric functions,
+ logarithms, and exponentials.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS is commonly used as a benchmark for evaluating the performance of
+ CPUs, GPUs, and other computing devices.
+ It is often used in the context of high-performance computing, scientific
+ simulations, and machine learning applications, where large amounts of
+ data must be processed quickly.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One approach to measuring FLOPS that we used in this work is to calculate
+ the execution time and multiply it by the number of operations in each
+ equalizer.
+ This allows us to visualize the time complexity and efficiency of the equalizer
+s.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{1}{ExecTime}*Operations}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Performance variations in parallel algorithms stem from differences in design,
+ implementation, and parallelism efficiency.
+ Factors like memory access patterns, communication overhead, and load balancing
+ also influence performance on multi-core systems.
+ As a result, floating-point operation rates can change depending on algorithm
+ effectiveness and work distribution among cores.
 \end_layout
 
 \begin_layout Subsection
