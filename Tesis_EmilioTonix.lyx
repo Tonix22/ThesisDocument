@@ -753,10 +753,6 @@ Background
 \end_layout
 
 \begin_layout Standard
-
-\end_layout
-
-\begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
@@ -799,9 +795,7 @@ One of the guiding principles of communication system design is the division
  of signal processing into a series of distinct blocks, each of which performs
  a clearly defined and isolated functions such as source or channel coding,
  modulation, channel estimation, and equalization.
- This strategy has made it possible for us to have the effective, adaptable,
- and controlled systems we have today, but it is not certain whether individuall
-y tuned processing blocks will yield the best end-to-end performance 
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "proakis2002communication"
@@ -880,26 +874,60 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-While dividing signal processing into distinct blocks has been a guiding
- principle of communication system design, it is important to consider how
- this strategy might evolve in the future.
- With the development of 6G networks, there is a growing interest in creating
- an "AI-native" architecture that can self-learn and adapt to changing network
- dynamics.
- Adopting processing blocks capable of solving individual stages of the
- channel can potentially help us achieve better end-to-end performance in
- communication systems.
- 
+In this study, our main focus will be on the equalization stage.
+ Our team has previously completed a project on channel estimation and equalizat
+ion using classical QR methods, and we have also implemented an FPGA-based
+ equalization stage for the 802.11p standard 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "The_Roadmap_to_6G"
+key "V2V"
 literal "false"
 
 \end_inset
 
 .
- It has been demonstrated that NNs are capable of approximating any function
+ The 802.11p standard is commonly used for V2V (Vehicle-to-Vehicle) communication
+ with the OFDM modulation scheme.
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "QRGonzalo"
+literal "false"
+
+\end_inset
+
+.
+ Therefore, the data is processed with a size of 48 symbols, resulting in
+ a 48x48 channel.
+ As a result, this work does not prioritize the channel estimation component.
+ Instead, the main objective is to cancel the effects of the received signal
+ through the channel and noise, which is well-known due to the previous
+ research.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+By employing neural networks, we aim to generalize a pseudo-inverse non-linear
+ system that cancels out channel and noise effects.
+ However, it is important to note that the matrix inverse is not always
+ well-defined, and its time complexity is 
+\begin_inset Formula $O(N^{3})$
+\end_inset
+
+.
+ The pseudo-inverse is a well-known technique used to solve matrix inversion
+ problems when the matrix is not invertible or singular
+\begin_inset CommandInset citation
+LatexCommand cite
+key "strang2019linear"
+literal "false"
+
+\end_inset
+
+.
+ Neural networks have been demonstrated to approximate any function 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "HORNIK1989359"
@@ -919,12 +947,18 @@ literal "false"
 .
  Due to the challenge of defining real-world images or language with strict
  mathematical models, deep learning (DL) excels in fields like computer
- vision and natural language processing.
- For example, while it is now simple to develop DL algorithms that learn
- to complete this task with accuracy greater than that of humans 
+ vision 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Surpassing_Human_Level_Performance"
+key "MobileNet"
+literal "false"
+
+\end_inset
+
+ and natural language processing
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
 literal "false"
 
 \end_inset
@@ -1109,62 +1143,6 @@ literal "false"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The research team has already completed a project on channel estimation
- and equalization, using classical QR methods 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "QRGonzalo"
-literal "false"
-
-\end_inset
-
- and an FPGA
-\begin_inset CommandInset citation
-LatexCommand cite
-key "FPGADef"
-literal "false"
-
-\end_inset
-
- implementation for the equalization stage.
- For this current research, our focus is solely on the equalization stage,
- and we will not prioritize the channel estimation component.
- Our goal is to cancel the effects of the well-known received channel during
- the communication process.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Our research is focused on the generalization of the pseudo-inverse using
- neural networks to cancel out channel effects.
- The pseudo-inverse is a well-known technique used to solve the problem
- of matrix inversion when the matrix is not invertible or is singular 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "strang2019linear"
-literal "false"
-
-\end_inset
-
-.
- While the pseudo-inverse is a well-known technique used to solve the problem
- of matrix inversion, it's important to note that the matrix inverse is
- not always well-defined.
- In addition, numerical instability can also pose a challenge.
- To address these issues, we mainly use invertible matrices, and we also
- incorporate regularization methods to avoid singular matrices.
- This approach more accurately simulates real-world scenarios.
- Another aspect that our research addresses is the use of complex numbers
- in neural networks, which can add an additional layer of complexity to
- the problem.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1881,8 +1859,97 @@ Our goal is to develop an equalizer based on deep learning techniques and
  
 \end_layout
 
+\begin_layout Subsection
+Equalizers
+\end_layout
+
 \begin_layout Subsubsection
-Conclusion 
+Linear
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Zero Forcing Equalizer (ZFE) : Employed to mitigate intersymbol interference
+ (ISI) that results from multiple signal paths in a communication channel.
+ Despite its efficacy, the ZFE has some limitations, including susceptibility
+ to noise and inability to handle certain types of channel distortion.
+ 
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Least Squares(LS): A method used in signal processing to estimate a signal
+ from noisy data.
+ In this method, the estimate is chosen to minimize the sum of the squared
+ differences between the observed data and the predicted data.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Linear Minimum Mean Square Error (LMMSE): Signal processing technique used
+ to estimate a signal from noisy data, given knowledge of the noise statistical
+ properties.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+Complexity: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Zero Forcing Equalizer (ZFE): This method is the fastest and has a time
+ complexity of 
+\begin_inset Formula $O(N)$
+\end_inset
+
+, making it an efficient equalization method.
+ It involves dividing the main diagonal of the channel matrix.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Least Squares (LS): This method has a higher time complexity of 
+\begin_inset Formula $O(N^{3})$
+\end_inset
+
+ as it includes matrix inversion.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Linear Minimum Mean Square Error (LMMSE): This method also has a time complexity
+ of 
+\begin_inset Formula $O(N^{3})$
+\end_inset
+
+ as it includes matrix inversion.
+ However, it is a more advanced signal processing technique that estimates
+ a signal from noisy data, given knowledge of the signal's statistical propertie
+s.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Nonlinear
 \end_layout
 
 \begin_layout Itemize
@@ -1958,41 +2025,46 @@ Problem statement
 \align block
 
 \size large
-As demonstrated by the previously discussed methods, the computation of
- equalization matrices primarily relies on finding the pseudo-inverse of
- certain matrix factors.
- However, directly solving for the inverse of the matrix can be both computation
-ally costly 
-\begin_inset Formula $\boldsymbol{O(N^{3})}$
+The OFDM modulation scheme based on 802.11p standard for V2V communication
+ is susceptible to channel impairments during data transmission, particularly
+ multipath fading and Doppler shift.
+ Additionally, the problem of ISI in the received symbols introduces distortion
+ in the IQ data, where data is received and demodulated, leading to incorrect
+ transmitted symbols.
+ As discussed earlier, linear equalization methods rely on finding the pseudo-in
+verse of certain matrix factors, which can be computationally expensive
+ 
+\begin_inset Formula $O(N^{3})$
 \end_inset
 
  and numerically unstable.
- This instability arises when the matrix has a very small determinant, which
- may cause the true solution to be susceptible to large perturbations.
- Consequently, this leads to a complex circuit architecture for numerical
- calculations.
- On the other hand, these methods are linear and will have a very predictable
- behavior over noise conditions and BER.
- As an alternative, neural networks offer a promising approach to address
- these challenges in signal equalization.
- They can adaptively learn the underlying structure of the data and are
- capable of handling non-linear relationships, which may lead to more efficient
- and robust equalization techniques.
+ Matrix instability arises when the determinant is very small, which can
+ result in large perturbations in the true solution and a complex circuit
+ architecture for numerical calculations.
+ On the other hand, non-linear methods can reduce BER further, but with
+ higher complexity.
+ Their implementations also require more time and computational resources
+ due to their iterative nature.
+\end_layout
+
+\begin_layout Subsection
+Hypothesis
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Machine learning is known to focus on non-linear solutions, which can explore
- more complex and better-fitting solutions.
- In this research, we will specifically focus on the equalization block
- using various proposed networks.
- It is assumed that other channel blocks will perform optimally, allowing
- us to focus solely on the equalization block.
- By doing this, we hope to gain insight into the performance of different
- network proposals and determine which one is best suited for the task of
- equalization.
+Deep learning techniques has the ability to learn and model complex non-linear
+ relationships between the received signal and the transmitted signal.
+ Therefore, it can be used as an alternative to traditional methods of channel
+ equalization, including linear techniques such as LS and LMMSE, and non-linear
+ techniques such as OSIC and NearML.
+ This approach can help to overcome the non-linear distortions introduced
+ by the channel, which is particularly useful given the multiple factors
+ affecting the received symbols, including all channel effects such as ISI
+ and noise.
+ Furthermore, most deep learning methods can be evaluated in a single evaluation.
 \end_layout
 
 \begin_layout Subsection
@@ -2003,74 +2075,90 @@ Objectives
 General Objective
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
+\begin_layout Itemize
 
 \size large
-We aim to analyze and test various neural network techniques for frequency
- channel equalization in OFDM systems.
- Our approach involves breaking the process into simpler and more complex
- tasks based on time complexity, delegating complex tasks like matrix inversion
- to neural networks while handling lighter tasks in a preprocessing stage.
- As matrix inversion is sensitive to initial conditions, our research will
- explore how neural networks can effectively address these challenges.
- Combining preprocessing methods such as 
-\begin_inset Formula $\boldsymbol{H^{H}}$
+Analyze and test neural network techniques for frequency channel equalization
+ in OFDM systems.
+
+\size default
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Breaking the equalization process into simpler parts, delegating complex
+ tasks like matrix inversion to neural networks while handling lighter tasks
+ in a preprocessing stage.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Combine preprocessing methods (e.g., 
+\begin_inset Formula $H^{H}$
 \end_inset
 
- and zero forcing with the non-linearity of neural networks generally leads
- to better performance than classical equalization in terms of BER and BLER.
- We will evaluate this performance across various noise levels, ranging
- from 5dB to 45dB.
+, zero forcing) with non-linearity of neural networks
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Evaluate performance across various noise levels (5dB to 45dB)
 \end_layout
 
 \begin_layout Subsubsection
 Particular Objective
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
+\begin_layout Itemize
 
 \size large
-A double dispersive channel presents significant challenges for communication
- systems due to its frequency and time variations, noise, and intercarrier
- symbol interference (ISI).
- Our objective is to recover QAM and PSK constellation symbols that have
- been distorted by a channel with both line-of-sight (LOS) and non-line-of-sight
- (NLOS) conditions, while achieving a bit error rate (BER) and block error
- rate (BLER) that are comparable to established benchmarks known as "golden
- models." To achieve this, we explore a range of techniques, including linear
- methods such as Least Squares (LS), Linear Minimum Mean Square Error (LMMSE),
- and Zero Forcing, as well as non-linear techniques such as Ordered Successive
- Interference Cancellation (OSIC) and Near Maximum Likelihood (NearML).
- 
+Investigate deep learning techniques such as feedforward layers, complex
+ numbers layers, convolutional layers, and transformers.
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
+\begin_layout Itemize
 
 \size large
-We begin our exploration in the field of deep learning with feedforward
- layers, followed by the integration of complex numbers in neuronal networks,
- then convolutional layers, and finally transformers.
- We aim to leverage the non-linearity of neural networks and explore a range
- of techniques, starting from simpler models that use linear layers and
- basic activation functions and then advancing to more sophisticated techniques
- involving complex numbers integrated into neural network architectures.
- To extract the most relevant information from the channel, we employ dimensiona
-lity reduction using a Convolutional Neural Network (CNN) and a non-linear
- process.
- Furthermore, we examine the use of attention mechanisms to reduce intercarrier
- symbol interference (ISI).
- Finally, the FLOPS metric and time complexity will play an important role
- in benchmarking and conducting a relevant analysis of the situations in
- which neural networks can be used.
- This analysis will help to determine which neural network architecture
- is better suited to a given situation and to develop a better tradeoff
- between accuracy and computational complexity.
+Recover QAM and PSK received symbols distorted by LOS and NLOS channel condition
+s using feedforward neural network layers that correct both phase and magnitude.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Employ non-linear dimensionality reduction using CNN (Convolutional Neural
+ Networks) to apply zeroforing or some related method.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Achieve BER and BLER comparable to "golden models," which include some linear
+ techniques such as LS, LMMSE, Zero Forcing, and non-linear techniques like
+ OSIC, NearML.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Examine transformers and attention mechanisms to reduce ISI.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Use the FLOPS metric and time complexity for benchmarking and analysis.
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+Benchmark and tradeoff between suitable neural network architectures for
+ different situations.
 \end_layout
 
 \begin_layout Standard
@@ -2106,19 +2194,13 @@ Introduction
 \noindent
 
 \size large
-To support our research and development, a thorough study of several key
- papers was conducted, which were organized into different categories based
- on their relevance to the project.
- In the following sections, a brief overview will be provided of how each
- of these articles contributed to the development of the project.
- It should be noted that many papers in the literature deal with smaller
- input and channel sizes than the 48x48 size used in the research.
- It is possible that these studies were mostly focused on proofs of concepts
- or making results fit better.
- Nevertheless, a larger channel size was opted for to create a more realistic
- scenario for the research.
- Therefore, BER/SNR metrics should be based on the golden models rather
- than on these articles, because conditions are not fairly equivalent.
+This section begins with an exploration of basic concepts and literature
+ on estimators, followed by an explanation of how equalizers work within
+ the OFDM scheme modulation, ranging from linear to non-linear equalizers.
+ The study then delves into fundamental concepts of neural networks and
+ convolutional neural networks, which serve as a solid introduction to understan
+ding several key papers relevant to the project and part of the cutting-edge
+ research.
  
 \end_layout
 
@@ -4919,7 +5001,7 @@ Neural networks are a type of artificial intelligence system designed to
  and they perform various intermediate calculations and processing tasks.
  Neural networks are trained using large amounts of data, allowing them
  to learn and make predictions or decisions based on that data.
- In this study case, the data consists of realistic channel realizations.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -4992,7 +5074,7 @@ and the weights
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{X_{n}=W_{n}X_{n-1}+b_{n}}
+\boldsymbol{X_{n}=W_{n}X_{n-1}+b_{n}}\label{eq:41}
 \end{equation}
 
 \end_inset
@@ -5629,6 +5711,7 @@ d optimization algorithms.
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing onehalf
 
 \size large
 In this equation, 
@@ -5747,7 +5830,6 @@ Rewriting the logarithm as two individual sections, we can observe that
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\noindent
 
 \size large
 And then we aim to make both distributions as similar as possible using
@@ -6290,7 +6372,18 @@ Higher dimensionality abstract version
 It's worth noting that when we consider a kernel of 1 dimension and an input
  of 1 channel, we can see that a dense layer is just a specific case of
  a 2D convolutional layer (Conv2D).
- Just as equation (15) and figure (8)
+ Just as 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:41"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -6313,11 +6406,15 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The integration of AI technologies in the communication network provides
- a promising future for efficient and reliable communication in 6G and beyond.
- The "intelligent PHY layer" paradigm, through its ability to self-learn
- and self-optimize, ensures that the system remains efficient and reliable
- despite the various hardware and channel effects.
+The integration of AI technologies in communication networks promises a
+ more efficient and reliable future for 6G and beyond.
+ The "intelligent PHY layer" paradigm, with its ability to self-learn and
+ self-optimize, ensures that the system remains efficient and reliable despite
+ various hardware and channel effects.
+ Sometimes, the hardware referred to includes low-cost devices that may
+ not be well fine-tuned but are commonly used.
+ This AI-driven approach aims to adapt and optimize communication systems
+ even when operating with less-than-ideal hardware components.
  This model leverages AI technologies to enhance communication efficiency
  and performance, and can autonomously learn and enhance performance through
  the integration of cutting-edge sensing and data-gathering tools.
@@ -6334,6 +6431,8 @@ Hardware heterogeneity necessitates system redesign for different hardware
  backpropagation.
  Therefore, network architecture is more crucial than numeric resolution
  in contrast to traditional methods.
+ In the image bellow, a roadmap is presented that depicts the expected evolution
+ of deep learning in the coming years.
 \end_layout
 
 \begin_layout Standard
@@ -6386,12 +6485,12 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-In the image above, a roadmap is presented that depicts the expected evolution
- of deep learning in the coming years.
- This image justifies the necessity of the research.
- The progression of models from simpler to more intelligent systems is shown,
- with the intelligence level displayed in circles on the right side of the
- image.
+It should be noted that much of the referenced work focuses on virtual physical
+ resources and layers ranging from the MAC layer to higher ones.
+ Despite this, it is essential to progress and supplement the ideas in the
+ physical layer to implement an equalization stage effectively.
+ By doing so, a more comprehensive and cohesive approach to communication
+ system optimization can be achieved.
 \end_layout
 
 \begin_layout Subsection
@@ -6739,7 +6838,7 @@ literal "false"
 
 ], and CN (Cascaded Net).
  The modulation they used in the experiment below is QPSK.
- and they assume that CSI is perfect.
+ and they assume that CSI (Channel State Information) is perfect.
  The receiver is trained off-line for the single-user system with fixed
  Doppler shift.
  If Subcarrier number 
@@ -6788,13 +6887,18 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Note, that in practice, perfect CSI is often difficult to achieve due to
+ the dynamic nature of the wireless channel, which can change rapidly due
+ to factors such as fading, multipath propagation, and interference.
 \end_layout
 
 \begin_layout Enumerate
@@ -9335,6 +9439,26 @@ literal "false"
 
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Methodology
 \end_layout
@@ -9379,46 +9503,15 @@ literal "false"
 
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\shape italic
-\size large
-\emph on
-\bar under
-\color black
-Our data set, which includes doubly dispersive channels of a complex nature,
- requires extra attention.
- We will use distorted vectors or inverse matrices, which can result in
- numerical instability, as our ground truth.
- These extra precautions will help to guarantee the process' success.
- Ignoring these recommendations may result in unsatisfactory outcomes, as
- the neural network may not generalize as well and may perform poorly.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ComplexnumbersNN"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Regularization
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-Regularization is a technique used in machine learning to prevent overfitting.
- Overfitting occurs when a model is overly complex and captures the noise
- in the training data, rather than the underlying relationships.
- This results in poor generalization to new data.
- Regularization works by adding a penalty term to the objective function
+Reegularization works by adding a penalty term to the objective function
  that the model is trying to minimize.
  This penalty term discourages the model from learning relationships that
  are too complex, and encourages it to learn simpler relationships that
@@ -9435,23 +9528,23 @@ literal "false"
 \end_layout
 
 \begin_layout Enumerate
-\align block
+\paragraph_spacing onehalf
 
 \size large
-L1 regularization: This method adds a penalty term to the cost function
+L1 Lasso regularization: This method adds a penalty term to the cost function
  that is proportional to the absolute value of the weights.
 \end_layout
 
 \begin_layout Enumerate
-\align block
+\paragraph_spacing onehalf
 
 \size large
-L2 regularization: This method adds a penalty term to the cost function
+L2 Ridge regularization: This method adds a penalty term to the cost function
  that is proportional to the square of the weights.
 \end_layout
 
 \begin_layout Enumerate
-\align block
+\paragraph_spacing onehalf
 
 \size large
 Dropout regularization: This method randomly sets a fraction of the weights
@@ -9459,6 +9552,18 @@ Dropout regularization: This method randomly sets a fraction of the weights
  by reducing the number of parameters in the model.
  Dropout is only applied during the training process, and all neurons are
  available during evaluation.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In two-dimensional space, the L1 regularization term takes the shape of
+ a diamond centered at the origin because it represents the sum of absolute
+ values of the weights.The L2 regularization term takes the shape of a circle
+ centered at the origin because it represents the sum of the squared values
+ of the weights.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -9503,7 +9608,6 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 \align block
 
 \size large
@@ -9519,7 +9623,7 @@ To implement regularization, you can modify the cost function of the model
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}}
+\boldsymbol{J(W)}=\frac{\lambda}{2}||\boldsymbol{w}||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}
 \end{equation}
 
 \end_inset
@@ -9546,7 +9650,7 @@ regularization parameter
 
  
 \size large
-Cost function
+Weight regularization
 \end_layout
 
 \begin_layout Subsubsection
@@ -9579,9 +9683,23 @@ Normalization of complex numbers
  to obtain a complex number with a magnitude of 1.
  This is typically done to simplify calculations and make it easier to compare
  complex numbers.
- The normalized form of a complex number is often written as ẑ = z/|v|,
- where z is the original complex number and ẑ is the normalized form and
- |v| is the max magnitud of the entire vector of the complex numbers.
+ The normalized form of a complex number is often written as 
+\begin_inset Formula $ẑ=\frac{z}{|v|}$
+\end_inset
+
+, where 
+\begin_inset Formula $z$
+\end_inset
+
+ is the original complex number and 
+\begin_inset Formula $ẑ$
+\end_inset
+
+ is the normalized form and 
+\begin_inset Formula $|v|$
+\end_inset
+
+ is the max magnitud of the entire vector of the complex numbers.
  Normalization of complex numbers is useful in many applications, including
  signal processing and control systems, where it is often necessary to compare
  complex numbers on an equal footing.
@@ -9601,7 +9719,7 @@ literal "false"
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{ẑ=\frac{z}{|v|}}
+\boldsymbol{ẑ}=\frac{\boldsymbol{z}}{|\boldsymbol{v}|}
 \end{equation}
 
 \end_inset
@@ -9612,7 +9730,7 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{|v|}$
+\begin_inset Formula $|\boldsymbol{v}|$
 \end_inset
 
  Maximum magnitud of the vector
@@ -9729,18 +9847,10 @@ name "subsec:Z-score"
  population or sample mean.
  The magnitude of the z-score represents how far away the data point is
  from the mean in terms of standard deviations.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This method has its own section in our results due to its relevance.
- It helps us to remove outliers and make our results more stable.
+ It helps us to remove outliers and make our trainning stage more stable.
  Outliers are data points that are significantly different from the other
  data points in the data set and can skew statistical analyses or machine
  learning models.
- Z-score can be used to identify and reduce outliers in a data set.
 \end_layout
 
 \begin_layout Standard
@@ -9780,7 +9890,8 @@ We use the z-score to filter outliers with a desired level of confidence,
  This corresponds to a z-score of 1.96, which means that approximately 95%
  of the data points would fall within the confidence interval.
  The 95% confidence level is commonly used in statistical analyses as a
- standard level of confidence
+ standard level of confidence.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -9822,6 +9933,25 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this project, we used the z-score to assess the dispersion of each block
+ of 48 symbols.
+ The aim was to ensure that the symbols in each block were within the required
+ confidence interval and that the relations between the symbols were not
+ too dispersed.
+ By using the z-score, we were able to analyze the standard deviation of
+ the symbols in each block and identify any blocks that fell outside the
+ desired range.
+ It is worth noting that the received symbols in this project were subject
+ to distortions and interference resulting from the communication channel
+ and environmental noise.
+ This made it imperative to carefully assess the dispersion of each block
+ of symbols in order to identify and correct any errors in the transmission.
 \end_layout
 
 \begin_layout Subsection
@@ -15069,6 +15199,26 @@ To summarize, the Radial Grid prioritizes investing less in the vocabulary
  in order to achieve better results.
 \end_layout
 
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Results
 \end_layout
@@ -18036,6 +18186,26 @@ status open
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
 \end_layout
 
 \end_inset
