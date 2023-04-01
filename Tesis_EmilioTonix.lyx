@@ -15227,24 +15227,50 @@ Results
 \paragraph_spacing onehalf
 
 \size large
-The equalization of signals in telecommunications is a challenging problem,
- particularly when dealing with noisy scenarios.
- To evaluate the effectiveness of various equalization methods, we conducted
- an average of five experiments in a consistent manner and then averaged
- the results.
- This methodology helps to smooth out the curves and provide a reliable
- representation of the performance of each method.
+The equalization of signals in telecommunications presents a significant
+ challenge, particularly in noisy environments.
+ In order to assess the effectiveness of various equalization methods, we
+ performed a series of five experiments for each method in a consistent
+ manner, and subsequently calculated the average of their results.
+ This approach is based on the principles of Monte Carlo tests
+\begin_inset CommandInset citation
+LatexCommand cite
+key "montecarlo"
+literal "false"
+
+\end_inset
+
+, aiming to obtain representative statistics of the ensemble, rather than
+ only smoothing out the curves.
+ By conducting multiple experiments and averaging the outcomes, we can ensure
+ a more reliable representation of each method's performance.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In our research, we focused on both noisy and non-noisy scenarios and evaluated
- the performance of our method across a wide range of signal-to-noise ratios
- (SNRs) ranging from 45 to 5 with a step of 2 between each SNR.
- This comprehensive evaluation helped us to identify the strengths and weaknesse
-s of each method and determine which methods are most effective in different
+In our research, we evaluated the performance of our method in both noisy
+ and non-noisy scenarios across a wide range of signal-to-noise ratios (SNRs).
+ The SNR range we considered was from 45 to 5, with a step of 2 between
+ each SNR.
+ By including SNRs below the typical operating range, we could assess the
+ system's robustness to low signal levels.
+ Additionally, studying the system performance over a range of high SNR
+ values can help to assess the impact of ISI and evaluate the effectiveness
+ of different equalization techniques in mitigating its effects.
+ While we did not implement a MIMO system in this study, high SNR values
+ are also relevant for MIMO systems, and this evaluation could provide insight
+ into their performance under different conditions.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This comprehensive evaluation helped us to identify the strengths and weaknesses
+ of each method and determine which methods are most effective in different
  scenarios.
 \end_layout
 
@@ -15288,23 +15314,27 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsection
-FLOPS and Time complexity
+FLOPS and BiG O analysis
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In this section, we estimated the complexity of the model and calculated
- the FLOPS for each equalizer.
- To accomplish this task, we used the execution time and performed a static
- code analysis to estimate the number of parameters.
- By considering both the number of parameters and the execution time, we
- could approximate the FLOPS of the equalizers.
- Additionally, it is important to consider the processor and operating system
- on which the algorithms run.
- In the table below, we provide a detailed description of the specifications
- of the system used to conduct the experiments.
+In this segment, the complexity of the model was estimated, and the FLOPS
+ were calculated for each equalizer using execution time and source code
+ analysis.
+ The number of parameters was estimated through the source code analysis
+ for the Big O notation analysis.
+ Big O notation is a mathematical notation that expresses the upper bound
+ of the growth rate of an algorithm in terms of its input size.
+ It provides a way to express the worst-case time complexity of an algorithm
+ in terms of a simple function of the input size, ignoring constant factors
+ and lower-order terms.
+ The efficiency and scalability of the algorithm can be analyzed through
+ this analysis.
+ A detailed description of the system specifications used for the time measureme
+nt experiment is provided in the table below.
 \end_layout
 
 \begin_layout Standard
@@ -15427,22 +15457,8 @@ end{table}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
 \size large
-Time complexity refers to the number of operations or amount of time taken
- by an algorithm to solve a problem, while Big O notation is a mathematical
- notation used to describe the upper bound of the growth rate of an algorithm
- in terms of its input size.
- Specifically, Big O notation provides a way to express the worst-case time
- complexity of an algorithm in terms of a simple function of the input size,
- while ignoring constant factors and lower-order terms.
- Therefore, time complexity analysis often involves determining the Big
- O notation of an algorithm, which can provide useful insights into its
- efficiency and scalability.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -15454,10 +15470,18 @@ LMMSE
 
 \size large
 The matrix inversion operation requires 
-\begin_inset Formula $\boldsymbol{O(n^{3})}$
+\begin_inset Formula $\boldsymbol{O(N^{3})}$
 \end_inset
 
- operations, where n is the matrix size.
+ operations, where N is the matrix size 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "StrassenO3"
+literal "false"
+
+\end_inset
+
+.
  Therefore, the total number of operations involved in this operation is
  48 x 48 x 2 for the conjugate and Hermitian transpose operations, 48 x
  48 x 48 x 2 for the matrix multiplication operations, 48 x 48 x 3 for the
@@ -15515,13 +15539,13 @@ times 2$
 \backslash
  
 \backslash
-hline Matrix multiplication & $48 
+hline Matrix multiplication (1) & $48 
 \backslash
 times 48 
 \backslash
 times 48 
 \backslash
-times 2$ 
+times 8$ 
 \backslash
 
 \backslash
@@ -15557,17 +15581,17 @@ times 3$
 \backslash
  
 \backslash
-hline Matrix inversion (approximate) & 110,592 
+hline Matrix inversion (QR method) & 73,728 
 \backslash
 
 \backslash
  
 \backslash
-hline Matrix multiplication & $48 
+hline Matrix multiplication (2) & $48 
 \backslash
 times 48 
 \backslash
-times 2$ 
+times 4$ 
 \backslash
 
 \backslash
@@ -15577,7 +15601,7 @@ hline
 \backslash
 textbf{Total number of operations} & 
 \backslash
-textbf{223,872} 
+textbf{410,880} 
 \backslash
 
 \backslash
@@ -15587,11 +15611,7 @@ hline
 \backslash
 end{tabular} 
 \backslash
-end{table}
-\end_layout
-
-\begin_layout Plain Layout
-
+end{table} 
 \end_layout
 
 \begin_layout Plain Layout
@@ -15857,8 +15877,7 @@ for GridNet Polar is
 \paragraph_spacing onehalf
 
 \size large
-The Transformer model, which is widely used in natural language processing,
- has a time complexity of 
+The Transformer model, has a time complexity of 
 \begin_inset Formula $\boldsymbol{O(n^{2})}$
 \end_inset
 
