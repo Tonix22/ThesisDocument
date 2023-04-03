@@ -3033,7 +3033,7 @@ Ideally, if the off-diagonal elements of the channel matrix H are relatively
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}=y\circ\div diag(H)=\left(Hx+w\right)\circ\div diag(H)}
+\boldsymbol{\hat{\theta}=y\circ\div diag(H)=\left(Hx+w\right)\circ\div diag(H)}\label{eq:ZeroForcing}
 \end{equation}
 
 \end_inset
@@ -3648,7 +3648,7 @@ where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}\boldsymbol{\theta}
+\boldsymbol{\hat{\theta}_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}\boldsymbol{\theta}\label{eq:LMMSE}
 \end{equation}
 
 \end_inset
@@ -11740,6 +11740,13 @@ status open
 
 \begin_layout Plain Layout
 Preprocesing Stages
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PreprocesPhaseNet"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11753,10 +11760,17 @@ Preprocesing Stages
 \end_layout
 
 \begin_layout Subsubsection
-Parameters
+Parameters 
 \end_layout
 
 \begin_layout Standard
+\begin_inset CommandInset label
+LatexCommand label
+name "Table4"
+
+\end_inset
+
+
 \begin_inset ERT
 status open
 
@@ -11770,7 +11784,7 @@ centering
 \backslash
 caption{Number of Parameters in the PyTorch nn.Sequential block}   
 \backslash
-label{tab:num_params}   
+label{tab:PhaseNetTable}   
 \backslash
 begin{tabular}{|l|l|l|}     
 \backslash
@@ -12136,7 +12150,14 @@ MagNet Preprocesing
 \end_layout
 
 \begin_layout Subsubsection
-Magnet Parameters
+Magnet Parameters 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Magnet-Parameters"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -12575,7 +12596,14 @@ In the upcoming subsections, we will explain the components required to
 \end_layout
 
 \begin_layout Subsubsection
-Apply Complex
+Apply Complex 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Apply-Complex"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -12664,7 +12692,14 @@ The HardTahn_complex class defines a custom PyTorch module for a complex-valued
 \end_layout
 
 \begin_layout Subsubsection
-Parameters
+Parameters 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Complex-Net-Param"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -13019,6 +13054,13 @@ status open
 
 \begin_layout Plain Layout
 Ilustartion of mobileNet customized for our target problem
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Ilustartion-of-mobileNet"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -15227,9 +15269,7 @@ Results
 \paragraph_spacing onehalf
 
 \size large
-The equalization of signals in telecommunications presents a significant
- challenge, particularly in noisy environments.
- In order to assess the effectiveness of various equalization methods, we
+In order to assess the effectiveness of various equalization methods, we
  performed a series of five experiments for each method in a consistent
  manner, and subsequently calculated the average of their results.
  This approach is based on the principles of Monte Carlo tests
@@ -15256,13 +15296,10 @@ In our research, we evaluated the performance of our method in both noisy
  each SNR.
  By including SNRs below the typical operating range, we could assess the
  system's robustness to low signal levels.
- Additionally, studying the system performance over a range of high SNR
- values can help to assess the impact of ISI and evaluate the effectiveness
- of different equalization techniques in mitigating its effects.
- While we did not implement a MIMO system in this study, high SNR values
+ Although we did not implement a MIMO system in this study, high SNR values
  are also relevant for MIMO systems, and this evaluation could provide insight
  into their performance under different conditions.
- 
+ The same about high SNR values apply to the LOS channels.
 \end_layout
 
 \begin_layout Standard
@@ -15314,16 +15351,17 @@ noprefix "false"
 \end_layout
 
 \begin_layout Subsection
-FLOPS and BiG O analysis
+Multiplications and Big O analysis
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-In this segment, the complexity of the model was estimated, and the FLOPS
- were calculated for each equalizer using execution time and source code
- analysis.
+Using execution time and source code analysis, we determined the FLOPS for
+ each equalizer in this section and evaluated the model's complexity.
+ We narrowed our focus to the multiplication operations exclusively in order
+ to make our study more portable to other CPU architectures.
  The number of parameters was estimated through the source code analysis
  for the Big O notation analysis.
  Big O notation is a mathematical notation that expresses the upper bound
@@ -15469,7 +15507,22 @@ LMMSE
 \paragraph_spacing onehalf
 
 \size large
-The matrix inversion operation requires 
+Using equation 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:LMMSE"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ to invert the channel H requires the naive matrix inversion operation,
+ which has a computational complexity of 
 \begin_inset Formula $\boldsymbol{O(N^{3})}$
 \end_inset
 
@@ -15482,17 +15535,22 @@ literal "false"
 \end_inset
 
 .
- Therefore, the total number of operations involved in this operation is
- 48 x 48 x 2 for the conjugate and Hermitian transpose operations, 48 x
- 48 x 48 x 2 for the matrix multiplication operations, 48 x 48 x 3 for the
- identity matrix, scalar multiplication, and matrix addition operations,
- and 
-\begin_inset Formula $\boldsymbol{O(n^{3})}$
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Similarly, the total number of internal complex multiplications involved
+ in matrix multiplication is 
+\begin_inset Formula $N^{3}$
 \end_inset
 
- for the matrix inversion operation.
- Combining these operations yields a total of 223,872 operations for this
- particular operation.
+.
+ In the following table we will describe the total complex multiplications
+ required.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -15509,103 +15567,80 @@ centering
 \backslash
 caption{Number of Operations by Type} 
 \backslash
-label{tab:operations} 
+label{tab:operations}  
 \backslash
-begin{tabular}{|l|l|} 
+begin{tabular}{|l|l|l|}  
 \backslash
-hline Operation & Number of Operations 
-\backslash
-
-\backslash
- 
-\backslash
-hline Conjugate & $48 
-\backslash
-times 48 
-\backslash
-times 2$ 
+hline Operation & No.
+ Complex Mults & Big O 
 \backslash
 
 \backslash
  
 \backslash
-hline Hermitian transpose & $48 
-\backslash
-times 48 
-\backslash
-times 2$ 
+hline $H^H$                       &   $0$   & $O(N^2)$ 
 \backslash
 
 \backslash
  
 \backslash
-hline Matrix multiplication (1) & $48 
-\backslash
-times 48 
-\backslash
-times 48 
-\backslash
-times 8$ 
+hline $H^HH$                      & $48^3$ & $O(N^3)$ 
 \backslash
 
 \backslash
  
 \backslash
-hline Identity matrix & $48 
+hline $
 \backslash
-times 48 
-\backslash
-times 1$ 
+sigma I $                 &  $0 $  & $O(N)$
 \backslash
 
 \backslash
  
 \backslash
-hline Scalar multiplication & $48 
+hline $(H^HH+
 \backslash
-times 48 
+sigma I)^{-1}$      & $48^3$ & $O(N^3)$
 \backslash
-times 1$ 
+
+\backslash
+  
+\backslash
+hline $(H^HH+
+\backslash
+sigma I)^{-1}H^H$   & $48^3$ & $O(N^3)$
+\backslash
+
+\backslash
+  
+\backslash
+hline $(H^HH+
+\backslash
+sigma I)^{-1}H^HH$  & $48^3$ & $O(N^3)$
 \backslash
 
 \backslash
  
 \backslash
-hline Matrix addition & $48 
+hline $(H^HH+
 \backslash
-times 48 
-\backslash
-times 3$ 
+sigma I)^{-1}H^HHY$ & $48^2$ & $O(N^2)$
 \backslash
 
 \backslash
- 
-\backslash
-hline Matrix inversion (QR method) & 73,728 
-\backslash
-
-\backslash
- 
-\backslash
-hline Matrix multiplication (2) & $48 
-\backslash
-times 48 
-\backslash
-times 4$ 
-\backslash
-
-\backslash
- 
+  
 \backslash
 hline 
 \backslash
-textbf{Total number of operations} & 
+textbf{Total} & 
 \backslash
-textbf{410,880} 
+textbf{552,960} & 
+\backslash
+textbf{$O(4N^3+3N^2+N)$}  
 \backslash
 
 \backslash
- 
+  
 \backslash
 hline 
 \backslash
@@ -15628,7 +15663,8 @@ end{table}
 \size large
 The time measurements in the code give an average time of 5.96e-02, which
  is equal to t = 59.6 ms.
- Therefore, the estimated FLOPS is calculated as follows:
+ Therefore, the estimated FLOPS considering only the complex multiplications
+ is calculated as follows:
 \end_layout
 
 \begin_layout Standard
@@ -15636,7 +15672,7 @@ The time measurements in the code give an average time of 5.96e-02, which
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{1}{59.6ms}\times223,872=3.74\times10^{6}}
+\boldsymbol{FLOPS\simeq\frac{552,960}{59.6ms}=9.27\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -15652,12 +15688,28 @@ Zero Forcing
 \paragraph_spacing onehalf
 
 \size large
-Extract diagonal: self.Chann_diag(chann).
- This involves 48 extractions of diagonal elements.
- Element-wise division: Y/self.Chann_diag(chann).
- This involves 48 divisions of complex numbers.
- So the total number of operations in this line of code is approximately
- 48*2 = 96.
+In the equation 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ZeroForcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ we can describe this equalizer.
+ This involves 48 extractions of diagonal elements and then an elementwise
+ divison by each element of vector 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+ This involves 48 multiplications of complex numbers.
  The time measurements in the code give an average time of 2.62e-03, which
  is equal to t = 2.62 ms.
  Therefore, the estimated FLOPS is calculated as follows:
@@ -15668,7 +15720,7 @@ Extract diagonal: self.Chann_diag(chann).
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{1}{2.62ms}\times96=36\times10^{3}}
+\boldsymbol{FLOPS\simeq\frac{48}{2.62ms}=18.320\times10^{3}}
 \end{equation}
 
 \end_inset
@@ -15680,7 +15732,14 @@ Extract diagonal: self.Chann_diag(chann).
 
 \size large
 For the time complexity of this algorithm is conisdered a 
-\begin_inset Formula $O(n)$
+\begin_inset Formula $\boldsymbol{O(N)}$
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "OZeroForcing"
+
 \end_inset
 
  complexity, because diagonal is size of N.
@@ -15690,18 +15749,204 @@ For the time complexity of this algorithm is conisdered a
 \end_layout
 
 \begin_layout Subsubsection
-PhaseNet,PolarNet, ComplexNet
+PhaseNet
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Given the in the methodology seciton the total number of operations in the
- forward pass is approximately 1,761,808.
- To calculate the FLOPS, we need to divide the total number of operations
- by the execution time which give us 1.19e-01.
- Therefore, the approximate FLOPS for this model is:
+The preprocesing stage for Phase Net shown in Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PreprocesPhaseNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ uses the Hermitian transpose multiplication with the received signal 
+\begin_inset Formula $\boldsymbol{Y}$
+\end_inset
+
+ with an 
+\begin_inset Formula $\boldsymbol{O(N^{2})}$
+\end_inset
+
+ complexity.
+ Next, we need to extract the phase of the rectangular form of the complex
+ numbers, which involves an arctan function that is considered almost linear.
+ For the network stage, based on 
+\color black
+Table 4 in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "Table4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, we can visualize all the number of parameters implied in the networks,
+ and each linear layer basically performs a matrix multiplication of weights
+ times the last input.
+ In the case of PhaseNet, there are 4 linear layers, which is equivalent
+ to 
+\begin_inset Formula $\boldsymbol{O(4N^{2})}$
+\end_inset
+
+ plus the preprocesing is 
+\begin_inset Formula $\boldsymbol{O(5N^{2})}$
+\end_inset
+
+.
+ Note that only normal products are involved here, not complex ones, which
+ leads to a lower constant.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Complexity of PhaseNet}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{tab:phasenet_complexity}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{|l|l|} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline Preprocessing Stage & Complexity 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline $H^HY$ & $O(N^2+N)$ 
+\backslash
+
+\backslash
+          
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline $arctan$ & $O(N)$ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline 
+\backslash
+multicolumn{2}{|c|}{Network Stage} 
+\backslash
+
+\backslash
+          
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline 4 linear layers & $O(4N^2)$ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline Total complexity including preprocessing & $O(5N^2+2N)$ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular}  
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "BigOPhaseNet"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -15718,11 +15963,67 @@ Given the in the methodology seciton the total number of operations in the
 
 \end_layout
 
+\begin_layout Subsubsection
+\paragraph_spacing onehalf
+PolarNet
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-for Polar Net is 
+This network has the same preprocessing as PhaseNet, plus additional zero
+ forcing, with their corresponding Big O growth rates 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "BigOPhaseNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand nameref
+reference "OZeroForcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, respectively.
+ Additionally the network has MagnitudNet has the same preprocessing stage
+ as PhaseNet, which results in a final growth rate of 
+\begin_inset Formula $\boldsymbol{O(10N^{2}+2N)}$
+\end_inset
+
+.
+ Taken from the 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Magnet-Parameters"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+we finally calculate the FLOPS.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -15739,11 +16040,57 @@ for Polar Net is
 
 \end_layout
 
+\begin_layout Subsubsection
+ComplexNet
+\end_layout
+
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-and for ComplexNet is
+This network deals with complex operations, and to make it portable with
+ the gradients and machine learning environment, the "apply complex" function
+ was needed, which can be seen in section
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Apply-Complex"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ and results in a complexity of 
+\begin_inset Formula $\boldsymbol{O(4N^{2})}$
+\end_inset
+
+ per each linear complex layer.
+ Based on Table 8 in
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Complex-Net-Param"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color black
+the network has 6 linear layers, plus the preprocessing (which involves
+ complex conjugation) and leads to a final complexity of 
+\begin_inset Formula $\boldsymbol{O(13N^{2})}$
+\end_inset
+
+.
+ Again, in Table 8, the number of parameters used in the FLOPS calculation
+ can be found.
 \end_layout
 
 \begin_layout Standard
@@ -15760,55 +16107,8 @@ and for ComplexNet is
 
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The time complexity of a linear layer in a neural network, also known as
- a fully connected layer, is proportional to the number of weights and biases
- in the layer.
- Specifically, the time complexity of a forward pass through a linear layer
- with input size m and output size n is 
-\begin_inset Formula $\boldsymbol{O(mn)}$
-\end_inset
-
-, which corresponds to the number of multiplications and additions required
- to compute the output of the layer.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-During the forward pass, the input tensor is flattened into a vector and
- multiplied by a weight matrix of size (m x n), resulting in an intermediate
- tensor of size (n x 1).
- The bias vector, which has size (n x 1), is then added to the intermediate
- tensor to produce the output tensor of size (n x 1).
- As our input size and ouput size is the same shape final complexity results
- in 
-\begin_inset Formula $\boldsymbol{O(n^{2})}$
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 MobileNet
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{FLOPS\simeq\frac{3,236,000}{.834}=3.88\times10^{6}}
-\end{equation}
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -15820,25 +16120,135 @@ The original MobileNet model has a time complexity of approximately
 \end_inset
 
 , MobileNetV2 has a time complexity of approximately 
-\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\begin_inset Formula $\boldsymbol{O(N^{2})}$
 \end_inset
 
  and MobileNetV3 has a time complexity of approximately 
-\begin_inset Formula $\boldsymbol{O(n\times log(n))}$
+\begin_inset Formula $\boldsymbol{O(N\times log(N))}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "MobileNet,MobilenetV3"
+literal "false"
+
 \end_inset
 
 .
  It's important to note that the actual runtime performance of MobileNet
  can also be affected by factors such as the hardware platform, software
  optimization, and batch size.
-\end_layout
-
-\begin_layout Subsubsection
-GridNet
+ 
 \end_layout
 
 \begin_layout Standard
-for GridNet Square is 
+\paragraph_spacing onehalf
+
+\size large
+For the final growth rate of our MobileNetV3 implementation, we modified
+ the final layer with a linear layer, as shown in the Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Ilustartion-of-mobileNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and applied a pre-processing step using a Hermitian matrix, and the pointwise
+ division to emulate zero-forcing
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ZeroForcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the network has a final time complexity of 
+\begin_inset Formula $\boldsymbol{O(N^{2}+2N+Nlog(N))}$
+\end_inset
+
+.
+ To access all the number of parameters, we used a software API that iterated
+ over all parameters and added up their total size to calculate it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]  
+\backslash
+caption{Count Parameters}  
+\backslash
+label{alg:count_parameters}  
+\backslash
+begin{algorithmic}[1]  
+\backslash
+Function{count
+\backslash
+_parameters}{$model$}  
+\backslash
+State $total
+\backslash
+_parameters 
+\backslash
+gets 0$  
+\backslash
+For{$p$ 
+\backslash
+textbf{in} $model.parameters$}  
+\backslash
+If{$p.requires
+\backslash
+_grad$}  
+\backslash
+State $total
+\backslash
+_parameters 
+\backslash
+gets total
+\backslash
+_parameters + 
+\backslash
+text{numel}(p)$  
+\backslash
+EndIf  
+\backslash
+EndFor  
+\backslash
+State 
+\backslash
+textbf{return} $total
+\backslash
+_parameters$  
+\backslash
+EndFunction  
+\backslash
+end{algorithmic}  
+\backslash
+end{algorithm} 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -15847,7 +16257,30 @@ for GridNet Square is
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{44.5\times10^{6}}{1.93}=23.05\times10^{6}}
+\boldsymbol{FLOPS\simeq\frac{3,170,688}{.834}=3.801\times10^{6}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+GridNet
+\end_layout
+
+\begin_layout Standard
+Based on Algorithm 4 we can estimate the same for GrideNet versions.
+ For the GridNet Square we have this FLOPS:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{FLOPS\simeq\frac{67,773,587}{1.93}=35.11\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -15856,7 +16289,7 @@ for GridNet Square is
 \end_layout
 
 \begin_layout Standard
-for GridNet Polar is 
+and for GridNet Polar is 
 \end_layout
 
 \begin_layout Standard
@@ -15865,7 +16298,7 @@ for GridNet Polar is
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{69.5\times10^{6}}{2.5}=27.8\times10^{6}}
+\boldsymbol{FLOPS\simeq\frac{69,460,531}{2.5}=27.8\times10^{6}}
 \end{equation}
 
 \end_inset
@@ -15878,15 +16311,23 @@ for GridNet Polar is
 
 \size large
 The Transformer model, has a time complexity of 
-\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\begin_inset Formula $\boldsymbol{O(N^{2})}$
 \end_inset
 
-, where n is the length of the input sequence.
+, where 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+ is the length of the input sequence.
  This is due to the self-attention mechanism, which computes a similarity
  score between each pair of tokens in the input sequence, resulting in an
- n x n matrix.
+ 
+\begin_inset Formula $\boldsymbol{N\times N}$
+\end_inset
+
+ matrix.
  The computation of this matrix requires 
-\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\begin_inset Formula $\boldsymbol{O(N^{2})}$
 \end_inset
 
  time.
@@ -15901,7 +16342,7 @@ In addition to the self-attention mechanism, the Transformer also includes
  is typically much lower than that of the self-attention mechanism.
  Therefore, the overall time complexity of the Transformer can be approximated
  as
-\begin_inset Formula $\boldsymbol{O(n^{2})}$
+\begin_inset Formula $\boldsymbol{O(N^{2})}$
 \end_inset
 
 .
@@ -15915,14 +16356,23 @@ However, there are optimizations that can be applied to reduce the time
  complexity of the Transformer, such as restricting the maximum length of
  the input sequence or using approximate attention mechanisms.
  These optimizations can reduce the time complexity to
-\begin_inset Formula $\boldsymbol{O(n*log(n))}$
+\begin_inset Formula $\boldsymbol{O(N*log(N))}$
 \end_inset
 
  or even 
-\begin_inset Formula $\boldsymbol{O(n)}$
+\begin_inset Formula $\boldsymbol{O(N)}$
 \end_inset
 
 , but at the cost of reduced accuracy or increased memory usage.
+ Adding the preprocing of the Grids with N cells denoted as 
+\begin_inset Formula $|\mathbb{C}|$
+\end_inset
+
+ and the Hermitian Conjugate, the final complexity can be described as 
+\begin_inset Formula $\boldsymbol{O(N^{2}+N*log(N)+|\mathbb{C}|)}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection
