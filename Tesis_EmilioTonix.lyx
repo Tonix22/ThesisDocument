@@ -4020,11 +4020,20 @@ The outer loop iterates through the columns of the channel matrix, which
 
 \size large
 Since the squared distance calculation is inside the outer loop, the overall
- complexity of the OSIC_Det algorithm is 
-\begin_inset Formula $\boldsymbol{O(N*|\mathbb{A}|)}$
+ complexity of the OSIC_Det algorithm :
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{O(N*|\mathbb{A}|)}\label{eq:BigO-Osic}
+\end{equation}
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -4339,8 +4348,17 @@ Based on the provided NearML code, the time complexity can be analyzed by
 
 \size large
 Therefore, the overall time complexity of the NearML algorithm can be approximat
-ed as 
-\begin_inset Formula $\boldsymbol{O\left(|𝔸|\times N\times\left(M+|𝔸|\right)\right)}\boldsymbol{\simeq O\left(|𝔸|^{2}\times N\times M\right)}$
+ed as :
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{O\left(|\mathbb{A}|\times N\times\left(M+|\mathbb{A}|\right)\right)}\boldsymbol{\simeq O\left(|\mathbb{A}|^{2}\times N\times M\right)}\label{eq:BigONearML}
+\end{equation}
+
 \end_inset
 
 
@@ -5148,7 +5166,7 @@ status open
 \begin_layout Plain Layout
 Output as Y and input as X.
  Vector matrix representation of system.
- Desing done with manim
+ Desing done with manim 
 \end_layout
 
 \end_inset
@@ -6448,6 +6466,19 @@ status open
 
 \begin_layout Plain Layout
 \align center
+
+\size large
+In the same way the non-linear equalizers performr better than the neural
+ network from low noise scnearios greater than 30db SNR values, this happens
+ because the model trucate to error in the trainning stage, and to achive
+ lower BER other preprocesing stages may be need.
+ Therefore, to balance the trade-off between signal recognition over noise
+ and overfitting, sacrificing performance beyond 30 dB should be one option
+ if there are not other preprocesing stages different from the hermitian
+ matrix.
+ 
+\size default
+
 \begin_inset Graphics
 	filename Imagenes/Papers/RoadMap6G.png
 	lyxscale 50
@@ -7514,7 +7545,7 @@ One approach to dealing with the error is to take the complex magnitude
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}\label{eq:46}
+\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}\label{eq:MSECOMPLEX}
 \end{equation}
 
 \end_inset
@@ -7632,7 +7663,7 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}\label{eq:48}
+\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}\label{eq:65}
 \end{equation}
 
 \end_inset
@@ -10234,7 +10265,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Software Architecture Diagram Planning
+Software Architecture Diagram Planning 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Software-Architecture-Diagram"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -11569,7 +11607,7 @@ The final result is the same as the squared Euclidean distance, multiplied
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:46"
+reference "eq:MSECOMPLEX"
 plural "false"
 caps "false"
 noprefix "false"
@@ -12021,6 +12059,13 @@ end{table}
 
 \begin_layout Subsection
 PolarNet
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:PolarNet"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -12479,7 +12524,7 @@ noprefix "false"
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:46"
+reference "eq:MSECOMPLEX"
 plural "false"
 caps "false"
 noprefix "false"
@@ -12493,7 +12538,7 @@ and
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:48"
+reference "eq:65"
 plural "false"
 caps "false"
 noprefix "false"
@@ -12886,7 +12931,7 @@ In the experiments, we evaluate the performance of the complex network using
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:46"
+reference "eq:MSECOMPLEX"
 plural "false"
 caps "false"
 noprefix "false"
@@ -12900,7 +12945,7 @@ and
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "eq:48"
+reference "eq:65"
 plural "false"
 caps "false"
 noprefix "false"
@@ -13984,7 +14029,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Square grid enconding values with a step of 1/7 per cuadrant
+Square grid enconding values with a step of 1/7 per cuadrant 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Square-grid"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -14308,7 +14360,14 @@ status open
 
 \begin_layout Plain Layout
 Radial Grid encoding values.
- Radius step = 0.25 and angle step = pi/6
+ Radius step = 0.25 and angle step = pi/6 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Radial-Grid-encoding"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -15284,6 +15343,9 @@ literal "false"
  only smoothing out the curves.
  By conducting multiple experiments and averaging the outcomes, we can ensure
  a more reliable representation of each method's performance.
+ Although the channel dataset remains constant, the transmitted information
+ is described by a normal distribution with random data for each iteration.
+ This also promotes the use of Monte Carlo techniques.
 \end_layout
 
 \begin_layout Standard
@@ -16270,6 +16332,8 @@ GridNet
 \end_layout
 
 \begin_layout Standard
+
+\size large
 Based on Algorithm 4 we can estimate the same for GrideNet versions.
  For the GridNet Square we have this FLOPS:
 \end_layout
@@ -16289,6 +16353,8 @@ Based on Algorithm 4 we can estimate the same for GrideNet versions.
 \end_layout
 
 \begin_layout Standard
+
+\size large
 and for GridNet Polar is 
 \end_layout
 
@@ -16341,8 +16407,16 @@ In addition to the self-attention mechanism, the Transformer also includes
  feedforward layers and normalization layers, but their time complexity
  is typically much lower than that of the self-attention mechanism.
  Therefore, the overall time complexity of the Transformer can be approximated
- as
+ as 
 \begin_inset Formula $\boldsymbol{O(N^{2})}$
+\end_inset
+
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "transformer"
+literal "false"
+
 \end_inset
 
 .
@@ -16364,11 +16438,40 @@ However, there are optimizations that can be applied to reduce the time
 \end_inset
 
 , but at the cost of reduced accuracy or increased memory usage.
- Adding the preprocing of the Grids with N cells denoted as 
+ Adding the preprocing stage of grids which can be viewed on Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Square-grid"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ and Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "fig:Radial-Grid-encoding"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ with N cells denoted as 
 \begin_inset Formula $|\mathbb{C}|$
 \end_inset
 
- and the Hermitian Conjugate, the final complexity can be described as 
+ and the Hermitian Conjugate applied in other networks, the final complexity
+ can be described as 
 \begin_inset Formula $\boldsymbol{O(N^{2}+N*log(N)+|\mathbb{C}|)}$
 \end_inset
 
@@ -16379,51 +16482,157 @@ However, there are optimizations that can be applied to reduce the time
 OSIC
 \end_layout
 
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
+\begin_layout Standard
 
 \size large
-Loop 1 (cols iterations): 1 division + dim subtractions + dim absolute values
- + dim exponentiations + dim * log(dim) comparisons + 1 assignment + cols
- multiplications + cols subtractions 
+Based on the analysis in subsection 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:OSIC"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ we end up with the big 
+\begin_inset Formula $O$
+\end_inset
+
+ notation found in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:BigO-Osic"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ 
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The operations inside the loop are executed cols times: cols * (1 + dim
- + dim + dim + dim * log(dim) + 1 + cols + cols) 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Loop 2 (cols iterations): 1 assignment 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The operations inside the loop are executed cols times: cols * 1
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \paragraph_spacing onehalf
 \noindent
 
 \size large
-Total floating-point operations :
+Based on the algorithm in the same section 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:OSIC"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ we can make a table due to the short of algorithm looks like.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+begin{tabular}{|l|c|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Operation} & 
+\backslash
+multicolumn{1}{l|}{
+\backslash
+textbf{Count (multiplications/additions)}} & 
+\backslash
+multicolumn{1}{l|}{
+\backslash
+textbf{Iterations}} & 
+\backslash
+multicolumn{1}{l|}{
+\backslash
+textbf{Total Operations}} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Element-wise subtraction (a
+\backslash
+_est - conste) & 16 & 48 & 768 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Element-wise squaring & 16 & 48 & 768 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Sorting (torch.argsort(sest2)) & $16 * 
+\backslash
+log_{2}(16)$ & 48 & $
+\backslash
+sim$768 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Scalar multiplication (sest[ind] * mag2) & 48 & 48 & 2304 
+\backslash
+
+\backslash
+ 
+\backslash
+hline Scalar addition (rm - ...) & 48 & 48 & 2304 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+caption{Approximate number of products in the OSIC
+\backslash
+_Det function} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+Total number of products (multiplications and additions) ≈ 48 * (16 + 16
+ + (16 * log2(16)) + 48 + 48) = 9216
 \end_layout
 
 \begin_layout Standard
@@ -16433,34 +16642,7 @@ Total floating-point operations :
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{OP=cols*(3+4*dim+dim*log(dim)+2*cols)+cols}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Given cols = 48 and dim = 16 operations are 10,944, and the time taken 
-\begin_inset Formula $t=640ms$
-\end_inset
-
- let's calculate the total floating-point operations per seconds (FLOPS):
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{FLOPS\simeq\frac{10\times10^{3}}{640\times10^{-3}}=15\times10^{3}}
+\boldsymbol{FLOPS\simeq\frac{9216}{640\times10^{-3}}=14.4\times10^{3}}
 \end{equation}
 
 \end_inset
@@ -16476,84 +16658,62 @@ NearML
 \paragraph_spacing onehalf
 
 \size large
-To estimate the number of Multiply-Accumulate (MAC) operations in this algorithm
-, we can analyze the nested loops and matrix operations.
- The algorithm's complexity is mainly determined by the following operations:
-\end_layout
+Based on the analysis in subsection 
+\color blue
 
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-Detection at level 'nt' loop (range(QRM)): This loop iterates 'QRM' times,
- where QRM is the length of the constellation (conste).
- Inside this loop, there is a nested loop that iterates 'nt - 1' times.
- This nested loop contains vector subtraction and element-wise multiplication,
- which have 'nt' operations each.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-Estimation of the 'nt-1' levels loop (range(QRM)): This loop iterates 'QRM'
- times.
- Inside this loop, there is another loop that iterates 'nt - 1' times.
- This nested loop contains a loop that iterates 'M' times (M = 4).
- Inside this loop, there are vector subtraction and element-wise multiplication
- with 'nt' operations each.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-In the last part of the algorithm, there is a loop iterating 'nt' times.
- This loop has a single assignment operation.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Considering the main loops and the operations mentioned, we can estimate
- the number of MAC operations as follows:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{MAC=QRM*(nt-1)*nt\left(1+M\right)+nt}
-\end{equation}
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:NearML"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
 
-\end_layout
+\color inherit
+ we end up with the big O equation found in 
+\color blue
 
-\begin_layout Standard
-\paragraph_spacing onehalf
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:BigONearML"
+plural "false"
+caps "false"
+noprefix "false"
 
-\size large
-Given 
-\begin_inset Formula $\boldsymbol{nt=48}$
 \end_inset
 
- , 
-\begin_inset Formula $\boldsymbol{QRM=16}$
-\end_inset
-
-, 
-\begin_inset Formula $\boldsymbol{M=4}$
-\end_inset
-
- ,the total MAC operations amount to 103,664.
- Since each MAC consists of two operations, and the execution time is measured
- at 7.35 seconds.
+.
  
+\color inherit
+Due to algorithm is more complex than OSIC we can aproach the numer of multiplic
+ations as 
+\begin_inset Formula $\text{\ensuremath{(\mathbb{A}}}*N+N)L$
+\end_inset
+
+, with 
+\begin_inset Formula $\mathbb{A}=16$
+\end_inset
+
+ and 
+\begin_inset Formula $N=48$
+\end_inset
+
+ and 
+\begin_inset Formula $L=4$
+\end_inset
+
+ branching levels 
+\begin_inset Formula $\text{\ensuremath{(\mathbb{A}}}*N+N)L=3264$
+\end_inset
+
+ .
+ And finally with time 
+\begin_inset Formula $t=640ms$
+\end_inset
+
+ let's calculate the total floating-point operations per seconds (FLOPS):
 \end_layout
 
 \begin_layout Standard
@@ -16562,7 +16722,7 @@ Given
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{FLOPS\simeq\frac{180.528\times10^{3}}{7.35}*2\simeq49.110\times10^{3}}
+\boldsymbol{FLOPS\simeq\frac{3264}{7.35}\simeq444}
 \end{equation}
 
 \end_inset
@@ -16620,9 +16780,9 @@ hline
 
 \begin_layout Plain Layout
 
-OSIC & $ 15 
+OSIC & $ 14.4
 \backslash
-times 10^3 $ & $O(N 
+times10^{3} $ & $O(N 
 \backslash
 times |
 \backslash
@@ -16637,15 +16797,19 @@ hline
 
 \begin_layout Plain Layout
 
-NearML & $ 49.110
+NearML & $ 444 $ & $O(|
 \backslash
-times10^{3} $ & $O(|
+mathbb{A}|
 \backslash
-mathbb{A}|^2 
+times N
 \backslash
-times N 
+times
 \backslash
-times M) $  
+left(M+|
+\backslash
+mathbb{A}|
+\backslash
+right))$  
 \backslash
 
 \backslash
@@ -16656,9 +16820,9 @@ hline
 
 \begin_layout Plain Layout
 
-Zero Forcing & $36
+Zero Forcing & $18.320
 \backslash
-times10^{3}$ & $O(n)$ 
+times10^{3}$ & $O(N)$ 
 \backslash
 
 \backslash
@@ -16671,7 +16835,7 @@ hline
 
 ComplexNet & $2.7
 \backslash
-times10^{6}$ & $O(n^2)$  
+times10^{6}$ & $O(13N^{2})$  
 \backslash
 
 \backslash
@@ -16682,22 +16846,9 @@ hline
 
 \begin_layout Plain Layout
 
-LMMSE & $3.74
+LMMSE & $9.27
 \backslash
-times10^{6}$ &  $O(n^3)$ 
-\backslash
-
-\backslash
- 
-\backslash
-hline
-\end_layout
-
-\begin_layout Plain Layout
-
-MobileNet & $3.88
-\backslash
-times10^{6}$ &  $O(n*log(n))$
+times10^{6}$ &  $O(4N^3+3N^2+N)$ 
 \backslash
 
 \backslash
@@ -16708,9 +16859,22 @@ hline
 
 \begin_layout Plain Layout
 
-PolarNet & $4.5
+MobileNet & $3.801
 \backslash
-times10^{6}$ &  $O(n^2)$
+times10^{6}$ &  $O(N^{2}+2N+Nlog(N))$
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+PolarNet & $2.7
+\backslash
+times10^{6}$ & $O(10N^{2}+2N)$
 \backslash
 
 \backslash
@@ -16723,7 +16887,7 @@ hline
 
 PhaseNet & $14.8
 \backslash
-times10^{6}$ & $O(n^2)$
+times10^{6}$ & $O(5N^{2})$
 \backslash
 
 \backslash
@@ -16734,9 +16898,11 @@ hline
 
 \begin_layout Plain Layout
 
-GridNet Square & $23.05
+GridNet Square & $35.11
 \backslash
-times10^{6}$ & $O(n*log(n))$ 
+times10^{6}$ & $O(N^{2}+N*log(N)+|
+\backslash
+mathbb{C}|)$ 
 \backslash
 
 \backslash
@@ -16749,7 +16915,9 @@ hline
 
 GrideNet Polar & $27.8
 \backslash
-times10^{6}$ & $O(n*log(n))$ 
+times10^{6}$ & $O(N^{2}+N*log(N)+|
+\backslash
+mathbb{C}|)$ 
 \backslash
 
 \backslash
@@ -16780,8 +16948,120 @@ end{table}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Results/BigO.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Big O Benchmark for 16QAM.
+ Dotted red line is the case for N=48
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 BER and BLER
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To provide a detailed comparison of the BER and BLER values across different
+ SNR values, we will analyze the results obtained from various methods.
+ Firstly, we will compare the linear methods, followed by a comparison of
+ the non-linear methods.
+ This approach will provide a comprehensive view of both plots.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Neural networks are typically run in custom-built Python frameworks, as
+ shown in Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Software-Architecture-Diagram"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ This approach enables a consistent environment for each evaluation execution,
+ where all BER and BLER values are obtained from a processed CSV file and
+ then plotted using the Matplotlib Python library.
+ The resulting visualizations provide an effective means of analyzing and
+ interpreting the performance of these neural networks.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In order to facilitate faster testing evaluations, the SNR values in the
+ x-axis are incremented by a step of 2, ranging from 5 to 45 SNR.
+ To generate smoother curves, a cubic interpolator is applied to the plotted
+ data, which may introduce artifacts and hills in the curves.
+ It is important to note that these hills and artifacts should not be interprete
+d as final results.
+ To achieve completely smooth curves without valleys or hills, additional
+ realizations may be required to have more realizations falling in this
+ values.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -16792,36 +17072,45 @@ PhaseNet
 \paragraph_spacing onehalf
 
 \size large
-The angle error adjustment implemented in the PhaseNet methodology has been
- found to be very useful for signal equalization.
- The network performs well across a range of signal-to-noise ratios, from
- 5dB to 35dB.
- 
-\end_layout
+In Figure 
+\color blue
 
-\begin_layout Standard
-\paragraph_spacing onehalf
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:68"
+plural "false"
+caps "false"
+noprefix "false"
 
-\size large
-However, the graph shows a fall in performance at an SNR of 35dB compared
- to 45dB.
- This is because the model was trained using data with an SNR of 35dB, as
- indicated in the hyperparameters table of PhaseNet.
- When the model encounters new data with less noise, it does not equalize
- the signal as well as it was trained to do.
-\end_layout
+\end_inset
 
-\begin_layout Standard
-\paragraph_spacing onehalf
 
-\size large
-Therefore, it is important to carefully balance the SNR of the training
- data to ensure that the model can perform well across a wide range of noise
- conditions.
- This will help to improve the generalization ability of the model and ensure
- that it can handle various noise conditions.
- By doing so, the model can provide more reliable and accurate signal equalizati
-on in practical applications.
+\color inherit
+ the PhaseNet model shows an upgrade of up to one order of magnitude.
+ The model plateaus at 
+\begin_inset Formula $10^{-5}$
+\end_inset
+
+ BER from 30db to higher values.
+ This can be achieved due to the preprocessing stage, which sets all phase
+ points to the closest points but with incorrect phase.
+ This enables the networks to classify well between only four possible angle
+ positions in the QPSK scneario.
+ This turn allows the network to handle noise scenarios well and correct
+ the ISI by comparing all values at the same time due to the parallel input
+ nature with the feedforward linear layer described in 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:41"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16830,10 +17119,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -16849,7 +17134,14 @@ status open
 
 \begin_layout Plain Layout
 QPSK BER : PhaseNet vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:68"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -16870,21 +17162,14 @@ QPSK BER : PhaseNet vs.
 \paragraph_spacing onehalf
 
 \size large
-On the other hand, the block error rate performs very well and reduces the
- highest noise scenario to an order of magnitude.
- This helps to show that erroneous bits are specific outlier groups in certain
- blocks, and in general, the equalizer guarantees good frame recovery.
- Next, we can observe the same effect explained in the last paragraph about
- the 35dB fall.
- However, there is another fall in the BLER at 20dB SNR values.
- One possible reason for this is that the noise is canceling some factor
- of the channel, causing these points to be closer together and causing
- the network to find some points as the best ones.
- But this is not possible in noisier scenarios because the noise has much
- power.
- For 20dB, the signal is 100 times stronger than the noise, and an increase
- of 10dB represents a tenfold increase in noise power, which essentially
- means that information is lost and not feasible to recover.
+Regarding the block errors, the same gain of one order of magnitude is observed
+ in the noisiest scenarios, up to 25 dB.
+ However, beyond this point, the model cannot infer any further relation
+ between the points, and as a consequence, the BLER flattens out at 
+\begin_inset Formula $BLER=9\times10^{-3}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -16929,13 +17214,36 @@ QPSK BLER : PhaseNet vs.
 \paragraph_spacing onehalf
 
 \size large
-As seen in the graph below, non-linear models do not reach the same level
- of performance as PhaseNet.
- One positive aspect of the network is that the number of symbols for bigger
- PSK does not affect the time complexity.
- Only the number of symbols in the frame matters.
- Given that, the OSIC and NML equalizers will take much longer time execution
- for the 16 symbols case.
+As seen in Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:70"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the non-linear model exhibits similar linear growth in relation to lower
+ SNR values, while PhaseNet follows a positive concave shape with an improvement
+ of one order of magnitude.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One positive aspect of the PhaseNet model is that the number of symbols
+ for bigger PSK does not affect the time complexity of the networks.
+ Only retraining is necessary, as only the number of symbols in the frame
+ matters for the networks and the relative positions are learned.
+ In fact, more constellation points lead to a more complex and less accurate
+ precision.
 \end_layout
 
 \begin_layout Standard
@@ -16963,7 +17271,14 @@ status open
 
 \begin_layout Plain Layout
 QPSK BER: PhaseNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:70"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -16980,14 +17295,8 @@ QPSK BER: PhaseNet vs.
 \paragraph_spacing onehalf
 
 \size large
-This network works well for block integrity, but in low noise scenarios,
- OSIC performs better.
- This may be because OSIC focuses on canceling interference.
- Therefore, this probably means that PhaseNet is not quite as effective
- for ICI, but it is good for removing noise.
- The results we are seeing are likely due to more noise cancellation than
- interference cancellation because this network does not follow an iterative
- nature.
+In the case of BLER, the non-linear equalizer exhibits similar performance,
+ while PhaseNet performs one order of magnitude better on average.
 \end_layout
 
 \begin_layout Standard
@@ -17039,7 +17348,21 @@ PolarNet
 This network combines a 16-PSK PhaseNet equalization with an additional
  MagNet equalization.
  In this model, we assume that phase and magnitude are completely separate
- from each other.
+ from each other, see in subsection 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:PolarNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ for more detail.
  One of the main reasons is to maintain a more modular architecture, which
  means that in a future implementation, it can be equalized a 16-PSK or
  16-QAM with almost the same processing stages.
@@ -17057,25 +17380,21 @@ Observing the graph below, it can be seen that the model flattens at a BER
 \begin_inset Formula $10^{-3}$
 \end_inset
 
- from 30dB to 45dB.
- The main reason errors get stuck in neural networks is that they are generalize
-rs, which means that they learn to make predictions based on patterns in
- the training data.
- Therefore, all points seen forward should be treated with the expected
- behavior.
- In the case of training both networks and given MSE error applied to both
- in the training stages, the least error was from 
-\begin_inset Formula $10^{-4}$
-\end_inset
-
-, which is pretty good enough of a nueronal networks using MSE.
- However, when we mixed both networks, the error increases to 
+ at 30dB.
+ The main reason for this result is that, since we used the Mean Squared
+ Error (MSE) to correct the weights, smaller error values than 
 \begin_inset Formula $10^{-3}$
 \end_inset
 
-, resulting in an almost linear relation with BER.
- Finnally we can se the same valley pattern in 20-25dB, as a result of the
- PhaseNet integration in the Polarnet.
+ were not sufficient to modify the internal network weights.
+ This leads to the model plateauing, where it reaches a point where it cannot
+ improve any further.
+ Also we keep in mind that this models has 
+\begin_inset Formula $A^{2}$
+\end_inset
+
+ elements in comparison with QPSK, so curves will look closer to the golden
+ models.
  
 \end_layout
 
@@ -17121,14 +17440,25 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-For the BLER graph, we can visualize a smoother performance with lower values
- between 35dB and 15dB, and it almost saturates at the same point as the
- LMMSE.
- It can be seen that the same model error truncation applies to this metric,
- but it is not so far away from the golden model in the lowest noise scenarios.
- In general, this means that most of the BLER is given by outlier values,
- and the system can equalize consistently between a certain quantity of
- blocks.
+Regarding the BLER in Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:73"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , it is shown that the system can consistently equalize a certain quantity
+ of blocks and prove that most of the errors are given from far away points
+ in the constellation.
+ However, in general, the network is capable of clustering the data points
+ around their corresponding constellation points.
 \end_layout
 
 \begin_layout Standard
@@ -17152,7 +17482,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: PolarNet vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:73"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -17173,16 +17510,14 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The non-linear equalizers perform better than the network only up to 30dB.
- At higher SNRs, the model does not perform well because it truncates its
- error and does not perform better for non-noisy scenarios.
- The model error is based on the training error itself, and it is important
- to keep in mind that neural networks try to find a general solution with
- fixed weight matrices.
- Trying to achieve a lower BER may cause the neural network to overfit and
- only learn non-noisy data.
- Therefore, to maintain a balance between good denoising and overfitting,
- sacrificing the performance beyond 30dB is necessary.
+Similarly, the non-linear equalizers outperform the neural network in low
+ noise scenarios with SNR values greater than 30 dB.
+ This is because the neural network truncates error during the training
+ stage and additional preprocessing stages may be necessary to achieve lower
+ BER.
+ To balance the trade-off between signal recognition over noise and overfitting,
+ sacrificing performance beyond 30 dB may be necessary, unless alternative
+ preprocessing stages, different from the Hermitian matrix, can be implemented.
 \end_layout
 
 \begin_layout Standard
@@ -17288,13 +17623,41 @@ ComplexNet
 \size large
 In complex net we try two different loss functions to traing the neuronal
  network.
- However, logarithmic polar loss was not as effective because it produced
- high loss numbers that were larger than 1, which may not be very meaningful
- for the network.
+ However, logarithmic polar loss in equation 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:65"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color inherit
+was not as effective because it produced high loss numbers that were larger
+ than 1, which slow network error convergence and make high jumps in the
+ gradient.
  As a result, the network had difficulties updating its weights and optimizing
  its performance using this loss function.
- On the other hand, the complex MSE loss was much more effective because
- its output values were lower than those of the initial loss functions.
+ On the other hand, the complex MSE loss 
+\color blue
+(
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:MSECOMPLEX"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\color inherit
+ was much more effective because its output values were lower than those
+ of the initial loss functions.
  This made it easier for the networks to determine which parameters were
  good or not.
  By using an effective loss function, the network can optimize its performance
@@ -17345,8 +17708,8 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-In the BLER results, we avoided plotting the ComplexNet Polar Loss training
- because it performed poorly with a BLER of 1 across all blocks.
+In the BLER results, we avoided plotting the ComplexNet Polar logarithmic
+ loss because it performed poorly with a BLER of 1 across all blocks.
  On the other hand, Abs loss networks attempted to approximate the golden
  standard, but were not quite good enough.
  One of the main reasons for this is that the proposed methods in the state-of-t
@@ -17465,10 +17828,9 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-In the block error rate, nearly all errors are independent of the frame
- or the manner in which data is received.
- The model does not take into account whether the data is close to the mean
- or an outlier, as it faces difficulties in generalizing effectively.
+For the BLER graph the model does not take into account whether the data
+ is close to the mean or an outlier, as it faces difficulties in generalizing
+ effectively.
  Consequently, the presence or absence of outliers in the data has little
  impact on the model's inherent error.
  This could be attributed to the error function, and as previously mentioned,
@@ -17520,13 +17882,45 @@ MobileNet
 \paragraph_spacing onehalf
 
 \size large
-Although MobileNet was not very effective, it is still considered one of
- the fastest convolutional neural networks in the state of the art in terms
- of processing speed.
- From SNR23 and below, it could be a viable option instead of zero forcing.
- In fact, it performs better than zero forcing in the range of 15dB to 25dB,
- which is encouraging because it supports the hypothesis that it is essentially
- a zero forcing with noise consideration.
+Although MobileNet is not the most accurate convolutional neural network,
+ it is still considered one of the fastest models in terms of processing
+ speed and FLOPS among state-of-the-art methods.
+ The main idea behind MobileNet is to provide channel compression into a
+ vector seen in Figure
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Ilustartion-of-mobileNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ and then perform zero forcing with the received signal, which offers a
+ better solution than single zero forcing in subsection 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Zero-forcing"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , this because netowrk take in accounts noise and ISI.
+ For SNR values of 23 dB and below, it could be a viable option instead
+ of zero forcing.
+ In fact, it performs better than zero forcing in the range of 15 dB to
+ 25 dB, which is encouraging because it supports the hypothesis that it
+ is essentially a zero-forcing method with noise consideration.
 \end_layout
 
 \begin_layout Standard
@@ -17575,15 +17969,13 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Since the MobileNet has knowledge of the noise and works as a denoiser,
- its block rate is lower than the golden model until it is permitted.
- Consequently, we naturally obtain an error model that ranges from 35dB
- to high SNR, while this one is performing better than the zero-forcing
- method at lower SNR than 30dB.
- It is important to note, however, that the MobileNet has a higher computational
- complexity, and there is a trade-off between computational speed and accuracy.
- Nevertheless, MobileNet is one of the fastest and most lightweight convolutiona
-l neural networks in the state of the art.
+Due to its ability to account for noise, MobileNet can identify signals
+ more accurately than single zero-forcing, resulting in a lower block error
+ rate than the golden model until the model flattens at 30 dB.
+ It is important to note that MobileNet has a higher computational complexity
+ than single zero-forcing.
+ However, the lower block error rate achieved by MobileNet justifies the
+ additional resources required for this equalization strategy.
 \end_layout
 
 \begin_layout Standard
@@ -17628,18 +18020,9 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-It appears that MobileNet performs best at 22dB and lower SNR values.
- One notable success of this network is that its output is simply a one-hot
- encoded vector representing the channel.
- By dividing this vector with the received signal, a more intelligent zero-forci
-ng approach is achieved.
- Furthermore, MobileNet is among the most time-efficient networks in terms
- of complexity.
- These two factors make it a suitable solution for scenarios with higher
- noise levels.
- Additionally, compared to non-linear methods, this network requires only
- a single feedforward evaluation rather than iterative processing, as seen
- in non-linear models.
+For SNR values below 30 dB, MobileNet can be a viable choice due to its
+ lower computational complexity compared to non-linear models, while also
+ achieving a better BER and exhibiting behavior similar to that of OSIC.
 \end_layout
 
 \begin_layout Standard
@@ -17902,9 +18285,9 @@ The non-linear methods outperform GridNet Square in terms of BLER overall.
  There is a special case between 25dB and 30dB where the system almost reaches
  the same performance, as it was trained with the lowest SNR values in this
  range.
- However, having more noise does not necessarily mean that the entire frame
- can be recovered.
- In the case of BER, the noise is reduced due to the degridding process,
+ However, when noise power is higher than signal does not necessarily mean
+ that the entire frame can be recovered.
+ In the case of BER, the noise is narrowed due to the degridding process,
  which converts the grid patch to a complex point in the constellation and
  places the calculated value in a fixed position depending on the grid.
  This results in a slightly lower BER because the reduced and discrete possible
@@ -18556,8 +18939,7 @@ PolarNet outperforms all methods for SNR values lower than 30 dB, while
 
 \size large
 MobileNet shows promising results as an upgrade to the standard zero-forcing
- equalizer, handling both network denoising and channel compression with
- a single vector.
+ equalizer, handling with noise and ISI.
  This can be observed as it displays the second-best BLER plot among all
  the models.
 \end_layout
