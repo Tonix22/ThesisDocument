@@ -18118,18 +18118,29 @@ GridNet Square
 \paragraph_spacing onehalf
 
 \size large
-We conducted experiments with different grid steps for GridNet Square and
- found that the best step size was 1/7.
- In conclusion, having more batches in the complex planes results in higher
- resolution but lower tolerance to noise, as the networks can quickly overfit.
- On the other hand, using larger steps means that points affected by noise
- fall within the same region or closer to each other, which could be advantageou
-s in noisy scenarios.
- However, having squares that are too large could be harmful for final equalizat
-ion because the grids can be bigger than the distances between the ideal
- constellation points.
- Model learns without error truncation as other models, but is 1dB upper
- the ideal Golden Model, only in 5dB is slightly better than LMMSE.
+We experimented with different grid steps for GridNet Square and found 1/7
+ to be the best, shown in figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Square-grid"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ More cells provide higher resolution but lower noise tolerance, leading
+ to overfitting.
+ Larger steps group noisy points in the same or nearby cells, beneficial
+ in noisy scenarios.
+ Limited cells require small sizes to avoid overlap in QAM constelation.
+ In general, the BER results for the tested method were significantly worse
+ than the golden model LMMSE, showing a difference of one order of magnitude.
  
 \end_layout
 
@@ -18174,15 +18185,27 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The Blocks metrics are not performing as expected for high SNR.
- Surprisingly, the performance is better than the golden model just from
- 25dB to 27dB.
- One of the main reasons why it may not be working well as expected is that
- all points in the grid have the same relevance to each other and are equally
- weighted, which introduces uncertainty about positions.
- This issue may not occur on the polarGrid because the points are closer
- together near the center are weighter different from the border ones, which
- reduces uncertainty, and give certain perspective of position.
+The Blocks error metrics are not performing as expected at high SNR levels,
+ as the model truncates at 35dB, and cannot utilize additional information
+ provided by the grid.
+ One of the main reasons for the poor performance is that all points in
+ the grid have equal weighting and relevance, leading to position uncertainty.
+ To address this issue, the polarGrid was developed, where points near the
+ center are closer together and weighted differently from border points.
+ This design reduces uncertainty and provides a more accurate position perspecti
+ve, as seen in Figure
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Radial-Grid-encoding"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -18227,17 +18250,12 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The GridNet can be considered as an intermediate solution between the linear
- and non-linear methods.
- This is because GridNet Square can be seen as a linear quantizer of the
- constellation points.
- This means that all IQ points are discretized, which is equivalent to a
- loss of resolution in a lower bit scenario.
- However, for GridNet, a higher number of patches, which means a thinner
- grid, makes it a more vulnerable solution to noise.
- This is because the model needs to model more possible bucket points into
- a single ideal bucket, which can lead to a loss of accuracy.
- 
+Regarding the non-linear models, all the results are parallel to each other.
+ The performance of GridNet Square Grid can be considered an intermediate
+ trade-off between OSIC and NML in terms of BER/SNR performance.
+ Compared to NML, GridNet Square offers the main advantage of faster performance
+ and the possibility of parallel processing in some sections.
+ These features make it a good candidate for practical applications.
 \end_layout
 
 \begin_layout Standard
@@ -18281,17 +18299,17 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The non-linear methods outperform GridNet Square in terms of BLER overall.
- There is a special case between 25dB and 30dB where the system almost reaches
- the same performance, as it was trained with the lowest SNR values in this
- range.
- However, when noise power is higher than signal does not necessarily mean
- that the entire frame can be recovered.
- In the case of BER, the noise is narrowed due to the degridding process,
- which converts the grid patch to a complex point in the constellation and
- places the calculated value in a fixed position depending on the grid.
- This results in a slightly lower BER because the reduced and discrete possible
- values, but it does not guarantee that the blocks will be completely error-free.
+Overall, the non-linear methods outperform GridNet Square by one order of
+ magnitude in terms of block error rate (BLER).
+ However, in terms of bit error rate (BER), the degridding process used
+ in GridNet Square narrows the noise by converting the grid patch to a complex
+ point in the constellation and placing the calculated value in a fixed
+ position based on the grid.
+ This results in a slightly lower BER due to the reduced and discrete possible
+ values.
+ However, it is important to note that this process does not guarantee the
+ integrity of the blocks and reduce block presicion.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -18339,26 +18357,23 @@ GridNet Polar
 \paragraph_spacing onehalf
 
 \size large
-GridNet with a polar grid resulted in some of the best performance between
- 25 dB and 45 dB.
- Our hypothesis that the attention mechanisms used are highly effective
- in reducing inter-symbol interference (ISI) can be substantiated by these
- results, because at low SNR, the only thing that affects the signal is
- the ISI.
- However, below 25 dB, the model cannot handle the noise as effectively
- and begins to produce errors, and it almost behaves like LMMSE.
- We trained the model with variable noise levels ranging from 25 dB to 45
- dB, and the hypothesis that the best equalization occurs within this range
- is supported by the image below.
- It may seem that reducing the noise training range could result in better
- performance within the training range, but this idea is incorrect.
- Training the network with more noise scenarios would cause the network
- to learn more about the noise than the relevant data, resulting in a noisy
- overfit.
- Finally, we can say that, for instance, in the noisiest scenario with 5
- dB, this network has the best BER relation, but this doesn't mean that
- the error in the block will be the best.
- Most of the noise reduction is due to the effect of polar quantization.
+GridNet with a polar grid achieved the best performance between 25 dB and
+ 45 dB, demonstrating that the attention mechanisms with varying cell sizes
+ weighted more towards the center effectively reduced inter-symbol interference
+ (ISI).
+ However, below 25 dB, the model struggled to handle the noise and performed
+ similarly to LMMSE.
+ We trained the model with noise levels ranging from 25 dB to 45 dB, and
+ the image below supports our hypothesis that the optimal equalization occurs
+ within this range.
+ Although providing mores noise ranges in the trainning may appear to improve
+ performance, it would cause the network to learn more about noise than
+ relevant data, resulting in worse performance.
+ The network's best BER was observed in the scenario with the highest noise
+ level of 5 dB.
+ This result is particularly noteworthy since there were enough BER to support
+ a statistically robust analysis, providing confidence that the result was
+ not an artifact.
 \end_layout
 
 \begin_layout Standard
@@ -18398,19 +18413,15 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Since Polar Net iterates over more blocks than LMMSE, it is not entirely
- fair to compare the two methods directly.
- However, Polar Net is one of the methods with the lowest BLER for high
- SNR values between 33 dB and 45 dB.
- This is because the attention mechanisms used in the autoregression of
- the transformer model are effective in capturing the relationship between
- the first and last values, thereby reducing ISI.
- Unfortunately, at lower SNR values, the noise begins to affect the network,
- and the BLER increases exponentially.
- This suggests that the attention mechanisms are not effective in maintaining
- consistency between blocks under high noise conditions.
- Nevertheless, the degrading step and constellation point quantization help
- to reduce the possible values of the IQ data.
+Polar Grid exhibits one of the lowest block error rates (BLER) for high
+ signal-to-noise ratio (SNR) values between 33 dB and 45 dB.
+ The autoregression attention mechanisms employed by the transformer model
+ are effective in capturing the relationship between the first and last
+ values, which reduces inter-symbol interference (ISI) and leads to better
+ performance.
+ However, at lower SNR values, the noise starts to impact the network's
+ attention mechanisms, causing the BLER to increase exponentially over testing
+ data outside of the noise levels used in training.
 \end_layout
 
 \begin_layout Standard
@@ -18454,18 +18465,12 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-GridNetPolar is a visual transformer that uses attention mechanisms to cancel
- out the effects of interference in a signal, while OSIC is an iterative
- algorithm that relies on a feedback loop to refine the estimate of the
- interference.
- This is a good comparison because we have two non-linear models designed
- for the same task with different approaches.
- By comparing these two strategies and looking at BER reduction, we can
- see potential for a new branch of inter-symbol interference cancellation
- based on attention mechanisms instead of the traditional iterative approach.
- In terms of the comparison between non-linear models, it can be observed
- that OSIC yields slightly better results in the SNR range between 15 dB
- and 25 dB, while GridNet performs better for all values outside this range.
+OSIC and PolarGrid operate similarly, utilizing attention mechanisms and
+ grids to achieve superior performance at high signal-to-noise ratio (SNR)
+ values.
+ Comparing the non-linear models, it can be seen that OSIC yields the same
+ bit error rate (BER) in certain low SNR ranges.
+ However, for the lowest SNR, GridNet outperforms OSIC.
 \end_layout
 
 \begin_layout Standard
@@ -18509,19 +18514,11 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Attention mechanisms work by assigning different weights to the input data,
- which allows the model to focus on the most relevant information for a
- given task.
- However, when the input data is noisy, it can be difficult for the model
- to distinguish between the signal and the noise.
- This can lead to the attention mechanism failing to assign the correct
- weights and focusing on irrelevant features, which can cause the BLER to
- increase.
- Therefore, while attention mechanisms can be effective for reducing ISI
- in certain situations and have shown the lowest BLER of all our experiments
- at low SNR values, they may not be the best approach for dealing with noisy
- data.
- Alternative techniques such as OSIC or NearML may be more suitable.
+The block error rate (BLER) graph shows that the models perform better at
+ higher signal-to-noise ratio (SNR) values above 25 dB.
+ However, for lower SNR values, both non-linear methods perform better.
+ Nonetheless, GridNet is faster than NML and represents a promising implementati
+on option with a small performance sacrifice for low SNR scenarios.
 \end_layout
 
 \begin_layout Standard
@@ -18573,19 +18570,16 @@ GridNet Both
 \paragraph_spacing onehalf
 
 \size large
-Due to its complexity, GridNetSquare does not perform as well as the golden
- model, whereas PolarNet outperforms the golden model and shows significant
- improvement for high SNR values greater than 25, with at least an order
- of magnitude improvement in the BER metric.
- Furthermore, GridNetPolar potentially has fewer parameters because the
- number of patches reduces the alphabet size used in the transformer, resulting
+PolarGrid has the potential to use fewer parameters because the number of
+ patches reduces the alphabet size employed by the transformer, resulting
  in a smaller data model.
- Although there is at least one order of magnitude difference between PolarNet
- and GridNetSquare in terms of BER, SquareGrid is more consistent in the
- BER/SNR slope, while PolarNet exhibits rapid growth in BER over a short
- range of SNR values.
- This could be undesired, especially if the communication oscillates between
- these SNR values in certain communication scenarios.
+ While there is at least one order of magnitude difference between PolarGrid
+ and SquareGrid in terms of bit error rate (BER), SquareGrid exhibits more
+ consistent and predictable BER/SNR slope, whereas PolarNet shows rapid
+ BER growth over a short range of SNR values, which can sometimes be undesirable
+, particularly if the communication system operates within this range.
+ On a positive note, neither of the grids performs worse than NML, which
+ has the highest BER.
 \end_layout
 
 \begin_layout Standard
@@ -18629,9 +18623,23 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-In the figure below, it can be appreciated that SquareGrid behaves more
- similarly to NML for lower SNR values, while GridNetPolar works similarly
- to OSIC, with an improvement for SNR values lower than 15 dB.
+In the Figure 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:16-QAM-BER:-GridNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , it can be appreciated that SquareGrid behaves more similarly to NML for
+ lower SNR values, while GridNetPolar works similarly to OSIC, with an improveme
+nt for SNR values lower than 15 dB.
 \end_layout
 
 \begin_layout Standard
@@ -18654,7 +18662,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet, Polar and Square Grid vs LMMSE from 5dB to 27dB
+16-QAM BER: GridNet, Polar and Square Grid vs LMMSE from 5dB to 27dB 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:16-QAM-BER:-GridNet"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18675,14 +18690,14 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-In terms of Block Error Rate, SquareGrid has a slower increase than PolarNet
- between 27 dB to 20 dB, as seen in the BER metric.
- Both methods perform well for SNR values higher than 25 dB.
- However, for lower noise, other non-linear methods are preferred, and these
- methods also have a lower number of FLOPS.
- The main disadvantage of iterative methods is that they are not as easily
- parallelizable compared to transformers, which can be parallelized in a
- more natural manner.
+Regarding the block error rate (BLER), both methods perform well for signal-to-n
+oise ratio (SNR) values higher than 25 dB.
+ However, SquareGrid exhibits a slower growth rate than PolarNet between
+ 27 dB and 20 dB, and for lower SNR values, other non-linear methods achieve
+ lower BLER values.
+ One of the main drawbacks of these iterative methods is that they are less
+ easily parallelizable compared to transformers, making the use of transformers
+ a viable option despite the trade-off in BLER performance.
 \end_layout
 
 \begin_layout Standard
@@ -18726,8 +18741,8 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Square grid works better with noise handling than the Polar grid.
- Basically both grids are a finnaly trade off between consisten noise reduction
+Square grid works better with lower SNR than the Polar grid.
+ Basically both grids are a finnaly trade off between consisten noise mitigation
  or ISI cancelation.
  
 \end_layout
@@ -18792,9 +18807,8 @@ on of the Block Error Rate (BER) and Bit Error Rate (BLER) with different
 \begin_layout Itemize
 
 \size large
-PolarNet appears to perform well overall in the presence of noise, with
- one of the best performances in the range between 15 dB to 25 dB for reducing
- bit errors.
+PolarNet appears to perform well overall SNR values, with one of the best
+ performances in the range between 15 dB to 25 dB for reducing bit errors.
  Additionally, it exhibits a smooth increase in BER, making its behavior
  well predictable, also has is an intermidiate term of complexity.
  
@@ -18803,8 +18817,8 @@ PolarNet appears to perform well overall in the presence of noise, with
 \begin_layout Itemize
 
 \size large
-MobileNet performs well for values lower than 25 dB, with lower BER than
- all golden models and some networks such as GridNet Square.
+MobileNet performs well for SNR values lower than 25 dB, with lower BER
+ than all golden models and some networks such as GridNet Square.
  Additionally, it strikes a good balance between the number of parameters
  and time complexity, making it a good candidate for embedded applications.
 \end_layout
@@ -18874,8 +18888,8 @@ GridNet Square behaves similar to NML
 \begin_layout Itemize
 
 \size large
-MobileNet, PolarNet and ComplexNet converge to the NML model for the most
- noiser scnearios, from 5dB to 15dB
+MobileNet, PolarNet and ComplexNet converge to the NML model for the lowest
+ SNR values, from 5dB to 15dB
 \end_layout
 
 \begin_layout Standard
@@ -18994,7 +19008,7 @@ status open
 \noindent
 
 \size large
-GridNet is the first netowork to reach the block error rate of 1.
+Both GridNet are the first networks to reach the block error rate of 1.
 \end_layout
 
 \begin_layout Itemize
@@ -19002,8 +19016,7 @@ GridNet is the first netowork to reach the block error rate of 1.
 \noindent
 
 \size large
-After not well performacne of complexNet has better BLER than GridNet from
- 22dB to lower.
+ComplexNet has better BLER than GridNet from 22dB to lower.
  
 \end_layout
 
