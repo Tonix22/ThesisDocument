@@ -17056,8 +17056,8 @@ In order to facilitate faster testing evaluations, the SNR values in the
  x-axis are incremented by a step of 2, ranging from 5 to 45 SNR.
  To generate smoother curves, a cubic interpolator is applied to the plotted
  data, which may introduce artifacts and hills in the curves.
- It is important to note that these hills and artifacts should not be interprete
-d as final results.
+ It should be emphasized that these undulations illustrate the overall trend
+ of the results.
  To achieve completely smooth curves without valleys or hills, additional
  realizations may be required to have more realizations falling in this
  values.
