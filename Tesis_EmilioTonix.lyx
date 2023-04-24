@@ -173,7 +173,8 @@ Unidad Guadalajara
 \series bold
 \size huge
 \color black
-Exploring Deep Learning Techniques for Equalizing Doubly Dispersive Channels
+Enhancing OFDM Symbol detection and ICI mitigation in doubly dispersive
+ channels with Deep Learning
 \end_layout
 
 \begin_layout Standard
