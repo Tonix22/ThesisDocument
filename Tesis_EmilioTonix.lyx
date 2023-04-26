@@ -2023,29 +2023,28 @@ Problem statement
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\align block
 
 \size large
-The OFDM modulation scheme based on 802.11p standard for V2V communication
- is susceptible to channel impairments during data transmission, particularly
- multipath fading and Doppler shift.
- Additionally, the problem of ISI in the received symbols introduces distortion
- in the IQ data, where data is received and demodulated, leading to incorrect
- transmitted symbols.
- As discussed earlier, linear equalization methods rely on finding the pseudo-in
-verse of certain matrix factors, which can be computationally expensive
- 
+The 802.11p standard for V2V communication, based on the OFDM modulation
+ scheme, is susceptible to channel impairments during data transmission,
+ particularly multipath fading and Doppler shift.
+ Additionally, the problem of ICI in the received symbols introduces distortion
+ in the IQ data, leading to incorrect received symbols.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+On the other hand, linear equalization methods rely on finding the pseudo-invers
+e of certain matrix factors, which can be computationally expensive 
 \begin_inset Formula $O(N^{3})$
 \end_inset
 
  and numerically unstable.
- Matrix instability arises when the determinant is very small, which can
- result in large perturbations in the true solution and a complex circuit
- architecture for numerical calculations.
- On the other hand, non-linear methods can reduce BER further, but with
- higher complexity.
- Their implementations also require more time and computational resources
- due to their iterative nature.
+ Matrix instability arises when the determinant is very small.
+ However, classical non-linear methods can reduce BER further, but with
+ higher complexity due to their iterative nature.
 \end_layout
 
 \begin_layout Subsection
@@ -2132,7 +2131,7 @@ s using feedforward neural network layers that correct both phase and magnitude.
 
 \size large
 Employ non-linear dimensionality reduction using CNN (Convolutional Neural
- Networks) to apply zeroforing or some related method.
+ Networks) to apply zero forcing or some related method.
 \end_layout
 
 \begin_layout Itemize
@@ -2146,7 +2145,7 @@ Achieve BER and BLER comparable to "golden models," which include some linear
 \begin_layout Itemize
 
 \size large
-Examine transformers and attention mechanisms to reduce ISI.
+Examine transformers and attention mechanisms to reduce ICI.
 \end_layout
 
 \begin_layout Itemize
