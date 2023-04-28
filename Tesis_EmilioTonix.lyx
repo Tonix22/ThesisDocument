@@ -173,8 +173,7 @@ Unidad Guadalajara
 \series bold
 \size huge
 \color black
-Enhancing OFDM Symbol detection and ICI mitigation in doubly dispersive
- channels with Deep Learning
+Deep learning-based OFDM symbol detection in doubly dispersive channels
 \end_layout
 
 \begin_layout Standard
@@ -393,31 +392,24 @@ newline
 \align block
 
 \size large
-En la actualidad, la tecnología de redes de comunicación inalámbricas de
- alta movilidad está en constante evolución, y tiene aplicaciones en diversos
- ámbitos, tales como la seguridad vial, la conducción autónoma, el monitoreo
- remoto de vehículos, el vuelo de drones y los requisitos de 6G.
- Los transmisores RF, que se emplean en los sistemas de telecomunicaciones
- para transmitir información, codifican dicha información a través de la
- amplitud y la fase de una señal portadora, comúnmente conocida como datos
- IQ.
- Sin embargo, al viajar a través de un canal de alta movilidad, estos datos
- sufren distorsión, debido a la dispersión doble de dicho canal, lo que
- implica que las propiedades de la señal se ven afectadas por el desplazamiento,
- difusión en el tiempo y la frecuencia.
- Aunque existen algoritmos tradicionales que requieren ecualizadores iterativos
- complejos, que pueden ser lentos en términos de tiempo de ejecución pero
- precisos, también existen ecualizadores más sencillos, aunque menos precisos.
- El propósito de este trabajo es examinar diversas soluciones basadas en
- redes neuronales para la tarea de equalización en el procesamiento de señales.
- El enfoque principal es encontrar un equilibrio óptimo entre la complejidad
- temporal de la solución y su rendimiento en la tarea de equalización.
- Para lograr este objetivo, se seguirá una metodología que involucra la
- evaluación de una serie de redes neuronales organizadas desde las más sencillas
- hasta las más complejas.
- Cada red neuronal será evaluada en términos de su rendimiento y complejidad
- para compararlas adecuadamente y determinar los compromisos necesarios
- para su implementación.
+Las redes inalámbricas de alta movilidad, como la comunicación vehículo
+ a vehículo (V2V), tienen aplicaciones en seguridad vial, conducción autónoma,
+ monitoreo remoto de vehículos y 6G.
+ Para ello, se utiliza el esquema de modulación OFDM, en el cual la información
+ se divide en subportadoras que se transmiten simultáneamente con modulación
+ de amplitud en cuadratura (QAM).
+ En este caso, el canal sufre de fenómenos como la dispersión en frecuencia
+ que comprometen la integridad de los datos recibidos.
+ Para abordar esto, se presentan igualadores convencionales o iterativos,
+ los cuales son más precisos pero requieren más tiempo de procesamiento.
+ Dado el compromiso entre precisión y costo de procesamiento, este trabajo
+ presenta soluciones basadas en redes neuronales como una alternativa para
+ la tarea de igualación en el esquema de modulación OFDM.
+ Dichas soluciones de aprendizaje profundo van desde las más sencillas (feedforw
+ard) hasta las más complejas (transformers), y se consideran las métricas
+ de tasa de error de bits (BER) y tasa de error de bloques (BLER) para evaluar
+ la precisión de la igualación.
+ 
 \begin_inset ERT
 status open
 
@@ -438,23 +430,18 @@ newline
 \align block
 
 \size large
-Es posible afirmar que los algoritmos convencionales han demostrado ser
- eficaces en la tarea de equalización en esquemas de modulación como LTE
- y Wi-Fi.
- Sin embargo, los recientes avances en redes neuronales han simplificado
- problemas que antes eran intratables, como el descifrado de secuencias
- de ADN o la creación de imágenes a partir de texto.
- En resumen, abordan con éxito problemas no lineales.
- El objetivo de este trabajo es imitar técnicas de ecualización conocidas
- con naturaleza lineal, como los ecualizadores Zero Forcing, MSE, LMMSE
- y no lineales como OSIC y NearML.
- Durante las pruebas que se realizaron, se hizo un seguimiento de diversos
- tamaños de constelaciones y tasas de error de bits en una variedad de situacion
-es con interferencia y ruido.
- En los resultados de la investigación experimental, se demostró que la
- tasa de error de bits(BER) y la tasa de bloques (BLER) disminuyó y se acercó
- o incluso superó los modelos de oro, que son los ecualizadores mencionados
- anteriormente.
+El propósito de este trabajo es presentar las aproximaciones con aprendizaje
+ profundo sobre las técnicas de ecualización conocidas con naturaleza lineal,
+ como los ecualizadores Zero Forcing, MSE, LMMSE, y no lineales como OSIC
+ y NearML.
+ Durante las pruebas realizadas, se hizo un seguimiento de constelaciones
+ QPSK y 16-QAM con una SNR de 5 dB hasta 45 dB.
+ Se observó que algunas redes neuronales propuestas a lo largo del proyecto
+ obtuvieron un BER menor que los modelos de referencia en ciertas regiones
+ de SNR.
+ Con ello, se puede visualizar un impacto potencial en los protocolos LTE
+ y Wi-Fi, para proporcionar conectividad en V2V, ya que son tecnologías
+ de comunicación inalámbrica que utilizan OFDM.
 \begin_inset ERT
 status open
 
@@ -468,30 +455,6 @@ newline
 \end_inset
 
  
-\end_layout
-
-\begin_layout Standard
-\align block
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Los últimos enfoques en investigación literaria han demostrado diversas
- estrategias que se aproximan a lograr una buena ecualización con redes
- nueronales.
- Sin embargo, estos enfoques se basan en métodos tradicionales y no cubren
- todas las etapas de la ecualización, además de tener escenarios relativamente
- simples en comparación con el canal que se estudiará en este trabajo.
- Por lo tanto, se abordan incluso condiciones tales como canales de línea
- de vista o la falta de ella.
- Por último, pero no menos importante, la presentación de los métodos desarrolla
-dos en esta investigación busca establecer un punto de partida para futuras
- investigaciones en un campo de la comunicación prácticamente inexplorado
- por algunos equipos.
 \end_layout
 
 \begin_layout Standard
@@ -533,52 +496,25 @@ newline
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-\noindent
 
 \size large
-Due to their primary uses in control, road safety, autonomous driving, remote
- monitoring of vehicles, drone flying, and 6G needs, the development of
- high-mobility wireless communication networks is cutting-edge technology.
- The RF broadcasts, which are used by telecommunications systems to transfer
- encoded information over the amplitude and phase of a carrier signal, are
- normally called IQ data.
- However, this data is distorted as it travels through a high mobility channel.
- High mobility channels are doubly dispersive, which means that the signal
- properties are mixed with some temporal frequency shifting and spreading.
- There are some traditional algorithms that may require complex iterative
- equalizers that can be slow in terms of execution time.
- However, there are also simpler equalizers that may not be as precise.
- The aim of this study is to investigate different neural network-based
- solutions for signal processing equalization.
- The primary objective is to achieve an optimal balance between the solution's
- temporal complexity and its performance in equalization.
- To attain this objective, we will follow a methodology that entails evaluating
- a range of neural networks arranged from simple to complex.
- Performance and complexity will be assessed for each neural network to
- facilitate a fair comparison and determine the required trade-offs for
- implementation.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Conventional algorithms have demonstrated their effectiveness in the equalizatio
-n task for modulation schemes like LTE and Wi-Fi.
- However, recent advances in neural networks have simplified problems that
- were previously intractable, such as deciphering DNA sequences or creating
- images from text.
- In short, they successfully tackle non-linear issues.
- The objective of this work is to mimic well-known equalization techniques
- with linear properties such as Zero Forcing, MSE, and LMMSE, as well as
- non-linear techniques like OSIC and NearML equalizers.
- Various constellation sizes and bit error rates were monitored during the
- tests conducted in various scenarios with interference and noise.
- The experimental results indicated that the bit error rate (BER) and block
- error rate (BLER) decreased and approached, or even exceeded, the gold
- standard models of equalizers mentioned earlier.
+High-mobility wireless networks, such as vehicle-to-vehicle (V2V) communication,
+ have applications in road safety, autonomous driving, remote vehicle monitoring
+, and 6G.
+ For this, the OFDM modulation scheme is used, in which information is divided
+ into subcarriers that are transmitted simultaneously with quadrature amplitude
+ modulation (QAM).
+ In this case, the channel suffers from phenomena such as frequency dispersion
+ that compromise the integrity of received data.
+ To address this, conventional or iterative equalizers are presented, which
+ are more accurate but require more processing time.
+ Given the trade-off between accuracy and processing cost, this work presents
+ deep learning-based solutions as an alternative for equalization in the
+ OFDM modulation scheme.
+ These deep learning solutions range from the simplest (feedforward) to
+ the most complex (transformers), and the bit error rate (BER) and block
+ error rate (BLER) metrics are considered to evaluate the accuracy of equalizati
+on.
  
 \begin_inset ERT
 status open
@@ -599,16 +535,20 @@ newline
 \paragraph_spacing onehalf
 
 \size large
-Recent studies in literature have proposed multiple strategies to achieve
- effective equalization with neuronal networks.
- However, these methods rely on traditional approaches and fail to cover
- all aspects of equalization, and their scenarios are relatively simpler
- than the channel under consideration in this work.
- As a result, we investigate conditions such as line of sight channels or
- their absence.
- Ultimately, this study initiates exploration in a partially unexplored
- communication field by other teams.
+The purpose of this work is to present deep learning-based approximations
+ of equalization techniques with linear nature, such as Zero Forcing, MSE,
+ LMMSE, and non-linear techniques such as OSIC and NearML.
+ During the conducted tests, QPSK and 16-QAM constellations were tracked
+ with an SNR ranging from 5 dB to 45 dB.
+ It was observed that some proposed neural networks throughout the project
+ obtained a lower BER than reference models in certain SNR regions.
+ This can potentially impact LTE and Wi-Fi protocols, providing connectivity
+ for V2V, as they are wireless communication technologies that use OFDM.
  
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
 \begin_inset ERT
 status open
 
@@ -616,7 +556,7 @@ status open
 
 
 \backslash
-newline
+newpage
 \end_layout
 
 \end_inset
