@@ -430,10 +430,11 @@ newline
 \align block
 
 \size large
-El propósito de este trabajo es presentar las aproximaciones con aprendizaje
- profundo sobre las técnicas de ecualización conocidas con naturaleza lineal,
- como los ecualizadores Zero Forcing, MSE, LMMSE, y no lineales como OSIC
- y NearML.
+El propósito de este trabajo es desarrollar aproximaciones de la técnica
+ de aprendizaje profundo al problema de ecualización de canales doble dispersivo
+s en sistemas de comunicación con modulación OFDM, y comparar su desempeño
+ contra las técnicas de ecualización lineales "Forzado a Cero", MSE, LMMSE,
+ así como contra las técnicas no lineales OSIC y NearML.
  Durante las pruebas realizadas, se hizo un seguimiento de constelaciones
  QPSK y 16-QAM con una SNR de 5 dB hasta 45 dB.
  Se observó que algunas redes neuronales propuestas a lo largo del proyecto
@@ -442,6 +443,7 @@ El propósito de este trabajo es presentar las aproximaciones con aprendizaje
  Con ello, se puede visualizar un impacto potencial en los protocolos LTE
  y Wi-Fi, para proporcionar conectividad en V2V, ya que son tecnologías
  de comunicación inalámbrica que utilizan OFDM.
+ 
 \begin_inset ERT
 status open
 
@@ -2635,7 +2637,7 @@ To analyze the system in the frequency domain, the DFT is applied to the
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{y=F_{N}\times r}$
+\begin_inset Formula $\boldsymbol{y=F_{N}\times r(t)}$
 \end_inset
 
 
@@ -2645,7 +2647,7 @@ To analyze the system in the frequency domain, the DFT is applied to the
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{x=F_{N}\times s}$
+\begin_inset Formula $\boldsymbol{x=F_{N}\times s(t)}$
 \end_inset
 
 
