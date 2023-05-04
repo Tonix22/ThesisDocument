@@ -1175,8 +1175,11 @@ High peak-to-average power ratio
 \size large
 Sensitivity to timing errors: 
 \series default
-OFDM is sensitive to timing errors, which can cause inter-symbol interference
- and reduce the performance of the system.
+In OFDM systems, the receiver needs to estimate the timing of the received
+ signal accurately.
+ If the receiver timing is off, the subcarriers' orthogonality is lost,
+ leading to inter-carrier interference (ICI).
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -1978,8 +1981,8 @@ The 802.11p standard for V2V communication, based on the OFDM modulation
 \paragraph_spacing onehalf
 
 \size large
-On the other hand, linear equalization methods rely on finding the pseudo-invers
-e of certain matrix factors, which can be computationally expensive 
+However, linear equalization methods rely on finding the pseudo-inverse
+ of matrix, which can be computationally expensive 
 \begin_inset Formula $O(N^{3})$
 \end_inset
 
@@ -1997,16 +2000,18 @@ Hypothesis
 \paragraph_spacing onehalf
 
 \size large
-Deep learning techniques has the ability to learn and model complex non-linear
- relationships between the received signal and the transmitted signal.
- Therefore, it can be used as an alternative to traditional methods of channel
- equalization, including linear techniques such as LS and LMMSE, and non-linear
- techniques such as OSIC and NearML.
+Well applied deep learning techniques have the ability to learn and model
+ complex non-linear relationships between the received signal and the transmitte
+d signal.
+ Therefore, they can be used as an alternative to traditional methods of
+ channel equalization, including linear techniques such as LS and LMMSE,
+ and non-linear techniques such as OSIC and NearML.
  This approach can help to overcome the non-linear distortions introduced
  by the channel, which is particularly useful given the multiple factors
  affecting the received symbols, including all channel effects such as ISI
  and noise.
- Furthermore, most deep learning methods can be evaluated in a single evaluation.
+ Furthermore, most deep learning architectures can be evaluated using a
+ feedforward process.
 \end_layout
 
 \begin_layout Subsection
@@ -2020,39 +2025,23 @@ General Objective
 \begin_layout Itemize
 
 \size large
-Analyze and test neural network techniques for frequency channel equalization
- in OFDM systems.
-
-\size default
- 
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-Breaking the equalization process into simpler parts, delegating complex
- tasks like matrix inversion to neural networks while handling lighter tasks
- in a preprocessing stage.
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-Combine preprocessing methods (e.g., 
+Develop and evaluate a neural network-based approach for frequency channel
+ equalization in OFDM systems that breaks the equalization process into
+ simpler parts and combines preprocessing methods (e.g., 
 \begin_inset Formula $H^{H}$
 \end_inset
 
-, zero forcing) with non-linearity of neural networks
+, zero forcing) with the non-linear capabilities of neural networks.
+\end_layout
+
+\begin_layout Subsubsection
+Particular Objective
 \end_layout
 
 \begin_layout Itemize
 
 \size large
 Evaluate performance across various noise levels (5dB to 45dB)
-\end_layout
-
-\begin_layout Subsubsection
-Particular Objective
 \end_layout
 
 \begin_layout Itemize
@@ -2154,8 +2143,11 @@ Estimators
 \paragraph_spacing onehalf
 
 \size large
-An estimator is a statistical function that maps an observation to an estimate
- of a parameter of the signal being observed, normally known as 
+An estimator is a statistical function that maps an observation 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ to an estimate of a parameter., normally known as 
 \begin_inset Formula $\hat{\boldsymbol{\theta}}$
 \end_inset
 
