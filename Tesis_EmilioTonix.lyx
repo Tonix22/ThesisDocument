@@ -2151,7 +2151,8 @@ An estimator is a statistical function that maps an observation
 \begin_inset Formula $\hat{\boldsymbol{\theta}}$
 \end_inset
 
- .It is a mathematical function that takes the data, usually in the form
+.
+ It is a mathematical function that takes the data, usually in the form
  of a sample, and produces an estimate of an unknown parameter of the underlying
  probability distribution.
  It's important to note that the quality of an estimator is usually measured
@@ -2308,6 +2309,8 @@ Biased estimator:
  the true parameter value.
  Bias can be due to the estimator's functional form, the presence of outliers
  in the data, or other factors that systematically affect the estimator.
+ The concept of bias estimator can be represented mathematically using the
+ following equation:
 \end_layout
 
 \begin_deeper
@@ -2337,6 +2340,8 @@ Unbiased estimator:
  However, it's important to note that an unbiased estimator can still have
  a large variance, which means that individual estimates can be far from
  the true parameter value.
+ The concept of unbiased estimator can be represented mathematically using
+ the following equation:
 \end_layout
 
 \begin_deeper
@@ -2403,7 +2408,7 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
- is the transmitted signal with the original values
+ is the true parameter values with the original values
 \end_layout
 
 \begin_layout Itemize
@@ -2414,7 +2419,7 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
- is the predicted values of the received signal.
+ is the estimate parameter values of the received signal.
 \end_layout
 
 \begin_layout Standard
@@ -2523,95 +2528,15 @@ name "subsec:OFDM-Time-Frequency-Input-Output"
 \paragraph_spacing onehalf
 
 \size large
-The goal of this section is to provide a formal description of the key component
-s used in the upcoming estimation sections, and provide and introduction
- about what estimation is looking for.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The transmitted and received frequency symbol blocks 
-\begin_inset Formula $\boldsymbol{x,y\in\mathbb{C}^{N\times1}}$
-\end_inset
-
- respectively, are obtained by computing the N-point discrete Fourier transform
- (DFT) of the time-domain blocks s and r 
-\begin_inset Formula $\boldsymbol{s,r\in\mathbb{R}^{N\times1}}$
-\end_inset
-
-.
- We denote the N-point DFT as 
-\begin_inset Formula $\boldsymbol{F_{N}}$
-\end_inset
-
- and is expressed as follows:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{F}_{N}=\begin{bmatrix}1 & 1 & 1 & \dots & 1\\
-1 & w_{0} & w_{0}^{2} & \dots & w_{0}^{N-1}\\
-1 & w_{0}^{2} & w_{0}^{4} & \dots & w_{0}^{2(N-1)}\\
-\vdots & \vdots & \vdots & \ddots & \vdots\\
-1 & w_{0}^{M-1} & w_{0}^{2(M-1)} & \dots & w_{0}^{(N-1)^{2}}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where 
-\begin_inset Formula $w_{0}=e^{-\frac{2\pi i}{N}}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In the time domain, the received signal, 
-\begin_inset Formula $\boldsymbol{r(t)}$
-\end_inset
-
-, is given by the convolution of the transmitted signal, 
-\begin_inset Formula $\boldsymbol{s(t)}$
-\end_inset
-
-, and the channel impulse response, 
-\begin_inset Formula $\boldsymbol{h(t)}$
-\end_inset
-
-, plus the noise, 
-\begin_inset Formula $\boldsymbol{n(t)}$
-\end_inset
-
+The system model considers the OFDM modulation that forms the basis of the
+ 802.11p standard and excludes the cyclic prefix (CP).
+ In this model, the received signal for the k-th symbol at the receiver,
+ represented in the complex baseband, can be expressed as a circular convolution
 :
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{r(t)=s(t)*h(t)+n(t)}
-\end{equation}
-
+\begin_inset Formula $y^{k}[n]=\sum$
 \end_inset
 
 
@@ -2619,64 +2544,9 @@ In the time domain, the received signal,
 
 \begin_layout Standard
 \paragraph_spacing onehalf
-
-\size large
-To analyze the system in the frequency domain, the DFT is applied to the
- received signal, transmitted signal, and noise:
-\end_layout
-
-\begin_layout Standard
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{y=F_{N}\times r(t)}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size large
-\begin_inset Formula $\boldsymbol{x=F_{N}\times s(t)}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\size large
-\begin_inset Formula $\boldsymbol{n=F_{N}\times n(t)}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-When transforming from the time domain to the frequency domain, the linear
- convolution operation in the time domain is converted into circular convolution.
- Thus, the relationship between the transmitted signal and the received
- signal in the frequency domain can be expressed as:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align center
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{Y=H⊙X}
-\end{equation}
-
-\end_inset
-
  
 \end_layout
 
