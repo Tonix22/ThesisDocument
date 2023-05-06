@@ -2536,35 +2536,11 @@ The system model considers the OFDM modulation that forms the basis of the
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $y^{k}[n]=\sum$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align center
-
-\size large
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Each element of this relationship can be developed as follows:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align center
 
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{y_{c}[n]=(x[n]\circledast h[n])_{n}=\sum_{m=0}^{N-1}x[m]h[(n-m)modN]}
+\boldsymbol{y^{k}[n]=\sum_{l=0}^{L-1}h^{k}[n,l]x^{k}[(n-l)_{N}]+w^{k}[n]}
 \end{equation}
 
 \end_inset
@@ -2573,138 +2549,141 @@ Each element of this relationship can be developed as follows:
 \end_layout
 
 \begin_layout Standard
-\paragraph_spacing onehalf
 
 \size large
-where 
-\begin_inset Formula $H$
+Where 
+\begin_inset Formula $\boldsymbol{n=\{0,\cdots,N-1\},l=\{0,\cdots,L-1\}}$
 \end_inset
 
- is the channel frequency response, which is the DFT of the channel impulse
- response, 
-\begin_inset Formula $h(t):$
+.
+ The transmitted signal at the k-th block and the n-th sample is represented
+ by 
+\begin_inset Formula $\boldsymbol{x^{k}[n]}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{H=F_{N}h(t)}
-\end{equation}
-
+.
+ The term 
+\begin_inset Formula $\boldsymbol{h^{k}[n,l]}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{H}=\begin{bmatrix}h_{(0)(0)} & 0 & \dots & h_{(0)(t-1)}\\
-h_{(1)(0)} & h_{(1)(1)} & \dots & h_{(1)(t-1)}\\
-\vdots & \vdots & \ddots & \vdots\\
-0 & h_{(d-1)(0)} & \dots & h_{(d-1)(t-1)}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Here, 
-\begin_inset Formula $d$
-\end_inset
-
- represents the number of delays (i.e., the length of the channel impulse
- response), and 
-\begin_inset Formula $t$
-\end_inset
-
- represents the number of time samples in the OFDM symbol.
- Each element of the matrix is represented as 
-\begin_inset Formula $h_{(delay)(time)}$
-\end_inset
-
-, where delay and time represent the indices of the corresponding delay
- and time samples, respectively.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-To mitigate the effect of Inter-Symbol Interference (ISI) caused by circular
- convolution, a Cyclic Prefix (CP) is added to the transmitted signal before
- transmission.
- This helps maintain orthogonality between subcarriers and minimize ISI.
- After adding the CP and assuming that the CP length is greater than or
- equal to the channel impulse response length, the circular convolution
- becomes equivalent to linear convolution, and the relationship between
- the frequency-domain components becomes
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{y=Hx+n}\label{eq:eq27}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where 
-\begin_inset Formula $\boldsymbol{y}$
-\end_inset
-
-, 
-\begin_inset Formula $\boldsymbol{x}$
-\end_inset
-
-, and 
+ represents the impulse response of the channel at the k-th block and the
+ instance 
 \begin_inset Formula $\boldsymbol{n}$
 \end_inset
 
- are vectors of length 
-\begin_inset Formula $\boldsymbol{N}$
+ with 
+\begin_inset Formula $\boldsymbol{l}$
 \end_inset
 
-, and 
-\begin_inset Formula $\boldsymbol{H}$
+ previous samples.
+ The circular convolution shown in (11) between impulse response 
+\begin_inset Formula $\boldsymbol{h^{k}[n,l]}$
 \end_inset
 
- is an 
-\begin_inset Formula $\boldsymbol{N\times N}$
+ and 
+\begin_inset Formula $\boldsymbol{x^{k}[n]}$
 \end_inset
 
- complex-valued matrix that represents the channel effects on the transmitted
- signal.
- 
+ can be rewritten as:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{y^{k}=H^{k}x^{k}+w^{k}}
+\end{equation}
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-The objective of the receiver is to estimate the transmitted signal 
+where the vector terms are:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{y^{k}=\left[y^{k}[0]y^{k}[1]y^{k}[2]\dots y^{k}[N-1]\right]^{T}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{x^{k}=\left[x^{k}[0]x^{k}[1]x^{k}[2]\dots y^{k}[N-1]\right]^{T}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{w^{k}=\left[w^{k}[0]w^{k}[1]w^{k}[2]\dots w^{k}[N-1]\right]^{T}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+and matrix 
+\begin_inset Formula $\boldsymbol{H}^{k}$
+\end_inset
+
+ is the channel frequency response with shape 
+\begin_inset Formula $\boldsymbol{NxN}$
+\end_inset
+
+ descibed as follows: 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{[H^{k}]_{n,n'}=h^{k}[n,(n-n')_{N}]}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Assuming a constant k.
+ The objective of the receiver is to estimate 
+\begin_inset Formula $\boldsymbol{\hat{x}}$
+\end_inset
+
+ the transmitted signal 
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
@@ -2760,26 +2739,22 @@ name "subsec:Zero-forcing-sec"
 \paragraph_spacing onehalf
 
 \size large
-The Zero Forcing Equalizer (ZFE)
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Zero-forcing"
-
-\end_inset
-
- is a technique used in communication systems to reduce the impact of intersymbo
-l interference (ISI), caused by the presence of multiple signal paths in
- a communication channel.
- Although the ZFE is effective, it has some limitations, such as being susceptib
-le to noise and unable to handle certain types of channel distortions.
- Nevertheless, it can improve the performance of communication systems in
- specific scenarios.
- Given the section above in 
+The Zero Forcing Equalizer (ZFE) constitutes a method employed within communicat
+ion systems to mitigate the influence of intersymbol interference (ISI),
+ which arises due to the existence of numerous signal pathways in a communicatio
+n channel.
+ Despite its effectiveness, the ZFE exhibits certain drawbacks, including
+ vulnerability to noise and an inability to address particular forms of
+ channel distortion.
+ The procedure involves extracting the principal diagonal from the channel
+ matrix H and conducting an element-wise division of the received signal
+ Y by this diagonal.
+ As we seen before in 
 \color blue
 
 \begin_inset CommandInset ref
-LatexCommand nameref
-reference "eq:eq27"
+LatexCommand eqref
+reference "subsec:OFDM-Time-Frequency-Input-Output"
 plural "false"
 caps "false"
 noprefix "false"
@@ -2788,24 +2763,21 @@ noprefix "false"
 
  
 \color inherit
-as the Input-Output relation.
- The main diagonal of the channel matrix H is taken and divided by recieved
- signal.
- This matrix is already in the frequency domain.
- To extract the main diagonal of the channel matrix the "diag(H)" operation
- is used.
+H matrix is already in the frequency domain.
+ To extract the main diagonal of the channel matrix we call operator "diag(H)"
+ described as follows:
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{H_{\text{diag}}}=\text{diag}(\boldsymbol{H})=diag\left(\begin{bmatrix}h_{11} & 0 & \dots & 0\\
 0 & h_{22} & \dots & 0\\
 \vdots & \vdots & \ddots & \vdots\\
-0 & 0 & \dots & h_{NN}
+0 & 0 & \dots & h_{nl}
 \end{bmatrix}\right)=\left(\begin{array}{c}
 h_{11}\\
 h_{22}\\
 \vdots\\
 \vdots\\
-h_{NN}
+h_{nl}
 \end{array}\right)
 \end{equation}
 
@@ -2818,17 +2790,9 @@ h_{NN}
 \paragraph_spacing onehalf
 
 \size large
-Ideally, if the off-diagonal elements of the channel matrix H are relatively
- small, the channel matrix can be approximated by its main diagonal.
- Then, after diagonal division the estimated transmitted symbols can be
- expressed as 
-\begin_inset Formula $\boldsymbol{\hat{\theta}\simeq x+\frac{n}{diag(H)}}$
-\end_inset
-
-, where n is the noise vector and diag(H) is the main diagonal of the channel
- matrix H.
- In the equations bellow the estimator is shown.
- 
+Ideally, the off-diagonal elements of the channel matrix H are relatively
+ small, making the most significant values lie on the diagonal.
+ Our estimated parameter leads in the folowing expresion
 \end_layout
 
 \begin_layout Standard
@@ -2837,24 +2801,12 @@ Ideally, if the off-diagonal elements of the channel matrix H are relatively
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}=y\circ\div diag(H)=\left(Hx+w\right)\circ\div diag(H)}\label{eq:ZeroForcing}
+\boldsymbol{\hat{\theta}^{k}=[y^{k}[0]\div h[0,0],y^{k}[1]\div h[1,1],\dots y^{k}[n]\div h[n,l]}\label{eq:ZeroForcing}
 \end{equation}
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Where 
-\begin_inset Formula $\boldsymbol{\circ\div}$
-\end_inset
-
- represents the elementwise division.
- 
 \end_layout
 
 \begin_layout Standard
