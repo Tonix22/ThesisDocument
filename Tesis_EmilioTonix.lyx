@@ -2826,93 +2826,47 @@ literal "false"
 
 \begin_layout Subsubsection
 LS
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
 \size large
-Least squares (LS)
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:LS"
 
 \end_inset
 
- equalization is a linear equalization method that aims to minimize the
- mean squared error (MSE) between the estimated and the transmitted symbols.
- The goal of the least squares equalization is to find an estimate of the
- transmitted signal, 
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Least squares (LS) equalization is a linear equalization method that aims
+ to minimize the sum of squared errors between the estimated and the transmitted
+ symbols.
+ The method calculates the coefficients of a linear filter that minimizes
+ the difference between the given parameter 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ and the estimated signal 
 \begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
-, that minimizes the mean squared error (MSE) between the received signal
- and the predicted received signal.
- To achieve this, we define the error vector 
-\begin_inset Formula $\boldsymbol{e}$
-\end_inset
-
- as the difference between the received signal and the predicted received
- signal based on the estimated transmitted signal 
-\begin_inset Formula $\boldsymbol{e}=\boldsymbol{y}-\boldsymbol{H\theta},$
-\end_inset
-
-where 
-\begin_inset Formula $\boldsymbol{\theta=x}$
+, where the estimation is based on the transmitted signal and a model of
+ the communication channel 
+\begin_inset Formula $\boldsymbol{H}$
 \end_inset
 
 .
- The objective is to minimize the mean squared error (MSE) 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "statiticsbook"
-literal "false"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{\text{J(\ensuremath{\theta)}}=E\left(\lVert\boldsymbol{e}\rVert_{2}^{2}\right)=E\left(\lVert\boldsymbol{y}-\boldsymbol{H\theta}\rVert_{2}^{2}\right)=\left(y-H\theta\right)^{T}\left(y-H\theta\right)}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where 
-\begin_inset Formula $\boldsymbol{\lVert\cdot\rVert_{2}}$
-\end_inset
-
- indicates the 2-norm (Euclidean norm).
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-With the solution in the Moore-Penrose pseudoinverse 
+ By minimizing the sum of squared errors, the LS equalizer is able to remove
+ or reduce the effects of channel distortion, noise, and interference on
+ the received signal, resulting in improved signal integrity.
+ To achieve the solution, it is used the Moore-Penrose pseudoinverse 
 \begin_inset Formula $\boldsymbol{H^{+}}$
 \end_inset
 
-.The Moore-Penrose pseudoinverse is often used to solve linear least squares
- problems, which involve finding the values of variables that minimize the
- sum of the squares of the residuals (the differences between the observed
- values and the values predicted by the model).
- It can also be used to compute a "best fit" solution for systems of linear
- equations that do not have a unique solution.
- 
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "strang2019linear"
@@ -2920,7 +2874,8 @@ literal "false"
 
 \end_inset
 
-
+ which is often used to solve linear least squares problems.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2965,14 +2920,14 @@ Moore-Penrose pseudoinverse
 \end_inset
 
  Hermiatian transpose matrix.
- Complex square matrix that is equal to its own conjugate transpose
+ Complex square matrix that is equal to its own conjugate transpose.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Finally the estimator is:
+Finally the least squares equation is given by :
 \end_layout
 
 \begin_layout Standard
@@ -2981,28 +2936,12 @@ Finally the estimator is:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}=(H^{H}H)^{-1}H^{H}\theta}
+\boldsymbol{\hat{\theta}=(H^{H}H)^{-1}H^{H}y}
 \end{equation}
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Its resistance to noise makes it appealing in a variety of communication
- systems, however because the noise component is ignored, it cannot operate
- satisfactorily with low SNR (signal to noise ratio).
- The unbiasedness of the equalizer depends on the specific equalization
- problem and the assumptions made about the channel and noise characteristics,
- and the variance of the least squares equalization method quantifies the
- uncertainty in the estimated transmitted signal due to the presence of
- noise in the received signal.
- A higher variance implies a greater degree of uncertainty in the equalized
- signal.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3013,11 +2952,12 @@ MMSE
 \paragraph_spacing onehalf
 
 \size large
-MMSE equalization is a linear equalization technique that aims to minimize
- the mean squared error between the transmitted signal and its estimate.
- The MMSE equalizer balances the trade-off between bias and variance, unlike
- the zero-forcing equalizer, which focuses solely on eliminating intersymbol
- interference (ISI) without considering the noise amplification.
+The main difference between Minimum Mean Squared Error (MMSE) and Least
+ Squares (LS) methods is that MMSE takes into account the statistical properties
+ of the measurement noise and models the uncertainty in the observations,
+ while LS assumes that the observation noise is zero and does not model
+ any uncertainty in the measurements.
+ The MMSE equalizer balances the trade-off between bias and variance.
  MMSE equalization can be thought of as a compromise between the desire
  to eliminate ISI (which could introduce bias) and the need to limit noise
  amplification (which affects variance).
@@ -3318,6 +3258,17 @@ where
 \end_inset
 
 .
+ This equation consider AWGN (Additive White Gaussian Noise) with variance
+ 
+\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+\end_inset
+
+.
+ It is called "white" because it has a flat power spectral density, meaning
+ that it has equal power at all frequencies.
+ It is called "additive" because it can be added to a signal without changing
+ its distribution.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3412,23 +3363,6 @@ where
 
 \end_layout
 
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This equation consider AWGN (Additive White Gaussian Noise) with variance
- 
-\begin_inset Formula $\boldsymbol{\sigma^{2}}$
-\end_inset
-
-.
- It is called "white" because it has a flat power spectral density, meaning
- that it has equal power at all frequencies.
- It is called "additive" because it can be added to a signal without changing
- its distribution.
- 
-\end_layout
-
 \begin_layout Subsection
 Non-linear equalizers
 \end_layout
@@ -3437,13 +3371,26 @@ Non-linear equalizers
 \paragraph_spacing onehalf
 
 \size large
-NearML (Near Maximum Likelihood) and OSIC (Ordered Successive Interference
- Cancellation) are two non-linear signal equalization techniques used in
- digital communication systems to mitigate the challenges posed by signal
- distortions.
- These methods provide better symbol detection accuracy and overall system
- performance, making them invaluable tools in modern communication systems
- design.
+NearML (Near Maximum Likelihood)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nearmLequalization"
+literal "false"
+
+\end_inset
+
+ and OSIC (Ordered Successive Interference Cancellation) 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OSIC_V2V"
+literal "false"
+
+\end_inset
+
+ are two non-linear signal equalization techniques used in digital communication
+ systems to mitigate the challenges posed by signal distortions.
+ These methods provide better symbol detection accuracy than linear equalizers,
+ and can improve overall system performance.
  However, they compromise time complexity due to the iterative nature of
  their applications.
  In our research team, these methods have been previously applied in MATLAB
@@ -3488,12 +3435,10 @@ name "subsec:OSIC"
 \paragraph_spacing onehalf
 
 \size large
-Ordered Successive Interference Cancellation (OSIC) detection method.
- This method is used for detecting transmitted symbols from a received signal
- in digital communication systems.
- The function accepts four inputs: the received signal vector, the channel
- matrix, the constellation points, and the indices of the detected symbols.
- The function starts by initializing several variables needed for the algorithm.
+Ordered Successive Interference Cancellation (OSIC) algorithm accepts four
+ inputs: the received signal vector, the channel matrix, the constellation
+ points, and the indices of the detected symbols.
+ The algorithm starts by initializing several variables needed for the algorithm.
  It then goes through each column of the channel matrix in reverse order.
  For each column, it estimates the corresponding transmitted symbol by dividing
  the received signal by the channel matrix value.
@@ -3512,7 +3457,8 @@ The algorithm selects the constellation point with the smallest squared
  symbols and improves the overall detection performance.
  Finally, the detected symbols are rearranged according to the given indices
  and stored in an output tensor.
- The function returns this tensor containing the estimated transmitted symbols.
+ The algorithm returns this tensor containing the estimated transmitted
+ symbols.
 \end_layout
 
 \begin_layout Itemize
@@ -3807,8 +3753,8 @@ name "subsec:NearML"
 \paragraph_spacing onehalf
 
 \size large
-The Near-ML detection algorithm functions as a tree search with nodes representi
-ng constellation points and depth equal to the number of transmitters.
+The Near-ML detection algorithm algorithms as a tree search with nodes represent
+ing constellation points and depth equal to the number of transmitters.
  It computes distances between received signals and candidate symbols, selecting
  M best candidates at each level for pruning.
  By backtracking and updating accumulated distances, it maintains the M
@@ -4401,7 +4347,7 @@ Then, the Gaussian random noise vector
 \begin{equation}
 \boldsymbol{f(x)=\begin{cases}
 \sigma\times\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
-\sigma\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
+\frac{\sigma}{2}\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
 \end{cases}}
 \end{equation}
 
@@ -4477,7 +4423,7 @@ the transmission of data is not always error-free.
  number of transmitted bits.
  It is usually expressed in terms of power, as the probability of error
  is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
- The BER can be mathematically represented as follows:
+ The BER can be empirically represented as follows:
 \end_layout
 
 \begin_layout Standard
@@ -4512,73 +4458,7 @@ where
 \paragraph_spacing onehalf
 
 \size large
-The bit error rate (BER) can be defined in terms of the probability of error
- (POE).
- The POE can be calculated using three other variables: the error function
- (erf), the energy per bit (Eb), and the noise power spectral density (No).
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The error function,
-\begin_inset Formula $\mathrm{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x}e^{-t^{2}}dt$
-\end_inset
-
-, is used to calculate the POE, and its value depends on the modulation
- method used in the communication system.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The energy per bit, 
-\begin_inset Formula $Eb$
-\end_inset
-
-, is a measure of the signal strength and can be calculated by dividing
- the carrier power by the bit rate.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-The noise power spectral density, No, is a measure of the noise present
- in the communication channel and is typically expressed in units of power
- per Hz.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-By using these three variables, the POE can be calculated, and thus the
- BER can be expressed in terms of POE.
- This provides a measure of the communication system's performance that
- takes into account both the strength of the signal and the noise present
- in the channel.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\mathbf{POE=\frac{1}{2}(1-erf)\sqrt{\frac{E_{b}}{N_{o}}}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The BER is a critical parameter for evaluating the performance of a digital
- communication system.
- A high BER indicates poor system performance, which can lead to loss of
+A high BER indicates poor system performance, which can lead to loss of
  data, degraded audio or video quality, or even complete system failure.
  Therefore, the BER is used as a benchmark to ensure that the digital communicat
 ion system meets the required performance specifications.
@@ -4616,135 +4496,6 @@ Block Error Rate (BLER) is a measure of the reliability of a communication
 \begin{equation}
 \boldsymbol{BLER=\frac{BlockErrCount}{TotalBlocks}}
 \end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-To check for errors in a block of data, a cyclic redundancy check (CRC)
- is often used 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "CRC"
-literal "false"
-
-\end_inset
-
-.
- Given the estimated values and the ground truth, instead of comparing bit
- by bit, a set of symbols is taken, and a CRC is calculated for a given
- chunk of the data.
- If the CRC of the equalized chunk is equal to the real value, there are
- no errors.
- However, if the CRC differs, the chunk is marked as incorrect, and it is
- added to the BLER count.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{algorithm}[ht] 
-\backslash
-caption{Block Error Rate Calculation with CRC} 
-\backslash
-label{alg:block_error_rate_crc} 
-\backslash
-begin{algorithmic}[1] 
-\backslash
-Require 
-\backslash
-Statex Input data is 48 blocks of 48 symbols 
-\backslash
-Statex $txbits$: array of transmitted blocks 
-\backslash
-Statex $rxbits$: array of received blocks 
-\backslash
-Statex $crc
-\backslash
-_func$: CRC function for generating CRC codes 
-\backslash
-Ensure 
-\backslash
-Statex $BLER$: Block Error Rate of the communication system 
-\backslash
-State $total
-\backslash
-_blocks 
-\backslash
-gets 48$ 
-\backslash
-State $bad
-\backslash
-_blocks 
-\backslash
-gets 0$ 
-\backslash
-For{$n 
-\backslash
-gets 0$ to $47$} 
-\backslash
-State $tx
-\backslash
-_crc 
-\backslash
-gets crc
-\backslash
-_func(txbits[n].tobytes())$ 
-\backslash
-State $rx
-\backslash
-_crc 
-\backslash
-gets crc
-\backslash
-_func(rxbits[n].tobytes())$ 
-\backslash
-If{$tx
-\backslash
-_crc 
-\backslash
-neq rx
-\backslash
-_crc$} 
-\backslash
-State $bad
-\backslash
-_blocks 
-\backslash
-gets bad
-\backslash
-_blocks + 1$ 
-\backslash
-EndIf 
-\backslash
-EndFor 
-\backslash
-State $BLER 
-\backslash
-gets bad
-\backslash
-_blocks / total
-\backslash
-_blocks$ 
-\backslash
-State 
-\backslash
-Return $BLER$ 
-\backslash
-end{algorithmic} 
-\backslash
-end{algorithm}
-\end_layout
 
 \end_inset
 
@@ -9804,6 +9555,147 @@ Performance variations in parallel algorithms stem from differences in design,
 \end_layout
 
 \begin_layout Subsection
+BLER
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To compare the estimated values 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ with the ground truth 
+\begin_inset Formula $x$
+\end_inset
+
+, the frame is considered as a whole instead of comparing each bit individually.
+ Specifically, the CRC 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CRC"
+literal "false"
+
+\end_inset
+
+ is computed over the entire frame for both the estimated values and the
+ ground truth.
+ If the CRC of the equalized frame matches the CRC of the ground truth,
+ the frame is considered error-free.
+ Otherwise, the frame is marked as incorrect, and the corresponding block
+ is added to the Block Error Rate (BLER) count.
+ The use of CRC32 ensures that collisions are avoided, as the number of
+ possible blocks is much smaller than the number of possible CRC false positives.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H] 
+\backslash
+caption{Block Error Rate Calculation with CRC} 
+\backslash
+label{alg:block_error_rate_crc} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+Require 
+\backslash
+Statex Input data is 48 blocks of 48 symbols 
+\backslash
+Statex $txbits$: array of transmitted blocks 
+\backslash
+Statex $rxbits$: array of received blocks 
+\backslash
+Statex $crc
+\backslash
+_func$: CRC function for generating CRC codes 
+\backslash
+Ensure 
+\backslash
+Statex $BLER$: Block Error Rate of the communication system 
+\backslash
+State $total
+\backslash
+_blocks 
+\backslash
+gets 48$ 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets 0$ 
+\backslash
+For{$n 
+\backslash
+gets 0$ to $47$} 
+\backslash
+State $tx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(txbits[n].tobytes())$ 
+\backslash
+State $rx
+\backslash
+_crc 
+\backslash
+gets crc
+\backslash
+_func(rxbits[n].tobytes())$ 
+\backslash
+If{$tx
+\backslash
+_crc 
+\backslash
+neq rx
+\backslash
+_crc$} 
+\backslash
+State $bad
+\backslash
+_blocks 
+\backslash
+gets bad
+\backslash
+_blocks + 1$ 
+\backslash
+EndIf 
+\backslash
+EndFor 
+\backslash
+State $BLER 
+\backslash
+gets bad
+\backslash
+_blocks / total
+\backslash
+_blocks$ 
+\backslash
+State 
+\backslash
+Return $BLER$ 
+\backslash
+end{algorithmic} 
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Dataset
 \end_layout
 
@@ -10678,7 +10570,7 @@ pre-processing
 
 \begin_inset CommandInset ref
 LatexCommand nameref
-reference "subsec:Zero-forcing"
+reference "subsec:Zero-forcing-sec"
 plural "false"
 caps "false"
 noprefix "false"
@@ -10846,7 +10738,7 @@ noprefix "false"
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Zero-forcing"
+reference "subsec:Zero-forcing-sec"
 plural "false"
 caps "false"
 noprefix "false"
@@ -17662,7 +17554,7 @@ noprefix "false"
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:Zero-forcing"
+reference "subsec:Zero-forcing-sec"
 plural "false"
 caps "false"
 noprefix "false"
