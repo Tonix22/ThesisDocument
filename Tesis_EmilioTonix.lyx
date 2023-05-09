@@ -735,9 +735,26 @@ newline
 
 \size large
 One of the guiding principles of communication system design is the division
- of signal processing into a series of distinct blocks, each of which performs
- a clearly defined and isolated functions such as source or channel coding,
- modulation, channel estimation, and equalization.
+ of signal processing into a series of distinct blocks as we seen in 
+\color blue
+Figure
+\color inherit
+ 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:TelecomBlocks"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , each of which performs a clearly defined and isolated functions such
+ as source or channel coding, modulation, channel estimation, and equalization.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -784,6 +801,13 @@ status open
 
 \begin_layout Plain Layout
 Typical communication system block diagram 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:TelecomBlocks"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ChannelDiagram"
@@ -956,7 +980,11 @@ literal "false"
 \align block
 
 \size large
-The basic blocks of an OFDM system are:
+The basic blocks of an OFDM system are described in 
+\color blue
+Figure2
+\color inherit
+:
 \end_layout
 
 \begin_layout Standard
@@ -1220,6 +1248,34 @@ is a type of digital modulation that encodes data onto a carrier signal
 \end_inset
 
 .
+ In the field of communication systems, a QAM constellation refers to a
+ graphical representation of the symbol points in an alphabet on the complex
+ plane.
+ Each point represents a specific combination of the in-phase and quadrature
+ components of the modulated signal, and it is encoded with a binary value.
+ We can visualize better in
+\color blue
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:16-QAM-constellation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+
+\color inherit
+ The number of points in the constellation is determined by the number of
+ possible combinations of in-phase and quadrature values, which is in turn
+ determined by the number of bits per symbol used in the QAM modulation
+ scheme.
+ For instance, in a 16-QAM constellation, there are 16 symbol points arranged
+ in a square grid, with each point corresponding to 4 bits of data.
+ It is common for QAM constellations to utilize gray code for assigning
+ the symbol points in a manner that minimizes the error rate
 \end_layout
 
 \begin_layout Standard
@@ -1249,6 +1305,13 @@ status open
 
 \begin_layout Plain Layout
 16-QAM constellation 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:16-QAM-constellation"
+
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 key "wiki_16qam"
@@ -1268,23 +1331,26 @@ literal "false"
 
 
 \size large
- In the field of communication systems, a QAM constellation refers to a
- graphical representation of the symbol points in an alphabet on the complex
- plane.
- Each point represents a specific combination of the in-phase and quadrature
- components of the modulated signal.
- The number of points in the constellation is determined by the number of
- possible combinations of in-phase and quadrature values, which is in turn
- determined by the number of bits per symbol used in the QAM modulation
- scheme.
- For instance, in a 16-QAM constellation, there are 16 symbol points arranged
- in a square grid, with each point corresponding to 4 bits of data.
- The distance between points in the constellation serves as an indicator
- of the signal-to-noise ratio required for reliable transmission of the
- data.
- It is common for QAM constellations to utilize gray code for assigning
- the symbol points in a manner that minimizes the error rate.
- However, this is not the only method that can be employed for this purpose
+ The points in the QAM constellation can also be affected by phase and amplitude
+ distortion caused by channel and noise, as seen in
+\color blue
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:QAMNoiseCloud"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ This can lead to some clouds of points being placed in the wrong location,
+ resulting in incorrect decoding of the bits and introducing errors.
+ To correct for this problem, an equalizer is needed to recover the values
+ to their original encoding
 \end_layout
 
 \begin_layout Standard
@@ -1311,6 +1377,13 @@ status open
 
 \begin_layout Plain Layout
 QPSK and 16 QAM with noise and phase displacement 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:QAMNoiseCloud"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "QAMwithNoise"
@@ -1439,9 +1512,22 @@ literal "false"
  geometry of the propagation environment to create a deterministic model
  of the wireless channel.
  The delay of a signal refers to the time it takes for the signal to travel
- from the transmitter to the receiver, and the Doppler shift of a signal
- refers to the frequency shift of the signal due to the relative motion
- between the transmitter and receiver.
+ from the transmitter to the receiver as seen in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Delay-multipath"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and the Doppler shift of a signal refers to the frequency shift of the
+ signal due to the relative motion between the transmitter and receiver.
 \size default
 
 \begin_inset Float figure
@@ -1468,6 +1554,13 @@ status open
 
 \begin_layout Plain Layout
 Delay multipath 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Delay-multipath"
+
+\end_inset
+
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "hong_thaj_viterbo_2022"
@@ -1491,10 +1584,10 @@ literal "false"
 \begin_layout Standard
 
 \series bold
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\mathbf{r(t)=g_{1}s(t-\tau_{1})+g_{2}s(t-\tau_{2})}}
+r(t)=g_{1}s(t-\tau_{1})+g_{2}s(t-\tau_{2})
 \end{equation}
 
 \end_inset
@@ -1505,7 +1598,7 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{r(t)}$
+\begin_inset Formula $r(t)$
 \end_inset
 
  recieved signal
@@ -1517,13 +1610,13 @@ literal "false"
 \begin_inset Formula $\mathbf{g_{n}}$
 \end_inset
 
- baseband equivalent complex gain(attenuation)
+ baseband equivalent complex gain (attenuation)
 \end_layout
 
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{\boldsymbol{\tau_{1}=\frac{r_{1}}{c}}}$
+\begin_inset Formula $\tau_{1}=\frac{r_{1}}{c}$
 \end_inset
 
  where c is the speed of light
@@ -1532,7 +1625,7 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{\boldsymbol{\tau_{2}=\frac{(r_{2}+r_{3})}{c}}}$
+\begin_inset Formula $\tau_{2}=\frac{(r_{1}+r_{3}}{c}$
 \end_inset
 
  delay in reflected path
@@ -1541,7 +1634,7 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{\mathbf{\tau_{2}-\tau_{1}}}$
+\begin_inset Formula $\tau_{1}-\tau_{1}$
 \end_inset
 
  delay spread
@@ -1559,7 +1652,7 @@ In wireless communication, the Doppler shift can cause changes in the frequency
  The Doppler shift can affect the performance of a wireless communication
  system by causing changes in the signal-to-noise ratio and the signal-to-interf
 erence ratio, which can degrade the quality of the signal and make it more
- difficult to detect and decode.
+ difficult to detect and decode 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "marsland2013radio"
@@ -1567,7 +1660,13 @@ literal "false"
 
 \end_inset
 
-
+.
+ 
+\color blue
+Figure 6
+\color inherit
+ illustrates a vehicle in motion and how the reflected path affects the
+ Doppler shift.
 \end_layout
 
 \begin_layout Standard
@@ -1613,10 +1712,10 @@ literal "false"
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\mathbf{r(t)=g_{1}e^{j2\pi\nu_{1}(t-\tau_{1})}s(t-\tau_{1})+g_{2}e^{j2\pi\nu_{2}(t-\tau_{2})}s(t-\tau_{2})}}
+r(t)=g_{1}e^{j2\pi\nu_{1}(t-\tau_{1})}s(t-\tau_{1})+g_{2}e^{j2\pi\nu_{2}(t-\tau_{2})}s(t-\tau_{2})
 \end{equation}
 
 \end_inset
@@ -1627,16 +1726,16 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{\boldsymbol{\nu_{1}=\frac{v}{c}f_{c}}}$
+\begin_inset Formula $\nu_{1}=\frac{v}{c}f_{c}$
 \end_inset
 
- LOS doppler shift
+LOS doppler shift
 \end_layout
 
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{\boldsymbol{\nu_{1}=\frac{v*cos(\theta)}{c}f_{c}}}$
+\begin_inset Formula $\nu_{1}=\frac{v*cos(\theta)}{c}f_{c}$
 \end_inset
 
  doppler shift in reflected path
@@ -1651,10 +1750,10 @@ We can generalize for time dependent function the gain as follows:
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\mathbf{g(\tau_{i},t)=g_{i}e^{j2\pi\nu_{i}(t-\tau_{i})}}}
+g(\tau_{i},t)=g_{i}e^{j2\pi\nu_{i}(t-\tau_{i})}
 \end{equation}
 
 \end_inset
@@ -1670,7 +1769,7 @@ We can generalize for time dependent function the gain as follows:
 \size large
 Therefore impulse time-frequency response of channel at fixed time t, can
  be obtained by taking fourier transform along the delay dimension of 
-\begin_inset Formula $\mathbf{\boldsymbol{g(\tau,t)}}$
+\begin_inset Formula $g(\tau,t)$
 \end_inset
 
 
@@ -1678,10 +1777,10 @@ Therefore impulse time-frequency response of channel at fixed time t, can
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\mathbf{\boldsymbol{H(f,t)=\int g(\tau,t)e^{-j2\pi f\tau}d\tau}}
+H(f,t)=\int g(\tau,t)e^{-j2\pi f\tau}d\tau
 \end{equation}
 
 \end_inset
@@ -1722,9 +1821,22 @@ Equalization
 \align block
 
 \size large
-A telecom channel equalizer is a device or algorithm used in telecommunications
- systems to compensate for distortion or other impairments in a communication
- channel.
+A telecom channel equalizer as shown in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Basic-Equalizer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ is a device or algorithm used in telecommunications systems to compensate
+ for distortion or other impairments in a communication channel.
  The equalizer uses signal processing techniques to estimate the characteristics
  of the channel, such as the impulse response or the frequency response,
  and then applies a correction to the transmitted signal to counteract the
@@ -1777,7 +1889,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Basic Equalizer
+Basic Equalizer 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Basic-Equalizer"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2144,11 +2263,11 @@ Estimators
 
 \size large
 An estimator is a statistical function that maps an observation 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  to an estimate of a parameter., normally known as 
-\begin_inset Formula $\hat{\boldsymbol{\theta}}$
+\begin_inset Formula $\hat{\theta}$
 \end_inset
 
 .
@@ -2203,7 +2322,7 @@ Posterior estimator
  distribution, depending on the specific problem and desired properties
  of the estimator.
  Let's denote the parameter of interest as 
-\begin_inset Formula $\boldsymbol{𝜃}$
+\begin_inset Formula $𝜃$
 \end_inset
 
  and the observed data as 
@@ -2221,7 +2340,7 @@ Posterior estimator
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}}
+P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
 \end{equation}
 
 \end_inset
@@ -2233,15 +2352,15 @@ Posterior estimator
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{P(𝜃|X)}$
+\begin_inset Formula $P(𝜃|X)$
 \end_inset
 
  is the posterior distribution of the parameter 
-\begin_inset Formula $\boldsymbol{𝜃}$
+\begin_inset Formula $𝜃$
 \end_inset
 
  given the data 
-\begin_inset Formula $\boldsymbol{X}$
+\begin_inset Formula $X$
 \end_inset
 
 .
@@ -2251,15 +2370,15 @@ Posterior estimator
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{P(X|𝜃)}$
+\begin_inset Formula $P(X|𝜃)$
 \end_inset
 
  is the likelihood of observing the data 
-\begin_inset Formula $\boldsymbol{X}$
+\begin_inset Formula $X$
 \end_inset
 
  given the parameter 
-\begin_inset Formula $\boldsymbol{𝜃}$
+\begin_inset Formula $𝜃$
 \end_inset
 
 .
@@ -2269,15 +2388,15 @@ Posterior estimator
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{P(𝜃)}$
+\begin_inset Formula $P(𝜃)$
 \end_inset
 
  is the prior distribution of the parameter 
-\begin_inset Formula $\boldsymbol{𝜃}$
+\begin_inset Formula $𝜃$
 \end_inset
 
 , representing our beliefs about 
-\begin_inset Formula $\boldsymbol{𝜃}$
+\begin_inset Formula $𝜃$
 \end_inset
 
  before observing the data.
@@ -2288,7 +2407,7 @@ Posterior estimator
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{P(X)}$
+\begin_inset Formula $P(X)$
 \end_inset
 
  is the marginal likelihood of the data, which can be thought of as a normalizat
@@ -2320,7 +2439,7 @@ Biased estimator:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Bias\left(\hat{\theta}\right)=E\left(\hat{\theta}\right)-𝜃}
+Bias\left(\hat{\theta}\right)=E\left(\hat{\theta}\right)-𝜃
 \end{equation}
 
 \end_inset
@@ -2351,7 +2470,7 @@ Unbiased estimator:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{E\left(\hat{\theta}\right)=\theta}
+E\left(\hat{\theta}\right)=\theta
 \end{equation}
 
 \end_inset
@@ -2389,10 +2508,10 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \paragraph_spacing onehalf
 \align center
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]}
+MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]
 \end{equation}
 
 \end_inset
@@ -2405,7 +2524,7 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \align block
 
 \size large
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  is the true parameter values with the original values
@@ -2416,7 +2535,7 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \align block
 
 \size large
-\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\begin_inset Formula $\hat{\theta}$
 \end_inset
 
  is the estimate parameter values of the received signal.
@@ -2445,7 +2564,7 @@ literal "false"
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE(\hat{\theta})=E\left\{ \left[\left(\hat{\theta}-E\left(\hat{\theta}\right)\right)+\left(E\left(\hat{\theta}\right)-\theta\right)\right]^{2}\right\} =var(\hat{\theta})+\left(E\left(\hat{\theta}\right)-\theta\right)^{2}}
+MSE(\hat{\theta})=E\left\{ \left[\left(\hat{\theta}-E\left(\hat{\theta}\right)\right)+\left(E\left(\hat{\theta}\right)-\theta\right)\right]^{2}\right\} =var(\hat{\theta})+\left(E\left(\hat{\theta}\right)-\theta\right)^{2}
 \end{equation}
 
 \end_inset
@@ -2458,7 +2577,7 @@ literal "false"
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MSE(\hat{\theta})=var(\hat{\theta})+Bias^{2}(\theta)}
+MSE(\hat{\theta})=var(\hat{\theta})+Bias^{2}(\theta)
 \end{equation}
 
 \end_inset
@@ -2540,7 +2659,7 @@ The system model considers the OFDM modulation that forms the basis of the
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{y^{k}[n]=\sum_{l=0}^{L-1}h^{k}[n,l]x^{k}[(n-l)_{N}]+w^{k}[n]}
+y^{k}[n]=\sum_{l=0}^{L-1}h^{k}[n,l]x^{k}[(n-l)_{N}]+w^{k}[n]
 \end{equation}
 
 \end_inset
@@ -2552,36 +2671,36 @@ The system model considers the OFDM modulation that forms the basis of the
 
 \size large
 Where 
-\begin_inset Formula $\boldsymbol{n=\{0,\cdots,N-1\},l=\{0,\cdots,L-1\}}$
+\begin_inset Formula $n=\{0,\cdots,N-1\},l=\{0,\cdots,L-1\}$
 \end_inset
 
 .
  The transmitted signal at the k-th block and the n-th sample is represented
  by 
-\begin_inset Formula $\boldsymbol{x^{k}[n]}$
+\begin_inset Formula $x^{k}[n]$
 \end_inset
 
 .
  The term 
-\begin_inset Formula $\boldsymbol{h^{k}[n,l]}$
+\begin_inset Formula $h^{k}[n,l]$
 \end_inset
 
  represents the impulse response of the channel at the k-th block and the
  instance 
-\begin_inset Formula $\boldsymbol{n}$
+\begin_inset Formula $n$
 \end_inset
 
  with 
-\begin_inset Formula $\boldsymbol{l}$
+\begin_inset Formula $l$
 \end_inset
 
  previous samples.
  The circular convolution shown in (11) between impulse response 
-\begin_inset Formula $\boldsymbol{h^{k}[n,l]}$
+\begin_inset Formula $h^{k}[n,l]$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{x^{k}[n]}$
+\begin_inset Formula $x^{k}[n]$
 \end_inset
 
  can be rewritten as:
@@ -2592,7 +2711,7 @@ Where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{y^{k}=H^{k}x^{k}+w^{k}}
+\boldsymbol{Y^{k}}=\boldsymbol{H^{k}X^{k}}+\boldsymbol{W^{k}}
 \end{equation}
 
 \end_inset
@@ -2612,7 +2731,7 @@ where the vector terms are:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{y^{k}=\left[y^{k}[0]y^{k}[1]y^{k}[2]\dots y^{k}[N-1]\right]^{T}}
+\boldsymbol{Y^{k}}=\left[y^{k}[0]y^{k}[1]y^{k}[2]\dots y^{k}[N-1]\right]^{T}
 \end{equation}
 
 \end_inset
@@ -2625,7 +2744,7 @@ where the vector terms are:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{x^{k}=\left[x^{k}[0]x^{k}[1]x^{k}[2]\dots y^{k}[N-1]\right]^{T}}
+\boldsymbol{X^{k}}=\left[x^{k}[0]x^{k}[1]x^{k}[2]\dots y^{k}[N-1]\right]^{T}
 \end{equation}
 
 \end_inset
@@ -2638,7 +2757,7 @@ where the vector terms are:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{w^{k}=\left[w^{k}[0]w^{k}[1]w^{k}[2]\dots w^{k}[N-1]\right]^{T}}
+\boldsymbol{W^{k}}=\left[w^{k}[0]w^{k}[1]w^{k}[2]\dots w^{k}[N-1]\right]^{T}
 \end{equation}
 
 \end_inset
@@ -2655,7 +2774,7 @@ and matrix
 \end_inset
 
  is the channel frequency response with shape 
-\begin_inset Formula $\boldsymbol{NxN}$
+\begin_inset Formula $NxN$
 \end_inset
 
  descibed as follows: 
@@ -2666,7 +2785,7 @@ and matrix
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{[H^{k}]_{n,n'}=h^{k}[n,(n-n')_{N}]}
+[\boldsymbol{H^{k}}]_{n,n'}=h^{k}[n,(n-n')_{N}]
 \end{equation}
 
 \end_inset
@@ -2680,15 +2799,15 @@ and matrix
 \size large
 Assuming a constant k.
  The objective of the receiver is to estimate 
-\begin_inset Formula $\boldsymbol{\hat{x}}$
+\begin_inset Formula $\boldsymbol{\hat{X}}$
 \end_inset
 
  the transmitted signal 
-\begin_inset Formula $\boldsymbol{x}$
+\begin_inset Formula $\boldsymbol{X}$
 \end_inset
 
  from the received signal 
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
 , which can be done by applying an inverse channel matrix to the received
@@ -2702,7 +2821,7 @@ Assuming a constant k.
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{x}=H^{-1}y}
+\boldsymbol{\hat{X}=H^{-1}Y}
 \end{equation}
 
 \end_inset
@@ -2801,7 +2920,7 @@ Ideally, the off-diagonal elements of the channel matrix H are relatively
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}^{k}=[y^{k}[0]\div h[0,0],y^{k}[1]\div h[1,1],\dots y^{k}[n]\div h[n,l]}\label{eq:ZeroForcing}
+\boldsymbol{\hat{\theta}^{k}}=[y^{k}[0]\div h[0,0],y^{k}[1]\div h[1,1],\dots y^{k}[n]\div h[n,l]\label{eq:ZeroForcing}
 \end{equation}
 
 \end_inset
@@ -2846,11 +2965,11 @@ Least squares (LS) equalization is a linear equalization method that aims
  symbols.
  The method calculates the coefficients of a linear filter that minimizes
  the difference between the given parameter 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  and the estimated signal 
-\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\begin_inset Formula $\hat{\theta}$
 \end_inset
 
 , where the estimation is based on the transmitted signal and a model of
@@ -2936,7 +3055,7 @@ Finally the least squares equation is given by :
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}=(H^{H}H)^{-1}H^{H}y}
+\boldsymbol{\hat{\theta}}=\boldsymbol{(H^{H}H)^{-1}H^{H}Y}
 \end{equation}
 
 \end_inset
@@ -2970,7 +3089,7 @@ The main difference between Minimum Mean Squared Error (MMSE) and Least
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{MMSE=min(E[(\hat{\theta}-\theta)^{2}])}
+MMSE=min(E[(\hat{\theta}-\theta)^{2}])
 \end{equation}
 
 \end_inset
@@ -2982,7 +3101,7 @@ The main difference between Minimum Mean Squared Error (MMSE) and Least
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  is the transmitted signal.
@@ -2992,7 +3111,7 @@ The main difference between Minimum Mean Squared Error (MMSE) and Least
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{\hat{\theta}}$
+\begin_inset Formula $\hat{\theta}$
 \end_inset
 
  is the estimated signal.
@@ -3003,7 +3122,7 @@ The main difference between Minimum Mean Squared Error (MMSE) and Least
 
 \size large
 Mathematically, the MMSE estimator is defined as 
-\begin_inset Formula $\boldsymbol{\hat{\theta}_{MMSE}=E[\theta|y]}$
+\begin_inset Formula $\hat{\theta}_{MMSE}=E[\boldsymbol{X}|\boldsymbol{Y}]$
 \end_inset
 
 
@@ -3014,38 +3133,38 @@ Mathematically, the MMSE estimator is defined as
 
 \size large
 Here, 
-\begin_inset Formula $\boldsymbol{\hat{\theta}_{MMSE}}$
+\begin_inset Formula $\hat{\theta}_{MMSE}$
 \end_inset
 
  is the estimate of the transmitted signal 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
- given the received signal
-\begin_inset Formula $\boldsymbol{y}$
+ given the received signal 
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
 .
  The MMSE estimator computes the conditional expectation of 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  given the observed signal 
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
 .
  This means that the MMSE estimator takes into account both the prior informatio
 n about 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  and the likelihood of observing 
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
  given 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
 .
@@ -3091,7 +3210,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}_{LMMSE}=E[\theta]+C_{\theta y}C_{yy}^{-1}(y-E[y])}
+\hat{\theta}_{LMMSE}=E[\theta]+C_{\theta Y}C_{YY}^{-1}(y-E[Y])
 \end{equation}
 
 \end_inset
@@ -3103,7 +3222,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{E[\theta]}$
+\begin_inset Formula $E[\theta]$
 \end_inset
 
  is the prior expectation of the transmitted signal.
@@ -3114,7 +3233,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{C_{\theta y}}$
+\begin_inset Formula $C_{\theta Y}$
 \end_inset
 
  is the cross-covariance matrix between the transmitted signal and the received
@@ -3126,7 +3245,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{C_{yy}}$
+\begin_inset Formula $C_{YY}$
 \end_inset
 
  is the covariance matrix of the received signal.
@@ -3137,7 +3256,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\boldsymbol{E[y]}$
+\begin_inset Formula $E[Y]$
 \end_inset
 
  is the prior expectation of the received signal.
@@ -3152,7 +3271,7 @@ The LMMSE estimator seeks to find a linear estimate of
 \end_inset
 
  given the received signal 
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $Y$
 \end_inset
 
 :
@@ -3164,7 +3283,7 @@ The LMMSE estimator seeks to find a linear estimate of
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}_{LMMSE}=Wy}
+\hat{\theta}_{LMMSE}=\boldsymbol{WY}
 \end{equation}
 
 \end_inset
@@ -3188,7 +3307,7 @@ where
 
 \size large
 Using the LMMSE estimator definition 
-\begin_inset Formula $\boldsymbol{\hat{\theta}_{LMMSE}}$
+\begin_inset Formula $\hat{\theta}_{LMMSE}$
 \end_inset
 
 , we can derive the LMMSE equalizer matrix W:
@@ -3200,7 +3319,7 @@ Using the LMMSE estimator definition
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W=C_{\theta y}C_{yy}^{-1}}
+\boldsymbol{W}=C_{\theta y}C_{yy}^{-1}
 \end{equation}
 
 \end_inset
@@ -3217,7 +3336,7 @@ We know that the covariance matrix of
 \end_inset
 
 , 
-\begin_inset Formula $\boldsymbol{C_{yy}}$
+\begin_inset Formula $C_{yy}$
 \end_inset
 
 , is given by:
@@ -3229,7 +3348,7 @@ We know that the covariance matrix of
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{C_{yy}=HC_{\theta\theta}H^{H}+\sigma^{2}I}
+C_{yy}=\boldsymbol{H}C_{\theta\theta}\boldsymbol{H^{H}}+\sigma^{2}\boldsymbol{I}
 \end{equation}
 
 \end_inset
@@ -3241,12 +3360,12 @@ We know that the covariance matrix of
 \paragraph_spacing onehalf
 
 \size large
-where
-\begin_inset Formula $\boldsymbol{C_{\theta\theta}}$
+where 
+\begin_inset Formula $C_{\theta\theta}$
 \end_inset
 
  is the covariance matrix of 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
 , and 
@@ -3260,7 +3379,7 @@ where
 .
  This equation consider AWGN (Additive White Gaussian Noise) with variance
  
-\begin_inset Formula $\boldsymbol{\sigma^{2}}$
+\begin_inset Formula $\sigma^{2}$
 \end_inset
 
 .
@@ -3276,11 +3395,11 @@ where
 
 \size large
 Now, we need to find the cross-covariance matrix between 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{y}$
+\begin_inset Formula $y$
 \end_inset
 
 
@@ -3292,7 +3411,7 @@ Now, we need to find the cross-covariance matrix between
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{C_{\theta y}=E[(\theta-E[\theta])(y-E[\theta])^{H}]=E[\theta y^{H}]=C_{\theta\theta}H^{H}}
+C_{\theta y}=E[(\theta-E[\theta])(y-E[\theta])^{H}]=E[\theta y^{H}]=C_{\theta\theta}H^{H}
 \end{equation}
 
 \end_inset
@@ -3314,7 +3433,7 @@ Assuming that the transmitted symbols are uncorrelated with equal power,
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{C_{\theta\theta}=E[\theta\theta^{H}]=\rho I}
+C_{\theta\theta}=E[\theta\theta^{H}]=\rho I
 \end{equation}
 
 \end_inset
@@ -3341,7 +3460,7 @@ where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W=H(HH^{H}+\sigma^{2}I)^{-1}}
+\boldsymbol{W}=\boldsymbol{H}(\boldsymbol{HH^{H}}+\sigma^{2}\boldsymbol{I})^{-1}
 \end{equation}
 
 \end_inset
@@ -3355,7 +3474,7 @@ where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{\theta}_{LMMSE}=(H^{H}H+\sigma^{2}I)^{-1}H^{H}}\boldsymbol{\theta}\label{eq:LMMSE}
+\hat{\theta}_{LMMSE}=(\boldsymbol{H^{H}H}+\sigma^{2}\boldsymbol{I})^{-1}\boldsymbol{H^{H}}\boldsymbol{Y}\label{eq:LMMSE}
 \end{equation}
 
 \end_inset
@@ -3464,12 +3583,12 @@ The algorithm selects the constellation point with the smallest squared
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula $\mathbf{Y}$
 \end_inset
 
 : The received signal, which is a complex-valued column vector of length
  
-\begin_inset Formula $\boldsymbol{N}$
+\begin_inset Formula $N$
 \end_inset
 
 .
@@ -3483,7 +3602,7 @@ The algorithm selects the constellation point with the smallest squared
 \end_inset
 
 : The channel matrix of size 
-\begin_inset Formula $\boldsymbol{N\times N}$
+\begin_inset Formula $N\times N$
 \end_inset
 
 , which represents the channel coefficients 
@@ -3503,7 +3622,7 @@ The algorithm selects the constellation point with the smallest squared
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\mathbf{r}$
+\begin_inset Formula $r$
 \end_inset
 
 : A temporary variable used for storing the residual signal during the algorithm.
@@ -3518,7 +3637,7 @@ The algorithm selects the constellation point with the smallest squared
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{k}$
+\begin_inset Formula $k$
 \end_inset
 
 : The loop index representing the current column of the channel matrix being
@@ -3535,7 +3654,7 @@ The algorithm selects the constellation point with the smallest squared
 : The estimated transmitted symbol value for the k-th column of the channel
  matrix, computed as the ratio between the k-th element of the residual
  signal 
-\begin_inset Formula $\mathbf{r}$
+\begin_inset Formula $r$
 \end_inset
 
  and the k-th diagonal element of the channel matrix 
@@ -3694,24 +3813,24 @@ end{algorithm}
 \size large
 The outer loop iterates through the columns of the channel matrix, which
  has a size of 
-\begin_inset Formula $\boldsymbol{N}$
+\begin_inset Formula $N$
 \end_inset
 
 .
  Therefore, the outer loop has a complexity of 
-\begin_inset Formula $\boldsymbol{O(N)}$
+\begin_inset Formula $O(N)$
 \end_inset
 
 .
  Inside the outer loop, there's a calculation of squared distances between
  the estimated symbol and each constellation point.
  The constellation points have a size of 
-\begin_inset Formula $\boldsymbol{|\mathbb{A}|}$
+\begin_inset Formula $|\mathbb{A}|$
 \end_inset
 
 .
  This operation has a complexity of 
-\begin_inset Formula $\boldsymbol{O\left(|\mathbb{A}|\right)}$
+\begin_inset Formula $O\left(|\mathbb{A}|\right)$
 \end_inset
 
 .
@@ -3730,7 +3849,7 @@ Since the squared distance calculation is inside the outer loop, the overall
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{O(N*|\mathbb{A}|)}\label{eq:BigO-Osic}
+O(N*|\mathbb{A}|)\label{eq:BigO-Osic}
 \end{equation}
 
 \end_inset
@@ -3769,7 +3888,7 @@ ing constellation points and depth equal to the number of transmitters.
 \size large
 For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
  is to estimate the transmitted symbols, denoted by 
-\begin_inset Formula $\boldsymbol{\hat{\theta}_{NML}}$
+\begin_inset Formula $\hat{\theta}_{NML}$
 \end_inset
 
 , given the received signal 
@@ -3803,7 +3922,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{QRM}$
+\begin_inset Formula $QRM$
 \end_inset
 
 : 
@@ -3818,7 +3937,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{a_{est}}$
+\begin_inset Formula $a_{est}$
 \end_inset
 
 : The temporary estimation of the transmitted symbol at a specific level,
@@ -3831,11 +3950,11 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{d}$
+\begin_inset Formula $d$
 \end_inset
 
 : The distance between the temporary estimation 
-\begin_inset Formula $\boldsymbol{a_{est}}$
+\begin_inset Formula $a_{est}$
 \end_inset
 
  and the constellation points.
@@ -3846,7 +3965,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{d_{min}}$
+\begin_inset Formula $d_{min}$
 \end_inset
 
 : The minimum total distance found so far, used for pruning.
@@ -3857,7 +3976,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{d_{total}}$
+\begin_inset Formula $d_{total}$
 \end_inset
 
 : The total distance of each candidate, used to find the best candidates.
@@ -3869,7 +3988,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{d_{minf}}$
+\begin_inset Formula $d_{minf}$
 \end_inset
 
 : The minimum total distance found at the end of the tree search, used to
@@ -3881,7 +4000,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{s_{est3}}$
+\begin_inset Formula $s_{est3}$
 \end_inset
 
 : The reordered detected symbols according to the original index.
@@ -3892,7 +4011,7 @@ For the Near Maximum Likelihood (Near-ML) detection algorithm, the goal
 \noindent
 
 \size large
-\begin_inset Formula $\boldsymbol{index[k]}$
+\begin_inset Formula $index[k]$
 \end_inset
 
 : The original index of the detected symbols.
@@ -4009,20 +4128,20 @@ end{algorithm}
 Based on the provided NearML code, the time complexity can be analyzed by
  considering the nested loops and the operations inside them.
  The outer loop iterates 
-\begin_inset Formula $\boldsymbol{QRM}$
+\begin_inset Formula $QRM$
 \end_inset
 
  times, where 
-\begin_inset Formula $\boldsymbol{QRM}$
+\begin_inset Formula $QRM$
 \end_inset
 
  is the number of constellation symbols (denoted as 
-\begin_inset Formula $\boldsymbol{|𝔸|}$
+\begin_inset Formula $|𝔸|$
 \end_inset
 
 ).
  Inside this loop, there is another loop that iterates nt times, where 
-\begin_inset Formula $\boldsymbol{nt}$
+\begin_inset Formula $nt$
 \end_inset
 
  represents the number of columns in the channel matrix 
@@ -4030,16 +4149,16 @@ Based on the provided NearML code, the time complexity can be analyzed by
 \end_inset
 
  which is 
-\begin_inset Formula $\boldsymbol{N}$
+\begin_inset Formula $N$
 \end_inset
 
 .
  Within the inner loop, there are operations that take 
-\begin_inset Formula $\boldsymbol{M}$
+\begin_inset Formula $M$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{QRM}$
+\begin_inset Formula $QRM$
 \end_inset
 
  time.
@@ -4058,7 +4177,7 @@ ed as :
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{O\left(|\mathbb{A}|\times N\times\left(M+|\mathbb{A}|\right)\right)}\boldsymbol{\simeq O\left(|\mathbb{A}|^{2}\times N\times M\right)}\label{eq:BigONearML}
+O\left(|\mathbb{A}|\times N\times\left(M+|\mathbb{A}|\right)\right)\simeq O\left(|\mathbb{A}|^{2}\times N\times M\right)\label{eq:BigONearML}
 \end{equation}
 
 \end_inset
@@ -4207,7 +4326,7 @@ The length of the vector
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}}
+P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}
 \end{equation}
 
 \end_inset
@@ -4221,15 +4340,15 @@ The length of the vector
 
 \size large
 If we have a complex IQ value 
-\begin_inset Formula $\boldsymbol{s_{i}=a_{i}+jb_{i}}$
+\begin_inset Formula $s_{i}=a_{i}+jb_{i}$
 \end_inset
 
 , the modulus or magnitude of 
-\begin_inset Formula $\boldsymbol{s_{i}}$
+\begin_inset Formula $s_{i}$
 \end_inset
 
  can be represented by 
-\begin_inset Formula $\boldsymbol{|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}}$
+\begin_inset Formula $|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}$
 \end_inset
 
 , where a and b are real numbers.
@@ -4264,7 +4383,7 @@ To compute the power spectral density of the noise vector
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}\times10^{-\frac{SNR_{dB}}{10}}}
+N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}\times10^{-\frac{SNR_{dB}}{10}}
 \end{equation}
 
 \end_inset
@@ -4278,7 +4397,7 @@ To compute the power spectral density of the noise vector
 
 \size large
 Where 
-\begin_inset Formula $\boldsymbol{\boldsymbol{\gamma}=10^{\frac{SNR_{dB}}{10}}}$
+\begin_inset Formula $\gamma=10^{\frac{SNR_{dB}}{10}}$
 \end_inset
 
  is the SNR in dB to linear scale
@@ -4303,7 +4422,7 @@ Assuming a complex IQ plane for all digital modulations, the noise variance
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\sigma^{2}=\frac{N_{0}}{2}}
+\sigma^{2}=\frac{N_{0}}{2}
 \end{equation}
 
 \end_inset
@@ -4330,7 +4449,7 @@ Then, the Gaussian random noise vector
 \end_inset
 
  of length 
-\begin_inset Formula $\boldsymbol{N}$
+\begin_inset Formula $N$
 \end_inset
 
  is generated, with its samples drawn from a Gaussian distribution having
@@ -4345,10 +4464,10 @@ Then, the Gaussian random noise vector
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{f(x)=\begin{cases}
+f(x)=\begin{cases}
 \sigma\times\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
 \frac{\sigma}{2}\times\left[\mathcal{N}_{N}(0,1)+j*\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
-\end{cases}}
+\end{cases}
 \end{equation}
 
 \end_inset
@@ -4431,7 +4550,7 @@ the transmission of data is not always error-free.
 \size large
 \begin_inset Formula 
 \begin{equation}
-\mathsf{\boldsymbol{BER=\frac{N_{err}}{N_{tot}}}}
+\mathsf{BER=\frac{N_{err}}{N_{tot}}}
 \end{equation}
 
 \end_inset
@@ -4494,7 +4613,7 @@ Block Error Rate (BLER) is a measure of the reliability of a communication
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{BLER=\frac{BlockErrCount}{TotalBlocks}}
+BLER=\frac{BlockErrCount}{TotalBlocks}
 \end{equation}
 
 \end_inset
@@ -5031,11 +5150,11 @@ As we have seen before, there exist "hardened" variants of activation functions,
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{hardtanh(x)=\begin{cases}
+hardtanh(x)=\begin{cases}
 -1, & \text{if }x<-1\\
 x, & \text{if }-1\le x\le1\\
 1, & \text{if }x>1
-\end{cases}}
+\end{cases}
 \end{equation}
 
 \end_inset
