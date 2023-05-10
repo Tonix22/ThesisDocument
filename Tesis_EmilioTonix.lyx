@@ -3849,7 +3849,7 @@ Since the squared distance calculation is inside the outer loop, the overall
 \size large
 \begin_inset Formula 
 \begin{equation}
-O(N*|\mathbb{A}|)\label{eq:BigO-Osic}
+O(N|\mathbb{A}|)\label{eq:BigO-Osic}
 \end{equation}
 
 \end_inset
@@ -4663,59 +4663,39 @@ A linear layer in a neural network is a type of layer that applies a linear
 matrix
 \series default
  of weights, denoted as 
-\size larger
-
 \begin_inset Formula $\boldsymbol{W_{n}}$
 \end_inset
 
-
-\size large
  ,and a biases 
 \series bold
 vector
 \series default
-, denoted as
-\size larger
- 
+, denoted as 
 \begin_inset Formula $\boldsymbol{b_{n}}$
 \end_inset
 
-
-\size large
 , which are learned during the training process.
  The subscript 
-\size larger
-
 \begin_inset Formula $\boldsymbol{n}$
 \end_inset
 
-
-\size large
  refers to the nth layer.
  The output of a linear layer is calculated by performing a matrix and vector
  product between the input data 
-\size larger
-
 \begin_inset Formula $\boldsymbol{X_{n-1}}$
 \end_inset
 
- 
-\size large
-and the weights 
-\size larger
-
+ and the weights 
 \begin_inset Formula $\boldsymbol{W_{n}}$
 \end_inset
 
-
-\size large
  as well as adding the biases.
  
 \end_layout
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{X_{n}=W_{n}X_{n-1}+b_{n}}\label{eq:41}
@@ -4728,46 +4708,49 @@ and the weights
 
 \begin_layout Itemize
 
-\size larger
+\size large
 \begin_inset Formula $\boldsymbol{W_{n}}$
 \end_inset
 
-
-\size large
 weight matrix at layer n.
 \end_layout
 
 \begin_layout Itemize
 
-\size larger
+\size large
 \begin_inset Formula $\boldsymbol{b_{n}}$
 \end_inset
 
- 
-\size large
-bias at layer n
+ bias at layer n
 \end_layout
 
 \begin_layout Itemize
 
-\size larger
+\size large
 \begin_inset Formula $\boldsymbol{X_{n-1}}$
 \end_inset
 
-
-\size large
 Input or last layer data
 \end_layout
 
 \begin_layout Itemize
 
-\size larger
+\size large
 \begin_inset Formula $\boldsymbol{X_{n}}$
 \end_inset
 
- 
+ Output data
+\end_layout
+
+\begin_layout Standard
+
 \size large
-Output data
+\color blue
+Figure 8 
+\color inherit
+gives the idea that inputs are vectors, and the neural network can produce
+ an output based on a linear relationship that depends on the weights and
+ bias.
 \end_layout
 
 \begin_layout Standard
@@ -4834,8 +4817,6 @@ The goal of the layer is to optimize the weights parameters so that they
  a common method in the field of artificial neural networks for training
  the network by adjusting the weights between neurons in the network.
  
-\size larger
-
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{Err=\hat{X}-X_{n}}
@@ -4853,21 +4834,13 @@ The goal of the layer is to optimize the weights parameters so that they
 \size large
 This method analyzes the error rate in relation to the weights and inputs.
  As we adjust our trainable parameters, {
-\size larger
-
 \begin_inset Formula $\boldsymbol{W_{n}}$
 \end_inset
 
-
-\size large
 , 
-\size larger
-
 \begin_inset Formula $\boldsymbol{b_{n}}$
 \end_inset
 
-
-\size large
 }, the error will change accordingly.
  The goal is to minimize the error, or to find a point where the error gradient
  is zero.
@@ -4883,10 +4856,10 @@ literal "false"
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\nabla W=\frac{\partial E}{X_{n\text{+1}}}\times X_{n-1}^{T}}
+\boldsymbol{\nabla W=\frac{\partial E}{X_{n\text{+1}}}X_{n-1}^{T}}
 \end{equation}
 
 \end_inset
@@ -4896,10 +4869,10 @@ literal "false"
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\nabla X_{n-1}=W_{n}^{T}\times\frac{\partial E}{X_{n\text{+1}}}}
+\boldsymbol{\nabla X_{n-1}=W_{n}^{T}\frac{\partial E}{X_{n\text{+1}}}}
 \end{equation}
 
 \end_inset
@@ -4910,22 +4883,21 @@ literal "false"
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{\boldsymbol{\times}}$
+\begin_inset Formula $\boldsymbol{\nabla W}$
 \end_inset
 
-Matrix multiplication 
+Gradient of weights.The gradient is a multi-variable generalization of the
+ derivative.
 \end_layout
 
 \begin_layout Itemize
 
-\size larger
-\begin_inset Formula $\boldsymbol{\nabla W}$
+\size large
+\begin_inset Formula $\boldsymbol{\nabla X_{n-1}}$
 \end_inset
 
-
-\size large
-Gradient of weights.The gradient is a multi-variable generalization of the
- derivative.
+Gradient of a sample before better known as input.
+ 
 \end_layout
 
 \begin_layout Subsubsection
@@ -4983,7 +4955,7 @@ literal "false"
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{W_{n}}=\boldsymbol{W_{n}}-\gamma\boldsymbol{\nabla W}
@@ -4996,7 +4968,7 @@ literal "false"
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{b_{n}}=\boldsymbol{b_{n}}-\gamma\boldsymbol{\frac{\partial E}{X_{n}}}
@@ -5045,6 +5017,20 @@ Activation functions are used in neural networks to introduce non-linearity
  They also help to prevent the network from becoming stuck in a local minimum
  or plateau during training.
  
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Actfunctions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color black
+shows the most common activation functions.
 \end_layout
 
 \begin_layout Standard
@@ -5063,7 +5049,21 @@ However, the traditional activation functions pose some challenges when
  Hardened activation functions are designed to be computationally less demanding
  while maintaining similar performance to their traditional counterparts.
  Examples of hardened activation functions include the binary step function,
- RELU, Hardtahn, Hardsigmoid.
+ RELU, Hardtahn 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hardtanh(red)-and-Tanh(blue)"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, Hardsigmoid.
  
 \end_layout
 
@@ -5089,6 +5089,13 @@ status open
 \begin_layout Plain Layout
 Activation function.
  (a) Sigmoid, (b) tanh, (c) ReLU.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Actfunctions"
+
+\end_inset
+
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5147,7 +5154,7 @@ As we have seen before, there exist "hardened" variants of activation functions,
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
 hardtanh(x)=\begin{cases}
@@ -5182,7 +5189,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Hardtanh(red) and Tanh(blue)
+Hardtanh(red) and Tanh(blue) 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hardtanh(red)-and-Tanh(blue)"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5275,8 +5289,14 @@ The softmax function is a mathematical technique which transforms a vector
  to convert the output, or scores, of the model into a probability distribution
  that represents the uncertainty of the model's predictions.
  Additionally, the softmax function ensures that the probability of each
- class falls within the range of 0 and 1 and that the sum of all class probabili
-ties is 1, which is a necessary requirement for a probability distribution.
+ class falls within the range of 0 and 1, and that the sum of all class
+ probabilities is 1, which is a necessary requirement for a probability
+ distribution.
+ The following 
+\color blue
+Figure 11
+\color inherit
+ shows how the values are mapped from real values to probabilities.
 \end_layout
 
 \begin_layout Standard
@@ -5343,10 +5363,10 @@ d optimization algorithms.
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{D_{KL}(P||Q)=\sum P(i)log\frac{P(i)}{Q(i)}}
+D_{KL}(P||Q)=\sum P(i)log\frac{P(i)}{Q(i)}
 \end{equation}
 
 \end_inset
@@ -5359,28 +5379,28 @@ d optimization algorithms.
 
 \size large
 In this equation, 
-\begin_inset Formula $\boldsymbol{D_{KL}(P∣∣Q)}$
+\begin_inset Formula $D_{KL}(P∣∣Q)$
 \end_inset
 
  represents the KL divergence between two probability distributions 
-\begin_inset Formula $\boldsymbol{P}$
+\begin_inset Formula $P$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{Q}$
+\begin_inset Formula $Q$
 \end_inset
 
 , where 
-\begin_inset Formula $\boldsymbol{P}$
+\begin_inset Formula $P$
 \end_inset
 
  is the true distribution and 
-\begin_inset Formula $\boldsymbol{Q}$
+\begin_inset Formula $Q$
 \end_inset
 
  is the approximating distribution.
  The double vertical bars (
-\begin_inset Formula $\boldsymbol{||}$
+\begin_inset Formula $||$
 \end_inset
 
 ) in the notation denote "divergence between" the two distributions.
@@ -5390,19 +5410,19 @@ In this equation,
  symmetric.
  In other words, the KL divergence between distributions P and Q, denoted
  as 
-\begin_inset Formula $\boldsymbol{D_{KL}(P∣∣Q)}$
+\begin_inset Formula $D_{KL}(P∣∣Q)$
 \end_inset
 
 , is not equal to the KL divergence between 
-\begin_inset Formula $\boldsymbol{Q}$
+\begin_inset Formula $Q$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{P}$
+\begin_inset Formula $P$
 \end_inset
 
 , denoted as 
-\begin_inset Formula $\boldsymbol{D_{KL}(Q∣∣P)}$
+\begin_inset Formula $D_{KL}(Q∣∣P)$
 \end_inset
 
 .
@@ -5440,16 +5460,14 @@ rity between them.
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{D_{KL}(P^{*}(y|x_{i})||P(y|x_{i};\theta)=\sum P^{*}(y|x_{i})log\frac{P^{*}(y|x_{i})}{P(y|x_{i};\theta)}}
+D_{KL}(P^{*}(y|x_{i})||P(y|x_{i};\theta)=\sum P^{*}(y|x_{i})log\frac{P^{*}(y|x_{i})}{P(y|x_{i};\theta)}
 \end{equation}
 
 \end_inset
 
-
-\size large
 Rewriting the logarithm as two individual sections, we can observe that
  the left part of the equation below does not depend on the 
 \begin_inset Formula $\theta$
@@ -5461,10 +5479,10 @@ Rewriting the logarithm as two individual sections, we can observe that
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\sum\underbrace{P^{*}(y|x_{i})log(P^{*}(y|x_{i}))}_{\text{Independent of }\theta}-P^{*}(y|x_{i})P(y|x_{i};\theta)}
+\sum\underbrace{P^{*}(y|x_{i})log(P^{*}(y|x_{i}))}_{\text{Independent of }\theta}-P^{*}(y|x_{i})P(y|x_{i};\theta)
 \end{equation}
 
 \end_inset
@@ -5483,10 +5501,10 @@ And then we aim to make both distributions as similar as possible using
 \begin_layout Standard
 \paragraph_spacing onehalf
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\underset{\theta}{\text{argmin}}D_{KL}(P^{*}||P)\equiv\underset{\theta}{\text{argmin}}-\sum_{y}P^{*}(y|x_{i})P(y|x_{i};\theta)}
+\text{argmin}D_{KL}(P^{*}||P)\equiv\underset{\theta}{\text{argmin}}-\sum_{y}P^{*}(y|x_{i})P(y|x_{i};\theta)
 \end{equation}
 
 \end_inset
@@ -5746,7 +5764,7 @@ The output of the convolution operation is a feature map, where each element
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Y_{ij}=\sum K_{ab}\circ I_{i+a,j+b}}
+Y_{ij}=\sum K_{ab}\circ I_{i+a,j+b}
 \end{equation}
 
 \end_inset
@@ -5831,11 +5849,11 @@ Let's take a more detailed look at the math, given the following terms.
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{j}$
+\begin_inset Formula $j$
 \end_inset
 
  input channels with
-\begin_inset Formula $\boldsymbol{X_{j}}$
+\begin_inset Formula $X_{j}$
 \end_inset
 
  matrices
@@ -5844,15 +5862,15 @@ Let's take a more detailed look at the math, given the following terms.
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{d}$
+\begin_inset Formula $d$
 \end_inset
 
  ouput channels 
-\begin_inset Formula $\boldsymbol{Y_{d}}$
+\begin_inset Formula $Y_{d}$
 \end_inset
 
 matrices and this ones an output size of 
-\begin_inset Formula $\boldsymbol{X_{j}-K_{ij}}$
+\begin_inset Formula $X_{j}-K_{ij}$
 \end_inset
 
 
@@ -5861,23 +5879,23 @@ matrices and this ones an output size of
 \begin_layout Itemize
 
 \size large
-\begin_inset Formula $\boldsymbol{K_{ij}}$
+\begin_inset Formula $K_{ij}$
 \end_inset
 
  kernels,where 
-\begin_inset Formula $\boldsymbol{i}$
+\begin_inset Formula $i$
 \end_inset
 
  maps to 
-\begin_inset Formula $\boldsymbol{Y_{d}}$
+\begin_inset Formula $Y_{d}$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{j}$
+\begin_inset Formula $j$
 \end_inset
 
  to 
-\begin_inset Formula $\boldsymbol{X_{j}}$
+\begin_inset Formula $X_{j}$
 \end_inset
 
 
@@ -5888,7 +5906,7 @@ matrices and this ones an output size of
 \align block
 
 \size large
-\begin_inset Formula $\mathbf{\bigstar}$
+\begin_inset Formula $\bigstar$
 \end_inset
 
  cross-correlation
@@ -5896,10 +5914,10 @@ matrices and this ones an output size of
 
 \begin_layout Standard
 
-\size larger
+\size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Y_{d}=B_{d}+\sum_{j=1}^{n}X_{j}\bigstar K_{ij}}
+Y_{d}=B_{d}+\sum_{j=1}^{n}X_{j}\bigstar K_{ij}
 \end{equation}
 
 \end_inset
@@ -5968,7 +5986,7 @@ Finally, with the use of abstraction, we can further simplify the problem
 \size larger
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Y=B+\langle K,X\rangle}
+Y=B+\langle K,X\rangle
 \end{equation}
 
 \end_inset
@@ -6051,7 +6069,13 @@ literal "false"
 
 \size large
 The integration of AI technologies in communication networks promises a
- more efficient and reliable future for 6G and beyond.
+ more efficient and reliable future for 6G and beyond, as shown in 
+\color blue
+Figure 17
+\color inherit
+.
+ The figure illustrates an ideal timeline of AI advances in the telecom
+ area.
  The "intelligent PHY layer" paradigm, with its ability to self-learn and
  self-optimize, ensures that the system remains efficient and reliable despite
  various hardware and channel effects.
@@ -6087,24 +6111,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
-
-\size large
-In the same way the non-linear equalizers performr better than the neural
- network from low noise scnearios greater than 30db SNR values, this happens
- because the model trucate to error in the trainning stage, and to achive
- lower BER other preprocesing stages may be need.
- Therefore, to balance the trade-off between signal recognition over noise
- and overfitting, sacrificing performance beyond 30 dB should be one option
- if there are not other preprocesing stages different from the hermitian
- matrix.
- 
-\size default
-
 \begin_inset Graphics
 	filename Imagenes/Papers/RoadMap6G.png
 	lyxscale 50
@@ -6186,6 +6193,12 @@ This documentation describes the proposed neural architecture called Cascaded
  By cascading a deep trainable network behind a zero-forcing preprocessor,
  the CN architecture achieves superior performance in comparison to traditional
  equalization methods.
+ In 
+\color blue
+Figure 18
+\color inherit
+, blocks of equalizers and their proposed preprocessing stages can be appreciate
+d.
 \end_layout
 
 \begin_layout Standard
@@ -6281,11 +6294,11 @@ The Cascade net is defined as follows.
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{z_{i}=w_{i}\left[\begin{array}{c}
+z_{i}=w_{i}\left[\begin{array}{c}
 H^{H}Y\\
 \hat{X_{i}}\\
 H^{H}H\hat{x_{i}}
-\end{array}\right]+b_{i}}
+\end{array}\right]+b_{i}
 \end{equation}
 
 \end_inset
@@ -6328,12 +6341,25 @@ Where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\phi=tanh\left(\frac{x}{|t_{i}|}\right)}
+\phi=tanh\left(\frac{x}{|t_{i}|}\right)
 \end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\size large
+In the context of hardware design, the term 'cascade' refers to the process
+ of concatenating multiple hardware instances one after the other to create
+ a larger system or to perform a more complex function.
+ 
+\color blue
+Figure 19
+\color inherit
+ illustrates how this is done with layers of a neural network.
 \end_layout
 
 \begin_layout Standard
@@ -6411,7 +6437,7 @@ Their loss function or estimator is based on the Euclidean distance, with
 \size large
 \begin_inset Formula 
 \begin{equation}
-\mathbf{loss(X_{\theta}^{CN}(H,Y))=\sum_{i=1}^{L}log(i)||X-\hat{X||^{2}}}
+loss(X_{\theta}^{CN}(\boldsymbol{H,Y}))=\sum_{i=1}^{L}log(i)||X-\hat{X}||
 \end{equation}
 
 \end_inset
@@ -6424,8 +6450,11 @@ Their loss function or estimator is based on the Euclidean distance, with
 
 \size large
 To deal with complex matrix number they make a reformulation in the matrix
- as follows.
- 
+ as shown in 
+\color blue
+Figure 20
+\color inherit
+.
 \end_layout
 
 \begin_layout Standard
@@ -6757,12 +6786,12 @@ On the other hand, the decoder, which is analogous to the receiver in a
 
 \size large
 The goal of the transmitter is to send one of M possible messages,
-\begin_inset Formula $\boldsymbol{s∈M=\left\{ 1,2,...,M\right\} }$
+\begin_inset Formula $s∈M=\left\{ 1,2,...,M\right\} $
 \end_inset
 
 , to the receiver using n discrete uses of the communication channel.
  To achieve this, the transmitter applies a transformation, 
-\begin_inset Formula $\boldsymbol{f:M→Rn}$
+\begin_inset Formula $f:M→Rn$
 \end_inset
 
 , to the message 
@@ -6770,7 +6799,7 @@ The goal of the transmitter is to send one of M possible messages,
 \end_inset
 
 , generating a transmitted signal 
-\begin_inset Formula $\boldsymbol{x=f(s)∈\mathbb{R}^{n}}$
+\begin_inset Formula $x=f(s)∈\mathbb{R}^{n}$
 \end_inset
 
 .
@@ -6779,11 +6808,11 @@ The goal of the transmitter is to send one of M possible messages,
 \end_inset
 
 , such as an energy constraint 
-\begin_inset Formula $\boldsymbol{(||x||_{2}^{2}≤n)}$
+\begin_inset Formula $(||x||_{2}^{2}≤n)$
 \end_inset
 
 , an amplitude constraint (
-\begin_inset Formula $\boldsymbol{|xi|≤1}$
+\begin_inset Formula $|xi|≤1$
 \end_inset
 
  
@@ -6791,7 +6820,7 @@ The goal of the transmitter is to send one of M possible messages,
 \end_inset
 
 ), or an average power constraint (
-\begin_inset Formula $\boldsymbol{E|xi|≤1}$
+\begin_inset Formula $E|xi|≤1$
 \end_inset
 
 
@@ -6806,25 +6835,25 @@ The goal of the transmitter is to send one of M possible messages,
 
 \size large
 The communication rate of this system is 
-\begin_inset Formula $\boldsymbol{R=\frac{k}{n}}$
+\begin_inset Formula $R=\frac{k}{n}$
 \end_inset
 
  [bit/channel use], where 
-\begin_inset Formula $\boldsymbol{k=log_{2}(M).}$
+\begin_inset Formula $k=log_{2}(M).$
 \end_inset
 
 In the notation (n,k), the system is able to send one of 
-\begin_inset Formula $\boldsymbol{M=2^{k}}$
+\begin_inset Formula $M=2^{k}$
 \end_inset
 
  messages (i.e., k bits) through n channel uses.
  The communication channel is characterized by the conditional probability
  density function 
-\begin_inset Formula $\boldsymbol{p(y|x}$
+\begin_inset Formula $p(y|x)$
 \end_inset
 
-), where 
-\begin_inset Formula $\boldsymbol{y∈Rn}$
+, where 
+\begin_inset Formula $y∈Rn$
 \end_inset
 
  represents the received signal.
@@ -6833,7 +6862,7 @@ In the notation (n,k), the system is able to send one of
 \end_inset
 
 , the receiver applies a transformation 
-\begin_inset Formula $\boldsymbol{g:\mathbb{R}^{n}→M}$
+\begin_inset Formula $g:\mathbb{R}^{n}→M$
 \end_inset
 
  to generate the estimate 
@@ -6981,7 +7010,7 @@ name "subsec:Normalize-unitary-circle"
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{f(z)=\frac{z}{max(|z|)}}
+f(z)=\frac{z}{max(|z|)}
 \end{equation}
 
 \end_inset
@@ -7069,7 +7098,7 @@ literal "false"
  A holomorphic function is a complex-valued function of a complex variable
  that is complex differentiable at every point within its domain.
  In other words, a function 
-\begin_inset Formula $\boldsymbol{f(z)}$
+\begin_inset Formula $f(z)$
 \end_inset
 
  is holomorphic at a point 
@@ -7077,7 +7106,7 @@ literal "false"
 \end_inset
 
  if the limit of the difference quotient of 
-\begin_inset Formula $\boldsymbol{f(z)}$
+\begin_inset Formula $f(z)$
 \end_inset
 
  as 
@@ -7150,15 +7179,15 @@ Loss functions
 One approach to dealing with the error is to take the complex magnitude
  of the differences between the estimator and the ground truth.
  Given 
-\begin_inset Formula $\boldsymbol{d\in\mathbb{C}^{N}}$
+\begin_inset Formula $d\in\mathbb{C}^{N}$
 \end_inset
 
 (ground truth) and 
-\begin_inset Formula $\boldsymbol{o\in\mathbb{C}^{N}}$
+\begin_inset Formula $o\in\mathbb{C}^{N}$
 \end_inset
 
 (estimated output), the error 
-\begin_inset Formula $\boldsymbol{e=d-o}$
+\begin_inset Formula $e=d-o$
 \end_inset
 
  we can calculate the complex mean square loss in a non-negative scalar.
@@ -7171,7 +7200,7 @@ One approach to dealing with the error is to take the complex magnitude
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}}\label{eq:MSECOMPLEX}
+L(e)=\sum_{k=0}^{N-1}|e_{k}|^{2}=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}\label{eq:MSECOMPLEX}
 \end{equation}
 
 \end_inset
@@ -7202,7 +7231,7 @@ If we take a polar approach where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{(e_{log}):=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}=\sum_{k=0}^{N-1}(log(o_{k})-log(d_{k}))*\overline{((log(o_{k})-log(d_{k})))}}
+(e_{log}):=\sum_{k=0}^{N-1}e_{k}\overline{e_{k}}=\sum_{k=0}^{N-1}(log(o_{k})-log(d_{k}))*\overline{((log(o_{k})-log(d_{k})))}
 \end{equation}
 
 \end_inset
@@ -7214,7 +7243,7 @@ If we take a polar approach where
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{log\left(\frac{o_{k}}{d_{k}}\right)*\overline{log\left(\frac{o_{k}}{d_{k}}\right)}=log\left(\frac{\hat{r}e^{i\hat{\phi}}}{re^{i\phi}}\right)*log\left(\frac{\hat{r}e^{-i\hat{\phi}}}{re^{-i\phi}}\right)=log\left(\frac{\hat{r}}{r}e^{i(\hat{\phi}-\phi)}\right)*log\left(\frac{\hat{r}}{r}e^{-i(\hat{\phi}+\phi)}\right)}$
+\begin_inset Formula $log\left(\frac{o_{k}}{d_{k}}\right)*\overline{log\left(\frac{o_{k}}{d_{k}}\right)}=log\left(\frac{\hat{r}e^{i\hat{\phi}}}{re^{i\phi}}\right)*log\left(\frac{\hat{r}e^{-i\hat{\phi}}}{re^{-i\phi}}\right)=log\left(\frac{\hat{r}}{r}e^{i(\hat{\phi}-\phi)}\right)*log\left(\frac{\hat{r}}{r}e^{-i(\hat{\phi}+\phi)}\right)$
 \end_inset
 
 
@@ -7224,7 +7253,7 @@ If we take a polar approach where
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+log\left(e^{i(\hat{\phi}-\phi)}\right)\right]*\left[log(\frac{\hat{r}}{r})+log\left(e^{-i(\hat{\phi}-\phi)}\right)\right]=}$
+\begin_inset Formula $\left[log(\frac{\hat{r}}{r})+log\left(e^{i(\hat{\phi}-\phi)}\right)\right]*\left[log(\frac{\hat{r}}{r})+log\left(e^{-i(\hat{\phi}-\phi)}\right)\right]=$
 \end_inset
 
 
@@ -7234,7 +7263,7 @@ If we take a polar approach where
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{\left[log(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)\right]*\left[log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)\right]}=$
+\begin_inset Formula $\left[log(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)\right]*\left[log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)\right]=$
 \end_inset
 
 
@@ -7251,7 +7280,7 @@ Multiply out the terms
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i^{2}(\hat{\phi}-\phi)^{2}}$
+\begin_inset Formula $log^{2}(\frac{\hat{r}}{r})+i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i(\hat{\phi}-\phi)log(\frac{\hat{r}}{r})-i^{2}(\hat{\phi}-\phi)^{2}$
 \end_inset
 
 
@@ -7268,7 +7297,7 @@ Simplify
 \align center
 
 \size large
-\begin_inset Formula $\boldsymbol{log^{2}(\frac{\hat{r}}{r})+(\hat{\phi}-\phi)^{2}}$
+\begin_inset Formula $log^{2}(\frac{\hat{r}}{r})+(\hat{\phi}-\phi)^{2}$
 \end_inset
 
 
@@ -7289,7 +7318,7 @@ We multiply the angle and radius by 0.5 in the loss function to give them
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)}\label{eq:65}
+Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{\phi}-\phi\right]^{2}\right)\label{eq:65}
 \end{equation}
 
 \end_inset
@@ -7455,7 +7484,7 @@ In a traditional convolution, filters are applied across all input channels
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\boldsymbol{DW=M\times D_{G}{}^{2}\times D_{k}{}^{2}}}
+\boldsymbol{DW=M\times D_{G}{}^{2}\times D_{k}{}^{2}}
 \end{equation}
 
 \end_inset
@@ -7531,7 +7560,7 @@ Pointwise convolution refers to a 1x1 convolution operation applied to each
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{PW=N\times DG\times DG\times M}
+PW=N\times DG\times DG\times M
 \end{equation}
 
 \end_inset
@@ -7591,7 +7620,7 @@ Hence, the total multiplication count is the sum of multiplication counts
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\mathbf{Total=DW+PW=M\times D_{G}{}^{2}\times D_{k}{}^{2}+N\times DG\times DG\times M}}
+Total=DW+PW=M\times D_{G}{}^{2}\times D_{k}{}^{2}+N\times DG\times DG\times M
 \end{equation}
 
 \end_inset
@@ -7605,7 +7634,7 @@ Hence, the total multiplication count is the sum of multiplication counts
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\boldsymbol{Total=M\times D_{G}^{2}(D_{K}^{2}+N)}}
+Total=M\times D_{G}^{2}(D_{K}^{2}+N)
 \end{equation}
 
 \end_inset
@@ -7630,7 +7659,7 @@ We can compare the computational efficiency of standard convolution with
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\boldsymbol{\frac{DepthWise}{Standard}=\frac{M\times D_{G}^{2}(D_{K}^{2}+N)}{N\times D_{G}^{2}\times D_{k}^{2}\times M}=\frac{1}{N}+\frac{1}{D_{k}^{2}}}}
+\frac{DepthWise}{Standard}=\frac{M\times D_{G}^{2}(D_{K}^{2}+N)}{N\times D_{G}^{2}\times D_{k}^{2}\times M}=\frac{1}{N}+\frac{1}{D_{k}^{2}}
 \end{equation}
 
 \end_inset
