@@ -6537,6 +6537,13 @@ literal "false"
 
  equals to 0.16.
  
+\color blue
+Figure 21
+\color inherit
+ shows a graph with different Bit Error Rate (BER) values plotted against
+ different Signal-to-Noise Ratio (SNR) values over different equalizing
+ strategies.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -6654,7 +6661,11 @@ This paper provides a detailed overview of neural networks and their application
  described in the first section.
  It also introduces autoencoders for end-to-end communication systems and
  proposes the idea that an autoencoder can be used to characterize a complete
- channel.
+ channel as shown in 
+\color blue
+Figure 22
+\color inherit
+.
  What's remarkable about this approach is that it can be extended to channel
  models and loss functions for which the optimal solutions are unknown,
  making it highly versatile.
@@ -6667,10 +6678,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -6874,20 +6881,39 @@ In the notation (n,k), the system is able to send one of
 \end_inset
 
 .
- As finall loss function it is used cross entropy loss, which is mention
- in chapter one.
+ As final loss function it is used cross entropy loss, which is mention
+ in 
+\color blue
+section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Cross-Entropy-Loss"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
  
 \end_layout
 
 \begin_layout Standard
+
+\size large
+How different autoencoders work with respect to the block error rate is
+ shown in 
+\color blue
+Figure 23
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -7021,9 +7047,11 @@ f(z)=\frac{z}{max(|z|)}
 \begin_layout Standard
 
 \size large
-The image below demonstrates how a complex network can handle polar segmentation
-, and how weights and biases can be used to define a vector in the complex
- plane
+\color blue
+Figure 24 
+\color inherit
+demonstrates how a complex network can handle polar segmentation, and how
+ weights and biases can be used to define a vector in the complex plane
 \end_layout
 
 \begin_layout Standard
@@ -7094,7 +7122,12 @@ literal "false"
  To prevent an explosion of values, it is necessary to appropriately scale
  the inputs, which mention in the normalization in the section above.
  According to some researchers, imposing the strict constraint of requiring
- the activation function to be holomorphic may not be necessary.
+ the activation function to be holomorphic may not be necessary and outpus
+ similar results of real functions shown in
+\color blue
+ Figure 25.
+
+\color inherit
  A holomorphic function is a complex-valued function of a complex variable
  that is complex differentiable at every point within its domain.
  In other words, a function 
@@ -7484,7 +7517,7 @@ In a traditional convolution, filters are applied across all input channels
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{DW=M\times D_{G}{}^{2}\times D_{k}{}^{2}}
+DW=M\times D_{G}{}^{2}\times D_{k}{}^{2}
 \end{equation}
 
 \end_inset
@@ -7897,18 +7930,22 @@ literal "false"
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
+
+\size large
 These functions are integrated into the final stage of MobileNet to serve
  as more efficient functions.
+ 
+\color blue
+Figure 30
+\color inherit
+ shows the most efficiente stages of mobileNet V3.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -8096,8 +8133,12 @@ literal "false"
  to explain these advancements and show readers how to merge the latest
  advances in signal equalization and deep learning to create new state-of-the-ar
 t models.
- The figure below shows an evolution of sequential networks to illustrate
- how outdated RNNs are.
+ 
+\color blue
+Figure 31
+\color inherit
+ shows an evolution of sequential networks to illustrate how outdated RNNs
+ are.
 \end_layout
 
 \begin_layout Standard
@@ -8106,10 +8147,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -8270,6 +8307,12 @@ Normally, each word is assigned a unique index, and this index corresponds
 \end_inset
 
 .
+
+\color blue
+ Figure 32
+\color inherit
+ shows how words are encoded into a value and passed through an embedding
+ layer to finally be mapped into a vector.
 \end_layout
 
 \begin_layout Standard
@@ -8453,9 +8496,14 @@ One of the key components of the Transformer model is multi-head attention.
  The attention mechanism then operates on these vectors to compute weighted
  combinations that represent different aspects of the input sequence.The
  multi-head attention mechanism consists of three linear transformations:
- Query, Key, and Value.
+ Query, Key, and Value as shown in 
+\color blue
+Figure 33
+\color inherit
+.
  These transformations are learned parameters that are used to compute the
  attention scores and weights for each head.
+ 
 \end_layout
 
 \begin_layout Standard
