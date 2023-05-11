@@ -11509,7 +11509,7 @@ By using this approach, we can concentrate solely on the phasors (angles)
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\hat{\theta}\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-x_{real})^{2}\right]+E\left[(sin(\hat{\theta})-x_{imag})^{2}\right]\right)\label{eq:62}
+MSE\left(\hat{\theta}\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-X_{real})^{2}\right]+E\left[(sin(\hat{\theta})-X_{imag})^{2}\right]\right)\label{eq:62}
 \end{equation}
 
 \end_inset
@@ -11529,7 +11529,7 @@ However this expresion can be rewriten and it can be expand each term as
 \align center
 
 \size large
-\begin_inset Formula $E\left[\cos^{2}(\hat{\theta})\right]-2x_{\text{real}}E\left[\cos(\hat{\theta})\right]+x_{\text{real}}^{2}+E\left[\sin^{2}(\hat{\theta})\right]-2x_{\text{imag}}E\left[\sin(\hat{\theta})\right]+x_{\text{imag}}^{2}$
+\begin_inset Formula $E\left[\cos^{2}(\hat{\theta})\right]-2X_{\text{real}}E\left[\cos(\hat{\theta})\right]+X_{\text{real}}^{2}+E\left[\sin^{2}(\hat{\theta})\right]-2X_{\text{imag}}E\left[\sin(\hat{\theta})\right]+X_{\text{imag}}^{2}$
 \end_inset
 
 
@@ -11563,7 +11563,7 @@ and
 \align center
 
 \size large
-\begin_inset Formula $-2x_{\text{real}}E\left[\cos(\hat{\theta})\right]-2x_{\text{imag}}E\left[\sin(\hat{\theta})\right]=-2(x_{\text{real}}\cos(\hat{\theta})+x_{\text{imag}}\sin(\hat{\theta}))$
+\begin_inset Formula $-2X_{\text{real}}E\left[\cos(\hat{\theta})\right]-2X_{\text{imag}}E\left[\sin(\hat{\theta})\right]=-2(X_{\text{real}}\cos(\hat{\theta})+X_{\text{imag}}\sin(\hat{\theta}))$
 \end_inset
 
 
@@ -11580,7 +11580,7 @@ Substituting these simplifications back into the previous equation gives:
 \align center
 
 \size large
-\begin_inset Formula $\frac{1}{2}\left(1-2(x_{\text{real}}\cos(\hat{\theta})+x_{\text{imag}}\sin(\hat{\theta}))+x_{\text{real}}^{2}+x_{\text{imag}}^{2}\right)$
+\begin_inset Formula $\frac{1}{2}\left(1-2(X_{\text{real}}\cos(\hat{\theta})+X_{\text{imag}}\sin(\hat{\theta}))+X_{\text{real}}^{2}+X_{\text{imag}}^{2}\right)$
 \end_inset
 
 
@@ -11599,7 +11599,7 @@ which can be further simplified to:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\frac{1}{2}\left((\cos(\hat{\theta})-x_{\text{real}})^{2}+(\sin(\hat{\theta})-x_{\text{imag}})^{2}\right)\label{eq63}
+\frac{1}{2}\left((\cos(\hat{\theta})-X_{\text{real}})^{2}+(\sin(\hat{\theta})-X_{\text{imag}})^{2}\right)\label{eq63}
 \end{equation}
 
 \end_inset
@@ -11636,7 +11636,7 @@ with a fixed radius of 1
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\hat{\theta}\right)=|O(\hat{\theta})-x|^{2}
+MSE\left(\hat{\theta}\right)=|O(\hat{\theta})-X|^{2}
 \end{equation}
 
 \end_inset
@@ -11742,16 +11742,16 @@ noprefix "false"
 \color inherit
 , preprocessing helped to achieve a successful outcome.
  In this network, our first preprocessing stage is to multiply 
-\begin_inset Formula $Y$
+\begin_inset Formula $\boldsymbol{Y}$
 \end_inset
 
  by the Hermitian transpose of the channel, 
-\begin_inset Formula $H^{H}Y$
+\begin_inset Formula $\boldsymbol{H^{H}Y}$
 \end_inset
 
 .
  This results in 
-\begin_inset Formula $H^{H}Y$
+\begin_inset Formula $\boldsymbol{H^{H}Y}$
 \end_inset
 
  being the input to the network.
@@ -14130,8 +14130,12 @@ lstinputlisting[language=python,firstline=64, lastline=76]{Codigo/GridCode.py}
 
 \size large
 The gridding step ensures that all possible values in the complex plane
- are now bounded by the alphabet size |A|, which can be beneficial for neural
- networks even if it doesn't compromise the space between QAM points spacing.
+ are now bounded by the alphabet size 
+\begin_inset Formula $|\mathbb{A}|$
+\end_inset
+
+, which can be beneficial for neural networks even if it doesn't compromise
+ the space between QAM points spacing.
  In the picture bellow we show some points that was enconded and decoded,
  and we appreciate how they are centered after decoding.
  
@@ -14635,10 +14639,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Codigo/UML/GridNet.png
@@ -14830,7 +14830,7 @@ Dropout
 \size large
 Other parameters, such as CONJ_ACTIVE, refer to the same preprocessing step
  of taking the conjugate of the channel 
-\begin_inset Formula $H^{H}Y$
+\begin_inset Formula $\boldsymbol{H^{H}Y}$
 \end_inset
 
 .
@@ -18851,7 +18851,7 @@ Complex is slightly better than NML and GridNetSquare for SNR values lower
 \noindent
 
 \size large
-GridNet Polar has the lower BER values from 27dB to 45dB
+GridNet Polar has the lower BER values from 27dB to 45dB.
 \end_layout
 
 \begin_layout Standard
@@ -18896,14 +18896,14 @@ status open
 \noindent
 
 \size large
-GridNet Square behaves similar to NML
+GridNet Square behaves similar to NML.
 \end_layout
 
 \begin_layout Itemize
 
 \size large
 MobileNet, PolarNet and ComplexNet converge to the NML model for the lowest
- SNR values, from 5dB to 15dB
+ SNR values, from 5dB to 15dB.
 \end_layout
 
 \begin_layout Standard
