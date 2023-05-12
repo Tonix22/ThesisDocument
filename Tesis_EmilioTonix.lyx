@@ -1049,7 +1049,7 @@ Binary sequence
 QAM mapping
 \series default
 : Bits are grouped into blocks called symbols usally named as alphabet 
-\begin_inset Formula $\boldsymbol{\mathbb{A}}$
+\begin_inset Formula $\mathbb{A}$
 \end_inset
 
 .
@@ -2257,6 +2257,115 @@ ding several key papers relevant to the project and part of the cutting-edge
 \end_layout
 
 \begin_layout Subsection
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The Roadmap to 6G – AI Empowered Wireless Networks 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "The_Roadmap_to_6G"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The integration of AI technologies in communication networks promises a
+ more efficient and reliable future for 6G and beyond, as shown in 
+\color blue
+Figure 17
+\color inherit
+.
+ The figure illustrates an ideal timeline of AI advances in the telecom
+ area.
+ The "intelligent PHY layer" paradigm, with its ability to self-learn and
+ self-optimize, ensures that the system remains efficient and reliable despite
+ various hardware and channel effects.
+ Sometimes, the hardware referred to includes low-cost devices that may
+ not be well fine-tuned but are commonly used.
+ This AI-driven approach aims to adapt and optimize communication systems
+ even when operating with less-than-ideal hardware components.
+ This model leverages AI technologies to enhance communication efficiency
+ and performance, and can autonomously learn and enhance performance through
+ the integration of cutting-edge sensing and data-gathering tools.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Hardware heterogeneity necessitates system redesign for different hardware
+ settings, which can be overcome using transfer learning.
+ This approach adjusts the neural network weights to work with custom hardware
+ architecture, regardless of the training on floating point or fixed point
+ backpropagation.
+ Therefore, network architecture is more crucial than numeric resolution
+ in contrast to traditional methods.
+ In the image bellow, a roadmap is presented that depicts the expected evolution
+ of deep learning in the coming years.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/RoadMap6G.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Roadmap showing the evolution of deep learning models in telecom and justifying
+ our research 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "The_Roadmap_to_6G"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+It should be noted that much of the referenced work focuses on virtual physical
+ resources and layers ranging from the MAC layer to higher ones.
+ Despite this, it is essential to progress and supplement the ideas in the
+ physical layer to implement an equalization stage effectively.
+ By doing so, a more comprehensive and cohesive approach to communication
+ system optimization can be achieved.
+\end_layout
+
+\begin_layout Subsection
 Estimators
 \end_layout
 
@@ -2269,7 +2378,7 @@ An estimator is a statistical function that maps an observation
 \end_inset
 
  to an estimate of a parameter., normally known as 
-\begin_inset Formula $\hat{\theta}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
 .
@@ -2342,7 +2451,7 @@ Posterior estimator
 \size large
 \begin_inset Formula 
 \begin{equation}
-P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
+P(\boldsymbol{\theta}|\boldsymbol{X})=\frac{P(\boldsymbol{X}|\boldsymbol{\theta})*P(\boldsymbol{\theta})}{P(\boldsymbol{X})}
 \end{equation}
 
 \end_inset
@@ -2354,15 +2463,15 @@ P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $P(𝜃|X)$
+\begin_inset Formula $P(\boldsymbol{\theta}|\boldsymbol{X})$
 \end_inset
 
  is the posterior distribution of the parameter 
-\begin_inset Formula $𝜃$
+\begin_inset Formula $\boldsymbol{𝜃}$
 \end_inset
 
  given the data 
-\begin_inset Formula $X$
+\begin_inset Formula $\boldsymbol{X}$
 \end_inset
 
 .
@@ -2372,15 +2481,15 @@ P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $P(X|𝜃)$
+\begin_inset Formula $P(\boldsymbol{X}|\boldsymbol{𝜃})$
 \end_inset
 
  is the likelihood of observing the data 
-\begin_inset Formula $X$
+\begin_inset Formula $\boldsymbol{X}$
 \end_inset
 
  given the parameter 
-\begin_inset Formula $𝜃$
+\begin_inset Formula $\boldsymbol{𝜃}$
 \end_inset
 
 .
@@ -2390,15 +2499,15 @@ P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $P(𝜃)$
+\begin_inset Formula $P(\boldsymbol{𝜃})$
 \end_inset
 
  is the prior distribution of the parameter 
-\begin_inset Formula $𝜃$
+\begin_inset Formula $\boldsymbol{𝜃}$
 \end_inset
 
 , representing our beliefs about 
-\begin_inset Formula $𝜃$
+\begin_inset Formula $\boldsymbol{𝜃}$
 \end_inset
 
  before observing the data.
@@ -2409,7 +2518,7 @@ P(\theta|X)=\frac{P(X|\theta)*P(\theta)}{P(x)}
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $P(X)$
+\begin_inset Formula $P(\boldsymbol{X})$
 \end_inset
 
  is the marginal likelihood of the data, which can be thought of as a normalizat
@@ -2441,7 +2550,7 @@ Biased estimator:
 \size large
 \begin_inset Formula 
 \begin{equation}
-Bias\left(\hat{\theta}\right)=E\left(\hat{\theta}\right)-𝜃
+Bias\left(\boldsymbol{\hat{\theta}}\right)=E\left(\boldsymbol{\hat{\theta}}\right)-\boldsymbol{𝜃}
 \end{equation}
 
 \end_inset
@@ -2472,7 +2581,7 @@ Unbiased estimator:
 \size large
 \begin_inset Formula 
 \begin{equation}
-E\left(\hat{\theta}\right)=\theta
+E\left(\boldsymbol{\hat{\theta}}\right)=\boldsymbol{\theta}
 \end{equation}
 
 \end_inset
@@ -2513,7 +2622,7 @@ Mean squared error (MSE) is a widely used performance metric in estimation
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]
+MSE(\boldsymbol{\hat{\theta}})=E[(\boldsymbol{\hat{\theta}}-\boldsymbol{\theta})^{2}]
 \end{equation}
 
 \end_inset
@@ -2526,7 +2635,7 @@ MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]
 \align block
 
 \size large
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  is the true parameter values with the original values
@@ -2537,7 +2646,7 @@ MSE(\hat{\theta})=E[(\hat{\theta}-\theta)^{2}]
 \align block
 
 \size large
-\begin_inset Formula $\hat{\theta}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
  is the estimate parameter values of the received signal.
@@ -2566,7 +2675,7 @@ literal "false"
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE(\hat{\theta})=E\left\{ \left[\left(\hat{\theta}-E\left(\hat{\theta}\right)\right)+\left(E\left(\hat{\theta}\right)-\theta\right)\right]^{2}\right\} =var(\hat{\theta})+\left(E\left(\hat{\theta}\right)-\theta\right)^{2}
+MSE(\boldsymbol{\hat{\theta}})=E\left\{ \left[\left(\boldsymbol{\hat{\theta}}-E\left(\boldsymbol{\hat{\theta}}\right)\right)+\left(E\left(\boldsymbol{\hat{\theta}}\right)-\boldsymbol{\theta}\right)\right]^{2}\right\} =var(\boldsymbol{\hat{\theta}})+\left(E\left(\boldsymbol{\hat{\theta}}\right)-\boldsymbol{\theta}\right)^{2}
 \end{equation}
 
 \end_inset
@@ -2579,7 +2688,7 @@ MSE(\hat{\theta})=E\left\{ \left[\left(\hat{\theta}-E\left(\hat{\theta}\right)\r
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE(\hat{\theta})=var(\hat{\theta})+Bias^{2}(\theta)
+MSE(\boldsymbol{\hat{\theta}})=var(\boldsymbol{\hat{\theta}})+Bias^{2}(\boldsymbol{\theta})
 \end{equation}
 
 \end_inset
@@ -2985,7 +3094,7 @@ Least squares (LS) equalization is a linear equalization method that aims
 \end_inset
 
  and the estimated signal 
-\begin_inset Formula $\hat{\theta}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
 , where the estimation is based on the transmitted signal and a model of
@@ -3105,7 +3214,7 @@ The main difference between Minimum Mean Squared Error (MMSE) and Least
 \size large
 \begin_inset Formula 
 \begin{equation}
-MMSE=min(E[(\hat{\theta}-\theta)^{2}])
+MMSE=min(E[(\boldsymbol{\hat{\theta}}-\boldsymbol{\theta})^{2}])
 \end{equation}
 
 \end_inset
@@ -3117,7 +3226,7 @@ MMSE=min(E[(\hat{\theta}-\theta)^{2}])
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  is the transmitted signal.
@@ -3127,7 +3236,7 @@ MMSE=min(E[(\hat{\theta}-\theta)^{2}])
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $\hat{\theta}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}$
 \end_inset
 
  is the estimated signal.
@@ -3138,7 +3247,7 @@ MMSE=min(E[(\hat{\theta}-\theta)^{2}])
 
 \size large
 Mathematically, the MMSE estimator is defined as 
-\begin_inset Formula $\hat{\theta}_{MMSE}=E[\boldsymbol{X}|\boldsymbol{Y}]$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}_{MMSE}=E[\boldsymbol{X}|\boldsymbol{Y}]$
 \end_inset
 
 
@@ -3149,11 +3258,11 @@ Mathematically, the MMSE estimator is defined as
 
 \size large
 Here, 
-\begin_inset Formula $\hat{\theta}_{MMSE}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}_{MMSE}$
 \end_inset
 
  is the estimate of the transmitted signal 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  given the received signal 
@@ -3162,7 +3271,7 @@ Here,
 
 .
  The MMSE estimator computes the conditional expectation of 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  given the observed signal 
@@ -3172,7 +3281,7 @@ Here,
 .
  This means that the MMSE estimator takes into account both the prior informatio
 n about 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  and the likelihood of observing 
@@ -3180,7 +3289,7 @@ n about
 \end_inset
 
  given 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
 .
@@ -3226,7 +3335,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \size large
 \begin_inset Formula 
 \begin{equation}
-\hat{\theta}_{LMMSE}=E[\theta]+C_{\theta Y}C_{YY}^{-1}(\boldsymbol{Y}-E[\boldsymbol{Y}])
+\boldsymbol{\hat{\theta}}_{LMMSE}=E[\boldsymbol{\theta}]+\boldsymbol{C}_{\theta Y}\boldsymbol{C}_{YY}^{-1}(\boldsymbol{Y}-E[\boldsymbol{Y}])
 \end{equation}
 
 \end_inset
@@ -3249,7 +3358,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $C_{\theta Y}$
+\begin_inset Formula $\boldsymbol{C}_{\theta Y}$
 \end_inset
 
  is the cross-covariance matrix between the transmitted signal and the received
@@ -3261,7 +3370,7 @@ The Linear Minimum Mean Squared Error (LMMSE) estimator is a linear version
 \paragraph_spacing onehalf
 
 \size large
-\begin_inset Formula $C_{YY}$
+\begin_inset Formula $\boldsymbol{C}_{YY}$
 \end_inset
 
  is the covariance matrix of the received signal.
@@ -3299,7 +3408,7 @@ The LMMSE estimator seeks to find a linear estimate of
 \size large
 \begin_inset Formula 
 \begin{equation}
-\hat{\theta}_{LMMSE}=\boldsymbol{WY}
+\boldsymbol{\hat{\theta}}_{LMMSE}=\boldsymbol{WY}
 \end{equation}
 
 \end_inset
@@ -3323,7 +3432,7 @@ where
 
 \size large
 Using the LMMSE estimator definition 
-\begin_inset Formula $\hat{\theta}_{LMMSE}$
+\begin_inset Formula $\boldsymbol{\hat{\theta}}_{LMMSE}$
 \end_inset
 
 , we can derive the LMMSE equalizer matrix W:
@@ -3335,7 +3444,7 @@ Using the LMMSE estimator definition
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{W}=C_{\theta Y}C_{YY}^{-1}
+\boldsymbol{W}=\boldsymbol{C}_{\theta Y}\boldsymbol{C}_{YY}^{-1}
 \end{equation}
 
 \end_inset
@@ -3352,7 +3461,7 @@ We know that the covariance matrix of
 \end_inset
 
 , 
-\begin_inset Formula $C_{YY}$
+\begin_inset Formula $\boldsymbol{C}_{YY}$
 \end_inset
 
 , is given by:
@@ -3364,7 +3473,7 @@ We know that the covariance matrix of
 \size large
 \begin_inset Formula 
 \begin{equation}
-C_{YY}=\boldsymbol{H}C_{\theta\theta}\boldsymbol{H^{H}}+\sigma^{2}\boldsymbol{I}
+\boldsymbol{C}_{YY}=\boldsymbol{H}\boldsymbol{C}_{\theta\theta}\boldsymbol{H^{H}}+\sigma^{2}\boldsymbol{I}
 \end{equation}
 
 \end_inset
@@ -3377,11 +3486,11 @@ C_{YY}=\boldsymbol{H}C_{\theta\theta}\boldsymbol{H^{H}}+\sigma^{2}\boldsymbol{I}
 
 \size large
 where 
-\begin_inset Formula $C_{\theta\theta}$
+\begin_inset Formula $\boldsymbol{C}_{\theta\theta}$
 \end_inset
 
  is the covariance matrix of 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
 , and 
@@ -3411,7 +3520,7 @@ where
 
 \size large
 Now, we need to find the cross-covariance matrix between 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  and 
@@ -3427,7 +3536,7 @@ Now, we need to find the cross-covariance matrix between
 \size large
 \begin_inset Formula 
 \begin{equation}
-C_{\theta Y}=E[(\theta-E[\theta])(\boldsymbol{Y}-E[\theta])^{H}]=E[\theta\boldsymbol{Y}^{H}]=C_{\theta\theta}H^{H}
+\boldsymbol{C}_{\theta Y}=E[(\boldsymbol{\theta}-E[\boldsymbol{\theta}])(\boldsymbol{Y}-E[\boldsymbol{\theta}])^{H}]=E[\boldsymbol{\theta}\boldsymbol{Y}^{H}]=\boldsymbol{C}_{\theta\theta}H^{H}
 \end{equation}
 
 \end_inset
@@ -3449,7 +3558,7 @@ Assuming that the transmitted symbols are uncorrelated with equal power,
 \size large
 \begin_inset Formula 
 \begin{equation}
-C_{\theta\theta}=E[\theta\theta^{H}]=\rho\boldsymbol{I}
+\boldsymbol{C}_{\theta\theta}=E[\boldsymbol{\theta}\boldsymbol{\theta}^{H}]=\rho\boldsymbol{I}
 \end{equation}
 
 \end_inset
@@ -3490,7 +3599,7 @@ where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\hat{\theta}_{LMMSE}=(\boldsymbol{H^{H}H}+\sigma^{2}\boldsymbol{I})^{-1}\boldsymbol{H^{H}}\boldsymbol{Y}\label{eq:LMMSE}
+\boldsymbol{\hat{\theta}}_{LMMSE}=(\boldsymbol{H^{H}H}+\sigma^{2}\boldsymbol{I})^{-1}\boldsymbol{H^{H}}\boldsymbol{Y}\label{eq:LMMSE}
 \end{equation}
 
 \end_inset
@@ -4194,442 +4303,6 @@ ed as :
 \begin_inset Formula 
 \begin{equation}
 O\left(|\mathbb{A}|N\left(M+|\mathbb{A}|\right)\right)\simeq O\left(|\mathbb{A}|^{2}NM\right)\label{eq:BigONearML}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Signal quality metrics
-\end_layout
-
-\begin_layout Subsubsection
-SNR
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-SNR 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:SNR"
-
-\end_inset
-
-stands for Signal-to-Noise Ratio which contrasts the strength of the signal
- with the strength of the noise.
- The most common way to measure it is in decibels (dB).
- In general, higher numbers indicate a better specification because there
- is a greater ratio of useful information (the signal) to unwanted data
- (the noise).
- Given this source 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PythonModulation"
-literal "false"
-
-\end_inset
-
-, it can be explained how the noise is calculated for noise simulation with
- the requirement of a certain SNR in dB.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Firstly, a vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- that represents the signal transmitted over a communication channel is
- considered.
- The objective is to derive a vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{r}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- that represents the signal received at the receiver after passing through
- the Additive White Gaussian Noise (AWGN), this noise type is described
- in 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "papoulis2002probability"
-literal "false"
-
-\end_inset
-
-.
- The level of noise introduced by the AWGN channel is determined by the
- provided Signal-to-Noise Ratio (SNR), and it is denoted as 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{\gamma}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-\SpecialChar endofsentence
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The length of the vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- is denoted by 
-\begin_inset Formula $\boldsymbol{N}$
-\end_inset
-
-.
- The signal power of the vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- can be expressed as follows:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-If we have a complex IQ value 
-\begin_inset Formula $s_{i}=a_{i}+jb_{i}$
-\end_inset
-
-, the modulus or magnitude of 
-\begin_inset Formula $s_{i}$
-\end_inset
-
- can be represented by 
-\begin_inset Formula $|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}$
-\end_inset
-
-, where a and b are real numbers.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-To compute the power spectral density of the noise vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{n}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
-, we use the following equation:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}10^{-\frac{SNR_{dB}}{10}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Where 
-\begin_inset Formula $\gamma=10^{\frac{SNR_{dB}}{10}}$
-\end_inset
-
- is the SNR in dB to linear scale
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Assuming a complex IQ plane for all digital modulations, the noise variance
- (noise power) required for generating Gaussian random noise can be expressed
- as follows:
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\sigma^{2}=\frac{N_{0}}{2}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Then, the Gaussian random noise vector 
-\begin_inset Quotes eld
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{n}$
-\end_inset
-
-
-\begin_inset Quotes erd
-\end_inset
-
- of length 
-\begin_inset Formula $N$
-\end_inset
-
- is generated, with its samples drawn from a Gaussian distribution having
- a mean of zero and a standard deviation as calculated using the last equation.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-f(x)=\begin{cases}
-\sigma\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
-\frac{\sigma}{2}\left[\mathcal{N}_{N}(0,1)+j\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
-\end{cases}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Here, 
-\begin_inset Formula $\boldsymbol{\mathcal{N}_{N}(0,1)}$
-\end_inset
-
- represents the white Gaussian noise vector with a mean of 0 and a standard
- deviation of 1
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Lastly, the generated noise vector is added to the original signal 
-\begin_inset Formula $\boldsymbol{s}$
-\end_inset
-
-.
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\boldsymbol{r=s+n}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Subsubsection
-BER
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In digital communication systems, 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:BER"
-
-\end_inset
-
-the transmission of data is not always error-free.
- Bit errors may occur due to various factors such as noise, interference,
- distortion, and fading.
- Bit Error Rate (BER) is a common metric used to quantify the quality of
- a digital communication system by measuring the probability of bit errors.
- BER is defined as the ratio of the number of erroneous bits to the total
- number of transmitted bits.
- It is usually expressed in terms of power, as the probability of error
- is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
- The BER can be empirically represented as follows:
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\mathsf{BER=\frac{N_{err}}{N_{tot}}}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-where 
-\begin_inset Formula $N_{err}$
-\end_inset
-
- is the number of erroneous bits and 
-\begin_inset Formula $N_{tot}$
-\end_inset
-
- is the total number of transmitted bits.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-A high BER indicates poor system performance, which can lead to loss of
- data, degraded audio or video quality, or even complete system failure.
- Therefore, the BER is used as a benchmark to ensure that the digital communicat
-ion system meets the required performance specifications.
-\end_layout
-
-\begin_layout Subsubsection
-BLER 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:BLER"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Block Error Rate (BLER) is a measure of the reliability of a communication
- system or a data transmission system by blocks.
- BLER is defined as the ratio of the number of blocks of data received with
- errors to the total number of blocks of data transmitted.
- It is commonly used in wireless communication systems, where the transmission
- of data can be affected by various factors such as fading, interference,
- and noise.
- In such systems, BLER is often used to evaluate the performance of the
- system and to determine the optimal operating parameters such as power,
- coding, and modulation schemes.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-BLER=\frac{BlockErrCount}{TotalBlocks}
 \end{equation}
 
 \end_inset
@@ -6069,115 +5742,6 @@ noprefix "false"
 \noindent
 
 \size large
-The Roadmap to 6G – AI Empowered Wireless Networks 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "The_Roadmap_to_6G"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The integration of AI technologies in communication networks promises a
- more efficient and reliable future for 6G and beyond, as shown in 
-\color blue
-Figure 17
-\color inherit
-.
- The figure illustrates an ideal timeline of AI advances in the telecom
- area.
- The "intelligent PHY layer" paradigm, with its ability to self-learn and
- self-optimize, ensures that the system remains efficient and reliable despite
- various hardware and channel effects.
- Sometimes, the hardware referred to includes low-cost devices that may
- not be well fine-tuned but are commonly used.
- This AI-driven approach aims to adapt and optimize communication systems
- even when operating with less-than-ideal hardware components.
- This model leverages AI technologies to enhance communication efficiency
- and performance, and can autonomously learn and enhance performance through
- the integration of cutting-edge sensing and data-gathering tools.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Hardware heterogeneity necessitates system redesign for different hardware
- settings, which can be overcome using transfer learning.
- This approach adjusts the neural network weights to work with custom hardware
- architecture, regardless of the training on floating point or fixed point
- backpropagation.
- Therefore, network architecture is more crucial than numeric resolution
- in contrast to traditional methods.
- In the image bellow, a roadmap is presented that depicts the expected evolution
- of deep learning in the coming years.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Papers/RoadMap6G.png
-	lyxscale 50
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Roadmap showing the evolution of deep learning models in telecom and justifying
- our research 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "The_Roadmap_to_6G"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-It should be noted that much of the referenced work focuses on virtual physical
- resources and layers ranging from the MAC layer to higher ones.
- Despite this, it is essential to progress and supplement the ideas in the
- physical layer to implement an equalization stage effectively.
- By doing so, a more comprehensive and cohesive approach to communication
- system optimization can be achieved.
-\end_layout
-
-\begin_layout Subsection
-\paragraph_spacing onehalf
-\noindent
-
-\size large
 A Novel OFDM Equalizer for Large Doppler Shift Channel through Deep Learning
  
 \begin_inset CommandInset citation
@@ -6520,135 +6084,6 @@ literal "false"
 
 \end_layout
 
-\begin_layout Subsubsection
-BER perfomance
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The image below shows a benchmark of different equalizers, including ZF
- (Zero Forcing), PIC (Parallel Interference Cancellation), DET (Deep MIMO
- Detection Network)
-\begin_inset CommandInset citation
-LatexCommand cite
-key "DeepMimoOFDM"
-literal "false"
-
-\end_inset
-
-], and CN (Cascaded Net).
- The modulation they used in the experiment below is QPSK.
- and they assume that CSI (Channel State Information) is perfect.
- The receiver is trained off-line for the single-user system with fixed
- Doppler shift.
- If Subcarrier number 
-\begin_inset Formula $N$
-\end_inset
-
- is 32, 
-\begin_inset Formula $f_{N}$
-\end_inset
-
- equals to 0.16.
- 
-\color blue
-Figure 21
-\color inherit
- shows a graph with different Bit Error Rate (BER) values plotted against
- different Signal-to-Noise Ratio (SNR) values over different equalizing
- strategies.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Papers/CascadeResults.png
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-QPSK equalization with different strategies in the paper 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ZeroForcingEqNN"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Note, that in practice, perfect CSI is often difficult to achieve due to
- the dynamic nature of the wireless channel, which can change rapidly due
- to factors such as fading, multipath propagation, and interference.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Classical PIC methods perform well in low subcarrier frequency scenarios
- (
-\begin_inset Formula $f_{N}$
-\end_inset
-
- less than 0.1).
- However, their performance degrades significantly with an increase in subcarrie
-r frequency due to significant error propagation, as stated in the first
- section.
- Subcarrier frequency refers to the frequency at which the data is transmitted
- in a multi-carrier communication system, such as (OFDM).
- The data is divided into several subcarriers that are transmitted simultaneousl
-y, each using a different frequency.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Deep MIMO detection (Det) faces a flat error curve in high SNR scenarios.
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Cascaded Net (CN) consistently performs well compared to Zero Forcing (ZF)
- and (Det), which is in line with the argument made in the third section.
-\end_layout
-
-\end_deeper
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
@@ -6808,55 +6243,6 @@ On the other hand, the decoder, which is analogous to the receiver in a
 \paragraph_spacing onehalf
 
 \size large
-The goal of the transmitter is to send one of M possible messages, 
-\begin_inset Formula $s∈M=\left\{ 1,2,...,M\right\} $
-\end_inset
-
-, to the receiver using n discrete uses of the communication channel.
- To achieve this, the transmitter applies a transformation, 
-\begin_inset Formula $f:M→Rn$
-\end_inset
-
-, to the message 
-\begin_inset Formula $s$
-\end_inset
-
-, generating a transmitted signal 
-\begin_inset Formula $X=f(s)∈\mathbb{R}^{n}$
-\end_inset
-
-.
- Typically, the transmitter hardware imposes constraints on 
-\begin_inset Formula $x$
-\end_inset
-
-, such as an energy constraint 
-\begin_inset Formula $(||X||_{2}^{2}≤n)$
-\end_inset
-
-, an amplitude constraint (
-\begin_inset Formula $|xi|≤1$
-\end_inset
-
- 
-\begin_inset Formula $\boldsymbol{\forall i}$
-\end_inset
-
-), or an average power constraint (
-\begin_inset Formula $E|xi|≤1$
-\end_inset
-
-
-\begin_inset Formula $\boldsymbol{\forall i}$
-\end_inset
-
-).
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
 The communication rate of this system is 
 \begin_inset Formula $R=\frac{k}{n}$
 \end_inset
@@ -6911,66 +6297,6 @@ noprefix "false"
 \end_inset
 
  
-\end_layout
-
-\begin_layout Standard
-
-\size large
-How different autoencoders work with respect to the block error rate is
- shown in 
-\color blue
-Figure 23
-\color inherit
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Papers/BasedlineAE_results.png
-	lyxscale 50
-	scale 80
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-BLER for the AE in differen (n,k) baseline communication.
-\size large
-
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Intro_DL_Physical_Layer"
-literal "false"
-
-\end_inset
-
-
-\size default
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection
@@ -7064,7 +6390,7 @@ f(z)=\frac{z}{max(|z|)}
 
 \size large
 \color blue
-Figure 24 
+Figure 22 
 \color inherit
 demonstrates how a complex network can handle polar segmentation, and how
  weights and biases can be used to define a vector in the complex plane
@@ -7141,7 +6467,7 @@ literal "false"
  the activation function to be holomorphic may not be necessary and outpus
  similar results of real functions shown in
 \color blue
- Figure 25.
+ Figure 23.
 
 \color inherit
  A holomorphic function is a complex-valued function of a complex variable
@@ -7464,7 +6790,7 @@ Let us briefly review the fundamental concepts of convolution on an input
  When we apply N kernels to the input, we obtain an output volume G with
  dimensions DG x DG x N as seen in 
 \color blue
-Figure 26
+Figure 24
 \color inherit
 .
  
@@ -7516,11 +6842,11 @@ In a traditional convolution, filters are applied across all input channels
  However, in depthwise separable convolution, this process is split into
  two stages as seen in 
 \color blue
-Figure 27
+Figure 25
 \color inherit
  and 
 \color blue
-Figure 28
+Figure 26
 \color inherit
 .
  The first stage is depthwise convolution, which applies convolution to
@@ -7912,7 +7238,7 @@ Reduced complexity for activation functions
 One of the key components of his low computational cost is the implementation
  of hardsigmoid and hardswish function seen in 
 \color blue
-Figure 29
+Figure 27
 \color inherit
 , which is quite similar that we done with hardtanh but with other activation
  function type.
@@ -7975,7 +7301,7 @@ These functions are integrated into the final stage of MobileNet to serve
  as more efficient functions.
  
 \color blue
-Figure 30
+Figure 28
 \color inherit
  shows the most efficiente stages of mobileNet V3.
  
@@ -7987,10 +7313,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -8168,7 +7490,7 @@ literal "false"
 t models.
  
 \color blue
-Figure 31
+Figure 29
 \color inherit
  shows an evolution of sequential networks to illustrate how outdated RNNs
  are.
@@ -8342,7 +7664,7 @@ Normally, each word is assigned a unique index, and this index corresponds
 .
 
 \color blue
- Figure 32
+ Figure 30
 \color inherit
  shows how words are encoded into a value and passed through an embedding
  layer to finally be mapped into a vector.
@@ -8531,7 +7853,7 @@ One of the key components of the Transformer model is multi-head attention.
  multi-head attention mechanism consists of three linear transformations:
  Query, Key, and Value as shown in 
 \color blue
-Figure 33
+Figure 31
 \color inherit
 .
  These transformations are learned parameters that are used to compute the
@@ -8621,7 +7943,7 @@ Value: This transformation takes the encoder output as input and maps it
 \size large
 In 
 \color blue
-Figure 34
+Figure 32
 \color inherit
 , it is shown how the Query, Key, and Value are concatenated using Linear
  layers.
@@ -8793,7 +8115,7 @@ Attention(Q,K,V)=softmax(\frac{QK^{T}}{\sqrt{d_{k}}}+Mask)V
 \size large
 The head and self-attention mechanisms are better illustrated in 
 \color blue
-Figure 35
+Figure 33
 \color inherit
 .
  As depicted, the input embedded vectors x are mapped by weights and utilized
@@ -8858,7 +8180,7 @@ In multi-head attention mechanism of a transformer model, a mask is a binary
  sequence from being attended to by the model.
  As can be appreciated in
 \color blue
- Figure 36
+ Figure 34
 \color inherit
 , the attention weights matrix is filtered and certain values are set to
  zero using a mask.
@@ -9115,7 +8437,7 @@ The Vision Transformer is a deep learning architecture that is specifically
  to capture relationships between different parts of the image.
  In 
 \color blue
-Figure 38
+Figure 36
 \color inherit
 , the architecture is depicted, which takes a sequence of patches as input,
  where each patch represents a small square region of the image.
@@ -9211,7 +8533,7 @@ The "16x16 words" phrase refers to the fact that the input image is divided
  power for training.
  
 \color blue
-Figure 39
+Figure 37
 \color inherit
  illustrates an image that is divided into 14 x 14 grids.
 \end_layout
@@ -9279,6 +8601,94 @@ newpage
 
 \begin_layout Section
 Methodology
+\end_layout
+
+\begin_layout Subsection
+Dataset
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+This project has a dataset of 20,000 channel realizations, each with a size
+ of 48x48.
+ The dataset is divided into two groups of 10,000: the first group consists
+ of Line-of-Sight (LOS) channel realizations, and the second group consists
+ of Non-Line-of-Sight (NLOS) channel realizations, as depicted in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Channels"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ Each value in the matrix is a complex number with a format of complex128,
+ float64 for the real and imaginary parts.
+ The data is stored in the .mat format, which is commonly used for storing
+ variables on disk from Matlab code.
+ However, the dataset is used in Python using the Scipy library.
+ To ensure robust predictions, the LOS and NLOS channels have been shuffled,
+ with one group following the other.
+ As neural networks typically do not work well with complex numbers, the
+ real and imaginary parts of the channels have been separated into two channels
+ in an image.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Channels/NLOS_Channel_log_view.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Imagenes/Channels/LOS_Channel_log_view.png
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A comparison of LOS and NLOS channel magnitud in a log scale representation.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Channels"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -9383,7 +8793,7 @@ In two-dimensional space, the L1 regularization term takes the shape of
  of the weights.
  This can be better appreciated in 
 \color blue
-Figure 40.
+Figure 38.
 \end_layout
 
 \begin_layout Standard
@@ -9645,7 +9055,7 @@ Standardization is a method used in machine learning to transform the values
  Standarized value
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Z-score
 \end_layout
 
@@ -9712,7 +9122,7 @@ We use the z-score to filter outliers with a desired level of confidence,
  The 95% confidence level is frequently employed as a standard level of
  confidence in statistical analyses, as depicted in 
 \color blue
-Figure 41.
+Figure 39.
 \end_layout
 
 \begin_layout Standard
@@ -9775,7 +9185,7 @@ In this project, we used the z-score to assess the dispersion of each block
  of symbols in order to identify and correct any errors in the transmission.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 FLOPS
 \end_layout
 
@@ -9838,6 +9248,375 @@ Performance variations in parallel algorithms stem from differences in design,
 \end_layout
 
 \begin_layout Subsection
+Signal quality metrics
+\end_layout
+
+\begin_layout Subsubsection
+SNR
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+SNR 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:SNR"
+
+\end_inset
+
+stands for Signal-to-Noise Ratio which contrasts the strength of the signal
+ with the strength of the noise.
+ The most common way to measure it is in decibels (dB).
+ In general, higher numbers indicate a better specification because there
+ is a greater ratio of useful information (the signal) to unwanted data
+ (the noise).
+ Given this source 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonModulation"
+literal "false"
+
+\end_inset
+
+, it can be explained how the noise is calculated for noise simulation with
+ the requirement of a certain SNR in dB.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Firstly, a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal transmitted over a communication channel is
+ considered.
+ The objective is to derive a vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{r}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ that represents the signal received at the receiver after passing through
+ the Additive White Gaussian Noise (AWGN), this noise type is described
+ in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "papoulis2002probability"
+literal "false"
+
+\end_inset
+
+.
+ The level of noise introduced by the AWGN channel is determined by the
+ provided Signal-to-Noise Ratio (SNR), and it is denoted as 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{\gamma}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+\SpecialChar endofsentence
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The length of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ is denoted by 
+\begin_inset Formula $\boldsymbol{N}$
+\end_inset
+
+.
+ The signal power of the vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{s}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ can be expressed as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+P_{signal}=\frac{1}{N}\sum_{i=0}^{N-1}|s_{i}|^{2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+If we have a complex IQ value 
+\begin_inset Formula $s_{i}=a_{i}+jb_{i}$
+\end_inset
+
+, the modulus or magnitude of 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ can be represented by 
+\begin_inset Formula $|s_{i}|=\sqrt{a_{i}^{2}+b_{i}^{2}}$
+\end_inset
+
+, where a and b are real numbers.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To compute the power spectral density of the noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+, we use the following equation:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+N_{o}=\frac{P_{signal}}{\gamma}=P_{signal}10^{-\frac{SNR_{dB}}{10}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Where 
+\begin_inset Formula $\gamma=10^{\frac{SNR_{dB}}{10}}$
+\end_inset
+
+ is the SNR in dB to linear scale
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Assuming a complex IQ plane for all digital modulations, the noise variance
+ (noise power) required for generating Gaussian random noise can be expressed
+ as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\sigma^{2}=\frac{N_{0}}{2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Then, the Gaussian random noise vector 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $\boldsymbol{n}$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ of length 
+\begin_inset Formula $N$
+\end_inset
+
+ is generated, with its samples drawn from a Gaussian distribution having
+ a mean of zero and a standard deviation as calculated using the last equation.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+f(x)=\begin{cases}
+\sigma\mathcal{N}_{N}(0,1), & \text{if \ensuremath{s} is real}\\
+\frac{\sigma}{\sqrt{2}}\left[\mathcal{N}_{N}(0,1)+j\mathcal{N}_{N}(0,1)\right], & \text{if \ensuremath{s} is complex}
+\end{cases}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Here, 
+\begin_inset Formula $\boldsymbol{\mathcal{N}_{N}(0,1)}$
+\end_inset
+
+ represents the white Gaussian noise vector with a mean of 0 and a standard
+ deviation of 1
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+BER
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In digital communication systems, 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BER"
+
+\end_inset
+
+the transmission of data is not always error-free.
+ Bit errors may occur due to various factors such as noise, interference,
+ distortion, and fading.
+ Bit Error Rate (BER) is a common metric used to quantify the quality of
+ a digital communication system by measuring the probability of bit errors.
+ BER is defined as the ratio of the number of erroneous bits to the total
+ number of transmitted bits.
+ It is usually expressed in terms of power, as the probability of error
+ is dependent on the signal-to-noise ratio (SNR) and the channel conditions.
+ The BER can be empirically represented as follows:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+BER=\frac{N_{err}}{N_{tot}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+where 
+\begin_inset Formula $N_{err}$
+\end_inset
+
+ is the number of erroneous bits and 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+ is the total number of transmitted bits.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+A high BER indicates poor system performance, which can lead to loss of
+ data, degraded audio or video quality, or even complete system failure.
+ Therefore, the BER is used as a benchmark to ensure that the digital communicat
+ion system meets the required performance specifications.
+\end_layout
+
+\begin_layout Subsubsection
 BLER
 \end_layout
 
@@ -9971,98 +9750,6 @@ Return $BLER$
 end{algorithmic} 
 \backslash
 end{algorithm}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-Dataset
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-This project has a dataset of 20,000 channel realizations, each with a size
- of 48x48.
- The dataset is divided into two groups of 10,000: the first group consists
- of Line-of-Sight (LOS) channel realizations, and the second group consists
- of Non-Line-of-Sight (NLOS) channel realizations, as depicted in 
-\color blue
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Channels"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\color inherit
-.
- Each value in the matrix is a complex number with a format of complex128,
- float64 for the real and imaginary parts.
- The data is stored in the .mat format, which is commonly used for storing
- variables on disk from Matlab code.
- However, the dataset is used in Python using the Scipy library.
- To ensure robust predictions, the LOS and NLOS channels have been shuffled,
- with one group following the other.
- As neural networks typically do not work well with complex numbers, the
- real and imaginary parts of the channels have been separated into two channels
- in an image.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Channels/NLOS_Channel_log_view.png
-	lyxscale 70
-	scale 50
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Imagenes/Channels/LOS_Channel_log_view.png
-	lyxscale 70
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-A comparison of LOS and NLOS channel magnitud in a log scale representation.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Channels"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -11472,7 +11159,7 @@ To address the issue of computing the error and achieving precise adjustment
  We used Euler's formula to construct this complex number in rectangular
  form, based only on the angle.
  Specifically, we used the output of the neural network, denoted as 
-\begin_inset Formula $O(\hat{\theta})$
+\begin_inset Formula $O(\boldsymbol{\hat{\theta}})$
 \end_inset
 
 , with a radius of one to build the complex number.
@@ -11484,7 +11171,7 @@ To address the issue of computing the error and achieving precise adjustment
 \size large
 \begin_inset Formula 
 \begin{equation}
-O(\hat{\theta})=e^{i\hat{\theta}}=cos(\hat{\theta})+i*sin(\hat{\theta})
+O(\boldsymbol{\hat{\theta}})=e^{i\boldsymbol{\hat{\theta}}}=cos(\boldsymbol{\hat{\theta}})+i*sin(\boldsymbol{\hat{\theta}})
 \end{equation}
 
 \end_inset
@@ -11509,7 +11196,7 @@ By using this approach, we can concentrate solely on the phasors (angles)
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\hat{\theta}\right)=\frac{1}{2}\left(E\left[(cos(\hat{\theta})-X_{real})^{2}\right]+E\left[(sin(\hat{\theta})-X_{imag})^{2}\right]\right)\label{eq:62}
+MSE\left(\boldsymbol{\hat{\theta}}\right)=\frac{1}{2}\left(E\left[(cos(\boldsymbol{\hat{\theta}})-X_{real})^{2}\right]+E\left[(sin(\boldsymbol{\hat{\theta}})-X_{imag})^{2}\right]\right)\label{eq:62}
 \end{equation}
 
 \end_inset
@@ -11529,7 +11216,7 @@ However this expresion can be rewriten and it can be expand each term as
 \align center
 
 \size large
-\begin_inset Formula $E\left[\cos^{2}(\hat{\theta})\right]-2X_{\text{real}}E\left[\cos(\hat{\theta})\right]+X_{\text{real}}^{2}+E\left[\sin^{2}(\hat{\theta})\right]-2X_{\text{imag}}E\left[\sin(\hat{\theta})\right]+X_{\text{imag}}^{2}$
+\begin_inset Formula $E\left[\cos^{2}(\boldsymbol{\hat{\theta}})\right]-2X_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]+X_{\text{real}}^{2}+E\left[\sin^{2}(\boldsymbol{\hat{\theta}})\right]-2X_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]+X_{\text{imag}}^{2}$
 \end_inset
 
 
@@ -11546,7 +11233,7 @@ We can simplify this by noting that:
 \align center
 
 \size large
-\begin_inset Formula $E\left[\cos^{2}(\hat{\theta})\right]+E\left[\sin^{2}(\hat{\theta})\right]=E\left[\cos^{2}(\hat{\theta})+\sin^{2}(\hat{\theta})\right]=E\left[1\right]=1$
+\begin_inset Formula $E\left[\cos^{2}(\boldsymbol{\hat{\theta}})\right]+E\left[\sin^{2}(\boldsymbol{\hat{\theta}})\right]=E\left[\cos^{2}(\boldsymbol{\hat{\theta}})+\sin^{2}(\boldsymbol{\hat{\theta}})\right]=E\left[1\right]=1$
 \end_inset
 
 
@@ -11563,7 +11250,7 @@ and
 \align center
 
 \size large
-\begin_inset Formula $-2X_{\text{real}}E\left[\cos(\hat{\theta})\right]-2X_{\text{imag}}E\left[\sin(\hat{\theta})\right]=-2(X_{\text{real}}\cos(\hat{\theta})+X_{\text{imag}}\sin(\hat{\theta}))$
+\begin_inset Formula $-2X_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]-2X_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]=-2(X_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+X_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))$
 \end_inset
 
 
@@ -11580,7 +11267,7 @@ Substituting these simplifications back into the previous equation gives:
 \align center
 
 \size large
-\begin_inset Formula $\frac{1}{2}\left(1-2(X_{\text{real}}\cos(\hat{\theta})+X_{\text{imag}}\sin(\hat{\theta}))+X_{\text{real}}^{2}+X_{\text{imag}}^{2}\right)$
+\begin_inset Formula $\frac{1}{2}\left(1-2(X_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+X_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))+X_{\text{real}}^{2}+X_{\text{imag}}^{2}\right)$
 \end_inset
 
 
@@ -11599,7 +11286,7 @@ which can be further simplified to:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\frac{1}{2}\left((\cos(\hat{\theta})-X_{\text{real}})^{2}+(\sin(\hat{\theta})-X_{\text{imag}})^{2}\right)\label{eq63}
+\frac{1}{2}\left((\cos(\boldsymbol{\hat{\theta}})-X_{\text{real}})^{2}+(\sin(\boldsymbol{\hat{\theta}})-X_{\text{imag}})^{2}\right)\label{eq63}
 \end{equation}
 
 \end_inset
@@ -11636,7 +11323,7 @@ with a fixed radius of 1
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\hat{\theta}\right)=|O(\hat{\theta})-X|^{2}
+MSE\left(\boldsymbol{\hat{\theta}}\right)=|O(\boldsymbol{\hat{\theta}})-X|^{2}
 \end{equation}
 
 \end_inset
@@ -12147,7 +11834,7 @@ The loss function for MagNet remains quite simple, let
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE(\hat{\theta})=E\left[\left(O(\hat{\theta})-|\theta|\right)^{2}\right]
+MSE(\hat{\theta})=E\left[\left(O(\boldsymbol{\hat{\theta}})-|\boldsymbol{\theta}|\right)^{2}\right]
 \end{equation}
 
 \end_inset
@@ -13193,7 +12880,7 @@ where
 
  represents the output of the model.
  However, as we want the estimator values to be in the range of 
-\begin_inset Formula $0<\hat{\theta}<1$
+\begin_inset Formula $0<\hat{\boldsymbol{\theta}}<1$
 \end_inset
 
 , we need to rearrange the estimation equation as follows:
@@ -13205,7 +12892,7 @@ where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\hat{X}=Y*\hat{\theta}
+\hat{X}=Y*\hat{\boldsymbol{\theta}}
 \end{equation}
 
 \end_inset
@@ -13257,7 +12944,7 @@ Finally the MSE loss between this estimated
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE(\hat{\theta})=E\left[\left(O(\hat{\theta})-\theta\right)^{2}\right]
+MSE(\hat{\theta})=E\left[\left(O(\boldsymbol{\hat{\theta}})-\boldsymbol{\theta}\right)^{2}\right]
 \end{equation}
 
 \end_inset
