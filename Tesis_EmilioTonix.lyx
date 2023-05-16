@@ -2276,12 +2276,14 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The integration of AI technologies in communication networks promises a
- more efficient and reliable future for 6G and beyond, as shown in 
+The integration of AI technologies in communication networks holds the potential
+ for a more efficient and reliable future for 6G and beyond.
+ 
 \color blue
 Figure 17
 \color inherit
-.
+ illustrates the increasing presence of network machine learning across
+ various network areas each year.
  The figure illustrates an ideal timeline of AI advances in the telecom
  area.
  The "intelligent PHY layer" paradigm, with its ability to self-learn and
@@ -2300,8 +2302,8 @@ Figure 17
 \paragraph_spacing onehalf
 
 \size large
-Hardware heterogeneity necessitates system redesign for different hardware
- settings, which can be overcome using transfer learning.
+Transfer learning can be used to get around the need for system redesign
+ due to hardware heterogeneity for various hardware configurations.
  This approach adjusts the neural network weights to work with custom hardware
  architecture, regardless of the training on floating point or fixed point
  backpropagation.
@@ -2323,7 +2325,9 @@ status open
 \begin_inset Graphics
 	filename Imagenes/Papers/RoadMap6G.png
 	lyxscale 50
-	scale 50
+	scale 70
+	BoundingBox 850bp 0bp 1411bp 394bp
+	clip
 
 \end_inset
 
@@ -2351,18 +2355,6 @@ literal "false"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-It should be noted that much of the referenced work focuses on virtual physical
- resources and layers ranging from the MAC layer to higher ones.
- Despite this, it is essential to progress and supplement the ideas in the
- physical layer to implement an equalization stage effectively.
- By doing so, a more comprehensive and cohesive approach to communication
- system optimization can be achieved.
 \end_layout
 
 \begin_layout Subsection
@@ -4486,10 +4478,13 @@ Backpropagation
 \align block
 
 \size large
-The goal of the layer is to optimize the weights parameters so that they
- fit a target referred to as the ground truth.
- The error, denoted by E, is calculated as the difference between the predicted
- output (
+The layer aims to optimize the weight parameters to align with a target
+ known as the ground truth.
+ The error, denoted by 
+\begin_inset Formula $E$
+\end_inset
+
+, is calculated as the difference between the predicted output (
 \begin_inset Formula $\boldsymbol{\hat{X}}$
 \end_inset
 
@@ -4502,10 +4497,9 @@ The goal of the layer is to optimize the weights parameters so that they
 \end_inset
 
  is the index of the sample in the dataset.
- To achieve this, we will utilize the backpropagation algorithm, which is
- a common method in the field of artificial neural networks for training
- the network by adjusting the weights between neurons in the network.
- 
+ To optimize the weights, the backpropagation algorithm will be employed,
+ which is a widely used technique in the field of artificial neural networks
+ for training by adjusting the inter-neuron weights.
 \begin_inset Formula 
 \begin{equation}
 \boldsymbol{Err=\hat{X}-X_{n}}
@@ -4575,8 +4569,9 @@ literal "false"
 \begin_inset Formula $\boldsymbol{\nabla W}$
 \end_inset
 
-Gradient of weights.The gradient is a multi-variable generalization of the
- derivative.
+Gradient of weights.
+ This gradient represents the multivariable discrete differentiation.
+ 
 \end_layout
 
 \begin_layout Itemize
@@ -4720,40 +4715,25 @@ noprefix "false"
  
 \color black
 shows the most common activation functions.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-However, the traditional activation functions pose some challenges when
- it comes to embedded devices.
- They often involve computationally expensive operations such as exponentiation,
- division, and floating-point arithmetic.
- These operations can significantly increase the processing time and power
- consumption, making them less attractive for resource-constrained embedded
- systems.
- To address these concerns, researchers have proposed hardened versions
- of activation functions.
- Hardened activation functions are designed to be computationally less demanding
- while maintaining similar performance to their traditional counterparts.
- Examples of hardened activation functions include the binary step function,
- RELU, Hardtahn 
-\color blue
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Hardtanh(red)-and-Tanh(blue)"
-plural "false"
-caps "false"
-noprefix "false"
+ 
+\color inherit
+The most widely used activation functions in neural networks include the
+ sigmoid, hyperbolic tangent (tanh), and rectified linear unit (ReLU) functions.
+ The sigmoid function transforms any input value into a range from 0 to
+ 1, while the tanh function adjusts input values to fall within the -1 to
+ 1 range.
+ The ReLU (Rectified Linear Unit) function operates linearly, setting all
+ negative input values to 0 and retaining all positive input values in their
+ initial form.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ActivationFunctions"
+literal "false"
 
 \end_inset
 
 
-\color inherit
-, Hardsigmoid.
- 
 \end_layout
 
 \begin_layout Standard
@@ -4810,33 +4790,41 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-The most widely used activation functions in neural networks include the
- sigmoid, hyperbolic tangent (tanh), and rectified linear unit (ReLU) functions.
- The sigmoid function transforms any input value into a range from 0 to
- 1, while the tanh function adjusts input values to fall within the -1 to
- 1 range.
- The ReLU function operates linearly, setting all negative input values
- to 0 and retaining all positive input values in their initial form.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ActivationFunctions"
-literal "false"
+However, the traditional activation functions pose some challenges when
+ it comes to embedded devices.
+ They often involve computationally expensive operations such as exponentiation,
+ division, and floating-point arithmetic.
+ These operations can significantly increase the processing time and power
+ consumption, making them less attractive for resource-constrained embedded
+ systems.
+ To address these concerns, researchers have proposed hardened versions
+ of activation functions.
+ Hardened activation functions are designed to be computationally less demanding
+ while maintaining similar performance to their traditional counterparts.
+ Examples of hardened activation functions include the binary step function,
+ Hardtahn 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hardtanh(red)-and-Tanh(blue)"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
 
+\color inherit
+, or Hardsigmoid.
+ 
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-As we have seen before, there exist "hardened" variants of activation functions,
- such as hardtanh and hardsigmoid, that offer more efficient computational
- evaluations while maintaining comparable outcomes to their traditional
- counterparts.
- These hardened activation functions enable faster neural network computations
+These hardened activation functions enable faster neural network computations
  while still delivering similar results, with the Hardtanh function being
  the most used for this research that can be described as follows:
 \end_layout
@@ -4981,11 +4969,20 @@ The softmax function is a mathematical technique which transforms a vector
  class falls within the range of 0 and 1, and that the sum of all class
  probabilities is 1, which is a necessary requirement for a probability
  distribution.
- The following 
+ Given an input vector of size 
+\begin_inset Formula $K$
+\end_inset
+
+ where 
+\begin_inset Formula $z_{i}$
+\end_inset
+
+ represents each element taken from this vector,
 \color blue
-Figure 11
+ Figure 11
 \color inherit
- shows how the values are mapped from real values to probabilities.
+ illustrates how the values are mapped from real values to probabilities
+ using the formula depicted inside the box.
 \end_layout
 
 \begin_layout Standard
@@ -5040,13 +5037,16 @@ literal "false"
 \paragraph_spacing onehalf
 
 \size large
-After the softmax output, it is measured by the cross-entropy loss function,
- which checks the dissimilarity between the predicted and true probability
+After obtaining the softmax output probabilities, a comparison is made between
+ these probabilities and an ideal output.
+ This comparison is measured using the cross-entropy loss function, which
+ evaluates the dissimilarity between the predicted and true probability
  distributions.
- One of the many advantages of this function is that it is also easy to
- compute and differentiate, making it a suitable loss function for gradient-base
-d optimization algorithms.
- The goal of the training process is to minimize the Kullback-Leibler divergence.
+ One notable advantage of this function is its ease of computation and different
+iation, which makes it well-suited for optimization algorithms based on
+ gradients.
+ The objective of the training process is to minimize the KL(Kullback-Leibler)
+ divergence.
 \end_layout
 
 \begin_layout Standard
@@ -5138,12 +5138,29 @@ The KL divergence plays a crucial role in determining which class is more
 \end_inset
 
 , while the true class distribution is represented by 
-\begin_inset Formula $P∗(Y∣x_{i})$
+\begin_inset Formula $P^{*}(Y∣x_{i})$
 \end_inset
 
 .
+ Where 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ are 
+\begin_inset Formula $z_{i}$
+\end_inset
+
+values transformed by the softmax.
  Both of these distributions are taken into account when assessing the dissimila
-rity between them.
+rity between 
+\begin_inset Formula $P(Y∣x_{i};θ)$
+\end_inset
+
+ and 
+\begin_inset Formula $P^{*}(Y∣x_{i})$
+\end_inset
+
+ .
 \end_layout
 
 \begin_layout Standard
@@ -5181,6 +5198,7 @@ Rewriting the logarithm as two individual sections, we can observe that
 
 \begin_layout Standard
 \paragraph_spacing onehalf
+\noindent
 
 \size large
 And then we aim to make both distributions as similar as possible using
@@ -5201,6 +5219,20 @@ And then we aim to make both distributions as similar as possible using
 
 \end_layout
 
+\begin_layout Standard
+
+\size large
+Where 
+\begin_inset Formula $P^{*}=P^{*}(Y∣x_{i})$
+\end_inset
+
+ and 
+\begin_inset Formula $P=P(Y∣x_{i};θ)$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Convolutional Neuronal Networks 
 \begin_inset CommandInset label
@@ -5216,14 +5248,9 @@ name "subsec:CNN"
 \paragraph_spacing onehalf
 
 \size large
-During the research, we will need to work with channel matrices as inputs
- for neural networks.
- As these are matrices rather than vectors, we will discuss convolutional
- neural networks (CNNs), which are a type of deep learning neural network
- primarily used for image recognition and dimensional reduction.
- This type of network excel at feature extraction, which is a critical aspect
- of their success in various applications, especially in image recognition
- and computer vision tasks.
+Convolutional neural networks (CNNs) type of network excel at feature extraction
+, which is a critical aspect of their success in various applications, especiall
+y in image recognition and computer vision tasks.
  Feature extraction is the process of identifying and extracting relevant
  patterns or features from raw data, helping the model to discern and recognize
  important characteristics within the input.
@@ -5453,7 +5480,7 @@ The output of the convolution operation is a feature map, where each element
 \size large
 \begin_inset Formula 
 \begin{equation}
-Y_{ij}=\sum K_{ab}\circ I_{i+a,j+b}
+Y_{ij}=\sum_{a,b}K_{ab}\circ I_{i+a,j+b}
 \end{equation}
 
 \end_inset
@@ -5667,6 +5694,10 @@ Finally, with the use of abstraction, we can further simplify the problem
  The internal tensor is given by the sum of the cross-correlations between
  X channels and kernels.
  In a more general perspective, this can be viewed as the inner product
+ 
+\begin_inset Formula $\langle.\rangle$
+\end_inset
+
  of two tensors.
 \end_layout
 
@@ -5764,8 +5795,8 @@ name "subsec:A-Novel-OFDM"
 
 \end_inset
 
-This documentation describes the proposed neural architecture called Cascaded
- Net (CN) for equalization in OFDM systems.
+This articles describes the neural architecture called Cascaded Net (CN)
+ for equalization in OFDM systems.
  The use of a zero-forcing preprocessor aims to prevent the network from
  getting stuck in a saddle point or local minimum point.
  The CN neural architecture is designed to address the equalization problem
@@ -6017,7 +6048,7 @@ Their loss function or estimator is based on the Euclidean distance, with
 \size large
 \begin_inset Formula 
 \begin{equation}
-loss(X_{\theta}^{CN}(\boldsymbol{H,Y}))=\sum_{i=1}^{L}log(i)||X-\hat{X}||
+loss=\sum_{i=1}^{L}log(i)||X-\hat{X}||
 \end{equation}
 
 \end_inset
@@ -6034,6 +6065,23 @@ To deal with complex matrix number they make a reformulation in the matrix
 \color blue
 Figure 20
 \color inherit
+.
+ Where 
+\begin_inset Formula $\mathfrak{R}$
+\end_inset
+
+is the real part and 
+\begin_inset Formula $\mathfrak{I}$
+\end_inset
+
+ the imaginary part for vector 
+\begin_inset Formula $\boldsymbol{Y}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{X}$
+\end_inset
+
 .
 \end_layout
 
@@ -6105,9 +6153,9 @@ literal "false"
 \noindent
 
 \size large
-This paper provides a detailed overview of neural networks and their application
+It is explained detailed overview of neural networks and their application
  to channel equations, with formal mathematical description included.
- The paper describes the formal structure of feed-forward neural networks,
+ The article describes the formal structure of feed-forward neural networks,
  as well as some applications of convolutional neural networks, that was
  described in the first section.
  It also introduces autoencoders for end-to-end communication systems and
@@ -6299,24 +6347,6 @@ noprefix "false"
  
 \end_layout
 
-\begin_layout Subsubsection
-Analysis
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The paper examined the possibility of using an autoencoder to learn channel
- representation by incorporating all available information in the system.
- However, it did not explore the use of more complex constellations, such
- as 16-QAM, and the frame size used in this research was smaller than intended.
- Despite these limitations, the concepts related to coding and decoding
- data in different dimensional spaces offer valuable insights for the project.
- Thus, this paper is useful for our research, particularly for developing
- encoding-based solutions.
-\end_layout
-
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
@@ -6344,10 +6374,9 @@ name "subsec:A-Survey-of"
 
 \end_inset
 
-It is widely recognized that IQ data is represented by complex numbers,
- which can pose challenges when working with them.
- This paper offers a detailed description of a new loss function and the
- necessary adjustments required to perform backpropagation in complex networks.
+This writing provides a comprehensive description of a novel loss function
+ and the requisite adaptations needed to facilitate backpropagation in complex
+ networks.
  Additionally, the paper demonstrates how to preprocess data, activation
  functions, and cost functions, which can be valuable for conducting experiments
  with complex data or complex neural networks.
@@ -6360,9 +6389,10 @@ Normalize unitary circle
 \begin_layout Standard
 
 \size large
-If we look at data in the complex plane we should first at deal with normalizati
-on, and normalization is given by diviing the data by his absolute max,
- which lead all poins inside a unitary circle.
+When examining data in the complex plane, the initial step is to address
+ normalization.
+ Normalization is achieved by dividing the data by its absolute maximum,
+ resulting in all points being contained within a unitary circle.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -6491,8 +6521,6 @@ literal "false"
  approaches that point exists and is independent of the path of approach.
  Therefore, for a basic implementation, we should split the evaluation into
  real and imaginary parts as separate sections to activate the values.
- It's important to note that the real and imaginary parts should not be
- mixed.
 \end_layout
 
 \begin_layout Standard
@@ -6561,11 +6589,12 @@ One approach to dealing with the error is to take the complex magnitude
 \begin_inset Formula $o\in\mathbb{C}^{N}$
 \end_inset
 
-(estimated output), the error 
+(estimated output), the error denoted as 
 \begin_inset Formula $e=d-o$
 \end_inset
 
- we can calculate the complex mean square loss in a non-negative scalar.
+.
+ It can be calculated the complex mean square loss in a non-negative scalar.
  
 \end_layout
 
@@ -6645,7 +6674,7 @@ If we take a polar approach where
 \end_layout
 
 \begin_layout Standard
-\align center
+\align left
 
 \size large
 Multiply out the terms 
@@ -6662,7 +6691,7 @@ Multiply out the terms
 \end_layout
 
 \begin_layout Standard
-\align center
+\align left
 
 \size large
 Simplify
@@ -6679,7 +6708,7 @@ Simplify
 \end_layout
 
 \begin_layout Standard
-\align center
+\align left
 
 \size large
 We multiply the angle and radius by 0.5 in the loss function to give them
@@ -6705,8 +6734,9 @@ Loss(e_{log})=\frac{1}{2}\left(log\left[\frac{\hat{r}}{r}\right]^{2}+\left[\hat{
 \paragraph_spacing onehalf
 
 \size large
-We now have an explicit representation of magnitude and phase in the loss
- function, which could be helpful in the polar equalization approach.
+The obtained representation of magnitude and phase within the loss function
+ offers potential advantages, particularly in the context of the polar estimatio
+n approach.
 \end_layout
 
 \begin_layout Subsection
@@ -6764,11 +6794,8 @@ Depthwise Separable Convolution
 \paragraph_spacing onehalf
 
 \size large
-Convolution is a mathematical concept that measures the overlap between
- two functions as one of them slides over the other.
- Mathematically, it can be expressed as a sum of products.
- However, standard convolution operations can be slow to perform due to
- the number of multiplications required.
+Standard convolution operations can be slow to perform due to the number
+ of multiplications required.
  An alternative method called depth-wise separable convolution can be used
  to speed up the process.
  This method breaks down the convolution process into two parts: depthwise
@@ -7449,7 +7476,7 @@ Overview and Insights
 \noindent
 
 \size large
-Based on research, Recurrent Neural Networks (RNNs) 
+Recurrent Neural Networks (RNNs) 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "RNN_LSTM"
@@ -7595,6 +7622,118 @@ literal "false"
  allows the model to focus on different parts of the input sequence when
  generating the output sequence, making it more accurate and efficient than
  previous models.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In an autoregressive mode in the context of an autoencoder, the decoder
+ network is designed to generate the output sequence one element at a time,
+ based on the previously generated elements.
+ In other words, the decoder network takes the previous elements of the
+ output sequence as input and generates the next element of the sequence.
+ This is in contrast to a non-autoregressive mode, where the decoder network
+ generates the entire output sequence at once, without considering the previousl
+y generated elements.
+\end_layout
+
+\begin_layout Subsubsection
+Encoder Decoder
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Transformer model consists of an encoder and a decoder.
+ The encoder processes the input sequence, using multi-head attention and
+ position encoding to create a fixed-length representation of the input.
+ The decoder then generates the output sequence, using multi-head attention
+ and position encoding to attend to the input representation and generate
+ each output token.
+ The model is trained using maximum likelihood estimation, where the goal
+ is to minimize the cross-entropy loss between the predicted output sequence
+ and the ground truth.
+ In
+\color blue
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Transformer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, all the elements, including masks, multi-head attention, and feed-forward
+ components, are observed to be brought together.
+ These elements are organized into blocks of cascaded Encoders and Decoders,
+ which is why the presence of 'Nx' notation indicating N blocks can be seen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/Papers/TransformerEncodeDecode.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Transformer with encoder and decoder sections 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Transformer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the transformer diagram, "Nx" is typically used to represent the number
+ of encoder-decoder layers in the model.
+ For example, a transformer model with 6 encoder layers and 6 decoder layers
+ might be represented as "Nx=6" in the diagram.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The output of the Transformer model is a sequence of tokens, which can be
+ interpreted as a sequence of words, or other discrete units depending on
+ the task at hand.
+ These tokens can be further processed by other components of a larger system,
+ such as a language model or a downstream task-specific model.
 \end_layout
 
 \begin_layout Subsubsection
@@ -8260,127 +8399,6 @@ Masks are applied to the attention mechanism by adding them to the attention
  weights before computing the weighted sum of the input sequence.
  The mask ensures that certain elements of the input sequence are not attended
  to by the model, which can improve the accuracy and efficiency of the model.
-\end_layout
-
-\begin_layout Subsubsection
-Encoder Decoder
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Once we have all building blocks we can say that transformer model consists
- of an encoder and a decoder.
- The encoder processes the input sequence, using multi-head attention and
- position encoding to create a fixed-length representation of the input.
- The decoder then generates the output sequence, using multi-head attention
- and position encoding to attend to the input representation and generate
- each output token.
- The model is trained using maximum likelihood estimation, where the goal
- is to minimize the cross-entropy loss between the predicted output sequence
- and the ground truth.
- In
-\color blue
- Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Transformer"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\color inherit
-, all the elements, including masks, multi-head attention, and feed-forward
- components, are observed to be brought together.
- These elements are organized into blocks of cascaded Encoders and Decoders,
- which is why the presence of 'Nx' notation indicating N blocks can be seen.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/Papers/TransformerEncodeDecode.png
-	lyxscale 50
-	scale 70
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Transformer with encoder and decoder sections 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Transformer"
-
-\end_inset
-
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In the transformer diagram, "Nx" is typically used to represent the number
- of encoder-decoder layers in the model.
- For example, a transformer model with 6 encoder layers and 6 decoder layers
- might be represented as "Nx=6" in the diagram.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The output of the Transformer model is a sequence of tokens, which can be
- interpreted as a sequence of words, or other discrete units depending on
- the task at hand.
- These tokens can be further processed by other components of a larger system,
- such as a language model or a downstream task-specific model.
-\end_layout
-
-\begin_layout Subsubsection
-Autoregresion
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In an autoregressive mode in the context of an autoencoder, the decoder
- network is designed to generate the output sequence one element at a time,
- based on the previously generated elements.
- In other words, the decoder network takes the previous elements of the
- output sequence as input and generates the next element of the sequence.
- This is in contrast to a non-autoregressive mode, where the decoder network
- generates the entire output sequence at once, without considering the previousl
-y generated elements.
 \end_layout
 
 \begin_layout Subsubsection
@@ -9484,7 +9502,7 @@ Assuming a complex IQ plane for all digital modulations, the noise variance
 \size large
 \begin_inset Formula 
 \begin{equation}
-\sigma^{2}=\frac{N_{0}}{2}
+\sigma^{2}=\frac{N_{0}}{2}\label{eq:GuassianSigma}
 \end{equation}
 
 \end_inset
@@ -9515,7 +9533,21 @@ Then, the Gaussian random noise vector
 \end_inset
 
  is generated, with its samples drawn from a Gaussian distribution having
- a mean of zero and a standard deviation as calculated using the last equation.
+ a mean of zero and a standard deviation shown by 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:GuassianSigma"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
 \end_layout
 
 \begin_deeper
@@ -9547,7 +9579,7 @@ Here,
 \end_inset
 
  represents the white Gaussian noise vector with a mean of 0 and a standard
- deviation of 1
+ deviation of 1.
 \end_layout
 
 \end_deeper
@@ -9559,18 +9591,17 @@ BER
 \paragraph_spacing onehalf
 
 \size large
-In digital communication systems, 
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:BER"
 
 \end_inset
 
-the transmission of data is not always error-free.
+The transmission of data is not always error-free.
  Bit errors may occur due to various factors such as noise, interference,
  distortion, and fading.
  Bit Error Rate (BER) is a common metric used to quantify the quality of
- a digital communication system by measuring the probability of bit errors.
+ a digital communication system by measuring the frequency of bit errors.
  BER is defined as the ratio of the number of erroneous bits to the total
  number of transmitted bits.
  It is usually expressed in terms of power, as the probability of error
