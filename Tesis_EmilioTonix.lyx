@@ -2245,48 +2245,181 @@ Introduction
 \paragraph_spacing onehalf
 
 \size large
-This section commences with an illustration of the fundamental concepts
- of signal estimation, subsequently applied to equalization techniques for
- Orthogonal Frequency Division Multiplexing (OFDM).
- An examination of non-linear equalizers reveals their less error-prone
- approach, but also underscores the increased complexity due to the extra
- steps in the equalization process.
+This section introduces fundamental signal estimation concepts, applied
+ to Orthogonal Frequency Division Multiplexing (OFDM) equalization techniques.
+ Non-linear equalizers are examined, revealing their accuracy yet highlighting
+ their increased complexity.
+ The role of neural networks in signal processing scenarios is then explored,
+ considering the evolution from Feed Forward layers 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Linear-Layer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ to Convolutional Neural Networks (CNNs) 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:CNN"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, then to MobileNet 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:MobileNetV3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and finally to Transformers 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Attention-Is-All"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ Their mathematical foundations and the role of matrix products in the neural
+ network process, which can also be used in equalization calculations, are
+ outlined.
+ 
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-A thorough introduction of the role of neural networks in signal processing
- scenarios is shown.
- The evolution of these networks, from Recurrent Neural Networks (RNNs)
- to Transformers, is meticulously traced, emphasizing their progression
- and advancements over time.
- This leads to a comprehensive exploration of Neural Networks and Convolutional
- Neural Networks (CNNs), delving into their mathematical and formal foundations
- in more detail.
+Furthermore, in the applied field and while blending the concepts of equalizatio
+n and neural networks, two significant papers are introduced: one discussing
+ OFDM equalization and its previous implementation with Neural Networks
+ 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:A-Novel-OFDM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and the other addressing the challenge of handling complex numbers within
+ Neural Networks 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:A-Survey-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, an ongoing issue in development.
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-Two significant papers are then introduced: one discussing OFDM equalization
- and its previous implementation with Neural Networks, and the other addressing
- the challenge of handling complex numbers within Neural Networks, an ongoing
- issue in development.
-\end_layout
+Finally, the implementation of transformers is reviewed, starting from their
+ foundational building blocks 
+\color blue
 
-\begin_layout Standard
-\paragraph_spacing onehalf
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Attention-Is-All"
+plural "false"
+caps "false"
+noprefix "false"
 
-\size large
-The final part of this section scrutinizes Transformers, starting from their
- foundational building blocks and extending to image Transformers.
+\end_inset
+
+
+\color inherit
+ and extending to image Transformers 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:An-image-is"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  The focus on Convolutional Neural Networks and Image Transformers is justified
- by their potential to approach the equalization problem as an image problem,
- providing a novel perspective for complex signal processing challenges.
- The following bullet points will aid in navigating this section:
+ by their potential to treat the equalization problem as an image problem.
+ For CNN 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:CNN"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the channel can be treated as an image and then processed.
+ For the Image Transformer 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:An-image-is"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the constellation of received points can be directly taken as an image
+ divided by grids.
+ The following bullet points will aid in navigating this section
 \end_layout
 
 \begin_layout Enumerate
@@ -4871,7 +5004,7 @@ From RNN to Image Transformers
 \size large
 Neuronal
 \size default
- networks
+ networks 
 \end_layout
 
 \begin_layout Standard
@@ -4894,7 +5027,14 @@ Neural networks are a type of artificial intelligence system designed to
 \end_layout
 
 \begin_layout Subsubsection
-Linear Layer
+Linear Layer 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Linear-Layer"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7115,7 +7255,7 @@ literal "false"
 
 \end_inset
 
-
+ 
 \end_layout
 
 \begin_layout Standard
@@ -7238,11 +7378,11 @@ The Cascade net is defined as follows.
 \size large
 \begin_inset Formula 
 \begin{equation}
-z_{i}=w_{i}\left[\begin{array}{c}
-H^{H}Y\\
-\hat{x_{i}}\\
-H^{H}H\hat{x_{i}}
-\end{array}\right]+b_{i}
+\boldsymbol{Z}_{i}=\boldsymbol{W}_{i}\left[\begin{array}{c}
+\boldsymbol{H^{H}}\boldsymbol{Y}_{i}\\
+\hat{\boldsymbol{X}_{i}}\\
+\boldsymbol{H}^{H}\boldsymbol{H}\hat{\boldsymbol{X}_{i}}
+\end{array}\right]+\boldsymbol{B}
 \end{equation}
 
 \end_inset
@@ -7256,7 +7396,7 @@ H^{H}H\hat{x_{i}}
 \size large
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\hat{X_{i+1}}=\phi(z_{i})}
+\hat{\boldsymbol{X}_{i+1}}=\phi(\boldsymbol{Z}_{i})
 \end{equation}
 
 \end_inset
@@ -7264,19 +7404,62 @@ H^{H}H\hat{x_{i}}
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \paragraph_spacing onehalf
 
 \size large
 Where 
-\begin_inset Formula $\boldsymbol{w}$
+\begin_inset Formula $\boldsymbol{W}_{i}$
 \end_inset
 
  and 
-\begin_inset Formula $\boldsymbol{b}$
+\begin_inset Formula $\boldsymbol{B}_{i}$
 \end_inset
 
- representes weights and bias as trainnable parameters.
+ represents weights and bias as trainnable parameters.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{X}_{i}$
+\end_inset
+
+ Input vector
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left[\begin{array}{c}
+\boldsymbol{H^{H}}\boldsymbol{Y}_{i}\\
+\hat{\boldsymbol{X}_{i}}\\
+\boldsymbol{H}^{H}\boldsymbol{H}\hat{\boldsymbol{X}_{i}}
+\end{array}\right]$
+\end_inset
+
+ 
+\size large
+Vertical concatenation of the vectors.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\phi$
+\end_inset
+
+ Activation function
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula $\boldsymbol{Z_{i}}$
+\end_inset
+
+Resulting output of network
 \end_layout
 
 \begin_layout Standard
@@ -7285,12 +7468,21 @@ Where
 \size large
 \begin_inset Formula 
 \begin{equation}
-\phi=tanh\left(\frac{X}{|t_{i}|}\right)
+\phi=tanh\left(\frac{\boldsymbol{X_{i}}}{|t_{i}|}\right)
 \end{equation}
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{t}_{i}$
+\end_inset
+
+
+\size large
+trainable normalization factor
 \end_layout
 
 \begin_layout Standard
@@ -7381,7 +7573,7 @@ Their loss function or estimator is based on the Euclidean distance, with
 \size large
 \begin_inset Formula 
 \begin{equation}
-loss=\sum_{i=1}^{L}log(i)||X-\hat{X}||
+loss=\sum_{i=1}^{L}log(i)||\boldsymbol{X}-\hat{\boldsymbol{X}}||
 \end{equation}
 
 \end_inset
@@ -7867,6 +8059,13 @@ Attention Is All You Need
 LatexCommand cite
 key "transformer"
 literal "false"
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Attention-Is-All"
 
 \end_inset
 
@@ -8981,7 +9180,450 @@ Methodology
 \end_layout
 
 \begin_layout Subsection
+General description
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+From sections
+\color blue
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Dataset"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ to 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Effective-Techniques-for"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the dataset used for training the models is explained.
+ This is followed by an exploration of various data preprocessing techniques,
+ which are recognized as crucial factors for achieving good performance
+ with neural networks.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Subsequently, in section 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Signal-quality-metrics"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the metrics used for comparing the expected results between the established
+ baseline models and the newly proposed implementations are presented.
+ Section 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Software-Platform"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ explains software reusability and simplifies the development of new neural
+ networks by eliminating the need to implement all building blocks from
+ scratch.
+ As a result, development can be solely focused on network implementation,
+ making the process more efficient.
+ The golden model is then shown in section 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Golden-Model"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
+ From sections 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:PhaseNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ to 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:GridNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, all the neuronal network implementations done for this research, which
+ are based on the state of the art found during the research, are presented.
+ The following table shows a more detailed relation between section 2 and
+ section 3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Network
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+State of Art
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PhaseNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Linear-Layer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:A-Novel-OFDM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Correcting phase of complex recieved values
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PolarNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Linear-Layer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:A-Novel-OFDM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Correcting phase and magnitude of complex received values.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ComplexNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:A-Survey-of"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nueronal networks with comlex numbers
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MobileNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:CNN"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:MobileNetV3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Converting a channel into an image using an optimized CNN 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GridNet
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:Attention-Is-All"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "subsec:The-Grid"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Treating the IQ plane as an image.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Methodology and State of Art
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Dataset
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Dataset"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9069,7 +9711,14 @@ name "fig:Channels"
 \end_layout
 
 \begin_layout Subsection
-Effective Techniques for Improving Model Generalization
+Effective Techniques for Improving Model Generalization 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Effective-Techniques-for"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9625,7 +10274,14 @@ Performance variations in parallel algorithms stem from differences in design,
 \end_layout
 
 \begin_layout Subsection
-Signal quality metrics
+Signal quality metrics 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Signal-quality-metrics"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -10150,7 +10806,14 @@ end{algorithm}
 \begin_layout Subsection
 Software 
 \size large
-Architecture
+Platform 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Software-Platform"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -11135,7 +11798,14 @@ Generic Net
 \end_layout
 
 \begin_layout Subsection
-Golden Model
+Golden Model 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Golden-Model"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11470,7 +12140,14 @@ Golden LMMSE and non-linear models BLER 16QAM
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
-PhaseNet
+PhaseNet 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:PhaseNet"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -13699,7 +14376,14 @@ end{table}
 
 \begin_layout Subsection
 \paragraph_spacing onehalf
-GridNet
+GridNet 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:GridNet"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
