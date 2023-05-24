@@ -8049,6 +8049,66 @@ The obtained representation of magnitude and phase within the loss function
 n approach.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Transformers
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Transformers have gained immense relevance due to their exceptional performance
+ in natural language processing (NLP) tasks such as machine translation
+ and sentiment analysis.
+ They have also proven valuable in recommendation systems, time series forecasti
+ng, speech recognition, and scientific research, including protein folding
+ prediction.
+ Transformers' versatility in capturing complex patterns and dependencies
+ makes them applicable to a wide range of machine learning tasks beyond
+ NLP.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One of the significant advantages of transformers is their ability to capture
+ long-range dependencies and effectively model sequences.
+ One of this thesis hypothesis suggests that by considering the context
+ and relationships between symbols over long distances, transformers have
+ the potential to mitigate the impact of inter-symbol interference (ISI)
+ and enhance the overall performance of systems.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+First, we examined the main paper that discusses the building blocks of
+ transformers.
+ Subsequently, we delved into the internal workings of these blocks.
+ Having analyzed the individual components, we proceeded to explore the
+ concept of the image transformer and how transformers can be utilized to
+ learn spatial relations.
+\end_layout
+
 \begin_layout Subsection
 \paragraph_spacing onehalf
 \noindent
@@ -9187,7 +9247,7 @@ General description
 \paragraph_spacing onehalf
 
 \size large
-From sections
+In
 \color blue
  
 \begin_inset CommandInset ref
@@ -9201,31 +9261,8 @@ noprefix "false"
 
 
 \color inherit
- to 
-\color blue
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Effective-Techniques-for"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\color inherit
-, the dataset used for training the models is explained.
- This is followed by an exploration of various data preprocessing techniques,
- which are recognized as crucial factors for achieving good performance
- with neural networks.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Subsequently, in section 
+ the signal channels dataset utilized for training the models is explained.
+ This is followed by an explanation of Bit Error Rate (BER) in 
 \color blue
 
 \begin_inset CommandInset ref
@@ -9239,9 +9276,16 @@ noprefix "false"
 
 
 \color inherit
-, the metrics used for comparing the expected results between the established
- baseline models and the newly proposed implementations are presented.
- Section 
+.
+ BER and BLER are the most common metrics used to measure equalization performan
+ce.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In 
 \color blue
 
 \begin_inset CommandInset ref
@@ -9255,12 +9299,33 @@ noprefix "false"
 
 
 \color inherit
- explains software reusability and simplifies the development of new neural
- networks by eliminating the need to implement all building blocks from
- scratch.
- As a result, development can be solely focused on network implementation,
- making the process more efficient.
- The golden model is then shown in section 
+ the focus is on the explanation of how software reusability simplifies
+ the development of new neural networks by eliminating the necessity of
+ building all components from scratch.
+ This approach allows for a more efficient process by enabling developers
+ to concentrate solely on network implementation.
+ To showcase the network's time performance in terms of software, the concept
+ of FLOPs is introduced at the end of the subsection in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:FLOPS"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ It serves as a measure to demonstrate the computational efficiency of the
+ network.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Once the platform is explained, the models are presented, beginning with
+ the Golden Model in 
 \color blue
 
 \begin_inset CommandInset ref
@@ -9275,7 +9340,8 @@ noprefix "false"
 
 \color inherit
 .
- From sections 
+ Subsequently, the neuronal network implementations developed for this research
+ are introduced in sections 
 \color blue
 
 \begin_inset CommandInset ref
@@ -9289,7 +9355,7 @@ noprefix "false"
 
 
 \color inherit
- to 
+ through 
 \color blue
 
 \begin_inset CommandInset ref
@@ -9303,10 +9369,37 @@ noprefix "false"
 
 
 \color inherit
-, all the neuronal network implementations done for this research, which
- are based on the state of the art found during the research, are presented.
- The following table shows a more detailed relation between section 2 and
- section 3.
+.
+ In the case of 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:PhaseNet"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ it is explained how preprocesing is done in subsection 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Effective-Techniques-for"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ It is worth noting that preprocessing plays a vital role in achieving favorable
+ results for neural networks in equalization task.
+ For a more comprehensive understanding of the relationship between Section
+ 2 and Section 3, please refer to the provided table, which offers further
+ insights.
 \end_layout
 
 \begin_layout Standard
@@ -9711,570 +9804,7 @@ name "fig:Channels"
 \end_layout
 
 \begin_layout Subsection
-Effective Techniques for Improving Model Generalization 
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Effective-Techniques-for"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In the field of machine learning, it is important to ensure that the models
- we build are able to accurately and effectively make predictions on new
- data.
- However, it is common for models to suffer from issues such as overfitting
- or poor generalization to new data.
- In this section, we will explore three techniques that can be used to improve
- the performance of machine learning models: 
-\series bold
-regularization
-\series default
-, 
-\series bold
-normalization
-\series default
-, and 
-\series bold
-standardization
-\series default
-.
- By properly applying these techniques, we can mitigate the risks of overfitting
- and improve the ability of our models to generalize to new data.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Regularization_Bisong,Normalization_layers,standarization"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Regularization
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Reegularization works by adding a penalty term to the objective function
- that the model is trying to minimize.
- This penalty term discourages the model from learning relationships that
- are too complex, and encourages it to learn simpler relationships that
- generalize better.
- There are several methods for regularization, including 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Goodfellow-et-al-2016"
-literal "false"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-L1 Lasso regularization: This method adds a penalty term to the cost function
- that is proportional to the absolute value of the weights.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-L2 Ridge regularization: This method adds a penalty term to the cost function
- that is proportional to the square of the weights.
-\end_layout
-
-\begin_layout Enumerate
-\paragraph_spacing onehalf
-
-\size large
-Dropout regularization: This method randomly sets a fraction of the weights
- in the model to zero during training, which helps to prevent overfitting
- by reducing the number of parameters in the model.
- Dropout is only applied during the training process, and all neurons are
- available during evaluation.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In two-dimensional space, the L1 regularization term takes the shape of
- a diamond centered at the origin because it represents the sum of absolute
- values of the weights.The L2 regularization term takes the shape of a circle
- centered at the origin because it represents the sum of the squared values
- of the weights.
- This can be better appreciated in 
-\color blue
-Figure 38.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename trasasdenivelRegularization.png
-	lyxscale 50
-	scale 60
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Level sets of the loss function and L1,L2 regularization 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "regimage"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align block
-
-\size large
-To implement regularization, you can modify the cost function of the model
- to include the regularization term.
- For example, in L2 regularization, the cost function would be modified
- to include the sum of the squares of the weights, as shown in the following
- equation:
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size larger
-\begin_inset Formula $\lambda$
-\end_inset
-
- 
-\size large
-regularization parameter
-\end_layout
-
-\begin_layout Itemize
-
-\size larger
-\begin_inset Formula $J(W)$
-\end_inset
-
- 
-\size large
-Weight regularization
-\end_layout
-
-\begin_layout Subsubsection
-Normalization 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Data is scaled using a process called normalization to give it a unit norm
- (or length).
- This is frequently done to improve the data's suitability for particular
- machine learning algorithms, such as those that use gradient descent or
- have a set range for acceptable input data.
- When comparing various features, normalization can also be used to scale
- down the data to a common scale.
- Data normalization methods include min-max normalization, mean normalization,
- and z-score normalization.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\series bold
-\size large
-Normalization of complex numbers
-\series default
- involves dividing a complex number by its magnitude (or absolute value)
- to obtain a complex number with a magnitude of 1.
- This is typically done to simplify calculations and make it easier to compare
- complex numbers.
- The normalized form of a complex number is often written as 
-\begin_inset Formula $ẑ=\frac{z}{|\boldsymbol{v}|}$
-\end_inset
-
-, where 
-\begin_inset Formula $z$
-\end_inset
-
- is the original complex number and 
-\begin_inset Formula $ẑ$
-\end_inset
-
- is the normalized form and 
-\begin_inset Formula $|\boldsymbol{v}|$
-\end_inset
-
- is the max magnitud of the entire vector of the complex numbers.
- Normalization of complex numbers is useful in many applications, including
- signal processing and control systems, where it is often necessary to compare
- complex numbers on an equal footing.
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "ComplexnumbersNN"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-ẑ_{i}=\frac{z_{i}}{|\boldsymbol{v}|}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $|\boldsymbol{v}|$
-\end_inset
-
- Maximum magnitud of the vector
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\mathsf{z}$
-\end_inset
-
- Input value
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $ẑ$
-\end_inset
-
- Normalized value
-\end_layout
-
-\begin_layout Subsubsection
-Standarization 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-\align block
-
-\size large
-Standardization is a method used in machine learning to transform the values
- of a feature or set of features to a standard scale.
- The standard scale is typically defined as having a mean of 0 and a standard
- deviation of 1.
- Standardization is often used as a preprocessing step before training a
- model, as it can help to improve the performance and convergence of the
- model.
- Standardization can be useful when the features in the dataset have different
- scales or units, as it can help to bring them onto a common scale and make
- it easier for the model to learn from the data.
- Standardization can be applied to both real and complex-valued data.
-\end_layout
-
-\begin_layout Standard
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-\hat{z_{i}}=\frac{z_{i}-\mu}{\sigma}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{\mu}$
-\end_inset
-
- Mean of the data
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{\sigma}$
-\end_inset
-
- Standard deviation of the data
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\mathsf{\boldsymbol{z}}$
-\end_inset
-
- Input value
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-\begin_inset Formula $\boldsymbol{ẑ}$
-\end_inset
-
- Standarized value
-\end_layout
-
-\begin_layout Subsubsection
-Z-score
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-The Z-score,
-\begin_inset CommandInset label
-LatexCommand label
-name "subsec:Z-score"
-
-\end_inset
-
- also known as standard score, is a statistical measure that indicates how
- many standard deviations an observation or data point is from the mean
- of a data set.
- It is used to standardize data and compare individual observations to a
- population or sample mean.
- The magnitude of the z-score represents how far away the data point is
- from the mean in terms of standard deviations.
- It helps us to remove outliers and make our trainning stage more stable.
- Outliers are data points that are significantly different from the other
- data points in the data set and can skew statistical analyses or machine
- learning models.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-To identify outliers using z-score, we first calculate the z-score for each
- data point in the data set.
- We can then set a threshold z-score value, usually between 2 and 3, beyond
- which any data point is considered an outlier.
- Data points that have a z-score above the threshold are identified as outliers
- and can be removed from the data set.
- This can help to improve the accuracy and reliability of our results or
- predictions.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-\begin_inset Formula 
-\begin{equation}
-z_{i}=\frac{x_{i}-\mu}{\sigma}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-We use the z-score to filter outliers with a desired level of confidence,
- which is typically set at 95%.
- This corresponds to a z-score of 1.96, which means that approximately 95%
- of the data points would fall within the confidence interval.
- The 95% confidence level is frequently employed as a standard level of
- confidence in statistical analyses, as depicted in 
-\color blue
-Figure 39.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename Imagenes/ConfidenceInterval.png
-	lyxscale 70
-	scale 70
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-95% Confidence interval 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "z_score_drawing"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-In this project, we used the z-score to assess the dispersion of each block
- of 48 symbols.
- The aim was to ensure that the symbols in each block were within the required
- confidence interval and that the relations between the symbols were not
- too dispersed.
- By using the z-score, we were able to analyze the standard deviation of
- the symbols in each block and identify any blocks that fell outside the
- desired range.
- It is worth noting that the received symbols in this project were subject
- to distortions and interference resulting from the communication channel
- and environmental noise.
- This made it imperative to carefully assess the dispersion of each block
- of symbols in order to identify and correct any errors in the transmission.
-\end_layout
-
-\begin_layout Subsubsection
-FLOPS
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-FLOPS stands for "floating point operations per second." It is a measure
- of the computational performance of a computer or processor, and it indicates
- how many floating point arithmetic operations can be performed in one second.
- Floating point operations include addition, subtraction, multiplication,
- and division, as well as more complex operations like trigonometric functions,
- logarithms, and exponentials.
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-FLOPS is commonly used as a benchmark for evaluating the performance of
- CPUs, GPUs, and other computing devices.
- It is often used in the context of high-performance computing, scientific
- simulations, and machine learning applications, where large amounts of
- data must be processed quickly.
- 
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-One approach to measuring FLOPS that we used in this work is to calculate
- the execution time and multiply it by the number of operations in each
- equalizer.
- This allows us to visualize the time complexity and efficiency of the equalizer
-s.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-FLOPS\simeq\frac{1}{ExecTime}*Operations
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing onehalf
-
-\size large
-Performance variations in parallel algorithms stem from differences in design,
- implementation, and parallelism efficiency.
- Factors like memory access patterns, communication overhead, and load balancing
- also influence performance on multi-core systems.
- As a result, floating-point operation rates can change depending on algorithm
- effectiveness and work distribution among cores.
-\end_layout
-
-\begin_layout Subsection
-Signal quality metrics 
+Bit error rate perfomance analysis 
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Signal-quality-metrics"
@@ -11797,6 +11327,78 @@ Generic Net
 
 \end_layout
 
+\begin_layout Subsubsection
+FLOPS 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:FLOPS"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Now, having a software platform, it is crucial to measure its performance.
+ FLOPS, which stands for "floating point operations per second," serves
+ as a metric for assessing the computational performance of a computer or
+ processor.
+ It quantifies the number of floating point arithmetic operations that can
+ be executed within a one-second timeframe.
+ Floating point operations include addition, subtraction, multiplication,
+ and division, as well as more complex operations like trigonometric functions,
+ logarithms, and exponentials.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+FLOPS is commonly used as a benchmark for evaluating the performance of
+ CPUs, GPUs, and other computing devices.
+ It is often used in the context of high-performance computing, scientific
+ simulations, and machine learning applications, where large amounts of
+ data must be processed quickly.
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+One approach to measuring FLOPS that we used in this work is to calculate
+ the execution time and multiply it by the number of operations in each
+ equalizer.
+ This allows us to visualize the time complexity and efficiency of the equalizer
+s.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+FLOPS\simeq\frac{1}{ExecTime}*Operations
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Performance variations in parallel algorithms stem from differences in design,
+ implementation, and parallelism efficiency.
+ Factors like memory access patterns, communication overhead, and load balancing
+ also influence performance on multi-core systems.
+ As a result, floating-point operation rates can change depending on algorithm
+ effectiveness and work distribution among cores.
+\end_layout
+
 \begin_layout Subsection
 Golden Model 
 \begin_inset CommandInset label
@@ -12406,6 +12008,505 @@ Where
 \end_inset
 
  is the magnitud of the complex number.
+\end_layout
+
+\begin_layout Subsubsection
+Effective Techniques for Improving Model Generalization 
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Effective-Techniques-for"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In the field of machine learning, it is important to ensure that the models
+ we build are able to accurately and effectively make predictions on new
+ data.
+ However, it is common for models to suffer from issues such as overfitting
+ or poor generalization to new data.
+ In this section, we will explore three techniques that can be used to improve
+ the performance of machine learning models: 
+\series bold
+regularization
+\series default
+, 
+\series bold
+normalization
+\series default
+, and 
+\series bold
+standardization
+\series default
+.
+ By properly applying these techniques, we can mitigate the risks of overfitting
+ and improve the ability of our models to generalize to new data.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Regularization_Bisong,Normalization_layers,standarization"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Regularization
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Reegularization works by adding a penalty term to the objective function
+ that the model is trying to minimize.
+ This penalty term discourages the model from learning relationships that
+ are too complex, and encourages it to learn simpler relationships that
+ generalize better.
+ There are several methods for regularization, including 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Goodfellow-et-al-2016"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+L1 Lasso regularization: This method adds a penalty term to the cost function
+ that is proportional to the absolute value of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+L2 Ridge regularization: This method adds a penalty term to the cost function
+ that is proportional to the square of the weights.
+\end_layout
+
+\begin_layout Enumerate
+\paragraph_spacing onehalf
+
+\size large
+Dropout regularization: This method randomly sets a fraction of the weights
+ in the model to zero during training, which helps to prevent overfitting
+ by reducing the number of parameters in the model.
+ Dropout is only applied during the training process, and all neurons are
+ available during evaluation.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In two-dimensional space, the L1 regularization term takes the shape of
+ a diamond centered at the origin because it represents the sum of absolute
+ values of the weights.The L2 regularization term takes the shape of a circle
+ centered at the origin because it represents the sum of the squared values
+ of the weights.
+ This can be better appreciated in 
+\color blue
+Figure 38.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename trasasdenivelRegularization.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Level sets of the loss function and L1,L2 regularization 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "regimage"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align block
+
+\size large
+To implement regularization, you can modify the cost function of the model
+ to include the regularization term.
+ For example, in L2 regularization, the cost function would be modified
+ to include the sum of the squares of the weights, as shown in the following
+ equation:
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+J(W)=\frac{\lambda}{2}||w||^{2}=\frac{\lambda}{2}\sum_{j=1}^{m}w_{j}^{2}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $\lambda$
+\end_inset
+
+ 
+\size large
+regularization parameter
+\end_layout
+
+\begin_layout Itemize
+
+\size larger
+\begin_inset Formula $J(W)$
+\end_inset
+
+ 
+\size large
+Weight regularization
+\end_layout
+
+\begin_layout Subsubsection
+Normalization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Data is scaled using a process called normalization to give it a unit norm
+ (or length).
+ This is frequently done to improve the data's suitability for particular
+ machine learning algorithms, such as those that use gradient descent or
+ have a set range for acceptable input data.
+ When comparing various features, normalization can also be used to scale
+ down the data to a common scale.
+ Data normalization methods include min-max normalization, mean normalization,
+ and z-score normalization.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Normalization of complex numbers involves dividing a complex number by its
+ magnitude (or absolute value) to obtain a complex number with a magnitude
+ of 1.
+ This is typically done to simplify calculations and make it easier to compare
+ complex numbers.
+ The normalized form of a complex number is often written as 
+\begin_inset Formula $ẑ=\frac{z}{|\boldsymbol{v}|}$
+\end_inset
+
+, where 
+\begin_inset Formula $z$
+\end_inset
+
+ is the original complex number and 
+\begin_inset Formula $ẑ$
+\end_inset
+
+ is the normalized form and 
+\begin_inset Formula $|\boldsymbol{v}|$
+\end_inset
+
+ is the max magnitud of the entire vector of the complex numbers.
+ Normalization of complex numbers is useful in many applications, including
+ signal processing and control systems, where it is often necessary to compare
+ complex numbers on an equal footing.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ComplexnumbersNN"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+ẑ_{i}=\frac{z_{i}}{|\boldsymbol{v}|}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $|\boldsymbol{v}|$
+\end_inset
+
+ Maximum magnitud of the vector
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{z}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $ẑ$
+\end_inset
+
+ Normalized value
+\end_layout
+
+\begin_layout Subsubsection
+Standarization 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+\align block
+
+\size large
+Standardization is a method used in machine learning to transform the values
+ of a feature or set of features to a standard scale.
+ The standard scale is typically defined as having a mean of 0 and a standard
+ deviation of 1.
+ Standardization is often used as a preprocessing step before training a
+ model, as it can help to improve the performance and convergence of the
+ model.
+ Standardization can be useful when the features in the dataset have different
+ scales or units, as it can help to bring them onto a common scale and make
+ it easier for the model to learn from the data.
+ Standardization can be applied to both real and complex-valued data.
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+\hat{z_{i}}=\frac{z_{i}-\mu}{\sigma}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\mu}$
+\end_inset
+
+ Mean of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{\sigma}$
+\end_inset
+
+ Standard deviation of the data
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\mathsf{\boldsymbol{z}}$
+\end_inset
+
+ Input value
+\end_layout
+
+\begin_layout Itemize
+
+\size large
+\begin_inset Formula $\boldsymbol{ẑ}$
+\end_inset
+
+ Standarized value
+\end_layout
+
+\begin_layout Subsubsection
+Z-score
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The Z-score,
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Z-score"
+
+\end_inset
+
+ also known as standard score, is a statistical measure that indicates how
+ many standard deviations an observation or data point is from the mean
+ of a data set.
+ It is used to standardize data and compare individual observations to a
+ population or sample mean.
+ The magnitude of the z-score represents how far away the data point is
+ from the mean in terms of standard deviations.
+ It helps us to remove outliers and make our trainning stage more stable.
+ Outliers are data points that are significantly different from the other
+ data points in the data set and can skew statistical analyses or machine
+ learning models.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+To identify outliers using z-score, we first calculate the z-score for each
+ data point in the data set.
+ We can then set a threshold z-score value, usually between 2 and 3, beyond
+ which any data point is considered an outlier.
+ Data points that have a z-score above the threshold are identified as outliers
+ and can be removed from the data set.
+ This can help to improve the accuracy and reliability of our results or
+ predictions.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+\begin_inset Formula 
+\begin{equation}
+z_{i}=\frac{x_{i}-\mu}{\sigma}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+We use the z-score to filter outliers with a desired level of confidence,
+ which is typically set at 95%.
+ This corresponds to a z-score of 1.96, which means that approximately 95%
+ of the data points would fall within the confidence interval.
+ The 95% confidence level is frequently employed as a standard level of
+ confidence in statistical analyses, as depicted in 
+\color blue
+Figure 39.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Imagenes/ConfidenceInterval.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+95% Confidence interval 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "z_score_drawing"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+In this project, we used the z-score to assess the dispersion of each block
+ of 48 symbols.
+ The aim was to ensure that the symbols in each block were within the required
+ confidence interval and that the relations between the symbols were not
+ too dispersed.
+ By using the z-score, we were able to analyze the standard deviation of
+ the symbols in each block and identify any blocks that fell outside the
+ desired range.
+ It is worth noting that the received symbols in this project were subject
+ to distortions and interference resulting from the communication channel
+ and environmental noise.
+ This made it imperative to carefully assess the dispersion of each block
+ of symbols in order to identify and correct any errors in the transmission.
 \end_layout
 
 \begin_layout Subsubsection
