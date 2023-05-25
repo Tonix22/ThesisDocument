@@ -9722,6 +9722,235 @@ Methodology and State of Art
 \end_layout
 
 \begin_layout Subsection
+Channel Modeling Features
+\end_layout
+
+\begin_layout Subsubsection
+V2V
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The 802.11p standard is utilized for V2V communication, where it is assumed
+ that the cyclic prefix (CP) has been removed from the channel, leaving
+ only the payload and channel in frequency domain.
+ The final channel size is maintained at 48x48.
+\end_layout
+
+\begin_layout Subsubsection
+EVA model
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+The EVA channel model is designed to represent a severe vehicular environment
+ compared to some of its counterparts and it is a 3GPP standard 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LTE"
+literal "false"
+
+\end_inset
+
+.
+ This model is commonly used in OFDM-based systems.
+ The term 'vehicular' signifies that this model is primarily used for scenarios
+ where the receiver, like a mobile device in a car, is in a fast-moving
+ environment.
+ Key features of the EVA model include high Doppler shifts, multipath fading,
+ and delay spread.
+ These characteristics necessitate the use of equalizers and channel estimators
+ that can rapidly adapt to changing channel conditions.
+ Moreover, multipath fading can cause both constructive and destructive
+ interference, creating fast fluctuations in the signal's power.
+ Lastly, delay spread results in inter-symbol interference (ISI) over the
+ frame.
+ The following tables present common values associated with this model.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{Characteristics of the EVA model} 
+\backslash
+begin{tabular}{|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Characteristic} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Speed & 120 km/h  
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\end_layout
+
+\begin_layout Plain Layout
+
+Carrier Frequency & 2 GHz 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Max Doppler shift & 222 Hz 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\end_layout
+
+\begin_layout Plain Layout
+
+Multipath fading & Rayleigh fading 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{Power Delay Profile (PDP) of the EVA model} 
+\backslash
+begin{tabular}{|c|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Tap Number} & 
+\backslash
+textbf{Relative Delay ($
+\backslash
+mu s$)} & 
+\backslash
+textbf{Average Power (dB)} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 1 & 0.0 & 0.0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 2 & 30.0 & -1.5 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 3 & 150.0 & -1.4 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 4 & 310.0 & -3.6 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 5 & 370.0 & -0.6 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 6 & 710.0 & -9.1 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 7 & 1090.0 & -7.0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 8 & 1730.0 & -12.0 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 9 & 2510.0 & -16.9 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Dataset
 \begin_inset CommandInset label
 LatexCommand label
