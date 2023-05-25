@@ -6610,7 +6610,7 @@ status open
 \begin_inset Graphics
 	filename Imagenes/Papers/TraditionalConv.png
 	lyxscale 50
-	scale 70
+	scale 63
 
 \end_inset
 
@@ -6981,8 +6981,15 @@ label{tab:my-table}
 \backslash
 begin{tabular}{|l|c|c|c|} 
 \backslash
-hline Model & ImageNet Accuracy & Mult-Adds (Million) & Parameters (Million)
- 
+hline 
+\backslash
+textbf{Model} & 
+\backslash
+textbf{ImageNet Accuracy} & 
+\backslash
+textbf{Mult-Adds (Million)} & 
+\backslash
+textbf{Parameters (Million)} 
 \backslash
 
 \backslash
@@ -9426,6 +9433,8 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Network
 \end_layout
 
@@ -9435,6 +9444,8 @@ Network
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 State of Art
 \end_layout
 
@@ -9444,6 +9455,8 @@ State of Art
 \begin_inset Text
 
 \begin_layout Plain Layout
+
+\series bold
 Description
 \end_layout
 
@@ -10194,6 +10207,13 @@ ion system meets the required performance specifications.
 
 \begin_layout Subsubsection
 BLER
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:BLER"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11621,9 +11641,13 @@ Golden LMMSE and non-linear models plot QPSK and 16QAM
 Another metric we are using is the block error rate 
 \color blue
 (
+\color inherit
+ 
+\color blue
+
 \begin_inset CommandInset ref
-LatexCommand nameref
-reference "subsec:BLER"
+LatexCommand ref
+reference "subsec:Signal-quality-metrics"
 plural "false"
 caps "false"
 noprefix "false"
@@ -12704,90 +12728,89 @@ textbf{Number of Parameters}
 
 \backslash
      
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Linear(48, 240, bias=True) & (batch
 \backslash
-texttt{nn.Linear(48, 240, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 240)} & 
-\backslash
-texttt{(48 + 1) * 240 = 11,760} 
+_size, 240) & (48 + 1) * 240 = 11,760 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Hardtanh() & (batch
 \backslash
-texttt{nn.Hardtanh()} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 240)} & 
-\backslash
-texttt{0} 
+_size, 240) & 0 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Linear(240, 720, bias=True) & (batch
 \backslash
-texttt{nn.Linear(240, 720, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 720)} & 
-\backslash
-texttt{2 * 240$^2$ + 2 * 240 = 346,320} 
+_size, 720) & 2 * 240$^2$ + 2 * 240 = 346,320 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Linear(720, 240, bias=True) & (batch
 \backslash
-texttt{nn.Linear(720, 240, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 240)} & 
-\backslash
-texttt{4 * 240$^2$ + 2 * 240 = 1,388,160} 
+_size, 240) & 4 * 240$^2$ + 2 * 240 = 1,388,160 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Hardtanh() & (batch
 \backslash
-texttt{nn.Hardtanh()} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 240)} & 
-\backslash
-texttt{0} 
+_size, 240) & 0 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-hline     
+hline     nn.Linear(240, 48, bias=True) & (batch
 \backslash
-texttt{nn.Linear(240, 48, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 48)} & 
-\backslash
-texttt{(240 + 1) * 48 = 11,568} 
+_size, 48) & (240 + 1) * 48 = 11,568 
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 hline     
 \backslash
@@ -12799,7 +12822,12 @@ textbf{1,757,808 = 13.39 MB}
 \backslash
 
 \backslash
-     
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 hline   
 \backslash
@@ -13103,90 +13131,89 @@ textbf{Number of Parameters}
      
 \backslash
 hline     
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Linear(48, 120, bias=True) & (batch
 \backslash
-texttt{nn.Linear(48, 120, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 120)} & 
-\backslash
-texttt{(48 + 1) * 120 = 5,880} 
+_size, 120) & (48 + 1) * 120 = 5,880 
 \backslash
 
 \backslash
      
 \backslash
 hline     
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Hardtanh() & (batch
 \backslash
-texttt{nn.Hardtanh()} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 120)} & 
-\backslash
-texttt{0} 
+_size, 120) & 0 
 \backslash
 
 \backslash
      
 \backslash
 hline     
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Linear(120, 240, bias=True) & (batch
 \backslash
-texttt{nn.Linear(120, 240, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 240)} & 
-\backslash
-texttt{2 * 120$^2$ + 2 * 120 = 29,040} 
+_size, 240) & 2 * 120$^2$ + 2 * 120 = 29,040 
 \backslash
 
 \backslash
      
 \backslash
 hline     
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Linear(240, 120, bias=True) & (batch
 \backslash
-texttt{nn.Linear(240, 120, bias=True)} & 
+_size, 120) & 4 * 120$^2$ + 2 * 120 = 57,840 
 \backslash
-texttt{(batch
+
 \backslash
-_size, 120)} & 
+     
 \backslash
-texttt{4 * 120$^2$ + 2 * 120 = 57,840} 
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Hardtanh() & (batch
+\backslash
+_size, 120) & 0 
 \backslash
 
 \backslash
      
 \backslash
 hline     
+\end_layout
+
+\begin_layout Plain Layout
+
+nn.Linear(120, 48, bias=True) & (batch
 \backslash
-texttt{nn.Hardtanh()} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 120)} & 
-\backslash
-texttt{0} 
+_size, 48) & (120 + 1) * 48 = 5,856 
 \backslash
 
 \backslash
      
 \backslash
 hline     
-\backslash
-texttt{nn.Linear(120, 48, bias=True)} & 
-\backslash
-texttt{(batch
-\backslash
-_size, 48)} & 
-\backslash
-texttt{(120 + 1) * 48 = 5,856} 
-\backslash
+\end_layout
 
-\backslash
-     
-\backslash
-hline     
+\begin_layout Plain Layout
+
+
 \backslash
 multicolumn{2}{|r|}{
 \backslash
@@ -14559,7 +14586,7 @@ noprefix "false"
 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:Transformer-with-encoder"
+reference "fig:Transformer"
 plural "false"
 caps "false"
 noprefix "false"
@@ -15467,7 +15494,7 @@ n is the distribution over the patches in the grid, and the true probability
  The figure 
 \begin_inset CommandInset ref
 LatexCommand formatted
-reference "fig:Transformer-with-encoder"
+reference "fig:Transformer"
 plural "false"
 caps "false"
 noprefix "false"
@@ -16253,11 +16280,11 @@ This comprehensive evaluation helped us to identify the strengths and weaknesses
 \paragraph_spacing onehalf
 
 \size large
-Our performance metrics are the
+Our performance metrics are the (Bit Error Rate)
 \color blue
  
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "subsec:BER"
 plural "false"
 caps "false"
@@ -16267,11 +16294,11 @@ noprefix "false"
 
 
 \color inherit
- (Bit Error Rate) and 
+ and (Block Error Rate)
 \color blue
-
+ 
 \begin_inset CommandInset ref
-LatexCommand nameref
+LatexCommand ref
 reference "subsec:BLER"
 plural "false"
 caps "false"
@@ -16281,7 +16308,7 @@ noprefix "false"
 
 
 \color inherit
- (Block Error Rate) , which have been explained in the theoretical framework.
+ , which have been explained in the theoretical framework.
  BER measures the ratio of incorrectly received bits to the total number
  of transmitted bits, while BLER measures the ratio of incorrectly received
  blocks to the total number of transmitted blocks.
@@ -16329,7 +16356,11 @@ caption{Processor specifications}
 \backslash
 begin{tabular}{|l|l|}     
 \backslash
-hline     Property & Value 
+hline     
+\backslash
+textbf{Property} & 
+\backslash
+textbf{Value} 
 \backslash
 
 \backslash
@@ -16509,8 +16540,14 @@ label{tab:operations}
 \backslash
 begin{tabular}{|l|l|l|}  
 \backslash
-hline Operation & No.
- Complex Mults & Big O 
+hline  
+\backslash
+textbf{Operation} &  
+\backslash
+textbf{No.
+ Complex Mults} &  
+\backslash
+textbf{Big O} 
 \backslash
 
 \backslash
@@ -16795,7 +16832,11 @@ begin{tabular}{|l|l|}
 
 
 \backslash
-hline Preprocessing Stage & Complexity 
+hline  
+\backslash
+textbf{Preprocessing Stage} &  
+\backslash
+textbf{Complexity} 
 \backslash
 
 \backslash
@@ -17470,7 +17511,7 @@ hline Sorting (torch.argsort(sest2)) & $16 *
 \backslash
 log_{2}(16)$ & 48 & $
 \backslash
-sim$768 
+simeq$768 
 \backslash
 
 \backslash
@@ -17482,7 +17523,7 @@ hline Scalar multiplication (sest[ind] * mag2) & 48 & 48 & 2304
 \backslash
  
 \backslash
-hline Scalar addition (rm - ...) & 48 & 48 & 2304 
+hline Scalar addition & 48 & 48 & 2304 
 \backslash
 
 \backslash
@@ -17645,7 +17686,13 @@ begin{tabular}{|l|l|l|}
 
 
 \backslash
-hline Name & FLOPS & Big O Complexity
+hline 
+\backslash
+textbf{Name} & 
+\backslash
+textbf{FLOPS} & 
+\backslash
+textbf{Big O Complexity} 
 \backslash
 
 \backslash
