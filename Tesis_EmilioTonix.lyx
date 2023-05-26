@@ -9722,7 +9722,7 @@ Methodology and State of Art
 \end_layout
 
 \begin_layout Subsection
-Channel Modeling Features
+Simulation Parameters
 \end_layout
 
 \begin_layout Subsubsection
@@ -9737,6 +9737,177 @@ The 802.11p standard is utilized for V2V communication, where it is assumed
  that the cyclic prefix (CP) has been removed from the channel, leaving
  only the payload and channel in frequency domain.
  The final channel size is maintained at 48x48.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H] 
+\backslash
+centering 
+\backslash
+caption{Simulation parameters} 
+\backslash
+begin{tabular}{|c|c|} 
+\backslash
+hline 
+\backslash
+textbf{Parameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of OFDM subcarriers  & $N = 64$  
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of data subcarriers  & $N_d = 48$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Bandwidth  & $BW = 10MHz$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Samples in the cyclic prefix   & $CP = 16$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Sampling time  & $T_s = 100ns$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Symbol period  & $T_{OFDM} = 8 
+\backslash
+mu s$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Data modulation  & QPSK,16-QAM 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Channel model & 
+\backslash
+parbox{5cm}{Exponentially decaying,
+\backslash
+
+\backslash
+ Rayleigh fading 
+\backslash
+
+\backslash
+ $spread = 0.4
+\backslash
+mu s$, 
+\backslash
+
+\backslash
+ $f_D=1Khz$} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+velocity & $v=100 km/h$ 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+Channel estimation & Perfect channel knowledge 
+\backslash
+
+\backslash
+ 
+\backslash
+hline
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tabular} 
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -9770,88 +9941,6 @@ literal "false"
  Lastly, delay spread results in inter-symbol interference (ISI) over the
  frame.
  The following tables present common values associated with this model.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{table}[H] 
-\backslash
-centering 
-\backslash
-caption{Characteristics of the EVA model} 
-\backslash
-begin{tabular}{|c|c|} 
-\backslash
-hline 
-\backslash
-textbf{Characteristic} & 
-\backslash
-textbf{Value} 
-\backslash
-
-\backslash
- 
-\backslash
-hline
-\end_layout
-
-\begin_layout Plain Layout
-
-Speed & 120 km/h  
-\backslash
-
-\backslash
- 
-\backslash
-hline 
-\end_layout
-
-\begin_layout Plain Layout
-
-Carrier Frequency & 2 GHz 
-\backslash
-
-\backslash
- 
-\backslash
-hline
-\end_layout
-
-\begin_layout Plain Layout
-
-Max Doppler shift & 222 Hz 
-\backslash
-
-\backslash
- 
-\backslash
-hline 
-\end_layout
-
-\begin_layout Plain Layout
-
-Multipath fading & Rayleigh fading 
-\backslash
-
-\backslash
- 
-\backslash
-hline 
-\backslash
-end{tabular} 
-\backslash
-end{table}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
