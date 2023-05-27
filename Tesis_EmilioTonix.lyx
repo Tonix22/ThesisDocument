@@ -18266,7 +18266,11 @@ To provide a detailed comparison of the BER and BLER values across different
 
 \size large
 Neural networks are typically run in custom-built Python frameworks, as
- shown in Figure 
+ shown in 
+\color blue
+Figure
+\color inherit
+ 
 \color blue
 
 \begin_inset CommandInset ref
@@ -18313,12 +18317,16 @@ PhaseNet
 \paragraph_spacing onehalf
 
 \size large
-In Figure 
+In 
+\color blue
+Figure
+\color inherit
+ 
 \color blue
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:68"
+reference "fig:66"
 plural "false"
 caps "false"
 noprefix "false"
@@ -18378,7 +18386,7 @@ QPSK BER : PhaseNet vs.
  LMMSE 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:68"
+name "fig:66"
 
 \end_inset
 
@@ -18403,8 +18411,26 @@ name "fig:68"
 \paragraph_spacing onehalf
 
 \size large
-Regarding the block errors, the same gain of one order of magnitude is observed
- in the noisiest scenarios, up to 25 dB.
+Regarding the block errors in 
+\color blue
+Figure
+\color inherit
+ 
+\color blue
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:67"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , the same gain of one order of magnitude is observed in the noisiest scenarios
+, up to 25 dB.
  However, beyond this point, the model cannot infer any further relation
  between the points, and as a consequence, the BLER flattens out at 
 \begin_inset Formula $BLER=9\times10^{-3}$
@@ -18438,7 +18464,14 @@ status open
 
 \begin_layout Plain Layout
 QPSK BLER : PhaseNet vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:67"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18460,7 +18493,7 @@ As seen in
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:70"
+reference "fig:68"
 plural "false"
 caps "false"
 noprefix "false"
@@ -18515,7 +18548,7 @@ QPSK BER: PhaseNet vs.
  OSIC and NML 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:70"
+name "fig:68"
 
 \end_inset
 
@@ -18536,8 +18569,22 @@ name "fig:70"
 \paragraph_spacing onehalf
 
 \size large
-In the case of BLER, the non-linear equalizer exhibits similar performance,
- while PhaseNet performs one order of magnitude better on average.
+In the case of BLER in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:69"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the non-linear equalizer exhibits similar performance, while PhaseNet
+ performs one order of magnitude better on average.
 \end_layout
 
 \begin_layout Standard
@@ -18561,7 +18608,14 @@ status open
 
 \begin_layout Plain Layout
 QPSK BLER: PhaseNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:69"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18616,8 +18670,21 @@ noprefix "false"
 \paragraph_spacing onehalf
 
 \size large
-Observing the graph below, it can be seen that the model flattens at a BER
- of 
+Observing the graph below in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:70"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, it can be seen that the model flattens at a BER of 
 \begin_inset Formula $10^{-3}$
 \end_inset
 
@@ -18661,6 +18728,13 @@ status open
 \begin_layout Plain Layout
 16-QAM BER: PolarNet vs.
  LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:70"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18686,7 +18760,7 @@ Regarding the BLER in
 Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:73"
+reference "fig:71"
 plural "false"
 caps "false"
 noprefix "false"
@@ -18726,7 +18800,7 @@ status open
  LMMSE 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:73"
+name "fig:71"
 
 \end_inset
 
@@ -18751,8 +18825,22 @@ name "fig:73"
 \paragraph_spacing onehalf
 
 \size large
-Similarly, the non-linear equalizers outperform the neural network in low
- noise scenarios with SNR values greater than 30 dB.
+Similarly in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:72"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, the non-linear equalizers outperform the neural network in low noise scenarios
+ with SNR values greater than 30 dB.
  This is because the neural network truncates error during the training
  stage and additional preprocessing stages may be necessary to achieve lower
  BER.
@@ -18782,7 +18870,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BER: PolarNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:72"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18799,9 +18894,22 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Despite the model being truncated for a BLER of 35dB, the compromise is
- reasonable since the model outperforms the non-linear equalizers within
- a range of 15dB to 35dB.
+Despite the model being truncated for a BLER of 35dB in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:73"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ , the compromise is reasonable since the model outperforms the non-linear
+ equalizers within a range of 15dB to 35dB.
  This suggests that most of the errors reported in the BER section are outliers.
  By centering the input values around the mean, neural networks can learn
  patterns in the data more effectively without being overly influenced by
@@ -18837,7 +18945,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: PolarNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:73"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18883,6 +18998,21 @@ was not as effective because it produced high loss numbers that were larger
  gradient.
  As a result, the network had difficulties updating its weights and optimizing
  its performance using this loss function.
+ Bad optmization resuls in poor perfomance shown in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:74"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  On the other hand, the complex MSE loss 
 \color blue
 (
@@ -18928,7 +19058,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BER: ComplexNet with Two Losses vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:74"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -18949,8 +19086,22 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-In the BLER results, we avoided plotting the ComplexNet Polar logarithmic
- loss because it performed poorly with a BLER of 1 across all blocks.
+In the BLER results in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig: 75"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, we avoided plotting the ComplexNet Polar logarithmic loss because it performed
+ poorly with a BLER of 1 across all blocks.
  On the other hand, Abs loss networks attempted to approximate the golden
  standard, but were not quite good enough.
  One of the main reasons for this is that the proposed methods in the state-of-t
@@ -18994,7 +19145,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: ComplexNet with Two Losses vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig: 75"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19011,7 +19169,21 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-ComplexNet performs marginally better than NML in situations with higher
+In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:76"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ complexNet performs marginally better than NML in situations with higher
  noise levels and is nearly identical to OSIC for values below 15dB.
  Intriguingly, the model's loss closely mirrors that of OSIC, indicating
  that the neural networks are attempting to generalize a solution similar
@@ -19052,7 +19224,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BER: ComplexNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:76"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19069,9 +19248,22 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-For the BLER graph the model does not take into account whether the data
- is close to the mean or an outlier, as it faces difficulties in generalizing
- effectively.
+For the BLER graph in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:77"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ the model does not take into account whether the data is close to the mean
+ or an outlier, as it faces difficulties in generalizing effectively.
  Consequently, the presence or absence of outliers in the data has little
  impact on the model's inherent error.
  This could be attributed to the error function, and as previously mentioned,
@@ -19102,7 +19294,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: ComplexNet vs.
- OSIC and NML
+ OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:77"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19157,8 +19356,22 @@ noprefix "false"
 
 \color inherit
  , this because netowrk take in accounts noise and ISI.
- For SNR values of 23 dB and below, it could be a viable option instead
- of zero forcing.
+ In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:78"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ SNR values of 23 dB and below, it could be a viable option instead of zero
+ forcing.
  In fact, it performs better than zero forcing in the range of 15 dB to
  25 dB, which is encouraging because it supports the hypothesis that it
  is essentially a zero-forcing method with noise consideration.
@@ -19189,7 +19402,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BER: MobileNet vs.
- ZeroForcing
+ ZeroForcing 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:78"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19212,7 +19432,22 @@ status open
 \size large
 Due to its ability to account for noise, MobileNet can identify signals
  more accurately than single zero-forcing, resulting in a lower block error
- rate than the golden model until the model flattens at 30 dB.
+ rate than the golden model until the model flattens at 30 dB as seen in
+ 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:79"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  It is important to note that MobileNet has a higher computational complexity
  than single zero-forcing.
  However, the lower block error rate achieved by MobileNet justifies the
@@ -19240,7 +19475,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: MobileNet vs.
- ZeroForcing
+ ZeroForcing 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:79"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19261,9 +19503,23 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-For SNR values below 30 dB, MobileNet can be a viable choice due to its
- lower computational complexity compared to non-linear models, while also
- achieving a better BER and exhibiting behavior similar to that of OSIC.
+In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:80"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ SNR values below 30 dB, MobileNet can be a viable choice due to its lower
+ computational complexity compared to non-linear models, while also achieving
+ a better BER and exhibiting behavior similar to that of OSIC.
 \end_layout
 
 \begin_layout Standard
@@ -19287,7 +19543,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BER: MobileNet vs.
- Zero forcing, OSIC and NML
+ Zero forcing, OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:80"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19304,9 +19567,24 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The block error rate is quite good for values lower than 30dB, which can
- be attributed to the intelligent zero-forcing approach that effectively
- cancels the Intersymbol Interference (ISI), resulting in an improved BLER.
+The block error rate is quite good for values lower than 30dB as seen in
+ 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:81"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, which can be attributed to the intelligent zero-forcing approach that
+ effectively cancels the Intersymbol Interference (ISI), resulting in an
+ improved BLER.
  This helps to ensure data integrity is maintained as much as possible.
  One potential future strategy could involve using this network as a preprocessi
 ng step to feed data into other advanced networks, further enhancing their
@@ -19334,7 +19612,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: MobileNet vs.
- Zero forcing, OSIC and NML
+ Zero forcing, OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:81"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19360,7 +19645,7 @@ GridNet Square
 
 \size large
 We experimented with different grid steps for GridNet Square and found 1/7
- to be the best, shown in figure 
+ to be the best, shown in Figure 
 \color blue
 
 \begin_inset CommandInset ref
@@ -19381,8 +19666,22 @@ noprefix "false"
  in noisy scenarios.
  Limited cells require small sizes to avoid overlap in QAM constelation.
  In general, the BER results for the tested method were significantly worse
- than the golden model LMMSE, showing a difference of one order of magnitude.
- 
+ than the golden model LMMSE, showing a difference of one order of magnitude
+ as seen in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:82"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
 \end_layout
 
 \begin_layout Standard
@@ -19405,7 +19704,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet Square Grid vs LMMSE
+16-QAM BER: GridNet Square Grid vs LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:82"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19427,8 +19733,21 @@ status open
 
 \size large
 The Blocks error metrics are not performing as expected at high SNR levels,
- as the model truncates at 35dB, and cannot utilize additional information
- provided by the grid.
+ as the model truncates at 35dB as seen in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:83"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, and cannot utilize additional information provided by the grid.
  One of the main reasons for the poor performance is that all points in
  the grid have equal weighting and relevance, leading to position uncertainty.
  To address this issue, the polarGrid was developed, where points near the
@@ -19470,7 +19789,14 @@ status open
 
 \begin_layout Plain Layout
 16-QAM BLER: GridNet Square Grid vs.
- LMMSE
+ LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:83"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19492,7 +19818,21 @@ status open
 
 \size large
 Regarding the non-linear models, all the results are parallel to each other.
- The performance of GridNet Square Grid can be considered an intermediate
+ In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:84"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ the performance of GridNet Square Grid can be considered an intermediate
  trade-off between OSIC and NML in terms of BER/SNR performance.
  Compared to NML, GridNet Square offers the main advantage of faster performance
  and the possibility of parallel processing in some sections.
@@ -19519,7 +19859,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet Square Grid MobileNet vs.OSIC and NML
+16-QAM BER: GridNet Square Grid MobileNet vs.OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:84"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19540,8 +19887,22 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-Overall, the non-linear methods outperform GridNet Square by one order of
- magnitude in terms of block error rate (BLER).
+Overall
+\color blue
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:85"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ shows that the non-linear methods outperform GridNet Square by one order
+ of magnitude in terms of block error rate (BLER).
  However, in terms of bit error rate (BER), the degridding process used
  in GridNet Square narrows the noise by converting the grid patch to a complex
  point in the constellation and placing the calculated value in a fixed
@@ -19573,7 +19934,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: GridNet Square Grid MobileNet vs.OSIC and NML
+16-QAM BLER: GridNet Square Grid MobileNet vs.OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:85"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19598,7 +19966,21 @@ GridNet Polar
 \paragraph_spacing onehalf
 
 \size large
-GridNet with a polar grid achieved the best performance between 25 dB and
+In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:86"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ gridNet with a polar grid achieved the best performance between 25 dB and
  45 dB, demonstrating that the attention mechanisms with varying cell sizes
  weighted more towards the center effectively reduced inter-symbol interference
  (ISI).
@@ -19637,7 +20019,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet Polar Grid vs LMMSE
+16-QAM BER: GridNet Polar Grid vs LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:86"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19655,7 +20044,21 @@ status open
 
 \size large
 Polar Grid exhibits one of the lowest block error rates (BLER) for high
- signal-to-noise ratio (SNR) values between 33 dB and 45 dB.
+ signal-to-noise ratio (SNR) values between 33 dB and 45 dB in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:87"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  The autoregression attention mechanisms employed by the transformer model
  are effective in capturing the relationship between the first and last
  values, which reduces inter-symbol interference (ISI) and leads to better
@@ -19685,7 +20088,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: GridNet Polar Grid vs LMMSE
+16-QAM BLER: GridNet Polar Grid vs LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:87"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19708,7 +20118,21 @@ status open
 \size large
 OSIC and PolarGrid operate similarly, utilizing attention mechanisms and
  grids to achieve superior performance at high signal-to-noise ratio (SNR)
- values.
+ values as shown in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:88"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+.
  Comparing the non-linear models, it can be seen that OSIC yields the same
  bit error rate (BER) in certain low SNR ranges.
  However, for the lowest SNR, GridNet outperforms OSIC.
@@ -19734,7 +20158,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet Polar Grid MobileNet vs.OSIC and NML
+16-QAM BER: GridNet Polar Grid MobileNet vs.OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:88"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19755,8 +20186,22 @@ status open
 \paragraph_spacing onehalf
 
 \size large
-The block error rate (BLER) graph shows that the models perform better at
- higher signal-to-noise ratio (SNR) values above 25 dB.
+In 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:89"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ the block error rate (BLER) graph shows that the models perform better
+ at higher signal-to-noise ratio (SNR) values above 25 dB.
  However, for lower SNR values, both non-linear methods perform better.
  Nonetheless, GridNet is faster than NML and represents a promising implementati
 on option with a small performance sacrifice for low SNR scenarios.
@@ -19786,7 +20231,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: GridNet Polar Grid MobileNet vs.OSIC and NML
+16-QAM BLER: GridNet Polar Grid MobileNet vs.OSIC and NML 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:89"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19817,8 +20269,22 @@ PolarGrid has the potential to use fewer parameters because the number of
  While there is at least one order of magnitude difference between PolarGrid
  and SquareGrid in terms of bit error rate (BER), SquareGrid exhibits more
  consistent and predictable BER/SNR slope, whereas PolarNet shows rapid
- BER growth over a short range of SNR values, which can sometimes be undesirable
-, particularly if the communication system operates within this range.
+ BER growth over a short range of SNR values as shown in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:90"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+, which can sometimes be undesirable, particularly if the communication
+ system operates within this range.
  On a positive note, neither of the grids performs worse than NML, which
  has the highest BER.
 \end_layout
@@ -19847,7 +20313,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: GridNet, Polar and Square Grid vs LMMSE
+16-QAM BER: GridNet, Polar and Square Grid vs LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:90"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19931,8 +20404,22 @@ name "fig:16-QAM-BER:-GridNet"
 \paragraph_spacing onehalf
 
 \size large
-Regarding the block error rate (BLER), both methods perform well for signal-to-n
-oise ratio (SNR) values higher than 25 dB.
+Regarding the block error rate (BLER) in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:92"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ both methods perform well for signal-to-noise ratio (SNR) values higher
+ than 25 dB.
  However, SquareGrid exhibits a slower growth rate than PolarNet between
  27 dB and 20 dB, and for lower SNR values, other non-linear methods achieve
  lower BLER values.
@@ -19965,7 +20452,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: GridNet, Polar and Square Grid vs LMMSE
+16-QAM BLER: GridNet, Polar and Square Grid vs LMMSE 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:92"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -19985,7 +20479,19 @@ status open
 Square grid works better with lower SNR than the Polar grid.
  Basically both grids are a finnaly trade off between consisten noise mitigation
  or ISI cancelation.
- 
+ It can be taken a closer look for SNR range from 5dB to 25dB in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:93"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -19994,10 +20500,6 @@ placement H
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \align center
@@ -20012,7 +20514,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: GridNet, Polar and Square Grid vs LMMSE from 5dB to 30dB
+16-QAM BLER: GridNet, Polar and Square Grid vs LMMSE from 5dB to 30dB 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:93"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -20037,15 +20546,65 @@ Outlook of results
 \paragraph_spacing onehalf
 
 \size large
-The results presented here are based on the visual and experimental representati
-on of the Block Error Rate (BER) and Bit Error Rate (BLER) with different
- Signal-to-Noise Ratio (SNR) scenarios.
+The results presented in 
+\color blue
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:94"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:95"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:96"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ 
+\color black
+and
+\color blue
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:97"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\color inherit
+ are based on the visual and experimental representation of the Block Error
+ Rate (BER) and Bit Error Rate (BLER) with different Signal-to-Noise Ratio
+ (SNR) scenarios.
  The results provide valuable insights into the strengths and weaknesses
  of each equalization method and can inform the development of more effective
  equalization techniques for equalization task.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
 PolarNet appears to perform well overall SNR values, with one of the best
@@ -20056,6 +20615,8 @@ PolarNet appears to perform well overall SNR values, with one of the best
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
 MobileNet performs well for SNR values lower than 25 dB, with lower BER
@@ -20105,7 +20666,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: All methods
+16-QAM BER: All methods 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:94"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -20127,6 +20695,8 @@ GridNet Square behaves similar to NML.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
 MobileNet, PolarNet and ComplexNet converge to the NML model for the lowest
@@ -20153,7 +20723,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BER: All methods from 5dB to 27dB
+16-QAM BER: All methods from 5dB to 27dB 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:95"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -20231,7 +20808,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: All methods from 5dB to 45dB
+16-QAM BLER: All methods from 5dB to 45dB 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:96"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -20281,7 +20865,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-16-QAM BLER: All methods from 14dB to 30dB
+16-QAM BLER: All methods from 14dB to 30dB 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:97"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
