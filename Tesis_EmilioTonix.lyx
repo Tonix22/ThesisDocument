@@ -398,15 +398,17 @@ Las redes inalámbricas de alta movilidad, como la comunicación vehículo
  Para ello, se utiliza el esquema de modulación OFDM, en el cual la información
  se divide en subportadoras que se transmiten simultáneamente con modulación
  de amplitud en cuadratura (QAM).
- En este caso, el canal sufre de fenómenos como la dispersión en frecuencia
+ En este caso, el canal sufre fenómenos como la dispersión en frecuencia
  que comprometen la integridad de los datos recibidos.
- Para abordar esto, se presentan igualadores convencionales o iterativos,
- los cuales son más precisos pero requieren más tiempo de procesamiento.
+ Algunas técnicas existentes que atacan este problema utilizan igualadores
+ convencionales o iterativos, los cuales permiten mitigar en cierta medida
+ el efecto de la interferencia entre portadoras a costo de un aumento significat
+ivo en la complejidad computacional del receptor.
  Dado el compromiso entre precisión y costo de procesamiento, este trabajo
  presenta soluciones basadas en redes neuronales como una alternativa para
- la tarea de igualación en el esquema de modulación OFDM.
- Dichas soluciones de aprendizaje profundo van desde las más sencillas (feedforw
-ard) hasta las más complejas (transformers), y se consideran las métricas
+ la tarea de igualación en sistemas OFDM en ambientes de alta movilidad.
+ Estas soluciones de aprendizaje profundo van desde las más sencillas (feedforwa
+rd) hasta las más complejas (transformers), y se consideran las métricas
  de tasa de error de bits (BER) y tasa de error de bloques (BLER) para evaluar
  la precisión de la igualación.
  
