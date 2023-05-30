@@ -12209,7 +12209,7 @@ By using this approach, we can concentrate solely on the phasors (angles)
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\boldsymbol{\hat{\theta}}\right)=\frac{1}{2}\left(E\left[(cos(\boldsymbol{\hat{\theta}})-X_{real})^{2}\right]+E\left[(sin(\boldsymbol{\hat{\theta}})-X_{imag})^{2}\right]\right)\label{eq:62}
+MSE\left(\boldsymbol{\hat{\theta}}\right)=\frac{1}{2}\left(E\left[(cos(\boldsymbol{\hat{\theta}})-\theta_{real})^{2}\right]+E\left[(sin(\boldsymbol{\hat{\theta}})-\theta_{imag})^{2}\right]\right)\label{eq:62}
 \end{equation}
 
 \end_inset
@@ -12229,7 +12229,7 @@ However this expresion can be rewriten and it can be expand each term as
 \align center
 
 \size large
-\begin_inset Formula $E\left[\cos^{2}(\boldsymbol{\hat{\theta}})\right]-2X_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]+X_{\text{real}}^{2}+E\left[\sin^{2}(\boldsymbol{\hat{\theta}})\right]-2X_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]+X_{\text{imag}}^{2}$
+\begin_inset Formula $E\left[\cos^{2}(\boldsymbol{\hat{\theta}})\right]-2\theta_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]+\theta_{\text{real}}^{2}+E\left[\sin^{2}(\boldsymbol{\hat{\theta}})\right]-2\theta_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]+\theta_{\text{imag}}^{2}$
 \end_inset
 
 
@@ -12263,7 +12263,7 @@ and
 \align center
 
 \size large
-\begin_inset Formula $-2X_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]-2X_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]=-2(X_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+X_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))$
+\begin_inset Formula $-2\theta_{\text{real}}E\left[\cos(\boldsymbol{\hat{\theta}})\right]-2\theta_{\text{imag}}E\left[\sin(\boldsymbol{\hat{\theta}})\right]=-2(\theta_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+\theta_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))$
 \end_inset
 
 
@@ -12280,7 +12280,7 @@ Substituting these simplifications back into the previous equation gives:
 \align center
 
 \size large
-\begin_inset Formula $\frac{1}{2}\left(1-2(X_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+X_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))+X_{\text{real}}^{2}+X_{\text{imag}}^{2}\right)$
+\begin_inset Formula $\frac{1}{2}\left(1-2(\theta_{\text{real}}\cos(\boldsymbol{\hat{\theta}})+\theta_{\text{imag}}\sin(\boldsymbol{\hat{\theta}}))+\theta_{\text{real}}^{2}+\theta_{\text{imag}}^{2}\right)$
 \end_inset
 
 
@@ -12299,7 +12299,7 @@ which can be further simplified to:
 \size large
 \begin_inset Formula 
 \begin{equation}
-\frac{1}{2}\left((\cos(\boldsymbol{\hat{\theta}})-X_{\text{real}})^{2}+(\sin(\boldsymbol{\hat{\theta}})-X_{\text{imag}})^{2}\right)\label{eq63}
+\frac{1}{2}\left((\cos(\boldsymbol{\hat{\theta}})-\theta_{\text{real}})^{2}+(\sin(\boldsymbol{\hat{\theta}})-\theta_{\text{imag}})^{2}\right)\label{eq63}
 \end{equation}
 
 \end_inset
@@ -12336,7 +12336,7 @@ with a fixed radius of 1
 \size large
 \begin_inset Formula 
 \begin{equation}
-MSE\left(\boldsymbol{\hat{\theta}}\right)=|O(\boldsymbol{\hat{\theta}})-X|^{2}
+MSE\left(\boldsymbol{\hat{\theta}}\right)=|O(\boldsymbol{\hat{\theta}})-\theta|^{2}
 \end{equation}
 
 \end_inset
@@ -13883,7 +13883,7 @@ One of the key components of layers in this stage is the apply_complex functions
 \size large
 \begin_inset Formula 
 \begin{equation}
-Re(z)=Re(fr)*Re(x)-Im(fi)*Im(x)
+z_{Real}=fr_{Real}*x_{Real}-fi_{Imag}*x_{imag}
 \end{equation}
 
 \end_inset
@@ -13896,7 +13896,7 @@ Re(z)=Re(fr)*Re(x)-Im(fi)*Im(x)
 \size large
 \begin_inset Formula 
 \begin{equation}
-Im(z)=Re(fi)*Re(x)+Im(fr)*Im(x)
+z_{imag}=fi_{real}*x_{real}+fr_{imag}*x_{imag}
 \end{equation}
 
 \end_inset
@@ -14582,8 +14582,8 @@ noprefix "false"
 \begin{equation}
 Loss=\begin{array}{c}
 \frac{1}{2}MSE(Y_{mag}*\hat{\theta_{mag}},x_{mag})+\\
-\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}_{angle}+Y_{angle}\right]_{real},\left[1\angle x_{angle}\right]_{real}\right)+\\
-\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}_{angle}+Y_{angle}\right]_{imag},\left[1\angle x_{angle}\right]_{imag}\right)
+\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}+Y_{angle}\right]_{real},\left[1\angle\theta\right]_{real}\right)+\\
+\frac{1}{4}MSE\left(\left[1\angle\hat{\theta}+Y_{angle}\right]_{imag},\left[1\angle\theta\right]_{imag}\right)
 \end{array}
 \end{equation}
 
@@ -14598,24 +14598,24 @@ Loss=\begin{array}{c}
 \size large
 The first term computes the MSE between the magnitudes of the estimated
  signal 
-\begin_inset Formula $Y_{mag}*\hat{\theta_{mag}}$
+\begin_inset Formula $\lVert Y\lVert*\lVert\hat{\theta}\rVert$
 \end_inset
 
  and the true signal magnitud 
-\begin_inset Formula $\boldsymbol{X_{mag}}$
+\begin_inset Formula $\lVert\theta\rVert$
 \end_inset
 
 .
  Here, 
-\begin_inset Formula $\boldsymbol{Y_{mag}}$
+\begin_inset Formula $\lVert Y\lVert$
 \end_inset
 
  is the magnitude of the received signal 
-\begin_inset Formula $\boldsymbol{Y}$
+\begin_inset Formula $Y$
 \end_inset
 
 , and 
-\begin_inset Formula $\boldsymbol{\hat{\theta_{mag}}}$
+\begin_inset Formula $\lVert\hat{\theta}\rVert$
 \end_inset
 
  is the estimated magnitude given by network.
@@ -14627,7 +14627,11 @@ The first term computes the MSE between the magnitudes of the estimated
 \size large
 The second term computes the mean squared error (MSE) between the real component
 s of the estimated phasor, with fixed radius plus phase correction, and
- the real value of the angle of x
+ the real value of the angle of 
+\begin_inset Formula $x$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -18337,12 +18341,12 @@ noprefix "false"
 
 
 \color inherit
- the PhaseNet model shows an upgrade of up to one order of magnitude.
+ the PhaseNet model exhibits an improvement of up to one order of magnitude.
  The model plateaus at 
 \begin_inset Formula $10^{-5}$
 \end_inset
 
- BER from 30db to higher values.
+ BER from 30 dB to higher values.
  This can be achieved due to the preprocessing stage, which sets all phase
  points to the closest points but with incorrect phase.
  This enables the networks to classify well between only four possible angle
@@ -18433,8 +18437,9 @@ noprefix "false"
 \color inherit
  , the same gain of one order of magnitude is observed in the noisiest scenarios
 , up to 25 dB.
- However, beyond this point, the model cannot infer any further relation
- between the points, and as a consequence, the BLER flattens out at 
+ However, beyond this SNR, the model cannot infer any further relation between
+ the constelation points and the ground truth, and as a consequence, the
+ BLER flattens out at 
 \begin_inset Formula $BLER=9\times10^{-3}$
 \end_inset
 
@@ -18504,9 +18509,9 @@ noprefix "false"
 
 
 \color inherit
-, the non-linear model exhibits similar linear growth in relation to lower
- SNR values, while PhaseNet follows a positive concave shape with an improvement
- of one order of magnitude.
+, the non-linear model exhibits similar exponential decrease in relation
+ to lower SNR values, while PhaseNet follows a positive concave shape with
+ an improvement of one order of magnitude.
  
 \end_layout
 
@@ -18514,12 +18519,11 @@ noprefix "false"
 \paragraph_spacing onehalf
 
 \size large
-One positive aspect of the PhaseNet model is that the number of symbols
- for bigger PSK does not affect the time complexity of the networks.
- Only retraining is necessary, as only the number of symbols in the frame
- matters for the networks and the relative positions are learned.
- In fact, more constellation points lead to a more complex and less accurate
- precision.
+The PhaseNet model has a notable advantage where the time complexity of
+ the networks remains unaffected by the number of symbols for larger PSK
+ (Phase Shift Keying).
+ This is not the same for QAM systems where magnitud is involved.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -18571,7 +18575,7 @@ name "fig:68"
 \paragraph_spacing onehalf
 
 \size large
-In the case of BLER in 
+In Figure 
 \color blue
 Figure 
 \begin_inset CommandInset ref
@@ -18585,8 +18589,10 @@ noprefix "false"
 
 
 \color inherit
-, the non-linear equalizer exhibits similar performance, while PhaseNet
- performs one order of magnitude better on average.
+, when considering the Block Error Rate (BLER), the non-linear equalizers
+ demonstrate comparable performance among themselves.
+ However, on average, the PhaseNet model outperforms them by one order of
+ magnitude.
 \end_layout
 
 \begin_layout Standard
@@ -18659,13 +18665,15 @@ noprefix "false"
 
 
 \color inherit
- for more detail.
- One of the main reasons is to maintain a more modular architecture, which
- means that in a future implementation, it can be equalized a 16-PSK or
- 16-QAM with almost the same processing stages.
- Another key feature is that each network is specialized, reducing the error
- to only its specific task.
- Therefore, in theory, this will make the error not influence each other.
+ for more detail.One of the main reasons for this choice is to ensure a highly
+ modular architecture that facilitates possible future implementations of
+ equalizing 16-PSK or 16-QAM with almost identical processing stages.
+ Another crucial aspect is the specialization of each network, with one
+ focusing solely on the phase and the other on the magnitude.
+ This specialization helps minimize the impact of errors on each other.
+ Although there were attempts to combine both aspects, but the results did
+ not meet a good perfomance.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -18699,13 +18707,15 @@ noprefix "false"
  were not sufficient to modify the internal network weights.
  This leads to the model plateauing, where it reaches a point where it cannot
  improve any further.
- Also we keep in mind that this models has 
-\begin_inset Formula $A^{2}$
-\end_inset
-
- elements in comparison with QPSK, so curves will look closer to the golden
- models.
  
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+Note: Starting from this point and onwards, we will be working with 16-QAM
+ constellations.
 \end_layout
 
 \begin_layout Standard
@@ -18772,8 +18782,7 @@ noprefix "false"
 
 \color inherit
  , it is shown that the system can consistently equalize a certain quantity
- of blocks and prove that most of the errors are given from far away points
- in the constellation.
+ of blocks.
  However, in general, the network is capable of clustering the data points
  around their corresponding constellation points.
 \end_layout
@@ -18841,8 +18850,8 @@ noprefix "false"
 
 
 \color inherit
-, the non-linear equalizers outperform the neural network in low noise scenarios
- with SNR values greater than 30 dB.
+, the non-linear equalizers outperform the neural network in high noise
+ scenarios with SNR values greater than 30 dB.
  This is because the neural network truncates error during the training
  stage and additional preprocessing stages may be necessary to achieve lower
  BER.
@@ -18979,8 +18988,8 @@ ComplexNet
 \paragraph_spacing onehalf
 
 \size large
-In complex net we try two different loss functions to traing the neuronal
- network.
+In the complex net, two different loss functions were experimented with
+ to train the neural network.
  However, logarithmic polar loss in equation 
 \color blue
 
@@ -19104,11 +19113,11 @@ noprefix "false"
 \color inherit
 , we avoided plotting the ComplexNet Polar logarithmic loss because it performed
  poorly with a BLER of 1 across all blocks.
- On the other hand, Abs loss networks attempted to approximate the golden
- standard, but were not quite good enough.
- One of the main reasons for this is that the proposed methods in the state-of-t
-he-art literature and the ones implemented in our research are not mature
- enough to help with the equalization task.
+ On the other hand, attempts were made to approximate the golden standard
+ using Abs loss networks, but they fell short of expectations.
+ One of the primary reasons for this is that the shown methods in the state-of-t
+he-art literature, as well as those implemented in our research, are not
+ sufficiently mature to effectively assist with the equalization task.
  As seen in 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -19119,11 +19128,8 @@ literal "false"
 
 , there are some assumptions about the activation functions in the complex
  plane.
- Additionally, we used automatic differentiation provided by the pytorch
- framework, which may have struggled with complex conjugation.
- Implementing a solution from complex differentiation can be challenging
- and may require a separate research project for someone with strong mathematica
-l skills.
+ Implementing a complete functional solution from complex differentiation
+ can be challenging and may require a separate research project.
 \end_layout
 
 \begin_layout Standard
@@ -19196,9 +19202,6 @@ ty.
  N scale and not the alphabet of symbols.
  Therefore, for larger QAM systems, this network may be a more suitable
  solution.
- It is recommended to conduct further testing with higher QAM constellations.
- However, higher QAM constelations is outside this research scope.
- 
 \end_layout
 
 \begin_layout Standard
@@ -19327,23 +19330,14 @@ MobileNet
 Although MobileNet is not the most accurate convolutional neural network,
  it is still considered one of the fastest models in terms of processing
  speed and FLOPS among state-of-the-art methods.
- The main idea behind MobileNet is to provide channel compression into a
- vector seen in 
+ The primary concept behind MobileNet is to compress the channels into a
+ vector, as depicted in
 \color blue
-Figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Ilustartion-of-mobileNet"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
+ Figure 
 \color inherit
- and then perform zero forcing with the received signal, which offers a
- better solution than single zero forcing in subsection 
+, and subsequently apply zero forcing to the received signal.
+ This approach offers a superior solution compared to single zero forcing
+ discussed in subsection 
 \color blue
 
 \begin_inset CommandInset ref
@@ -19357,7 +19351,9 @@ noprefix "false"
 
 
 \color inherit
- , this because netowrk take in accounts noise and ISI.
+.
+ The reason for this improvement is that the network considers both noise
+ and intersymbol interference (ISI) during the zero-forcing process.
  In 
 \color blue
 Figure 
@@ -19432,10 +19428,11 @@ name "fig:78"
 \paragraph_spacing onehalf
 
 \size large
-Due to its ability to account for noise, MobileNet can identify signals
- more accurately than single zero-forcing, resulting in a lower block error
- rate than the golden model until the model flattens at 30 dB as seen in
- 
+Due to its capability to establish connections between symbols while accounting
+ for additive white noise, MobileNet can accurately identify signals more
+ effectively than single zero-forcing.
+ This leads to a lower block error rate compared to the golden model, as
+ depicted in 
 \color blue
 Figure 
 \begin_inset CommandInset ref
@@ -19449,7 +19446,7 @@ noprefix "false"
 
 
 \color inherit
-.
+, until the model plateaus at 30 dB.
  It is important to note that MobileNet has a higher computational complexity
  than single zero-forcing.
  However, the lower block error rate achieved by MobileNet justifies the
