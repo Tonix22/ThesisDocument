@@ -2162,12 +2162,21 @@ Particular Objective
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
-Evaluate performance across various noise levels (5dB to 45dB)
+Obtain the golden models in a Python platform and measure the Bit Error
+ Rate (BER) and Block Error Rate (BLER) for each model.
+ The models can be categorized into linear techniques such as LS (Least
+ Squares), LMMSE (Linear Minimum Mean Square Error), Zero Forcing, and non-linea
+r techniques like OSIC (Ordered Successive Interference Cancellation), and
+ NearML.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
 Investigate deep learning techniques such as feedforward layers, complex
@@ -2175,44 +2184,40 @@ Investigate deep learning techniques such as feedforward layers, complex
 \end_layout
 
 \begin_layout Itemize
-
-\size large
-Recover QAM and PSK received symbols distorted by LOS and NLOS channel condition
-s using feedforward neural network layers that correct both phase and magnitude.
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-Employ non-linear dimensionality reduction using CNN (Convolutional Neural
- Networks) to apply zero forcing or some related method.
-\end_layout
-
-\begin_layout Itemize
-
-\size large
-Achieve BER and BLER comparable to "golden models," which include some linear
- techniques such as LS, LMMSE, Zero Forcing, and non-linear techniques like
- OSIC, NearML.
-\end_layout
-
-\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
 Examine transformers and attention mechanisms to reduce ICI.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
-Use the FLOPS metric and time complexity for benchmarking and analysis.
+Implement the mentioned neural networks techniques to equalize QAM and PSK
+ received symbols distorted by Line-of-Sight (LOS) and Non-Line-of-Sight
+ (NLOS) channel conditions, aiming to correct both phase and magnitude.
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
 
 \size large
-Benchmark and tradeoff between suitable neural network architectures for
- different situations.
+Benchmark and trade-off between suitable neural network architectures for
+ different Signal-to-Noise Ratio (SNR) values.
+ Evaluate the performance across various noise levels ranging from 5dB to
+ 45dB.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Utilize the FLOPS metric and time complexity for benchmarking and analysis.
 \end_layout
 
 \begin_layout Standard
@@ -20920,59 +20925,9 @@ Contributions
 \paragraph_spacing onehalf
 \noindent
 
-\size large
-Compared to the state of art that use neural networks for signal equalization,
- we employed larger frame sizes and higher constellation points, such as
- 16QAM.
- Typically, smaller frame sizes and lower constellation points, such as
- QPSK, are used:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Larger frame sizes of 48
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-A channel of 48x48
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Support up to 16QAM.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-In order to help the neural network generalize better during the training
- stage, the z-score was utilized to reduce outliers.
- This approach was particularly necessary for the equalization task, as
- it prevented the neural network from having to adapt to all possible solutions
- and improved its ability to generalize effectively.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
 \series bold
 \size large
-PhaseNet
+GridNet
 \series default
 :
 \end_layout
@@ -20983,186 +20938,8 @@ PhaseNet
 \noindent
 
 \size large
-Designed for PSK systems equalization.
- 
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Generated the idea to use a unitary circle to exploit the concept of using
- distance as a metric of the phase, setting a constant radius of one but
- measuring the error distance based on how well the angle is estimated by
- the network.
- This avoids wrong angle measurements, which would result in an incorrect
- error being passed to the network.
- 
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Network learns faster and generalizes better for phase prediction with the
- distance error metric.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
-PolarNet
-\series default
-: 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-A combination of PhaseNet and MagNet, which is an equalizer that separately
- deals with phase and magnitude error reduction and estimates them as separate
- values in a phasor manner.
- The idea behind this network is to make it more modular, as a system can
- work with either PSK equalization or QAM, depending on the requirement
- of the system.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Combination of different preprocesing stages on for magnitud and another
- for phase.
- 
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
-ComplexNet
-\series default
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-First Implementation of complex of a feedforward neural network for OFDM
- equalization.
- 
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Although it did not produce the best results for equalization, it opens
- new avenues for possible implementation and mathematical study to upgrade
- gradients and network evaluation, to make a better estimate of the ground
- truth.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
-MobileNet
-\series default
-:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-A network typically used for classification modified for our research, it
- was utilized for a regression task to simulate zero-forcing with known
- noise.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Modification of the first and final layer to ensure the network fits with
- the data dimensionality.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Using one of the most efficient convolutional neural networks for an equalizatio
-n task, striking a balance between accuracy and time complexity
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-The network significantly reduced the BER and BLER with just one single
- vector of size 48 performing zero-forcing.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\series bold
-\size large
-Identified a gap
-\series default
- in the existing literature regarding the use of transformers in the signal
- processing scenario.
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Taking inspiration from image-to-image translation models, we implemented
- a square grid that divides the IQ plane into buckets.
- These buckets are a quantization of all infinite possible values in the
- plane into a reduced alphabet.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-\noindent
-
-\size large
-Translated the uncorrected image given by the data, which had channel deformatio
-n and noise, and recovered the image with the desired buckets based on the
- ground truth.
+The application of the first transformer to signal equalization in the OFDM
+ modulation scheme.
 \end_layout
 
 \end_deeper
@@ -21183,10 +20960,13 @@ PolarGrid
 \noindent
 
 \size large
-Although existing square grids are commonly used for image processing in
- image transformers, the use of PolarGrid was unexplored before this research.
- Which is quite useful in this case, as our image represents the complex
- plane that can be analyzed in polar geometry.
+A novel implementation of PolarGrid, derived from SquareGrid, was introduced.
+ This innovative approach proves particularly advantageous as it allows
+ for analysis using polar geometry in our image representation of the complex
+ plane.
+ This unique use case in image processing opens up new possibilities for
+ exploring the capabilities of polar geometry within the context of images
+ and transformers architecture.
 \end_layout
 
 \end_deeper
@@ -21196,7 +20976,7 @@ Although existing square grids are commonly used for image processing in
 
 \series bold
 \size large
-GridNet
+MobileNet
 \series default
 :
 \end_layout
@@ -21207,11 +20987,137 @@ GridNet
 \noindent
 
 \size large
-The first transformer applied to signal equalization in the modulation scheme
- for OFDM.
+The first and final layers were adjusted to ensure compatibility with the
+ data dimensionality.
+ The model achieved low Bit Error Rate (BER) values compared to zero forcing,
+ while maintaining a balance between accuracy and computational efficiency
+ for the equalization task.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+A network that is commonly employed for classification purposes was adapted
+ for our research, where it was utilized for regression instead.
+ The network's objective was to simulate zero-forcing while incorporating
+ noise into the model to enhance the traditional equalizer.
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+PhaseNet
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The use of the unitary circle exploits distance as a metric for phase estimation.
+ With a constant radius of one, error distance is determined by the network's
+ angle estimation accuracy, avoiding incorrect angle measurements and preventing
+ erroneous error propagation.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+By utilizing a distance error metric instead of angle, the network demonstrates
+ faster learning rate and enhanced robustness against unseen data in the
+ phase equalization task
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+This network is implemented to equalize PSK constellations.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+PolarNet
+\series default
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+PhaseNet and MagNet networks were combined to facilitate independent equalizatio
+n of phase and magnitude features.
+ The primary goal of this network design is to enhance modularity, enabling
+ the system to adapt to either PSK equalization or QAM, depending on the
+ specific requirements of the system.
+\end_layout
+
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+Distinct preprocessing stages were developed for the magnitude and phase
+ components, enhancing the robustness of the model and enabling effective
+ handling of unseen data.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\series bold
+\size large
+ComplexNet
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+The first implementation of a complex feedforward neural network for OFDM
+ equalization of its kind was conducted.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+To enhance generalization during training, the z-score was utilized to reduce
+ outliers.
+ This was especially important for the equalization task, as it prevented
+ the neural network from needing to adapt to every potential solution and
+ improved its ability to generalize effectively.
+\end_layout
+
 \begin_layout Subsection
 Outlook
 \end_layout
@@ -21238,13 +21144,6 @@ MobileNet and PolarGrid enable adequate mitigation of impairments caused
 \paragraph_spacing onehalf
 
 \size large
-PhaseNet, PolarNet, and ComplexNet allow for adequate noise reduction.
-\end_layout
-
-\begin_layout Itemize
-\paragraph_spacing onehalf
-
-\size large
 The networks time complexity can be parallelized without implementing complex
  architectures.
 \end_layout
@@ -21261,7 +21160,7 @@ Except for ComplexNet, the networks outperform the non-linear classical
 \paragraph_spacing onehalf
 
 \size large
-PolarGridNet is proof that transformers can be used in the telecom industry
+The PolarGridNet is proof that transformers can be used in the telecom industry
  with adequate preprocessing.
 \end_layout
 
@@ -21277,16 +21176,16 @@ The following observations were made regarding the work presented in this
 \paragraph_spacing onehalf
 
 \size large
-Neural networks work better with closely spaced data points, hence a pre-process
-ing stage plays a fundamental role.
+The neural networks work better with closely spaced data points, hence a
+ pre-processing stage plays a fundamental role.
 \end_layout
 
 \begin_layout Itemize
 \paragraph_spacing onehalf
 
 \size large
-Attention mechanisms assign weights to input data, enabling the model to
- focus on relevant information and reduce inter-symbol interference (ISI).
+The attention mechanisms assign weights to input data, enabling the model
+ to focus on relevant information and reduce inter-symbol interference (ISI).
  However, in the presence of noise, this can cause attention mechanisms
  to fail in assigning correct weights, leading to a focus on irrelevant
  features and increased block error rate (BLER).
@@ -21297,16 +21196,16 @@ Attention mechanisms assign weights to input data, enabling the model to
 \paragraph_spacing onehalf
 
 \size large
-Variable SNR values work better for GridNet training, while constant SNR
- works better for the other models.
+With variable SNR values work better for GridNet training, while constant
+ SNR works better for the other models.
 \end_layout
 
 \begin_layout Itemize
 \paragraph_spacing onehalf
 
 \size large
-Training with low SNR values can result in the network learning noise patterns
- instead of accurately representing the signal.
+Druing the training with low SNR values can result in the network learning
+ noise patterns instead of accurately representing the signal.
  
 \end_layout
 
@@ -21315,7 +21214,7 @@ Training with low SNR values can result in the network learning noise patterns
 \paragraph_spacing onehalf
 
 \size large
-Our experiments showed that a minimum SNR value of 20dB is required for
+The experiments showed that a minimum SNR value of 20dB is required for
  training.
 \end_layout
 
@@ -21324,8 +21223,8 @@ Our experiments showed that a minimum SNR value of 20dB is required for
 \paragraph_spacing onehalf
 
 \size large
-All networks should be implemented in Python due to the GPU and TPU APIs
- support, which accelerates the training process.
+There was required that all networks should be implemented in Python due
+ to the GPU and TPU APIs support, which accelerates the training process.
 \end_layout
 
 \begin_layout Itemize
@@ -21340,14 +21239,27 @@ The use of a larger dataset is recommended to increase the robustness of
 \paragraph_spacing onehalf
 
 \size large
-In conclusion, the field of neural networks has seen tremendous advancements
- in recent years, with the development of more complex architectures, such
- as deep neural networks, convolutional neural networks, and transformers.
- It is essential to strike a balance between accuracy and memory footprint
- for signal equalization to avoid affecting data throughput.
- These advancements have led to significant improvements in the ability
- of neural networks to process complex data, including doubly dispersive
- channels.
+In the signal processing scenario, we identified a gap in the existing literatur
+e concerning the utilization of transformers.
+ To address this gap, we drew inspiration from image-to-image translation
+ models and devised a methodology involving a square grid.
+ This grid divides the IQ plane into buckets, quantizing the infinite possibilit
+ies into a reduced alphabet.By applying this approach, we translated the
+ uncorrected image, which was subject to channel deformation and noise.
+ Subsequently, we recovered the image using the desired buckets based on
+ the ground truth.
+ Although the equalization results were not optimal, our work opens up new
+ avenues for implementation and mathematical analysis.
+ We aim to enhance gradients and network evaluation to achieve a more accurate
+ estimation of the ground truth.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+
+\size large
+These advancements have led to significant improvements in the ability of
+ neural networks to process complex data, including doubly dispersive channels.
  These developments have resulted in numerous practical applications, ranging
  from self-driving cars and drone flying to the development of new 6G technologi
 es.
@@ -21369,19 +21281,16 @@ Future Work
 \noindent
 
 \size large
-Model quantization is a technique for reducing the memory footprint and
- computational cost of deep neural networks by converting the weights and
- activations of the network to a lower numerical precision format.
- While it can significantly reduce the memory and power requirements of
- neural networks, it can also lead to a loss of accuracy.
- Adjustments to the network architecture and training process are needed
- to ensure that the quantized network still achieves good performance.
- Google's Coral platform is an example of a system that uses model quantization
- for efficient inference, including a set of tools for quantizing and compressin
-g neural network models to run on the Coral Edge TPU.
- Coral's quantization tools include both post-training and quantization-aware
- training methods, and are compatible with popular deep learning frameworks
- such as TensorFlow and PyTorch.
+Considering neural networks in hardware-constrained scenarios, exploring
+ model quantization is crucial to reduce memory and computational costs.
+ This involves converting weights and activations to lower precision.
+ Despite memory and power efficiency gains, accuracy trade-offs may occur.
+ Adjustments to network architecture and training are needed for good performanc
+e.
+ Google's Coral platform exemplifies efficient inference with model quantization.
+ It offers tools compatible with TensorFlow and PyTorch for quantizing and
+ compressing models to run on the Coral Edge TPU, employing both post-training
+ and quantization-aware training methods.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -21431,8 +21340,12 @@ literal "false"
 \noindent
 
 \size large
-Equalization in MIMO scenarios could be a potential candidate, as it involves
- classification tasks that are typically more effective with neural networks.
+It's important to mention that MIMO scenarios haven't been extensively explored
+ with neural networks yet.
+ We know that deep learning techniques are particularly good at classifying
+ things, and there is great potential for them to excel in MIMO scenarios
+ as well.
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "DeepMimoOFDM"
