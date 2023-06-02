@@ -505,21 +505,21 @@ newline
 High-mobility wireless networks, such as vehicle-to-vehicle (V2V) communication,
  have applications in road safety, autonomous driving, remote vehicle monitoring
 , and 6G.
- For this, the OFDM modulation scheme is used, in which information is divided
- into subcarriers that are transmitted simultaneously with quadrature amplitude
- modulation (QAM).
- In this case, the channel suffers from phenomena such as frequency dispersion
- that compromise the integrity of received data.
- To address this, conventional or iterative equalizers are presented, which
- are more accurate but require more processing time.
- Given the trade-off between accuracy and processing cost, this work presents
- deep learning-based solutions as an alternative for equalization in the
- OFDM modulation scheme.
- These deep learning solutions range from the simplest (feedforward) to
- the most complex (transformers), and the bit error rate (BER) and block
- error rate (BLER) metrics are considered to evaluate the accuracy of equalizati
-on.
- 
+ To achieve this, the OFDM modulation scheme is used, where information
+ is divided into subcarriers that are simultaneously transmitted using quadratur
+e amplitude modulation (QAM).
+ However, the channel experiences phenomena such as frequency dispersion
+ that can compromise the integrity of the received data.
+ Various existing techniques address this problem using either conventional
+ or iterative equalizers, which mitigate interference between carriers but
+ come with a significant increase in computational complexity for the receiver.
+ Considering the trade-off between accuracy and processing cost, this work
+ presents deep learning-based solutions as an alternative for equalization
+ in high-mobility OFDM systems.
+ These deep learning solutions range from simple feedforward models to more
+ complex transformers.
+ The accuracy of equalization is evaluated using bit error rate (BER) and
+ block error rate (BLER) metrics.
 \begin_inset ERT
 status open
 
@@ -532,23 +532,25 @@ newline
 
 \end_inset
 
-
+ 
 \end_layout
 
 \begin_layout Standard
 \paragraph_spacing onehalf
 
 \size large
-The purpose of this work is to present deep learning-based approximations
- of equalization techniques with linear nature, such as Zero Forcing, MSE,
- LMMSE, and non-linear techniques such as OSIC and NearML.
- During the conducted tests, QPSK and 16-QAM constellations were tracked
- with an SNR ranging from 5 dB to 45 dB.
- It was observed that some proposed neural networks throughout the project
- obtained a lower BER than reference models in certain SNR regions.
- This can potentially impact LTE and Wi-Fi protocols, providing connectivity
- for V2V, as they are wireless communication technologies that use OFDM.
- 
+The objective of this work is to develop deep learning-based approaches
+ for the equalization of doubly dispersive channels in OFDM communication
+ systems.
+ The performance of these approaches is compared against linear equalization
+ techniques such as Zero Forcing, MSE, LMMSE, as well as non-linear techniques
+ like OSIC and NearML.
+ The tests conducted involve tracking QPSK and 16-QAM constellations at
+ SNR levels ranging from 5 dB to 45 dB.
+ It was observed that certain neural networks proposed throughout the project
+ achieved lower BER than the reference models in specific SNR regions.
+ This indicates a potential impact on LTE and Wi-Fi protocols, which provide
+ wireless connectivity for V2V communication and utilize OFDM technology.
 \end_layout
 
 \begin_layout Standard
