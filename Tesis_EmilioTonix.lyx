@@ -706,7 +706,7 @@ It takes a lot of expertise in the field of communications to model different
  signaling and detecting systems that guarantee a reliable data flow.
  The design of transmit signals in communications enables simple analytical
  techniques for symbol detection for a range of channel and system models,
- including multipath, doppler spread, and white Gaussian noise (AWGN) over
+ including multipath, Doppler spread, and white Gaussian noise (AWGN) over
  constellation symbol detection.
  
 \begin_inset CommandInset citation
@@ -20481,8 +20481,8 @@ name "fig:92"
 
 \size large
 Square grid works better with lower SNR than the Polar grid.
- Basically both grids are a finnaly trade off between consisten noise mitigation
- or ISI cancelation.
+ Basically both grids are a finnaly trade off between consistent noise mitigatio
+n or ISI cancelation.
  It can be taken a closer look for SNR range from 5dB to 25dB in 
 \color blue
 Figure 
@@ -21136,7 +21136,7 @@ In this work, new networks for equalizing variant channels were presented.
 
 \size large
 MobileNet and PolarGrid enable adequate mitigation of impairments caused
- by ISI and doppler effects.
+ by ISI and Doppler effects.
  
 \end_layout
 
@@ -21204,7 +21204,7 @@ With variable SNR values work better for GridNet training, while constant
 \paragraph_spacing onehalf
 
 \size large
-Druing the training with low SNR values can result in the network learning
+During the training with low SNR values can result in the network learning
  noise patterns instead of accurately representing the signal.
  
 \end_layout
