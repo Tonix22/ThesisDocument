@@ -173,7 +173,8 @@ Unidad Guadalajara
 \series bold
 \size huge
 \color black
-Deep learning-based OFDM symbol detection in doubly dispersive channels
+Detección de símbolos OFDM basada en aprendizaje profundo en canales doblemente
+ dispersivos
 \end_layout
 
 \begin_layout Standard
@@ -188,7 +189,7 @@ Deep learning-based OFDM symbol detection in doubly dispersive channels
 
 \size larger
 \color black
-A thesis presented by:
+Tesis que presenta:
 \end_layout
 
 \begin_layout Standard
@@ -205,7 +206,7 @@ Luis Emilio Tonix Gleason
 
 \size larger
 \color black
-to obtain the degree of:
+para obtener el grado de:
 \end_layout
 
 \begin_layout Standard
@@ -214,7 +215,7 @@ to obtain the degree of:
 \series bold
 \size larger
 \color black
-Master in Science
+Maestro en Ciencias
 \end_layout
 
 \begin_layout Standard
@@ -222,7 +223,7 @@ Master in Science
 
 \size larger
 \color black
-in the subject of:
+en la especialidad de:
 \end_layout
 
 \begin_layout Standard
@@ -231,7 +232,7 @@ in the subject of:
 \series bold
 \size larger
 \color black
-Electrical Engineering
+Ingeniería Eléctrica
 \end_layout
 
 \begin_layout Standard
@@ -239,7 +240,7 @@ Electrical Engineering
 
 \size larger
 \color black
-Thesis Advisors:
+Directores de Tesis:
 \end_layout
 
 \begin_layout Standard
@@ -260,34 +261,6 @@ Dr.
 \color black
 Dr.
  Fernando Peña Campos
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\series bold
-\size larger
-\color black
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-vfill Guadalajara, Jalisco 
-\backslash
-today
-\end_layout
-
-\end_inset
-
- 
 \end_layout
 
 \begin_layout Standard
