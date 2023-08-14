@@ -1,0 +1,126 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+The PhaseNet, a conventional linear neural network, is devised primarily
+ to correct the original phase for any PSK system operating on an OFDM scheme
+ in the frequency domain, considering a double dispersive channel accompanied
+ by noise.
+ Complications emerge both in the network's preprocessing stage and in the
+ evaluation of the error between the estimated and actual values.
+ Initially, the preprocessing function serves to diminish the distance between
+ the OFDM PSK symbols, thereby facilitating the network's compensation for
+ minor disparities in equalizing the correct symbol.
+ This reduction in distance translates directly into lower values within
+ the network weights, enhancing stability during training and evaluation.
+ Essentially, closer points allow the network to generalize more effectively,
+ avoiding undue stretching to accommodate all cases.
+ Secondly, a notable discrepancy arises when the estimated values are located
+ within the complex plane's second quadrant, while the true values are in
+ the third quadrant.
+ This marked error originates from the measurement of the error as the differenc
+e in angles, causing a considerab¸le escalation when spanning the second,
+ and third quadrants.
+ It is vital to emphasize that angle values are typically confined within
+ the range of 
+\begin_inset Formula $-\pi$
+\end_inset
+
+ to 
+\begin_inset Formula $\pi$
+\end_inset
+
+ in prevalent libraries such as PyTorch and NumPy.
+\end_layout
+
+\begin_layout Standard
+The goal of the estimator is to focus on the angles given by 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ and for the complex perspective we have the following expresion 
+\begin_inset Formula $O(\boldsymbol{\hat{\theta}})=e^{i\boldsymbol{\hat{\theta}}}=cos(\boldsymbol{\hat{\theta}})+i*sin(\boldsymbol{\hat{\theta}})$
+\end_inset
+
+.
+ To achive an estimation an error metric we split the euler formal and compare
+ the values with the real an imaginary part.
+ 
+\end_layout
+
+\end_body
+\end_document
