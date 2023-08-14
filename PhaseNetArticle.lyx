@@ -5,6 +5,10 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -29,6 +33,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -44,6 +49,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -75,6 +81,32 @@
 
 \begin_body
 
+\begin_layout Subsection
+z-score
+\end_layout
+
+\begin_layout Standard
+The z-score, also known as a standard score, is a statistical measure that
+ describes a value's relationship to the mean of a group of values.
+ It's measured in terms of standard deviations from the mean.
+\end_layout
+
+\begin_layout Standard
+If a z-score is 0, it indicates that the value is exactly equal to the mean.
+ A positive z-score indicates that the value is above the mean, and a negative
+ z-score indicates that the value is below the mean.
+\end_layout
+
+\begin_layout Standard
+In essence, the z-score provides a way to compare individual data points
+ with the overall distribution, allowing for an understanding of how typical
+ or atypical a specific value is within that distribution.
+\end_layout
+
+\begin_layout Subsection
+PhaseNet
+\end_layout
+
 \begin_layout Standard
 The PhaseNet, a conventional linear neural network, is devised primarily
  to correct the original phase for any PSK system operating on an OFDM scheme
@@ -89,12 +121,26 @@ The PhaseNet, a conventional linear neural network, is devised primarily
  the network weights, enhancing stability during training and evaluation.
  Essentially, closer points allow the network to generalize more effectively,
  avoiding undue stretching to accommodate all cases.
- Secondly, a notable discrepancy arises when the estimated values are located
+\end_layout
+
+\begin_layout Standard
+Secondly, a notable discrepancy arises when the estimated values are located
  within the complex plane's second quadrant, while the true values are in
- the third quadrant.
- This marked error originates from the measurement of the error as the differenc
-e in angles, causing a considerab¸le escalation when spanning the second,
- and third quadrants.
+ the third quadrant, with an error given by 
+\begin_inset Formula $e=MSE(\hat{\theta}-\theta)$
+\end_inset
+
+ where 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ is the neural network estimate and 
+\begin_inset Formula $\theta$
+\end_inset
+
+ the ground truth.
+ This marks a significant error in the measurement and estimation, resulting
+ in a considerable difference between angles.
  It is vital to emphasize that angle values are typically confined within
  the range of 
 \begin_inset Formula $-\pi$
@@ -104,22 +150,533 @@ e in angles, causing a considerab¸le escalation when spanning the second,
 \begin_inset Formula $\pi$
 \end_inset
 
- in prevalent libraries such as PyTorch and NumPy.
+ in prevalent libraries such as PyTorch and NumPy, so errors should be close
+ to 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ where error should approach to 0.
+ 
 \end_layout
 
 \begin_layout Standard
-The goal of the estimator is to focus on the angles given by 
+Another important step is to ensure that the input values for the neural
+ network are normalized to fall within the range of -1 to 1.
+ This normalization aids in controlling the weights and contributes to a
+ more stable convergence during training.
+ 
+\end_layout
+
+\begin_layout Standard
+Instead of simply estimating the angle 
 \begin_inset Formula $\hat{\theta}$
 \end_inset
 
- and for the complex perspective we have the following expresion 
+ we can utilize the complex perspective to avoid substantial error measurement.
+ We can reinterpret the angle with the complex exponential expression with
+ unitary radius 
 \begin_inset Formula $O(\boldsymbol{\hat{\theta}})=e^{i\boldsymbol{\hat{\theta}}}=cos(\boldsymbol{\hat{\theta}})+i*sin(\boldsymbol{\hat{\theta}})$
 \end_inset
 
-.
- To achive an estimation an error metric we split the euler formal and compare
- the values with the real an imaginary part.
+ , and instead of comparing with an angle, we will compare the real and
+ imaginary parts.
+ Both parts should be weighted equally by a factor of one-half.
+ The error can be expressed as.
  
+\begin_inset Formula $e=\frac{1}{2}MSE(O(\boldsymbol{\hat{\theta}})_{real}-\theta_{real})+\frac{1}{2}MSE(O(\boldsymbol{\hat{\theta}})_{imag}-\theta_{imagl})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Codigo/UML/PhasNet.png
+	lyxscale 70
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+PhaseNet
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm} 
+\backslash
+caption{PhaseNet} 
+\backslash
+begin{algorithmic}[1] 
+\backslash
+State 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+( Y = Hx + w 
+\backslash
+) 
+\backslash
+State 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+( Y 
+\backslash
+leftarrow H^{H}Y 
+\backslash
+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+If{training}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State z-score with 95
+\backslash
+% 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+EndIf 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $Input 
+\backslash
+leftarrow ang(Y) $
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State Normalize angle from 
+\backslash
+(-
+\backslash
+pi
+\backslash
+) to 
+\backslash
+(
+\backslash
+pi
+\backslash
+) to -1 to 1 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State Input value to network 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State Output multiply by 
+\backslash
+(
+\backslash
+pi
+\backslash
+) 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $O(
+\backslash
+boldsymbol{
+\backslash
+hat{
+\backslash
+theta}}) 
+\backslash
+times 
+\backslash
+pi$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State Input the output into a 
+\backslash
+(
+\backslash
+cos
+\backslash
+) and 
+\backslash
+(
+\backslash
+sin
+\backslash
+) to build complex exponential 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State $O(
+\backslash
+boldsymbol{
+\backslash
+hat{
+\backslash
+theta}})=e^{i
+\backslash
+boldsymbol{
+\backslash
+hat{
+\backslash
+theta}}}=cos(
+\backslash
+boldsymbol{
+\backslash
+hat{
+\backslash
+theta}})+i*sin(
+\backslash
+boldsymbol{
+\backslash
+hat{
+\backslash
+theta}})$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+State Compare estimation with ground truth 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Parameters
+\end_layout
+
+\begin_layout Standard
+This parameters are the networks layers and some estimate of the number
+ of parameters involved
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]   
+\backslash
+centering   
+\backslash
+caption{Number of Parameters in the PyTorch nn.Sequential block}   
+\backslash
+label{tab:PhaseNetTable}   
+\backslash
+begin{tabular}{|l|l|l|}     
+\backslash
+hline     
+\backslash
+textbf{Layer} & 
+\backslash
+textbf{Output Shape} & 
+\backslash
+textbf{Number of Parameters} 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Linear(48, 240, bias=True) & (batch
+\backslash
+_size, 240) & (48 + 1) * 240 = 11,760 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Hardtanh() & (batch
+\backslash
+_size, 240) & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Linear(240, 720, bias=True) & (batch
+\backslash
+_size, 720) & 2 * 240$^2$ + 2 * 240 = 346,320 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Linear(720, 240, bias=True) & (batch
+\backslash
+_size, 240) & 4 * 240$^2$ + 2 * 240 = 1,388,160 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Hardtanh() & (batch
+\backslash
+_size, 240) & 0 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     nn.Linear(240, 48, bias=True) & (batch
+\backslash
+_size, 48) & (240 + 1) * 48 = 11,568 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline     
+\backslash
+multicolumn{2}{|r|}{
+\backslash
+textbf{Total}} & 
+\backslash
+textbf{1,757,808 = 13.39 MB} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+hline   
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Hyperparameters
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}[H]   
+\backslash
+centering   
+\backslash
+caption{Hyperparameters}   
+\backslash
+label{tab:hyperparams}   
+\backslash
+begin{tabular}{|l|l|}     
+\backslash
+hline     
+\backslash
+textbf{Hyperparameter} & 
+\backslash
+textbf{Value} 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     BATCHSIZE & 10 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     QAM & 16 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     NUM
+\backslash
+_EPOCHS & 2 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     INPUT
+\backslash
+_SIZE & 48 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     HIDDEN
+\backslash
+_SIZE & 240 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     LEARNING
+\backslash
+_RATE & 8e-5 
+\backslash
+
+\backslash
+ 
+\backslash
+hline     CONJ & True 
+\backslash
+
+\backslash
+ 
+\backslash
+hline  SNRdB & 35 
+\backslash
+
+\backslash
+ 
+\backslash
+hline 
+\backslash
+end{tabular} 
+\backslash
+end{table} 
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
