@@ -235,70 +235,35 @@ status open
 \backslash
 begin{algorithm} 
 \backslash
-caption{PhaseNet} 
+caption{PhaseNet Process} 
 \backslash
-begin{algorithmic}[1] 
+begin{algorithmic}[1]  
 \backslash
 State 
-\end_layout
-
-\begin_layout Plain Layout
-
-
 \backslash
 ( Y = Hx + w 
 \backslash
-) 
+)  
 \backslash
 State 
-\end_layout
-
-\begin_layout Plain Layout
-
-
 \backslash
 ( Y 
 \backslash
 leftarrow H^{H}Y 
 \backslash
-) 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+)  
 \backslash
-If{training}     
-\end_layout
-
-\begin_layout Plain Layout
-
-
+If{training}      
 \backslash
 State z-score with 95
 \backslash
-% 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+%  
 \backslash
-EndIf 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+EndIf  
 \backslash
 State $Input 
 \backslash
-leftarrow ang(Y) $
-\end_layout
-
-\begin_layout Plain Layout
-
-
+leftarrow ang(Y) $ 
 \backslash
 State Normalize angle from 
 \backslash
@@ -312,19 +277,9 @@ pi
 \backslash
 pi
 \backslash
-) to -1 to 1 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+) to -1 to 1  
 \backslash
-State Input value to network 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+State Input value to PhaseNet  
 \backslash
 State Output multiply by 
 \backslash
@@ -332,12 +287,7 @@ State Output multiply by
 \backslash
 pi
 \backslash
-) 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+)  
 \backslash
 State $O(
 \backslash
@@ -349,12 +299,7 @@ theta}})
 \backslash
 times 
 \backslash
-pi$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+pi$ 
 \backslash
 State Input the output into a 
 \backslash
@@ -368,12 +313,7 @@ cos
 \backslash
 sin
 \backslash
-) to build complex exponential 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+) to build complex exponential  
 \backslash
 State $O(
 \backslash
@@ -399,26 +339,11 @@ boldsymbol{
 \backslash
 hat{
 \backslash
-theta}})$
-\end_layout
-
-\begin_layout Plain Layout
-
-
+theta}})$ 
 \backslash
-State Compare estimation with ground truth 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+State Compare estimation with ground truth  
 \backslash
-end{algorithmic} 
-\end_layout
-
-\begin_layout Plain Layout
-
-
+end{algorithmic}  
 \backslash
 end{algorithm} 
 \end_layout
